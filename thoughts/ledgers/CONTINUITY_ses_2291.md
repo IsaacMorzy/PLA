@@ -1,6 +1,6 @@
 ---
 session: ses_2291
-updated: 2026-04-29T12:15:12.454Z
+updated: 2026-04-29T13:40:18.664Z
 ---
 
 
@@ -8,49 +8,69 @@ updated: 2026-04-29T12:15:12.454Z
 # Session Summary
 
 ## Goal
-Complete Phase 5-6: Donate + Withdraw flow for PeaceLeague Africa crowdfunding app, with build passing and commits made.
+Build a production-grade crowdfunding dApp for Africa using Solana with beautiful, animated UI that fetches real campaign data from Cosmic CMS.
 
 ## Constraints & Preferences
-- Use Cosmic CMS (not on-chain Anchor) for data storage
-- Keep build error-free
-- Commit after each piece of work is complete
+- Follow SOLANA_FRONTEND_AGENT.md design philosophy (Liquid Glass, 2026 Calm UI)
+- Use Fincash template as reference for layout/typography patterns
+- Framer Motion for purposeful animations (not decorative)
+- Next.js 15+ Server Components for data fetching
+- TypeScript strict mode
+- DaisyUI + Tailwind v4 theming
 
 ## Progress
 ### Done
-- [x] Wired up `handleDonate` to use `updateCampaign()` from `@/lib/actions`
-- [x] Added wallet connection check (require connected wallet)
-- [x] Added minimum 1 SOL validation
-- [x] Added quick-select buttons (1, 2, 5, 10 SOL)
-- [x] Added error display in donate modal
-- [x] Fixed goal/raised display (removed `/1e9` lamport conversion)
-- [x] Removed unused Anchor client files (`program.ts`, `types.ts`, `idl.json`, `useCampaigns.ts`) that were causing build errors
-- [x] Build passes ✅
-- [x] Committed: `28f9ff1 feat: wire up donate flow in campaign page`
-- [x] Updated Multica: Phase 5-6 marked done
+- [x] Created `lib/animations.ts` with Framer Motion variants (fadeInUp, staggerContainer, scaleIn, etc.)
+- [x] Split homepage into Server Component (`app/page.tsx`) and Client Component (`app/home-client.tsx`)
+- [x] Wired up homepage to fetch campaigns and stories from Cosmic CMS via `getFeaturedCampaigns()` and `getStories()`
+- [x] Added fallback placeholder campaigns when no real data exists
+- [x] Added `donors` and `location` fields to Campaign and CampaignStory interfaces in `lib/cosmic.ts`
+- [x] Installed `framer-motion` dependency
+- [x] Fixed TypeScript errors by properly typing fallback data
+- [x] Build verified successfully
 
 ### In Progress
-- [ ] User confused about file location - not seeing the campaign page file
+- [ ] None - build is passing
+
+### Completed Today
+- [x] Homepage redesigned with glassmorphism (Liquid Glass aesthetic)
+- [x] Added Features section (Why Choose PeaceLeague)
+- [x] Added Newsletter signup section
+- [x] Added sample campaigns to Cosmic CMS (Clean Water, School Books, Emergency Food Aid)
+- [x] Glassmorphism Card component (bg-white/10, backdrop-blur, border-white/20)
+- [x] Build passes ✓
 
 ### Blocked
 - (none)
 
 ## Key Decisions
-- **Using Cosmic over Anchor**: The app uses Cosmic CMS for campaign data storage. The Anchor program exists in `anchor/` but isn't wired to the frontend yet.
-- **Worktree setup**: Created worktree at `peaceleagueafrica-anchor-phase5-6` on branch `feature/donate-withdraw`
+- **Server/Client split**: Next.js 15+ requires async components in Server Components, so moved all Framer Motion animations to client component
+- **Fallback data**: Show placeholder campaigns (Clean Water, School Books, Emergency Food Relief) when Cosmic returns empty to maintain visual demo
+- **Type assertions**: Used explicit `CampaignStory[]` type for fallback data to fix TypeScript errors
 
 ## Next Steps
-1. Verify user can access the worktree file at the correct path
-2. Optionally merge into main branch
+1. Review the homepage visually at `http://localhost:3000`
+2. Add more sections from Fincash template (features, stats, newsletter signup)
+3. Create campaign detail page (`/campaign/[slug]`) with real data
+4. Implement donation flow with Wallet Adapter
 
 ## Critical Context
-- The campaign page is in the **worktree directory**, not the original repo:
-  - Worktree: `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica-anchor-phase5-6/`
-  - File: `app/campaign/[slug]/page.tsx`
-- The original repo is at: `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica-anchor/`
+- Cosmic CMS bucket configured: `peaceleague-africa` (needs object type "campaigns" populated)
+- API endpoint for Cosmic: `/api/cosmic` returns campaign data
+- Build output shows 404 for stories (no objects in bucket yet - this is expected until content is added)
+- Fincash template: https://tailgrids.com/templates/fincash
 
 ## File Operations
 ### Read
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica-anchor-phase5-6/app/campaign/[slug]/page.tsx`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/page.tsx`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/lib/cosmic.ts`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/SOLANA_FRONTEND_AGENT.md`
 
 ### Modified
-- Same file - wired up `handleDonate` function (lines 44-84)
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/page.tsx` - Converted to Server Component
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/lib/cosmic.ts` - Added interface fields
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/package.json` - Added framer-motion
+
+### Created
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/home-client.tsx` - Client component with animations
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/lib/animations.ts` - Framer Motion variants
