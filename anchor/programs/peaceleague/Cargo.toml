@@ -13,3 +13,9 @@ anchor-spl = "0.32"
 [features]
 default = []
 anchor-debug = []
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"

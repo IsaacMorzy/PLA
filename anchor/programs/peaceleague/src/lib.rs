@@ -21,7 +21,7 @@ pub use instructions::{
 
 // ===== Program =====
 
-declare_id!("CcmjoYupPASLWApnqmud3QJXqw7c3cC3ZSow2LmHW675");
+declare_id!("Fk7iWdM7fUTDgvmTgwx1T3KMqWn3F61bUnBczVrjsBME");
 
 
 #[program]

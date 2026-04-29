@@ -1,6 +1,9 @@
 {
   "version": "0.1.0",
   "name": "peaceleague",
+  "metadata": {
+    "address": "CcmjoYupPASLWApnqmud3QJXqw7c3cC3ZSow2LmHW675"
+  },
   "instructions": [
     {
       "name": "initialize",

@@ -163,10 +163,4 @@ Contributions are welcome! Please read our contributing guidelines before submit
 
 MIT License — see [LICENSE.md](./LICENSE.md)
 
----
-
-## Acknowledgments
-
-Built with inspiration from [Fundus](https://github.com/Daltonic/fundus) — a Solana crowdfunding reference implementation.
-
 Built for the African continent 🌍

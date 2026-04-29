@@ -11,3 +11,6 @@ wallet = "~/.config/solana/id.json"
 name = "peaceleague"
 url = "https://github.com/peaceleagueafrica"
 edition = "2021"
+
+[workspace]
+# Solana program workspace configuration

@@ -43,7 +43,7 @@ export function getProgram(connection: Connection, wallet: any): Program {
     AnchorProvider.defaultOptions()
   );
   
-  return new Program(idl as Idl, PROGRAM_ID, provider);
+  return new Program(idl as unknown as Idl, provider);
 }
 
 /**
@@ -106,7 +106,7 @@ export function parseCampaign(accountData: Buffer | any) {
  * Format lamports to SOL
  */
 export function lamportsToSol(lamports: number | BN): number {
-  const num = typeof lamports === 'BN' ? lamports.toNumber() : lamports;
+  const num = (lamports as any).toNumber ? (lamports as BN).toNumber() : lamports;
   return num / SOL_LAMPORTS;
 }
 

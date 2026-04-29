@@ -61,20 +61,14 @@ export function useCampaigns() {
   useEffect(() => {
     if (!connection) return;
     
-    // Create a mock wallet for read-only operations
-    const mockWallet = {
-      publicKey: PublicKey.default,
-      signTransaction: async (tx: Transaction) => tx,
-      signAllTransactions: async (txs: Transaction[]) => txs,
-    };
-    
+    // Create Anchor provider for read-only operations
     const provider = new AnchorProvider(
       connection,
-      mockWallet as any,
+      { publicKey: PublicKey.default, signTransaction: async (tx: Transaction) => tx } as any,
       AnchorProvider.defaultOptions()
     );
     
-    const prog = new Program(idl as any, PROGRAM_ID, provider);
+    const prog = new Program(idl as any, provider);
     setProgram(prog);
   }, [connection]);
 
@@ -86,7 +80,7 @@ export function useCampaigns() {
     
     try {
       const stateAddress = getProgramStateAddress();
-      const state = await program.account.programState.fetch(stateAddress);
+      const state = await (program as any).account.programState.fetch(stateAddress);
       
       if (state) {
         setProgramState({
@@ -135,7 +129,7 @@ export function useCampaigns() {
       
       for (const address of campaignAddresses) {
         try {
-          const account = await program.account.campaign.fetch(address);
+const account = await (program as any).account.campaign.fetch(address);
           if (account) {
             fetchedCampaigns.push({
               cid: Number(account.cid),
@@ -196,7 +190,7 @@ export function useCampaigns() {
       
       // Get program state to get next campaign ID
       const stateAddress = getProgramStateAddress();
-      const state = await program.account.programState.fetch(stateAddress);
+      const state = await (program as any).account.programState.fetch(stateAddress);
       const cid = Number(state.campaignCount);
       const campaignAddress = getCampaignAddress(cid);
       
@@ -384,7 +378,7 @@ export function useCampaigns() {
     if (!program) return null;
     
     try {
-      const account = await program.account.campaign.fetch(address);
+      const account = await (program as any).account.campaign.fetch(address);
       return {
         cid: Number(account.cid),
         creator: account.creator,
