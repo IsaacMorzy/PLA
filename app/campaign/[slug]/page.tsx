@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { getCampaignBySlug, campaignCategories, type Campaign } from "@/lib/cosmic";
 import { WalletButton } from "@/components/wallet/wallet-button";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { updateCampaign } from "@/lib/actions";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -35,18 +37,53 @@ function CampaignContent({ campaign }: { campaign: Campaign }) {
   const [donationAmount, setDonationAmount] = useState("1");
   const [showDonateModal, setShowDonateModal] = useState(false);
   const [isDonating, setIsDonating] = useState(false);
+  const [error, setError] = useState("");
 
-  const goal = campaign.metadata?.goal || 1000000000;
+  const { publicKey } = useWallet();
+  const isConnected = !!publicKey;
+
+  const goal = campaign.metadata?.goal || 5;
   const raised = campaign.metadata?.raised || 0;
   const percent = Math.min(100, Math.round((raised / goal) * 100));
   const daysLeft = Math.max(0, 30 - Math.floor(Math.random() * 30));
 
   const handleDonate = async () => {
+    if (!isConnected) {
+      setError("Please connect your wallet first");
+      return;
+    }
+
+    const amount = parseFloat(donationAmount);
+    if (amount < 1) {
+      setError("Minimum donation is 1 SOL");
+      return;
+    }
+
     setIsDonating(true);
-    setTimeout(() => {
-      setIsDonating(false);
+    setError("");
+
+    try {
+      // Update campaign in Cosmic (simulated for demo - real impl would use Anchor program)
+      const newRaised = raised + amount;
+      const result = await updateCampaign(campaign.id, {
+        raised: newRaised,
+      });
+
+      if (!result.success) {
+        throw new Error(result.error || "Failed to process donation");
+      }
+
+      // Update local state to show success
+      setDonationAmount("1");
       setShowDonateModal(false);
-    }, 2000);
+      // In a real app, you'd trigger the Solana transfer here
+      alert(`Thank you for your donation of ${amount} SOL!`);
+    } catch (err) {
+      console.error("Donation error:", err);
+      setError(err instanceof Error ? err.message : "Donation failed");
+    } finally {
+      setIsDonating(false);
+    }
   };
 
   const category = campaignCategories.find((c) => c.id === campaign.metadata?.category);
@@ -107,10 +144,10 @@ function CampaignContent({ campaign }: { campaign: Campaign }) {
                 <div className="mt-2">
                   <progress className={`progress ${percent >= 100 ? "progress-success" : percent >= 50 ? "progress-warning" : "progress-primary"}`} value={percent} max={100} />
                   <div className="flex justify-between mt-1 text-sm">
-                    <span className="font-bold text-success">{Number(raised / 1e9).toFixed(1)} SOL raised</span>
+                    <span className="font-bold text-success">{raised.toFixed(1)} SOL raised</span>
                     <span className="text-muted-foreground">{percent}% of goal</span>
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1">Goal: {Number(goal / 1e9).toFixed(0)} SOL</p>
+                  <p className="text-xs text-muted-foreground mt-1">Goal: {goal} SOL</p>
                 </div>
                 <button onClick={() => setShowDonateModal(true)} className="btn btn-primary w-full mt-4">
                   <Heart className="h-5 w-5" /><span>Donate Now</span>
@@ -142,12 +179,13 @@ function CampaignContent({ campaign }: { campaign: Campaign }) {
           <div className="form-control">
             <label className="label"><span className="label-text">Amount (SOL)</span></label>
             <div className="grid grid-cols-4 gap-2 mb-2">
-              {["0.5", "1", "2", "5"].map((amt) => (
+              {["1", "2", "5", "10"].map((amt) => (
                 <button key={amt} onClick={() => setDonationAmount(amt)} className={`btn ${donationAmount === amt ? "btn-primary" : "btn-outline"}`}>{amt}</button>
               ))}
             </div>
-            <input type="number" value={donationAmount} onChange={(e) => setDonationAmount(e.target.value)} className="input input-bordered" step="0.1" min="0.1" />
+            <input type="number" value={donationAmount} onChange={(e) => setDonationAmount(e.target.value)} className="input input-bordered" step="0.1" min="1" />
           </div>
+          {error && <div className="alert alert-error"><span>{error}</span></div>}
           <div className="mt-4"><WalletButton /></div>
           <div className="mt-4 p-4 bg-base-200 rounded-lg">
             <div className="flex justify-between"><span>Total</span><span className="font-bold">{donationAmount || 0} SOL</span></div>
