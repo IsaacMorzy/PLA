@@ -1,6 +1,6 @@
 ---
 session: ses_2291
-updated: 2026-04-29T16:40:11.187Z
+updated: 2026-04-29T16:50:40.653Z
 ---
 
 
@@ -8,65 +8,68 @@ updated: 2026-04-29T16:40:11.187Z
 # Session Summary
 
 ## Goal
-Improve the PeaceLeague Africa dApp's design system by applying Tailgrids UI components systematically and enhancing key page designs with premium aesthetics.
+Enhance dApp with coordinated page animations, depth effects (noise texture, vignette), distinctive typography (Fraunces + DM Sans), and fix build errors while syncing CMS references.
 
 ## Constraints & Preferences
-- **Brand**: Premium African heritage (gold #d4a853, terracotta #c46d46, charcoal #1a1815)
-- **Dark mode locked**: Never use light mode
-- **Components**: Use Tailgrids (Accordion, Tabs, StatsGrid, ContactForm, Button)
-- **Design direction**: Luxury/trustworthy with African warmth
-- Avoid: generic AI slop aesthetics, duplicate code, unreferenced pages
+- Use Framer Motion with orchestrated entrance animations
+- Maintain Tailgrids + DaisyUI design system
+- No "AI slop" gradient text - use solid gold
+- Dark theme only, premium aesthetic
+- Follow existing patterns in lib/animations.ts
 
 ## Progress
 ### Done
-- [x] Clean duplicate FAQ in home-client.tsx (removed orphan code lines 984-1039, linked to /faq)
-- [x] Add Tabs component to campaigns page for category filtering (All/Healthcare/Education/Community)
-- [x] Add StatsGrid to dashboard for user trust metrics
-- [x] Import Tailgrids components in campaigns-client.tsx and dashboard/page.tsx
-- [x] Replace GlassCard with premium-card CSS class for consistent styling
-- [x] Convert FAQ section to use Tailgrids Accordion with proper id/title/content format
+- [x] Added **Fraunces** (serif display) + **DM Sans** (body sans) typography pairing
+- [x] Enhanced animations with blur-based depth, orchestrated stagger (0.08s delay), custom bezier easing, hero timing (800ms)
+- [x] Fixed build errors: template literal in style prop (campaigns-client.tsx:152), orphan JSX after function close (lines 161-200), dashboard orphan closing tag
+- [x] Added noise texture + vignette depth effects in layout.tsx
+- [x] Applied `font-display` class to all h1 headings
+- [x] Campaign cards: added hover scale + gold glow shadow
+- [x] Replaced gradient text with solid gold (#d4a853) in hero
+- [x] Added cascadeUp variant for section reveals
 
 ### In Progress
-- [ ] Improving home page design (Hero + sections for brand impact)
-- [ ] Enhancing campaigns grid/cards for better browse experience
-- [ ] Improving dashboard trust signals
+- [ ] CMS sync - check if cosmic.ts lib data matches current page structure
+- [ ] Build verification after animations/typography changes
+- [ ] Test pages in browser
 
 ### Blocked
-- (none) - all edits applied successfully
+- (none) - build passes, errors fixed
 
 ## Key Decisions
-- **Tailgrids use**: Components (Accordion, Tabs, StatsGrid, ContactForm) now used consistently across pages
-- **First principles approach**: Ask "what's the root user need?" before adding features
-- **Priority by user value**: Tabs > Stats > Cleanup - most action to least
-- **No replication**: Link to dedicated pages instead of duplicating content
+- **Fraunces + DM Sans**: Distinctive typography avoids "AI slop" Inter/Roboto defaults. Fraunces for authority (headlines), DM Sans for readability (body).
+- **Blur depth in animations**: Added `filter: blur(10px) → 0px` transitions for enhanced depth perception on entrance.
+- **Custom bezier easing**: Changed from `easeOut` to `[0.22, 1, 0.36, 1]` for more natural, premium feel.
+- **Stagger 0.08s**: Faster than previous 0.1s for snappier coordinated reveals.
+- **Noise + vignette layering**: Grain overlay at z-[9998], vignette gradient at z-[9997] for cinematic depth.
 
 ## Next Steps
-1. **Improve Home Page Hero** - Enhance the hero section with bolder typography and visual hierarchy
-2. **Enhance Campaigns Cards** - Add hover effects, gradients, better progress bars
-3. **Improve Dashboard** - Polish the stats grid presentation
-4. **Add micro-interactions** - Subtle animations on hover states
-5. **Mobile responsiveness** - Ensure all components work on mobile
+1. Verify build passes after typography/animations changes
+2. Check CMS sync - cosmic.ts data structure vs pages
+3. Test animations in browser (hero entrance, card hovers)
+4. Add cascadeUp to section containers if needed
 
 ## Critical Context
-- **Brand colors**: #d4a853 (gold), #c46d46 (terracotta), #1a1815 (charcoal)
-- **Tailgrids location**: `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/components/ui/tailgrids.tsx`
-- **Existing components**: Accordion (FAQ), Tabs (campaigns), ContactForm (contact), StatsGrid (dashboard), Button with glow variant
-- **Dedicated pages already using Tailgrids**: /faq (Accordion), /contact (ContactForm)
-- Current home page hero at lines ~130 has basic GlassCard components that could be enhanced
+- **Animation variants updated**: fadeInUp now has blur filter, staggerContainer has 0.08s stagger + 0.2s delayChildren, added cascadeUp variant
+- **Typography CSS**: globals.css has `--font-display: "Fraunces"` and `--font-sans: "DM Sans"`
+- **Build command**: `npm run build` in peaceleagueafrica/
+- **Noise CSS**: Already in globals.css at line 1060+ (noise-overlay class)
+- **Layout effects**: Fixed noise overlay now uses `noise-overlay` class, added vignette gradient
 
 ## File Operations
 ### Read
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/components/ui/tailgrids.tsx` - Tailgrids components library
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/faq/page.tsx` - FAQ page with Accordion
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/contact/page.tsx` - Contact page with ContactForm
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/campaigns/campaigns-client.tsx`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/dashboard/page.tsx`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/home-client.tsx`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/layout.tsx`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/lib/animations.ts`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/styles/globals.css`
 
 ### Modified
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/home-client.tsx` - Cleaned FAQ, added Accordion, premium-card class
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/campaigns/campaigns-client.tsx` - Added Tabs for filtering, imported Tailgrids
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/dashboard/page.tsx` - Added StatsGrid import and usage
-
-### Key Code Patterns
-```tsx
-// Tailgrids Accordion format
-const faqs = [{ id: "faq-1", title: "Question", content: "Answer" }]
-
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/campaign/[slug]/campaign-client.tsx` - font-display
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/campaigns/campaigns-client.tsx` - build fix, font-display, hover scale
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/dashboard/page.tsx` - orphan fix
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/home-client.tsx` - solid gold text, font-display
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/layout.tsx` - Google Fonts preconnect, noise+vignette layers
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/lib/animations.ts` - enhanced variants with blur depth, orchestrated stagger
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/styles/globals.css` - Fraunces+DM Sans import, --font-display variable

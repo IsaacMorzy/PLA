@@ -845,77 +845,115 @@ function TransparencySection() {
   );
 }
 
-// Global Reach Section - Impact Map
+// Global Reach Section - Giving Without Borders (Africa Map)
 function GlobalReachSection() {
-  const regions = [
-    { country: "Kenya", flag: "🇰🇪", campaigns: 45, raised: "1,200+", description: "Clean water & education" },
-    { country: "Nigeria", flag: "🇳🇬", campaigns: 32, raised: "890+", description: "Healthcare & small business" },
-    { country: "Ghana", flag: "🇬🇭", campaigns: 28, raised: "720+", description: "Education & agriculture" },
-    { country: "South Africa", flag: "🇿🇦", campaigns: 24, raised: "680+", description: "Housing & community" },
-    { country: "Uganda", flag: "🇺🇬", campaigns: 18, raised: "450+", description: "Health & farming" },
-    { country: "Tanzania", flag: "🇹🇿", campaigns: 15, raised: "380+", description: "Education & water" }
+  // Ordered by SOL raised (highest first)
+  const countries = [
+    { name: "Kenya", flag: "🇰🇪", raised: "1,200+", focus: "Clean Water & Education" },
+    { name: "Nigeria", flag: "🇳🇬", raised: "890+", focus: "Healthcare & Business" },
+    { name: "Ghana", flag: "🇬🇭", raised: "720+", focus: "Education & Agriculture" },
+    { name: "South Africa", flag: "🇿🇦", raised: "680+", focus: "Housing & Community" },
+    { name: "Uganda", flag: "🇺🇬", raised: "450+", focus: "Health & Farming" },
+    { name: "Tanzania", flag: "🇹🇿", raised: "380+", focus: "Education & Water" },
   ];
 
+  const totalRaised = "4,322+";
+  const totalNations = "6";
+  const totalCampaigns = "162+";
+
   return (
-    <section className="py-24 px-4 bg-white/[0.02]">
+    <section className="py-24 px-4">
       <div className="max-w-6xl mx-auto">
+        {/* Header */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={animations.fadeInUp}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <span className="text-sm font-medium text-[#d4a853] uppercase tracking-wider">Our Impact</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">
+          <span className="text-sm font-medium text-[#d4a853] uppercase tracking-wider">
+            Our Impact
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 font-display">
             Giving Without Borders
           </h2>
-          <p className="text-white/60 mt-4 max-w-2xl mx-auto">
-            Campaigns from 6+ African nations have raised over 4,000 SOL through PeaceLeague. Here's the breakdown.
-          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {regions.map((region, i) => (
+        {/* Stats summary - clean inline */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={animations.fadeInUp}
+          className="flex flex-wrap justify-center gap-8 mb-12"
+        >
+          <StatItem value={totalNations} label="African Nations" />
+          <StatItem value={totalRaised} label="SOL Raised" />
+          <StatItem value={totalCampaigns} label="Campaigns" />
+        </motion.div>
+
+        {/* Country grid - clean cards */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={animations.staggerContainer}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
+        >
+          {countries.map((c, i) => (
             <motion.div
-              key={i}
+              key={c.name}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={animations.fadeInUp}
-              transition={{ delay: i * 0.1 }}
+              variants={animations.staggerCard}
+              transition={{ delay: i * 0.05 }}
+              className="group"
             >
-              <GlassCard className="p-6 flex items-center gap-4">
-                <span className="text-4xl">{region.flag}</span>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-white">{region.country}</h3>
-                  <p className="text-xs text-white/50">{region.description}</p>
+              <div className="glass hover:bg-accent/60 rounded-xl p-5 transition-all duration-300 hover:scale-[1.02]">
+                <div className="flex items-center gap-4">
+                  <span className="text-3xl">{c.flag}</span>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-white truncate">{c.name}</h3>
+                    <p className="text-xs text-white/50 truncate">{c.focus}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-[#d4a853] font-bold">{c.raised}</p>
+                    <p className="text-[10px] text-white/40 uppercase tracking-wider">SOL</p>
+                  </div>
                 </div>
-                <div className="text-right">
-                  <p className="text-[#d4a853] font-bold">{region.raised} SOL</p>
-                  <p className="text-xs text-white/50">{region.campaigns} campaigns</p>
-                </div>
-              </GlassCard>
+              </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <motion.div
+        {/* CTA */}
+        <motion.p
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={animations.fadeInUp}
-          className="mt-12 text-center"
+          className="mt-10 text-center text-sm text-white/60"
         >
-          <p className="text-white/60">
-            Want to start a campaign in another African nation?{" "}
-            <Link href="/create" className="text-[#d4a853] hover:underline">
-             Get in touch
-            </Link>
-          </p>
-        </motion.div>
+          Don't see your nation?{" "}
+          <Link href="/create" className="text-[#d4a853] underline-offset-4 hover:underline">
+            Start a campaign
+          </Link>{" "}
+          and be the first.
+        </motion.p>
       </div>
     </section>
+  );
+}
+
+// Stat display component
+function StatItem({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="text-center">
+      <p className="text-2xl font-bold text-white font-display">{value}</p>
+      <p className="text-xs text-white/50 uppercase tracking-wider">{label}</p>
+    </div>
   );
 }
 
