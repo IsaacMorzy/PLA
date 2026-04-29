@@ -9,3 +9,5 @@ wallet = "~/.config/solana/id.json"
 
 [registry]
 name = "peaceleague"
+url = "https://github.com/peaceleagueafrica"
+edition = "2021"

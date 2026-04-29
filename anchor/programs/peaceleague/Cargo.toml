@@ -1,0 +1,15 @@
+[package]
+name = "peaceleague"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+anchor-lang = "0.32"
+anchor-spl = "0.32"
+
+[features]
+default = []
+anchor-debug = []
