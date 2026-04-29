@@ -22,6 +22,7 @@ export interface Campaign {
     image?: string;
     goal?: number;
     raised?: number;
+    donors?: number;
     beneficiary_name?: string;
     beneficiary_story?: string;
     status?: string;
@@ -37,8 +38,10 @@ export interface CampaignStory {
   slug: string;
   metadata: {
     content?: string;
+    beneficiary_story?: string;
     image?: string;
     author?: string;
+    location?: string;
   };
 }
 
