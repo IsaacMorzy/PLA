@@ -11,6 +11,9 @@ export const cosmic = createBucketClient(bucketConfig);
 export const campaignsObjectType = "campaigns";
 export const storiesObjectType = "stories";
 export const updatesObjectType = "campaign-updates";
+export const testimonialsObjectType = "testimonials";
+export const teamMembersObjectType = "team-members";
+export const galleryObjectType = "gallery";
 
 // Campaign data types
 export interface Campaign {
@@ -42,6 +45,52 @@ export interface CampaignStory {
     image?: string;
     author?: string;
     location?: string;
+  };
+}
+
+export interface Testimonial {
+  id: string;
+  title: string;
+  slug?: string;
+  metadata: {
+    quote?: string;
+    role?: string;
+    image?: string;
+  };
+}
+
+export interface TeamMember {
+  id: string;
+  title: string;
+  slug?: string;
+  metadata: {
+    role?: string;
+    bio?: string;
+    image?: string;
+    linkedin?: string;
+    twitter?: string;
+  };
+}
+
+export interface GalleryItem {
+  id: string;
+  title: string;
+  slug?: string;
+  metadata: {
+    image?: string;
+    location?: string;
+    category?: string;
+  };
+}
+
+export interface Donor {
+  id: string;
+  title: string;
+  metadata: {
+    amount?: string;
+    message?: string;
+    is_anonymous?: boolean;
+    created_at?: string;
   };
 }
 
@@ -116,6 +165,57 @@ export async function getCampaignUpdates(campaignId: string) {
     return response.objects;
   } catch (error) {
     console.error("Error fetching updates:", error);
+    return [];
+  }
+}
+
+// Testimonials
+export async function getTestimonials(): Promise<Testimonial[]> {
+  try {
+    const response = await cosmic.objects.find({ type: testimonialsObjectType });
+    return response.objects as unknown as Testimonial[];
+  } catch (error) {
+    console.error("Error fetching testimonials:", error);
+    return [];
+  }
+}
+
+// Team Members
+export async function getTeamMembers(): Promise<TeamMember[]> {
+  try {
+    const response = await cosmic.objects.find({ type: teamMembersObjectType });
+    return response.objects as unknown as TeamMember[];
+  } catch (error) {
+    console.error("Error fetching team:", error);
+    return [];
+  }
+}
+
+// Gallery
+export async function getGallery(): Promise<GalleryItem[]> {
+  try {
+    const response = await cosmic.objects.find({ 
+      type: galleryObjectType,
+      sort: "created_at" as any,
+    });
+    return response.objects as unknown as GalleryItem[];
+  } catch (error) {
+    console.error("Error fetching gallery:", error);
+    return [];
+  }
+}
+
+// Donors (from donations)
+export async function getRecentDonors(limit = 20): Promise<Donor[]> {
+  try {
+    const response = await cosmic.objects.find({ 
+      type: "donations",
+      sort: "-created_at",
+      limit,
+    });
+    return response.objects as unknown as Donor[];
+  } catch (error) {
+    console.error("Error fetching donors:", error);
     return [];
   }
 }

@@ -33,6 +33,18 @@ export function Header() {
           <NavLink href="/events">
             Events
           </NavLink>
+          <NavLink href="/team">
+            Team
+          </NavLink>
+          <NavLink href="/testimonials">
+            Testimonials
+          </NavLink>
+          <NavLink href="/image-gallery">
+            Gallery
+          </NavLink>
+          <NavLink href="/donor-list">
+            Donors
+          </NavLink>
         </div>
 
         {/* Right section: Theme toggle + Wallet */}

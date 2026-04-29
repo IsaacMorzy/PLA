@@ -1,5 +1,5 @@
-/* Google Fonts - must be first */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+/* Google Fonts - distinctive pairing */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
 
 @import "tailwindcss";
 @plugin "daisyui" {
@@ -45,14 +45,24 @@
 
 /* Theme configuration - Tailwind v4 CSS-first approach */
 @theme {
-  /* Brand colors */
-  --color-builderz-green: #14f195;
-  --color-builderz-blue: #00ffd5;
-  --color-builderz-green-dim: #0d9960;
-  --color-builderz-blue-dim: #00b396;
+  /* Brand colors - Warm African palette */
+  --color-brand-gold: #d4a853;
+  --color-brand-gold-light: #e8c87a;
+  --color-brand-gold-dark: #b8913f;
+  --color-brand-terracotta: #c46d46;
+  --color-brand-terracotta-light: #e08a5f;
+  --color-brand-cream: #f5f0e6;
+  --color-brand-charcoal: #1a1815;
 
-  /* Typography */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Legacy builderz colors (deprecated - use brand colors) */
+  --color-builderz-green: #d4a853;
+  --color-builderz-blue: #c46d46;
+  --color-builderz-green-dim: #b8913f;
+  --color-builderz-blue-dim: #a85a38;
+
+  /* Typography - distinctive pairing */
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
 
   /* Border radius */
   --radius-sm: 0.25rem;
@@ -163,51 +173,51 @@
   }
 }
 
-/* shadcn/ui CSS Variables - Light Mode */
+/* shadcn/ui CSS Variables - Light Mode - Warm, Refined */
 :root {
-  --background: 0 0% 99%;
-  --foreground: 222.2 84% 4.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: 160 98% 49%;
-  --primary-foreground: 0 0% 0%;
-  --secondary: 174 100% 50%;
-  --secondary-foreground: 0 0% 0%;
-  --muted: 210 20% 96%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-  --accent: 210 20% 94%;
-  --accent-foreground: 222.2 47.4% 11.2%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 214.3 20% 91%;
-  --input: 214.3 20% 91%;
-  --ring: 160 98% 49%;
+  --background: 35 20% 96%;
+  --foreground: 35 15% 15%;
+  --card: 35 15% 98%;
+  --card-foreground: 35 15% 15%;
+  --popover: 35 15% 98%;
+  --popover-foreground: 35 15% 15%;
+  --primary: 45 85% 55%;      /* Warm gold - distinctive! */
+  --primary-foreground: 35 15% 10%;
+  --secondary: 25 60% 45%;    /* Rich terracotta */
+  --secondary-foreground: 0 0% 100%;
+  --muted: 35 10% 93%;
+  --muted-foreground: 35 8% 45%;
+  --accent: 35 8% 90%;
+  --accent-foreground: 35 15% 15%;
+  --destructive: 0 65% 45%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 35 12% 85%;
+  --input: 35 12% 85%;
+  --ring: 45 85% 55%;
   --radius: 0.5rem;
 }
 
-/* Dark Mode */
+/* Dark Mode - Deep Charcoal, Not Generic */
 .dark {
-  --background: 225 30% 6%;
-  --foreground: 210 40% 98%;
-  --card: 225 30% 8%;
-  --card-foreground: 210 40% 98%;
-  --popover: 225 30% 8%;
-  --popover-foreground: 210 40% 98%;
-  --primary: 160 98% 49%;
-  --primary-foreground: 0 0% 0%;
-  --secondary: 174 100% 50%;
-  --secondary-foreground: 0 0% 0%;
-  --muted: 225 20% 14%;
-  --muted-foreground: 215 20% 60%;
-  --accent: 225 20% 12%;
-  --accent-foreground: 210 40% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 225 20% 14%;
-  --input: 225 20% 14%;
-  --ring: 160 98% 49%;
+  --background: 35 15% 8%;
+  --foreground: 35 10% 95%;
+  --card: 35 15% 10%;
+  --card-foreground: 35 10% 95%;
+  --popover: 35 15% 10%;
+  --popover-foreground: 35 10% 95%;
+  --primary: 45 85% 55%;      /* Warm gold stays */
+  --primary-foreground: 35 15% 10%;
+  --secondary: 25 60% 45%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 35 12% 15%;
+  --muted-foreground: 35 8% 60%;
+  --accent: 35 12% 12%;
+  --accent-foreground: 35 10% 95%;
+  --destructive: 0 55% 45%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 35 12% 18%;
+  --input: 35 12% 18%;
+  --ring: 45 85% 55%;
 }
 
 /* Base styles */
@@ -320,87 +330,70 @@ body {
   --tw-ring-color: hsl(var(--ring));
 }
 
-/* ===== MESH GRADIENT BACKGROUNDS ===== */
+/* ===== MESH GRADIENT BACKGROUNDS - Warm African ===== */
 
-/* Auto-detecting mesh background - works before JS hydration */
 .bg-mesh {
   background: hsl(var(--background));
   background-image:
-    radial-gradient(at 0% 0%, rgba(20, 241, 149, 0.04) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(0, 255, 213, 0.03) 0px, transparent 50%),
-    radial-gradient(at 50% 100%, rgba(20, 241, 149, 0.05) 0px, transparent 50%),
-    radial-gradient(at 70% 30%, hsl(210 20% 98%) 0px, transparent 50%),
-    radial-gradient(at 30% 70%, hsl(210 20% 96%) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, hsla(45, 85%, 55%, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(25, 60%, 45%, 0.06) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, hsla(45, 85%, 55%, 0.06) 0px, transparent 50%),
+    radial-gradient(at 70% 30%, hsl(35, 15%, 95%) 0px, transparent 50%),
+    radial-gradient(at 30% 70%, hsl(35, 15%, 92%) 0px, transparent 50%);
 }
 
-/* System dark mode detection */
+/* Dark mode warm mesh */
 @media (prefers-color-scheme: dark) {
   .bg-mesh {
     background: hsl(var(--background));
     background-image:
-      radial-gradient(at 0% 0%, rgba(20, 241, 149, 0.08) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(0, 255, 213, 0.06) 0px, transparent 50%),
-      radial-gradient(
-        at 50% 100%,
-        rgba(20, 241, 149, 0.1) 0px,
-        transparent 50%
-      ),
-      radial-gradient(at 80% 50%, hsl(225 30% 10%) 0px, transparent 40%),
-      radial-gradient(at 20% 60%, hsl(225 30% 8%) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, hsla(45, 85%, 55%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(25, 60%, 45%, 0.08) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, hsla(45, 85%, 55%, 0.12) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, hsl(35, 15%, 12%) 0px, transparent 40%),
+      radial-gradient(at 20% 60%, hsl(35, 15%, 8%) 0px, transparent 50%);
   }
 }
 
-/* Override with class when theme is explicitly set */
 .dark .bg-mesh {
   background: hsl(var(--background));
   background-image:
-    radial-gradient(at 0% 0%, rgba(20, 241, 149, 0.08) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(0, 255, 213, 0.06) 0px, transparent 50%),
-    radial-gradient(at 50% 100%, rgba(20, 241, 149, 0.1) 0px, transparent 50%),
-    radial-gradient(at 80% 50%, hsl(225 30% 10%) 0px, transparent 40%),
-    radial-gradient(at 20% 60%, hsl(225 30% 8%) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, hsla(45, 85%, 55%, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(25, 60%, 45%, 0.08) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, hsla(45, 85%, 55%, 0.12) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, hsl(35, 15%, 12%) 0px, transparent 40%),
+    radial-gradient(at 20% 60%, hsl(35, 15%, 8%) 0px, transparent 50%);
 }
 
-/* Light mode explicit override */
-:root:not(.dark) .bg-mesh {
-  background: hsl(var(--background));
-  background-image:
-    radial-gradient(at 0% 0%, rgba(20, 241, 149, 0.04) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(0, 255, 213, 0.03) 0px, transparent 50%),
-    radial-gradient(at 50% 100%, rgba(20, 241, 149, 0.05) 0px, transparent 50%),
-    radial-gradient(at 70% 30%, hsl(210 20% 98%) 0px, transparent 50%),
-    radial-gradient(at 30% 70%, hsl(210 20% 96%) 0px, transparent 50%);
-}
+/* ===== GLOW EFFECTS - Warm Gold ===== */
 
-/* ===== GLOW EFFECTS ===== */
-
-.glow-green {
+.glow-gold {
   box-shadow:
-    0 0 20px rgba(20, 241, 149, 0.3),
-    0 0 40px rgba(20, 241, 149, 0.15);
+    0 0 20px hsla(45, 85%, 55%, 0.3),
+    0 0 40px hsla(45, 85%, 55%, 0.15);
 }
 
-.glow-green-sm {
+.glow-gold-sm {
   box-shadow:
-    0 0 10px rgba(20, 241, 149, 0.2),
-    0 0 20px rgba(20, 241, 149, 0.1);
+    0 0 10px hsla(45, 85%, 55%, 0.2),
+    0 0 20px hsla(45, 85%, 55%, 0.1);
 }
 
-.glow-blue {
+.glow-terracotta {
   box-shadow:
-    0 0 20px rgba(0, 255, 213, 0.3),
-    0 0 40px rgba(0, 255, 213, 0.15);
+    0 0 20px hsla(25, 60%, 45%, 0.3),
+    0 0 40px hsla(25, 60%, 45%, 0.15);
 }
 
-.text-glow-green {
-  text-shadow: 0 0 30px rgba(20, 241, 149, 0.5);
+.text-glow-gold {
+  text-shadow: 0 0 30px hsla(45, 85%, 55%, 0.5);
 }
 
-.text-glow-blue {
-  text-shadow: 0 0 30px rgba(0, 255, 213, 0.5);
+.text-glow-terracotta {
+  text-shadow: 0 0 30px hsla(25, 60%, 45%, 0.5);
 }
 
-/* Hover glow effect */
+/* Hover glow effect - warm */
 .hover-glow {
   transition:
     box-shadow 0.3s ease,
@@ -408,17 +401,17 @@ body {
 }
 
 .hover-glow:hover {
-  box-shadow: 0 0 25px rgba(20, 241, 149, 0.4);
+  box-shadow: 0 0 25px hsla(45, 85%, 55%, 0.4);
   transform: translateY(-2px);
 }
 
-/* ===== GRADIENT TEXT ===== */
+/* ===== GRADIENT TEXT - Warm Gold to Terracotta ===== */
 
 .gradient-text {
   background: linear-gradient(
     135deg,
-    var(--color-builderz-green) 0%,
-    var(--color-builderz-blue) 100%
+    var(--color-brand-gold) 0%,
+    var(--color-brand-terracotta) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -428,9 +421,9 @@ body {
 .gradient-text-animated {
   background: linear-gradient(
     135deg,
-    var(--color-builderz-green) 0%,
-    var(--color-builderz-blue) 50%,
-    var(--color-builderz-green) 100%
+    var(--color-brand-gold) 0%,
+    var(--color-brand-terracotta) 50%,
+    var(--color-brand-gold) 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -473,7 +466,7 @@ body {
   animation-delay: 500ms;
 }
 
-/* ===== WALLET ADAPTER OVERRIDES ===== */
+/* ===== WALLET ADAPTER OVERRIDES - Warm Gold Theme ===== */
 
 /* Reset wallet adapter modal positioning */
 .wallet-adapter-modal {
@@ -502,10 +495,10 @@ body {
   margin: 0 !important;
 }
 
-/* Main wallet button - unified with our button system */
+/* Main wallet button - warm gold */
 .wallet-adapter-button {
-  background-color: var(--color-builderz-green) !important;
-  color: black !important;
+  background-color: var(--color-brand-gold) !important;
+  color: #1a1815 !important;
   border-radius: 9999px !important;
   font-weight: 600 !important;
   font-size: 14px !important;
@@ -513,16 +506,17 @@ body {
   padding: 0 20px !important;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
   box-shadow:
-    0 4px 14px rgba(20, 241, 149, 0.25),
-    0 0 20px rgba(20, 241, 149, 0.15) !important;
+    0 4px 14px hsla(45, 85%, 55%, 0.25),
+    0 0 20px hsla(45, 85%, 55%, 0.15) !important;
   border: none !important;
 }
 
 .wallet-adapter-button:hover:not(:disabled) {
-  background-color: var(--color-builderz-blue) !important;
+  background-color: var(--color-brand-terracotta) !important;
+  color: white !important;
   box-shadow:
-    0 6px 20px rgba(0, 255, 213, 0.35),
-    0 0 30px rgba(0, 255, 213, 0.2) !important;
+    0 6px 20px hsla(25, 60%, 45%, 0.35),
+    0 0 30px hsla(25, 60%, 45%, 0.2) !important;
   transform: scale(1.02) !important;
 }
 
@@ -533,9 +527,9 @@ body {
 .wallet-adapter-button:focus-visible {
   outline: none !important;
   box-shadow:
-    0 4px 14px rgba(20, 241, 149, 0.25),
+    0 4px 14px hsla(45, 85%, 55%, 0.25),
     0 0 0 2px hsl(var(--background)),
-    0 0 0 4px var(--color-builderz-green) !important;
+    0 0 0 4px var(--color-brand-gold) !important;
 }
 
 .wallet-adapter-button-trigger {
@@ -899,29 +893,59 @@ body {
   }
 }
 
-/* Stagger children animation */
+/* Stagger children animation - for page reveals */
 .stagger-children > * {
   opacity: 0;
   animation: fade-in-up 0.5s ease-out forwards;
 }
 
-.stagger-children > *:nth-child(1) {
-  animation-delay: 0ms;
-}
-.stagger-children > *:nth-child(2) {
-  animation-delay: 100ms;
-}
-.stagger-children > *:nth-child(3) {
-  animation-delay: 200ms;
-}
-.stagger-children > *:nth-child(4) {
-  animation-delay: 300ms;
-}
-.stagger-children > *:nth-child(5) {
-  animation-delay: 400ms;
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 80ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 160ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 240ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 320ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 400ms; }
+.stagger-children > *:nth-child(7) { animation-delay: 480ms; }
+.stagger-children > *:nth-child(8) { animation-delay: 560ms; }
+
+/* Page load animation - one-shot */
+.page-enter {
+  animation: page-enter 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* Shimmer loading effect */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Text reveal */
+.text-reveal {
+  clip-path: inset(0 100% 0 0);
+  animation: text-reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes text-reveal {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Staggered text reveal */
+.text-reveal-stagger > * {
+  clip-path: inset(0 100% 0 0);
+  animation: text-reveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.text-reveal-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.text-reveal-stagger > *:nth-child(2) { animation-delay: 100ms; }
+.text-reveal-stagger > *:nth-child(3) { animation-delay: 200ms; }
+.text-reveal-stagger > *:nth-child(4) { animation-delay: 300ms; }
 .shimmer {
   background: linear-gradient(
     90deg,
