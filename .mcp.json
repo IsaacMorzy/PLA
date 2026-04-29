@@ -3,6 +3,15 @@
     "graphify": {
       "command": "/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/.venv/bin/python",
       "args": ["-m", "graphify", "mcp"]
+    },
+    "cosmic": {
+      "command": "npx",
+      "args": ["-y", "@cosmicjs/mcp"],
+      "env": {
+        "COSMIC_BUCKET_SLUG": "peaceleague-africa",
+        "COSMIC_READ_KEY": "OpGhUpo3agGn7UC9eaTgTQeCf498PZRjDgZtShxe9LqU8V0wpF",
+        "COSMIC_WRITE_KEY": "DPIZIwLa0VpEGxsASgIARuP8v9tCt0effd9y8oqSCPpMGCyFQw"
+      }
     }
   }
 }

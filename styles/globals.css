@@ -2,6 +2,46 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 @import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
+
+/* Custom DaisyUI theme for PeaceLeague Africa */
+@theme {
+  --color-peaceleague-green: #10b981;
+  --color-peaceleague-gold: #f59e0b;
+  --color-peaceleague-blue: #3b82f6;
+}
+
+/* DaisyUI custom theme: peaceleague */
+[data-theme="peaceleague"] {
+  --p: 160 80% 40%;
+  --pf: 160 80% 35%;
+  --pc: 0 0% 100%;
+  --s: 210 80% 50%;
+  --sf: 210 80% 45%;
+  --sc: 0 0% 100%;
+  --a: 45 90% 55%;
+  --af: 45 90% 50%;
+  --ac: 0 0% 100%;
+  --n: 220 15% 15%;
+  --nf: 220 15% 12%;
+  --nc: 0 0% 95%;
+  --b1: 0 0% 100%;
+  --b2: 220 10% 96%;
+  --b3: 220 5% 90%;
+  --bc: 220 15% 15%;
+  --in: 210 80% 60%;
+  --su: 160 80% 40%;
+  --wa: 45 90% 55%;
+  --er: 0 80% 55%;
+  --rounded-box: 0.75rem;
+  --rounded-btn: 0.5rem;
+  --rounded-badge: 1.9rem;
+  --animation-btn: 0.25s;
+  --animation-input: 0.2s;
+  --btn-focus-scale: 0.98;
+}
 
 /* Theme configuration - Tailwind v4 CSS-first approach */
 @theme {

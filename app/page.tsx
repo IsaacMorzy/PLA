@@ -1,143 +1,347 @@
 "use client";
 
 import { WalletButton } from "@/components/wallet/wallet-button";
-import { ArrowRight, Github, Globe, X } from "lucide-react";
+import { ArrowRight, Heart, Users, TrendingUp, Shield, Globe, Star, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-[86vh] flex flex-col items-center justify-center p-4 bg-mesh">
-      {/* Main content container */}
-      <div className="max-w-2xl w-full space-y-10 text-center relative">
-        {/* Floating logo with glow effect */}
-        <div
-          className="flex justify-center opacity-0 animate-fade-in"
-          style={{ animationDelay: "0ms" }}
-        >
-          <div className="relative animate-float">
-            <div className="animate-glow-pulse">
-              <Image
-                src="/images/favi.png"
-                alt="Builderz"
-                width={120}
-                height={120}
-                priority
-                className="drop-shadow-2xl"
-              />
+    <main className="min-h-screen bg-mesh">
+      {/* Hero Section - Fincash inspired */}
+      <section className="relative pt-32 pb-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Content */}
+            <div className="text-center lg:text-left space-y-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-success/10 text-success text-sm font-medium">
+                <Globe className="h-4 w-4" />
+                <span>Empowering African Communities</span>
+              </div>
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                <span className="text-success">Fund</span>{" "}
+                <span className="text-foreground">Change</span>
+                <br />
+                <span className="text-muted-foreground">Across Africa</span>
+              </h1>
+
+              <p className="text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0">
+                Transparent crowdfunding for African causes. Every SOL donated goes directly to those who need it most — tracked on-chain for complete transparency.
+              </p>
+
+              {/* Dual CTAs */}
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                <Link href="/create" className="btn btn-primary gap-2 min-w-[180px]">
+                  <span>Start Campaign</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link href="#campaigns" className="btn btn-outline gap-2 min-w-[180px]">
+                  <Heart className="h-4 w-4" />
+                  <span>Donate Now</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right: Visual */}
+            <div className="relative hidden lg:block">
+              <div className="relative w-full aspect-square max-w-md mx-auto">
+                {/* Abstract representation */}
+                <div className="absolute inset-0 bg-gradient-to-br from-success/20 via-success/10 to-transparent rounded-full blur-3xl" />
+                <div className="relative grid grid-cols-2 gap-4 p-8">
+                  {/* Campaign cards preview */}
+                  <div className="card bg-base-100 shadow-xl">
+                    <figure className="h-32 bg-success/10 flex items-center justify-center">
+                      <Users className="h-12 w-12 text-success" />
+                    </figure>
+                    <div className="card-body p-4">
+                      <h2 className="card-title text-sm">Education for All</h2>
+                      <progress className="progress progress-success" value={75} max={100} />
+                      <p className="text-xs text-muted">12 SOL raised</p>
+                    </div>
+                  </div>
+                  <div className="card bg-base-100 shadow-xl mt-8">
+                    <figure className="h-32 bg-warning/10 flex items-center justify-center">
+                      <Heart className="h-12 w-12 text-warning" />
+                    </figure>
+                    <div className="card-body p-4">
+                      <h2 className="card-title text-sm">Medical Aid</h2>
+                      <progress className="progress progress-warning" value={45} max={100} />
+                      <p className="text-xs text-muted">8.5 SOL raised</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Title with animated gradient */}
-        <div
-          className="space-y-4 opacity-0 animate-fade-in-up"
-          style={{ animationDelay: "150ms" }}
-        >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight">
-            <span className="gradient-text-animated">Solana dApp</span>
-            <br />
-            <span className="text-foreground">Scaffold</span>
-          </h1>
+      {/* Stats Bar */}
+      <section className="py-12 px-4 bg-base-200/50">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <StatCard
+              icon={<Users className="h-8 w-8 text-success" />}
+              value="2,500+"
+              label="Donors"
+            />
+            <StatCard
+              icon={<Heart className="h-8 w-8 text-warning" />}
+              value="150+"
+              label="Campaigns"
+            />
+            <StatCard
+              icon={<TrendingUp className="h-8 w-8 text-success" />}
+              value="500+"
+              label="SOL Raised"
+            />
+            <StatCard
+              icon={<Shield className="h-8 w-8 text-warning" />}
+              value="100%"
+              label="Transparent"
+            />
+          </div>
         </div>
+      </section>
 
-        {/* Description */}
-        <p
-          className="text-muted-foreground text-lg md:text-xl max-w-md mx-auto leading-relaxed opacity-0 animate-fade-in-up"
-          style={{ animationDelay: "300ms" }}
-        >
-          A modern, minimal scaffold for building Solana dApps with{" "}
-          <span className="text-foreground font-medium">Next.js 16</span>,{" "}
-          <span className="text-foreground font-medium">Tailwind CSS v4</span>,
-          and <span className="text-foreground font-medium">shadcn/ui</span>.
-        </p>
+      {/* Featured Campaigns */}
+      <section id="campaigns" className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold">Featured Campaigns</h2>
+            <p className="text-muted-foreground mt-2">Support causes that matter</p>
+          </div>
 
-        {/* CTA Buttons */}
-        <div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 opacity-0 animate-fade-in-up"
-          style={{ animationDelay: "450ms" }}
-        >
-          <WalletButton />
-          <Link
-            href="https://github.com/builderz-labs/builderz-solana-dapp-scaffold"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center gap-2 px-6 py-2.5 rounded-full border border-border bg-background/50 hover:bg-accent hover:border-builderz-green/30 transition-all duration-300"
-          >
-            <Github className="h-4 w-4" />
-            <span className="font-medium">View Source</span>
-            <ArrowRight className="h-4 w-4 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
-          </Link>
-        </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Campaign cards - placeholder data */}
+            <CampaignCard
+              title="Clean Water for Rural Village"
+              category="Healthcare"
+              image="/images/campaign-1.jpg"
+              raised={4.2}
+              goal={10}
+              donors={28}
+            />
+            <CampaignCard
+              title="School Books Initiative"
+              category="Education"
+              image="/images/campaign-2.jpg"
+              raised={7.8}
+              goal={15}
+              donors={52}
+            />
+            <CampaignCard
+              title="Emergency Food Relief"
+              category="Emergency"
+              image="/images/campaign-3.jpg"
+              raised={12.5}
+              goal={20}
+              donors={89}
+            />
+          </div>
 
-        {/* Social Links */}
-        <div
-          className="flex items-center justify-center gap-6 pt-8 opacity-0 animate-fade-in-up"
-          style={{ animationDelay: "600ms" }}
-        >
-          <SocialLink
-            href="https://builderz.dev"
-            icon={<Globe className="h-5 w-5" />}
-            label="Website"
-          />
-          <SocialLink
-            href="https://github.com/builderz-labs"
-            icon={<Github className="h-5 w-5" />}
-            label="GitHub"
-          />
-          <SocialLink
-            href="https://x.com/builaboratory"
-            icon={<X className="h-5 w-5" />}
-            label="Twitter"
-          />
-        </div>
-
-        {/* Built by badge */}
-        <div
-          className="pt-8 opacity-0 animate-fade-in"
-          style={{ animationDelay: "750ms" }}
-        >
-          <span className="text-xs text-muted-foreground/70">
-            Built for the community by{" "}
-            <Link
-              href="https://builderz.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-builderz-green hover:text-builderz-blue transition-colors"
-            >
-              Builderz
+          <div className="text-center mt-8">
+            <Link href="/campaigns" className="btn btn-outline gap-2">
+              <span>View All Campaigns</span>
+              <ArrowRight className="h-4 w-4" />
             </Link>
-          </span>
+          </div>
         </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-20 px-4 bg-base-200/50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold">How It Works</h2>
+            <p className="text-muted-foreground mt-2">Three simple steps to create impact</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <StepCard
+              number="01"
+              title="Create Campaign"
+              description="Set up your cause with a compelling story and funding goal. Connect your Solana wallet."
+              icon={<Heart className="h-8 w-8" />}
+            />
+            <StepCard
+              number="02"
+              title="Share Your Story"
+              description="Share your campaign across social media. Every donation is tracked on-chain."
+              icon={<Globe className="h-8 w-8" />}
+            />
+            <StepCard
+              number="03"
+              title="Receive Funds"
+              description="Campaign owners can withdraw raised funds directly to their wallet at any time."
+              icon={<Shield className="h-8 w-8" />}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Impact Stories */}
+      <section className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold">Impact Stories</h2>
+            <p className="text-muted-foreground mt-2">Real change from real people</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <TestimonialCard
+              quote="The transparency gave donors confidence. We reached our goal in 48 hours."
+              author="Sarah M."
+              location="Kenya"
+              role="Campaign Creator"
+            />
+            <TestimonialCard
+              quote="I could see exactly where my donation went. That's what made me give."
+              author="James T."
+              location="USA"
+              role="Donor"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="card bg-success text-success-content shadow-xl">
+            <div className="card-body text-center">
+              <h2 className="card-title text-3xl justify-center">
+                Ready to Make a Difference?
+              </h2>
+              <p className="text-success-content/80 max-w-md mx-auto">
+                Join thousands of donors supporting causes across Africa. Your contribution creates lasting change.
+              </p>
+              <div className="card-actions justify-center gap-4 mt-4">
+                <Link href="/create" className="btn btn-primary bg-base-100 text-success hover:bg-base-200">
+                  Start a Campaign
+                </Link>
+                <Link href="#campaigns" className="btn btn-outline bg-transparent border-base-100 text-base-100 hover:bg-base-100/10">
+                  Donate Now
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function StatCard({
+  icon,
+  value,
+  label,
+}: {
+  icon: React.ReactNode;
+  value: string;
+  label: string;
+}) {
+  return (
+    <div className="text-center">
+      <div className="flex justify-center mb-2">{icon}</div>
+      <div className="text-3xl font-bold">{value}</div>
+      <div className="text-sm text-muted-foreground">{label}</div>
+    </div>
+  );
+}
+
+function CampaignCard({
+  title,
+  category,
+  image,
+  raised,
+  goal,
+  donors,
+}: {
+  title: string;
+  category: string;
+  image: string;
+  raised: number;
+  goal: number;
+  donors: number;
+}) {
+  const percent = Math.round((raised / goal) * 100);
+
+  return (
+    <Link href={`/campaign/${title.toLowerCase().replace(/\s+/g, "-")}`} className="card bg-base-100 shadow-md hover:shadow-xl transition-shadow">
+      <figure className="h-48 bg-base-200 flex items-center justify-center">
+        <Image src={image} alt={title} width={300} height={200} className="object-cover w-full h-full opacity-80" />
+      </figure>
+      <div className="card-body">
+        <div className="badge badge-outline">{category}</div>
+        <h3 className="card-title mt-2">{title}</h3>
+        <progress className="progress progress-success" value={percent} max={100} />
+        <div className="flex justify-between text-sm mt-2">
+          <span className="text-success font-medium">{raised} SOL</span>
+          <span className="text-muted-foreground">of {goal} SOL</span>
+        </div>
+        <p className="text-xs text-muted-foreground">{donors} donors</p>
+      </div>
+    </Link>
+  );
+}
+
+function StepCard({
+  number,
+  title,
+  description,
+  icon,
+}: {
+  number: string;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+}) {
+  return (
+    <div className="card bg-base-100 shadow-md">
+      <div className="card-body">
+        <div className="text-4xl font-bold text-success/30">{number}</div>
+        <div className="text-success mb-2">{icon}</div>
+        <h3 className="card-title">{title}</h3>
+        <p className="text-sm text-muted-foreground">{description}</p>
       </div>
     </div>
   );
 }
 
-function SocialLink({
-  href,
-  icon,
-  label,
+function TestimonialCard({
+  quote,
+  author,
+  location,
+  role,
 }: {
-  href: string;
-  icon: React.ReactNode;
-  label: string;
+  quote: string;
+  author: string;
+  location: string;
+  role: string;
 }) {
   return (
-    <Link
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group relative p-3 rounded-full border border-transparent hover:border-border hover:bg-accent/50 transition-all duration-300"
-    >
-      <span className="text-muted-foreground group-hover:text-builderz-green transition-colors duration-300">
-        {icon}
-      </span>
-      <span className="sr-only">{label}</span>
-      {/* Tooltip */}
-      <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-1 text-xs bg-card border border-border rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-        {label}
-      </span>
-    </Link>
+    <div className="card bg-base-100 shadow-md">
+      <div className="card-body">
+        <div className="flex gap-1 mb-2">
+          {[...Array(5)].map((_, i) => (
+            <Star key={i} className="h-4 w-4 fill-warning text-warning" />
+          ))}
+        </div>
+        <p className="text-lg">&ldquo;{quote}&rdquo;</p>
+        <div className="flex items-center gap-2 mt-4">
+          <div className="avatar placeholder">
+            <div className="bg-success text-success-content rounded-full w-10">
+              <span className="text-sm">{author[0]}</span>
+            </div>
+          </div>
+          <div>
+            <p className="font-medium">{author}</p>
+            <p className="text-xs text-muted-foreground">{location} — {role}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

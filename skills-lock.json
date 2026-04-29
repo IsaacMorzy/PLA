@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "cosmic": {
+      "source": "cosmicjs/skills",
+      "sourceType": "github",
+      "skillPath": "cosmic/SKILL.md",
+      "computedHash": "631e254aca1f101dcc6ce9c4b67c52f5cc6cfa80335062f5b1e6f38bdeb55b64"
+    }
+  }
+}

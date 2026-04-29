@@ -1,16 +1,22 @@
-[profile.release]
-overflow-checks = true
-lto = true
-opt-level = 3
+[package]
+name = "peaceleague"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+anchor-lang = "0.32"
+anchor-spl = "0.32"
+
+[features]
+default = []
+anchor-debug = []
 
 [provider]
 cluster = "devnet"
 wallet = "~/.config/solana/id.json"
 
-[registry]
-name = "peaceleague"
-url = "https://github.com/peaceleagueafrica"
-edition = "2021"
-
-[workspace]
-# Solana program workspace configuration
+[program]
+peaceleague = "CVPzfvBudPvhXcJwKXKCc56VgAFttgZdTKyXrrgErDnb"

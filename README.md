@@ -1,166 +1,126 @@
-# Peace League Africa 🌍
+# PeaceLeague Africa - Solana Smart Contract
 
-> A decentralized crowdfunding platform for African causes, built on Solana.
+A Solana Anchor program for the PeaceLeague Africa crowdfunding platform.
 
-![Solana](https://img.shields.io/badge/Solana-000000?style=for-the-badge&logo=solana&logoColor=14f195)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+## Overview
 
----
+**PeaceLeague Africa** is a decentralized crowdfunding program built on Solana that enables transparent, peer-to-peer charitable donations across Africa.
 
-## About
+### Program Features
 
-**Peace League Africa** is a decentralized crowdfunding platform empowering creators and donors across the African continent. Built on Solana for speed, security, and minimal fees, it enables:
+- **Create Campaigns** - Campaign owners can create fundraising campaigns with title, description, image, and funding goal
+- **Donate** - Anyone can donate SOL to any campaign
+- **Withdraw** - Campaign owners can withdraw raised funds
+- **Delete** - Campaign owners can soft-delete their campaigns
 
-- ✨ **Campaign Creation** — Launch fundraising campaigns with clear goals (minimum 1 SOL)
-- 💝 **Donations** — Contribute to causes you believe in with instant transactions
-- 📊 **Transparent Tracking** — Every SOL raised is tracked on-chain
-- 💰 **Creator Withdrawals** — Fund creators can withdraw funds (5% platform fee)
+## Technical Stack
 
-### Why Solana?
+- **Anchor 0.32** - Solana smart contract framework
+- **Solana 3.1.x** - Blockchain runtime
+- **Rust 1.85** - Program language
 
-| Feature | Benefit |
-|---------|---------|
-| **Fast** | Sub-second transaction finality |
-| **Cheap** | Fractions of a cent per transaction |
-| **Secure** | Battle-tested by millions |
-| **Global** | Anyone, anywhere can participate |
+## Program ID
 
----
+```
+CVPzfvBudPvhXcJwKXKCc56VgAFttgZdTKyXrrgErDnb
+```
 
-## Tech Stack
+## Account Structure
 
-| Layer | Technology |
-|-------|------------|
-| **Blockchain** | Solana (Anchor 0.32+) |
-| **Frontend** | Next.js 16, React 19 |
-| **Styling** | Tailwind CSS v4, shadcn/ui |
-| **Wallet** | @solana/wallet-adapter |
-| **State** | React Hooks |
+### ProgramState
+- `campaign_count: u64` - Total campaigns created
+- `authority: Pubkey` - Program admin
+- `bump: u8` - PDA bump seed
 
----
+### Campaign
+- `author: Pubkey` - Campaign owner
+- `title: String` - Campaign title (max 64 chars)
+- `description: String` - Campaign description (max 512 chars)
+- `image_url: String` - Campaign image URL (max 128 chars)
+- `goal: u64` - Funding goal in lamports
+- `raised: u64` - Amount raised in lamports
+- `donated_count: u32` - Number of donations
+- `created_at: u64` - Unix timestamp
+- `is_deleted: bool` - Soft delete flag
+- `bump: u8` - PDA bump seed
+- `campaign_id: u64` - Unique campaign ID
 
-## Getting Started
+## Instructions
+
+| Instruction | Accounts | Args | Description |
+|--------------|-----------|------|-------------|
+| `initialize` | state, authority, system_program | - | Initialize program state |
+| `create_campaign` | campaign, state, authority, system_program | title, description, image_url, goal | Create new campaign |
+| `donate` | campaign, donor, system_program | id, amount | Donate to campaign |
+| `withdraw` | campaign, authority, system_program | id, amount | Withdraw funds |
+| `delete_campaign` | campaign, authority | id | Soft delete campaign |
+
+## Building
 
 ### Prerequisites
 
-- Node.js 24+ 
-- pnpm (recommended)
-- Rust toolchain (for Anchor)
+- Solana CLI 3.1+
+- Rust 1.85+
+- Anchor 0.32+
 
-### Installation
+### Build
 
 ```bash
-# Clone the repository
-git clone https://github.com/IsaacMorzy/PLA.git
-cd PLA
-
-# Install dependencies
-pnpm install
-
-# Set up environment
-echo "NEXT_PUBLIC_HELIUS_URL=https://api.mainnet-beta.solana.com" > .env.local
-
-# Start development server
-pnpm dev
+cd anchor
+cargo build-sbf
 ```
 
-Visit **http://localhost:3000**
+### Deploy
 
----
+```bash
+anchor deploy
+```
+
+## Program Seeds
+
+- **ProgramState**: `["state"]`
+- **Campaign**: `["campaign", campaign_id]`
+
+## Errors
+
+| Code | Message |
+|------|---------|
+| 0 | Campaign has been deleted |
+| 1 | Insufficient funds for withdrawal |
+| 2 | Unauthorized access |
 
 ## Project Structure
 
 ```
-peaceleagueafrica/
-├── app/                      # Next.js App Router
-│   ├── layout.tsx           # Root layout
-│   ├── page.tsx             # Home page
-│   └── providers.tsx        # Theme & Wallet providers
-├── anchor/                  # Solana program (Rust)
-│   ├── Anchor.toml
-│   └── programs/peaceleague/
-│       └── src/
-│           ├── lib.rs             # Program entry
-│           ├── states/            # Account structs
-│           │   ├── campaign.rs
-│           │   └── program_state.rs
-│           └── instructions/       # Program instructions
-│               ├── initialize.rs
-│               ├── create_campaign.rs
-│               ├── donate.rs
-│               └── withdraw.rs
-├── components/               # React components
-│   ├── ui/                  # shadcn/ui
-│   ├── layout/              # Header, footer
-│   └── wallet/             # Wallet integration
-├── contexts/                # React contexts
-│   └── ContextProvider.tsx
-├── hooks/                   # Custom hooks
-│   └── useCampaigns.ts      # Campaign operations
-├── lib/                     # Utilities
-│   ├── idl.json             # Anchor IDL
-│   ├── program.ts           # Program client
-│   └── utils.ts
-└── types/                   # TypeScript types
-    └── campaign.ts
+peaceleagueafrica-anchor/
+├── anchor/
+│   ├── Anchor.toml          # Anchor config
+│   ├── Cargo.toml           # Rust workspace
+│   └── programs/
+│       └── peaceleague/
+│           ├── Cargo.toml  # Program dependencies
+│           └── src/
+│               └── lib.rs   # Main program
+└── README.md
 ```
 
----
+## Development Notes
 
-## Smart Contract Features
+### Anchor 0.32 Breaking Changes
 
-| Instruction | Description |
-|-------------|-------------|
-| `initialize` | Set up program state (one-time) |
-| `createCampaign` | Create new campaign (min 1 SOL goal) |
-| `donate` | Donate SOL to campaign |
-| `withdraw` | Creator withdrawals |
+- String fields require `#[max_len(N)]` attribute
+- `#[error]` → `#[error_code]`
+- Account access uses `&mut` instead of `.as_mut()`
+- Use `require!()` macro for error handling
+- Space calculation: `8 + Type::INIT_SPACE`
 
-### Validation Rules
+### Build Output
 
-- ✅ Minimum campaign goal: **1 SOL**
-- ✅ Minimum donation: **1 SOL**  
-- ✅ Platform fee: **5%**
-- ✅ Only campaign creator can withdraw
-- ✅ Campaigns must be active to receive donations
-
----
-
-## Scripts
-
-```bash
-pnpm dev          # Start development server
-pnpm build        # Production build
-pnpm start        # Start production server
-pnpm lint         # Run ESLint
+Compiled BPF program location:
 ```
-
----
-
-## Contributing
-
-Contributions are welcome! Please read our contributing guidelines before submitting PRs.
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
----
-
-## Resources
-
-- [Solana Documentation](https://docs.solana.com)
-- [Anchor Framework](https://www.anchor-lang.com)
-- [Next.js 16](https://nextjs.org)
-- [Tailwind CSS v4](https://tailwindcss.com)
-
----
+anchor/target/release/peaceleague.so
+```
 
 ## License
 
-MIT License — see [LICENSE.md](./LICENSE.md)
-
-Built for the African continent 🌍
+MIT
