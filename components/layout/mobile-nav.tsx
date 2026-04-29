@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, Home, Github, Twitter, Globe } from "lucide-react";
+import { Menu, Home, HeartHandshake, Users, Calendar, BookOpen, HelpCircle, Briefcase, Github, Twitter, Globe } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -46,6 +46,48 @@ export function MobileNav() {
             onClick={() => setOpen(false)}
           >
             Home
+          </NavItem>
+          <NavItem
+            href="/campaigns"
+            icon={<HeartHandshake className="h-4 w-4" />}
+            onClick={() => setOpen(false)}
+          >
+            Campaigns
+          </NavItem>
+          <NavItem
+            href="/about"
+            icon={<BookOpen className="h-4 w-4" />}
+            onClick={() => setOpen(false)}
+          >
+            About
+          </NavItem>
+          <NavItem
+            href="/how-it-works"
+            icon={<Users className="h-4 w-4" />}
+            onClick={() => setOpen(false)}
+          >
+            How It Works
+          </NavItem>
+          <NavItem
+            href="/events"
+            icon={<Calendar className="h-4 w-4" />}
+            onClick={() => setOpen(false)}
+          >
+            Events
+          </NavItem>
+          <NavItem
+            href="/faq"
+            icon={<HelpCircle className="h-4 w-4" />}
+            onClick={() => setOpen(false)}
+          >
+            FAQ
+          </NavItem>
+          <NavItem
+            href="/careers"
+            icon={<Briefcase className="h-4 w-4" />}
+            onClick={() => setOpen(false)}
+          >
+            Careers
           </NavItem>
         </nav>
 

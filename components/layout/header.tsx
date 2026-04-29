@@ -21,6 +21,18 @@ export function Header() {
           <NavLink href="/" active>
             Home
           </NavLink>
+          <NavLink href="/campaigns">
+            Campaigns
+          </NavLink>
+          <NavLink href="/about">
+            About
+          </NavLink>
+          <NavLink href="/how-it-works">
+            How It Works
+          </NavLink>
+          <NavLink href="/events">
+            Events
+          </NavLink>
         </div>
 
         {/* Right section: Theme toggle + Wallet */}
