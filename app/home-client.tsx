@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Heart, Users, TrendingUp, Shield, Globe, Star, Zap } from "lucide-react";
 import Image from "next/image";
@@ -498,7 +499,30 @@ function CTASection() {
 }
 
 // Newsletter Section - Glass
+
 function NewsletterSection() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setStatus("loading");
+    try {
+      // TODO: Connect to Cosmic newsletter (requires email collection setup)
+      // For now, simulate success
+      await new Promise((r) => setTimeout(r, 1000));
+      setStatus("success");
+      setMessage("Thanks for subscribing!");
+      setEmail("");
+    } catch {
+      setStatus("error");
+      setMessage("Something went wrong. Try again.");
+    }
+  };
+
   return (
     <section className="py-20 px-4">
       <div className="max-w-3xl mx-auto">
@@ -514,14 +538,38 @@ function NewsletterSection() {
               <p className="text-white/60">
                 Get the latest campaigns and impact stories delivered to your inbox.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 mt-6 max-w-md mx-auto">
+              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 mt-6 max-w-md mx-auto">
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="input input-bordered flex-1 bg-white/10 border-white/20 text-white placeholder:text-white/40"
+                  disabled={status === "loading" || status === "success"}
+                  className="flex-1 px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder:text-white/40 focus:outline-none focus:border-emerald-500/50 transition-colors disabled:opacity=50"
                 />
-                <button className="btn btn-primary">Subscribe</button>
-              </div>
+                <button
+                  type="submit"
+                  disabled={status === "loading" || status === "success"}
+                  className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50"
+                >
+                  {status === "loading" ? (
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ repeat: Infinity, duration: 1 }}
+                      className="h-5 w-5 border-2 border-white/30 border-t-white rounded-full"
+                    />
+                  ) : status === "success" ? (
+                    "Subscribed!"
+                  ) : (
+                    "Subscribe"
+                  )}
+                </button>
+              </form>
+              {message && (
+                <p className={`text-sm mt-3 ${status === "success" ? "text-emerald-400" : "text-red-400"}`}>
+                  {message}
+                </p>
+              )}
               <p className="text-xs text-white/40 mt-3">
                 We respect your privacy. Unsubscribe anytime.
               </p>

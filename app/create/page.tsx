@@ -1,11 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { WalletButton } from "@/components/wallet/wallet-button";
-import { Heart, FileText, Target, ImageIcon, CheckCircle, ArrowRight, ArrowLeft, Upload, X } from "lucide-react";
+import { Heart, FileText, Target, CheckCircle, ArrowRight, ArrowLeft, Upload, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { campaignCategories } from "@/lib/cosmic";
+import * as animations from "@/lib/animations";
+import { createCampaignAction } from "@/lib/actions-client";
+
+const categories = [
+  { id: "water", label: "Clean Water", icon: "💧" },
+  { id: "education", label: "Education", icon: "📚" },
+  { id: "health", label: "Healthcare", icon: "🏥" },
+  { id: "food", label: "Food Security", icon: "🍲" },
+  { id: "shelter", label: "Housing", icon: "🏠" },
+  { id: "community", label: "Community", icon: "🤝" },
+];
 
 type Step = 1 | 2 | 3 | 4;
 
@@ -13,30 +24,25 @@ export default function CreateCampaignPage() {
   const [step, setStep] = useState<Step>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [error, setError] = useState("");
 
-  // Wallet connection
   const { connection } = useConnection();
-  const { publicKey, sendTransaction, signTransaction } = useWallet();
+  const { publicKey, sendTransaction } = useWallet();
   const isConnected = !!publicKey;
 
-  // Form data
   const [formData, setFormData] = useState({
-    // Step 1: Wallet (handled by connection)
-    // Step 2: Details
     title: "",
     slug: "",
     category: "",
     description: "",
     beneficiary_name: "",
     beneficiary_story: "",
-    // Step 3: Media & Goal
     image: "",
     goal: "5",
   });
 
   const updateForm = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    // Auto-generate slug from title
     if (field === "title") {
       setFormData((prev) => ({
         ...prev,
@@ -50,16 +56,11 @@ export default function CreateCampaignPage() {
 
   const canProceed = () => {
     switch (step) {
-      case 1:
-        return isConnected;
-      case 2:
-        return formData.title && formData.category && formData.description;
-      case 3:
-        return formData.goal && parseFloat(formData.goal) > 0;
-      case 4:
-        return true;
-      default:
-        return false;
+      case 1: return isConnected;
+      case 2: return formData.title && formData.category && formData.description;
+      case 3: return formData.goal && parseFloat(formData.goal) > 0;
+      case 4: return true;
+      default: return false;
     }
   };
 
@@ -67,39 +68,79 @@ export default function CreateCampaignPage() {
     if (!isConnected || !publicKey) return;
 
     setIsSubmitting(true);
+    setError("");
     try {
-      // TODO: Create campaign on Anchor program + Cosmic
-      // For now, simulate submission
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Create campaign in Cosmic CMS
+      const result = await createCampaignAction({
+        title: formData.title,
+        slug: formData.slug,
+        description: formData.description,
+        image: formData.image || "https://images.unsplash.com/photo-1488521787991-ed7bbaa77390?w=800&h=600&fit=crop",
+        goal: parseFloat(formData.goal) || 5,
+        beneficiary_name: formData.beneficiary_name,
+        beneficiary_story: formData.beneficiary_story,
+        category: formData.category,
+        location: "",
+      });
+
+      if (!result.success) {
+        throw new Error(result.error || "Failed to create campaign");
+      }
+
       setIsComplete(true);
-    } catch (error) {
-      console.error("Error creating campaign:", error);
+    } catch (err) {
+      console.error("Error creating campaign:", err);
+      setError("Failed to create campaign. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  // Glass morphism card
+  const GlassCard = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
+    <div className={`bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-xl ${className}`}>
+      {children}
+    </div>
+  );
+
   if (isComplete) {
     return (
       <main className="min-h-screen pt-24 pb-12 px-4">
         <div className="max-w-xl mx-auto text-center">
-          <div className="card bg-base-100 shadow-xl">
-            <div className="card-body items-center">
-              <CheckCircle className="h-20 w-20 text-success" />
-              <h2 className="card-title text-2xl mt-4">Campaign Created!</h2>
-              <p className="text-muted-foreground">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={animations.fadeInUp}
+          >
+            <GlassCard className="p-8">
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", damping: 15 }}
+                className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center mb-4"
+              >
+                <CheckCircle className="h-10 w-10 text-white" />
+              </motion.div>
+              <h2 className="text-2xl font-bold text-white mb-2">Campaign Created!</h2>
+              <p className="text-white/60 mb-6">
                 Your campaign "{formData.title}" is now live.
               </p>
-              <div className="card-actions mt-4">
-                <Link href={`/campaign/${formData.slug}`} className="btn btn-primary">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Link
+                  href={`/campaign/${formData.slug}`}
+                  className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition-opacity"
+                >
                   View Campaign
                 </Link>
-                <Link href="/dashboard" className="btn btn-outline">
+                <Link
+                  href="/dashboard"
+                  className="px-6 py-3 bg-white/10 border border-white/20 text-white font-medium rounded-xl hover:bg-white/20 transition-colors"
+                >
                   Go to Dashboard
                 </Link>
               </div>
-            </div>
-          </div>
+            </GlassCard>
+          </motion.div>
         </div>
       </main>
     );
@@ -109,13 +150,23 @@ export default function CreateCampaignPage() {
     <main className="min-h-screen pt-24 pb-12 px-4">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold">Start a Campaign</h1>
-          <p className="text-muted-foreground mt-2">Create your fundraising campaign in minutes</p>
-        </div>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={animations.fadeInUp}
+          className="text-center mb-8"
+        >
+          <h1 className="text-3xl font-bold text-white">Start a Campaign</h1>
+          <p className="text-white/60 mt-2">Create your fundraising campaign in minutes</p>
+        </motion.div>
 
         {/* Progress Steps */}
-        <div className="flex items-center justify-center gap-2 mb-8">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={animations.fadeInUp}
+          className="flex items-center justify-center gap-2 mb-8 flex-wrap"
+        >
           {[
             { num: 1, icon: Heart, label: "Connect" },
             { num: 2, icon: FileText, label: "Details" },
@@ -123,189 +174,238 @@ export default function CreateCampaignPage() {
             { num: 4, icon: CheckCircle, label: "Review" },
           ].map(({ num, icon: Icon, label }) => (
             <div key={num} className="flex items-center">
-              <div
-                className={`flex items-center gap-2 px-4 py-2 rounded-full ${
+              <motion.div
+                initial={{ scale: 0.8 }}
+                animate={{ scale: step === num ? 1 : 0.9 }}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm ${
                   step === num
-                    ? "bg-success text-success-content"
+                    ? "bg-gradient-to-r from-emerald-500/80 to-cyan-500/80 text-white"
                     : step > num
-                    ? "bg-success/20 text-success"
-                    : "bg-base-200 text-muted-foreground"
+                    ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                    : "bg-white/10 text-white/40 border border-white/10"
                 }`}
               >
                 <Icon className="h-4 w-4" />
                 <span className="text-sm hidden sm:inline">{label}</span>
-              </div>
-              {num < 4 && <div className="w-8 h-0.5 bg-base-200" />}
+              </motion.div>
+              {num < 4 && <div className="w-6 sm:w-8 h-px bg-white/20" />}
             </div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Form Card */}
-        <div className="card bg-base-100 shadow-xl">
-          <div className="card-body">
-            {/* Step 1: Connect Wallet */}
-            {step === 1 && (
-              <div className="text-center py-8">
-                <h3 className="text-xl font-semibold mb-4">Connect Your Wallet</h3>
-                <p className="text-muted-foreground mb-8">
-                  Connect your Solana wallet to create a campaign. This is where you'll receive donations.
-                </p>
-                <div className="flex flex-col items-center gap-4">
-                  <WalletButton />
-                  {isConnected && (
-                    <div className="alert alert-success">
-                      <CheckCircle className="h-5 w-5" />
-                      <span>{`Wallet connected! ${publicKey.toString().slice(0, 8)}...`}</span>
+        <GlassCard>
+          <div className="p-6 sm:p-8">
+            <AnimatePresence mode="wait">
+              {/* Step 1: Connect Wallet */}
+              {step === 1 && (
+                <motion.div
+                  key="step1"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="text-center py-8"
+                >
+                  <h3 className="text-xl font-semibold text-white mb-4">Connect Your Wallet</h3>
+                  <p className="text-white/60 mb-8 max-sm:text-sm">
+                    Connect your Solana wallet to create a campaign. This is where you'll receive donations.
+                  </p>
+                  <div className="flex flex-col items-center gap-4">
+                    <WalletButton />
+                    {isConnected && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex items-center gap-2 px-4 py-2 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-emerald-400"
+                      >
+                        <CheckCircle className="h-5 w-5" />
+                        <span>Connected: {publicKey?.toString().slice(0, 8)}...</span>
+                      </motion.div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Step 2: Details */}
+              {step === 2 && (
+                <motion.div
+                  key="step2"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="space-y-5"
+                >
+                  <h3 className="text-xl font-semibold text-white">Campaign Details</h3>
+
+                  <div>
+                    <label className="block text-white/80 text-sm mb-2">Campaign Title *</label>
+                    <input
+                      type="text"
+                      value={formData.title}
+                      onChange={(e) => updateForm("title", e.target.value)}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-emerald-500/50 transition-colors"
+                      placeholder="e.g., Clean Water for Rural Village"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-white/80 text-sm mb-2">Category *</label>
+                    <select
+                      value={formData.category}
+                      onChange={(e) => updateForm("category", e.target.value)}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:border-emerald-500/50 transition-colors"
+                    >
+                      <option value="" className="bg-gray-900">Select a category</option>
+                      {categories.map((cat) => (
+                        <option key={cat.id} value={cat.id} className="bg-gray-900">
+                          {cat.icon} {cat.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-white/80 text-sm mb-2">Short Description *</label>
+                    <textarea
+                      value={formData.description}
+                      onChange={(e) => updateForm("description", e.target.value)}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-emerald-500/50 transition-colors resize-none"
+                      placeholder="Describe your cause in a few sentences..."
+                      rows={3}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-white/80 text-sm mb-2">Beneficiary Name</label>
+                    <input
+                      type="text"
+                      value={formData.beneficiary_name}
+                      onChange={(e) => updateForm("beneficiary_name", e.target.value)}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-emerald-500/50 transition-colors"
+                      placeholder="Who will receive the funds?"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-white/80 text-sm mb-2">Beneficiary Story</label>
+                    <textarea
+                      value={formData.beneficiary_story}
+                      onChange={(e) => updateForm("beneficiary_story", e.target.value)}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-emerald-500/50 transition-colors resize-none"
+                      placeholder="Tell the full story of who needs help..."
+                      rows={4}
+                    />
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Step 3: Media & Goal */}
+              {step === 3 && (
+                <motion.div
+                  key="step3"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="space-y-5"
+                >
+                  <h3 className="text-xl font-semibold text-white">Media & Goal</h3>
+
+                  <div>
+                    <label className="block text-white/80 text-sm mb-2">Campaign Image</label>
+                    <div className="border-2 border-dashed border-white/20 rounded-xl p-8 text-center hover:border-white/40 transition-colors cursor-pointer">
+                      <Upload className="h-8 w-8 mx-auto text-white/40" />
+                      <p className="text-white/60 text-sm mt-2">
+                        Drag and drop or click to upload
+                      </p>
+                      <p className="text-white/30 text-xs mt-1">
+                        PNG, JPG up to 5MB
+                      </p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-white/80 text-sm mb-2">Fundraising Goal (SOL) *</label>
+                    <div className="relative">
+                      <input
+                        type="number"
+                        value={formData.goal}
+                        onChange={(e) => updateForm("goal", e.target.value)}
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-emerald-500/50 transition-colors"
+                        placeholder="5"
+                        min="0.1"
+                        step="0.1"
+                      />
+                      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40">SOL</span>
+                    </div>
+                    <p className="text-white/40 text-sm mt-2">
+                      Recommended: 1-100 SOL for new campaigns
+                    </p>
+                  </div>
+
+                  <div className="flex items-start gap-3 px-4 py-3 bg-cyan-500/10 border border-cyan-500/20 rounded-xl">
+                    <Target className="h-5 w-5 text-cyan-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-white/70 text-sm">
+                      You can adjust your goal later, but lowering it may affect donor confidence.
+                    </span>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Step 4: Review */}
+              {step === 4 && (
+                <motion.div
+                  key="step4"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="space-y-5"
+                >
+                  <h3 className="text-xl font-semibold text-white">Review & Launch</h3>
+
+                  <div className="bg-white/5 border border-white/10 rounded-xl p-5">
+                    <h4 className="font-semibold text-white">{formData.title || "Untitled Campaign"}</h4>
+                    <p className="text-white/60 text-sm mt-1">
+                      {categories.find((c) => c.id === formData.category)?.label || "No category"}
+                    </p>
+                    <p className="text-white/70 text-sm mt-3">{formData.description || "No description"}</p>
+                    <div className="h-px bg-white/10 my-4" />
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/60">Goal</span>
+                      <span className="text-xl font-bold text-emerald-400">{formData.goal} SOL</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 px-4 py-3 bg-amber-500/10 border border-amber-500/20 rounded-xl">
+                    <Sparkles className="h-5 w-5 text-amber-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-amber-200/80 text-sm">
+                      Once launched, your campaign cannot be deleted. You can only withdraw raised funds.
+                    </span>
+                  </div>
+
+                  {error && (
+                    <div className="px-4 py-3 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm">
+                      {error}
                     </div>
                   )}
-                </div>
-              </div>
-            )}
-
-            {/* Step 2: Campaign Details */}
-            {step === 2 && (
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold">Campaign Details</h3>
-
-                <div className="form-control">
-                  <label className="label"><span className="label-text">Campaign Title *</span></label>
-                  <input
-                    type="text"
-                    value={formData.title}
-                    onChange={(e) => updateForm("title", e.target.value)}
-                    className="input input-bordered"
-                    placeholder="e.g., Clean Water for Rural Village"
-                  />
-                </div>
-
-                <div className="form-control">
-                  <label className="label"><span className="label-text">Category *</span></label>
-                  <select
-                    value={formData.category}
-                    onChange={(e) => updateForm("category", e.target.value)}
-                    className="select select-bordered"
-                  >
-                    <option value="">Select a category</option>
-                    {campaignCategories.map((cat) => (
-                      <option key={cat.id} value={cat.id}>
-                        {cat.icon} {cat.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="form-control">
-                  <label className="label"><span className="label-text">Short Description *</span></label>
-                  <textarea
-                    value={formData.description}
-                    onChange={(e) => updateForm("description", e.target.value)}
-                    className="textarea textarea-bordered"
-                    placeholder="Describe your cause in a few sentences..."
-                    rows={3}
-                  />
-                </div>
-
-                <div className="form-control">
-                  <label className="label"><span className="label-text">Beneficiary Name</span></label>
-                  <input
-                    type="text"
-                    value={formData.beneficiary_name}
-                    onChange={(e) => updateForm("beneficiary_name", e.target.value)}
-                    className="input input-bordered"
-                    placeholder="Who will receive the funds?"
-                  />
-                </div>
-
-                <div className="form-control">
-                  <label className="label"><span className="label-text">Beneficiary Story</span></label>
-                  <textarea
-                    value={formData.beneficiary_story}
-                    onChange={(e) => updateForm("beneficiary_story", e.target.value)}
-                    className="textarea textarea-bordered"
-                    placeholder="Tell the full story of who needs help..."
-                    rows={5}
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* Step 3: Media & Goal */}
-            {step === 3 && (
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold">Media & Goal</h3>
-
-                <div className="form-control">
-                  <label className="label"><span className="label-text">Campaign Image</span></label>
-                  <div className="border-2 border-dashed border-base-300 rounded-lg p-8 text-center">
-                    <Upload className="h-8 w-8 mx-auto text-muted-foreground" />
-                    <p className="text-sm text-muted-foreground mt-2">
-                      Drag and drop or click to upload
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      PNG, JPG up to 5MB
-                    </p>
-                  </div>
-                </div>
-
-                <div className="form-control">
-                  <label className="label"><span className="label-text">Fundraising Goal (SOL) *</span></label>
-                  <input
-                    type="number"
-                    value={formData.goal}
-                    onChange={(e) => updateForm("goal", e.target.value)}
-                    className="input input-bordered"
-                    placeholder="5"
-                    min="0.1"
-                    step="0.1"
-                  />
-                  <label className="label">
-                    <span className="label-text-alt">Recommended: 1-100 SOL for new campaigns</span>
-                  </label>
-                </div>
-
-                <div className="alert alert-info">
-                  <Target className="h-5 w-5" />
-                  <span>You can adjust your goal later, but lowering it may affect donor confidence.</span>
-                </div>
-              </div>
-            )}
-
-            {/* Step 4: Review */}
-            {step === 4 && (
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold">Review & Launch</h3>
-
-                <div className="card bg-base-200">
-                  <div className="card-body">
-                    <h4 className="font-semibold">{formData.title || "Untitled Campaign"}</h4>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      {campaignCategories.find((c) => c.id === formData.category)?.label || "No category"}
-                    </p>
-                    <p className="text-sm mt-2">{formData.description || "No description"}</p>
-                    <div className="divider" />
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Goal</span>
-                      <span className="font-bold">{formData.goal} SOL</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="alert alert-warning">
-                  <Target className="h-5 w-5" />
-                  <span>Once launched, your campaign cannot be deleted. You can only cancel it.</span>
-                </div>
-              </div>
-            )}
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {/* Navigation */}
-            <div className="flex justify-between mt-8">
+            <div className="flex justify-between mt-8 pt-6 border-t border-white/10">
               {step > 1 ? (
-                <button onClick={prevStep} className="btn btn-outline gap-2">
+                <button
+                  onClick={prevStep}
+                  className="flex items-center gap-2 px-5 py-3 bg-white/5 border border-white/20 text-white rounded-xl hover:bg-white/10 transition-colors"
+                >
                   <ArrowLeft className="h-4 w-4" />
                   <span>Back</span>
                 </button>
               ) : (
-                <Link href="/campaigns" className="btn btn-ghost">
+                <Link
+                  href="/campaigns"
+                  className="px-5 py-3 text-white/60 hover:text-white transition-colors"
+                >
                   Cancel
                 </Link>
               )}
@@ -314,7 +414,7 @@ export default function CreateCampaignPage() {
                 <button
                   onClick={nextStep}
                   disabled={!canProceed()}
-                  className="btn btn-primary gap-2"
+                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span>Continue</span>
                   <ArrowRight className="h-4 w-4" />
@@ -323,10 +423,17 @@ export default function CreateCampaignPage() {
                 <button
                   onClick={handleSubmit}
                   disabled={isSubmitting || !isConnected}
-                  className="btn btn-success gap-2"
+                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
-                    <span className="loading loading-spinner" />
+                    <>
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ repeat: Infinity, duration: 1 }}
+                        className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full"
+                      />
+                      <span>Creating...</span>
+                    </>
                   ) : (
                     <>
                       <CheckCircle className="h-4 w-4" />
@@ -337,7 +444,7 @@ export default function CreateCampaignPage() {
               )}
             </div>
           </div>
-        </div>
+        </GlassCard>
       </div>
     </main>
   );

@@ -1,8 +1,20 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { MapPin } from "lucide-react";
+import * as animations from "@/lib/animations";
+
+// Glass Card Component
+function GlassCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div className={`bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-xl ${className}`}>
+      {children}
+    </div>
+  );
+}
 
 interface Campaign {
   id: string;
@@ -13,19 +25,23 @@ interface Campaign {
     image?: string;
     goal: number;
     raised: number;
+    donors?: number;
     category?: string;
     location?: string;
     status?: string;
+    beneficiary_name?: string;
+    beneficiary_story?: string;
   };
 }
 
 interface CampaignCardProps {
   campaign: Campaign;
+  index?: number;
 }
 
-const fallbackImage = "/images/campaign-placeholder.jpg";
+const fallbackImage = "https://images.unsplash.com/photo-1488521787991-ed7bbaa77390?w=800&h=600&fit=crop";
 
-export function CampaignCard({ campaign }: CampaignCardProps) {
+export function CampaignCard({ campaign, index = 0 }: CampaignCardProps) {
   const [imageError, setImageError] = useState(false);
   
   const goal = campaign.metadata?.goal || 1;
@@ -39,72 +55,68 @@ export function CampaignCard({ campaign }: CampaignCardProps) {
   const imageSrc = imageError ? fallbackImage : (campaign.metadata?.image || fallbackImage);
 
   return (
-    <Link 
-      href={`/campaign/${campaign.slug}`}
-      className="group block bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-200"
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={animations.fadeInUp}
+      transition={{ delay: index * 0.1 }}
     >
-      {/* Image */}
-      <div className="relative aspect-video w-full bg-muted">
-        <Image
-          src={imageSrc}
-          alt={campaign.title}
-          fill
-          className="object-cover"
-          onError={() => setImageError(true)}
-        />
-      </div>
-      
-      {/* Content */}
-      <div className="p-4 space-y-3">
-        {/* Badges */}
-        <div className="flex items-center justify-between text-xs">
-          <span className="px-2 py-1 rounded-full bg-primary/10 text-primary font-medium capitalize">
-            {category}
-          </span>
-          <span className={`px-2 py-1 rounded-full ${
-            status === "active" 
-              ? "bg-green-500/10 text-green-600" 
-              : "bg-muted text-muted-foreground"
-          }`}>
-            {status === "active" ? "Active" : "Completed"}
-          </span>
-        </div>
-        
-        {/* Title */}
-        <h3 className="font-semibold text-lg line-clamp-1 group-hover:text-primary transition-colors">
-          {campaign.title}
-        </h3>
-        
-        {/* Description */}
-        <p className="text-sm text-muted-foreground line-clamp-2">
-          {campaign.metadata?.description || "No description available"}
-        </p>
-        
-        {/* Progress Bar */}
-        <div className="space-y-1">
-          <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full transition-all duration-500"
-              style={{ width: `${percentage}%` }}
+      <Link href={`/campaign/${campaign.slug}`}>
+        <GlassCard className="overflow-hidden hover:bg-white/20 transition-all group">
+          {/* Image */}
+          <div className="relative aspect-video w-full bg-white/5">
+            <Image
+              src={imageSrc}
+              alt={campaign.title}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+              onError={() => setImageError(true)}
             />
+            <div className="absolute top-3 left-3">
+              <span className="badge bg-white/20 border-white/30 text-white text-xs capitalize">
+                {category}
+              </span>
+            </div>
+            <div className="absolute top-3 right-3">
+              <span className={`badge ${status === "active" ? "bg-success/80" : "bg-white/20"} text-white text-xs`}>
+                {status === "active" ? "Active" : "Completed"}
+              </span>
+            </div>
           </div>
-          <div className="flex justify-between text-xs">
-            <span className="font-medium">{percentage}%</span>
-            <span className="text-muted-foreground">
-              {raised} / {goal} SOL
-            </span>
+          
+          {/* Content */}
+          <div className="p-4 space-y-3">
+            <h3 className="font-semibold text-lg text-white line-clamp-1 group-hover:text-success transition-colors">
+              {campaign.title}
+            </h3>
+            
+            <p className="text-sm text-white/60 line-clamp-2">
+              {campaign.metadata?.beneficiary_story || campaign.metadata?.description || "No description available"}
+            </p>
+            
+            {/* Progress Bar */}
+            <div className="space-y-1">
+              <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-gradient-to-r from-success to-warning rounded-full transition-all duration-500"
+                  style={{ width: `${percentage}%` }}
+                />
+              </div>
+              <div className="flex justify-between text-xs">
+                <span className="font-medium text-success">{raised.toFixed(1)} SOL</span>
+                <span className="text-white/60">{percentage}% of {goal} SOL</span>
+              </div>
+            </div>
+            
+            {/* Location */}
+            <div className="flex items-center text-xs text-white/50">
+              <MapPin className="h-3 w-3 mr-1" />
+              {location}
+            </div>
           </div>
-        </div>
-        
-        {/* Location */}
-        <div className="flex items-center text-xs text-muted-foreground">
-          <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-          {location}
-        </div>
-      </div>
-    </Link>
+        </GlassCard>
+      </Link>
+    </motion.div>
   );
 }
