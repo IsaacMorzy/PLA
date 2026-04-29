@@ -1,55 +1,132 @@
-# Builderz Solana dApp Scaffold
+# Peace League Africa 🌍
 
-A modern, minimal [Solana](https://solana.com) dApp scaffold built with Next.js 16, Tailwind CSS v4, and shadcn/ui. Features a polished design system with 2026 aesthetics including glassmorphism, micro-animations, and a unified component library.
+> A decentralized crowdfunding platform for African causes, built on Solana.
 
-Built for the community by [Builderz](https://builderz.dev).
+![Solana](https://img.shields.io/badge/Solana-000000?style=for-the-badge&logo=solana&logoColor=14f195)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-## Features
+---
 
-- **Modern Design System** - Glassmorphism, soft UI, and micro-delight animations
-- **System Theme Detection** - Automatic dark/light mode based on OS preference
-- **Unified Button Styles** - Consistent button variants (glow, soft, glass, outline)
-- **Polished Wallet Integration** - Styled wallet modal and dropdown
-- **Responsive Layout** - Mobile-first design with smooth transitions
-- **Developer Ready** - Clean architecture, TypeScript, and ESLint configured
-- **AI-Assisted Development** - Includes [Solana development rules](https://github.com/builderz-labs/solana-claude-md) for Claude Code
+## About
 
-## Stack
+**Peace League Africa** is a decentralized crowdfunding platform empowering creators and donors across the African continent. Built on Solana for speed, security, and minimal fees, it enables:
 
-- **Next.js 16** - React framework with App Router and Turbopack
-- **React 19** - Latest React with concurrent features
-- **Tailwind CSS v4** - CSS-first configuration
-- **shadcn/ui** - Accessible component primitives
-- **next-themes** - Dark/light/system theme support
-- **Solana Wallet Adapter** - Multi-wallet support
-- **Lucide Icons** - Beautiful, consistent icons
+- ✨ **Campaign Creation** — Launch fundraising campaigns with clear goals (minimum 1 SOL)
+- 💝 **Donations** — Contribute to causes you believe in with instant transactions
+- 📊 **Transparent Tracking** — Every SOL raised is tracked on-chain
+- 💰 **Creator Withdrawals** — Fund creators can withdraw funds (5% platform fee)
+
+### Why Solana?
+
+| Feature | Benefit |
+|---------|---------|
+| **Fast** | Sub-second transaction finality |
+| **Cheap** | Fractions of a cent per transaction |
+| **Secure** | Battle-tested by millions |
+| **Global** | Anyone, anywhere can participate |
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| **Blockchain** | Solana (Anchor 0.32+) |
+| **Frontend** | Next.js 16, React 19 |
+| **Styling** | Tailwind CSS v4, shadcn/ui |
+| **Wallet** | @solana/wallet-adapter |
+| **State** | React Hooks |
+
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 24+ (Next.js 16 requires Node.js 20.9.0 minimum)
+- Node.js 24+ 
 - pnpm (recommended)
+- Rust toolchain (for Anchor)
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/builderz-labs/builderz-solana-dapp-scaffold.git
-cd builderz-solana-dapp-scaffold
+git clone https://github.com/IsaacMorzy/PLA.git
+cd PLA
 
 # Install dependencies
 pnpm install
 
 # Set up environment
-cp .env.example .env
-# Edit .env and add your RPC endpoint (e.g., from Helius)
+echo "NEXT_PUBLIC_HELIUS_URL=https://api.mainnet-beta.solana.com" > .env.local
 
 # Start development server
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Visit **http://localhost:3000**
+
+---
+
+## Project Structure
+
+```
+peaceleagueafrica/
+├── app/                      # Next.js App Router
+│   ├── layout.tsx           # Root layout
+│   ├── page.tsx             # Home page
+│   └── providers.tsx        # Theme & Wallet providers
+├── anchor/                  # Solana program (Rust)
+│   ├── Anchor.toml
+│   └── programs/peaceleague/
+│       └── src/
+│           ├── lib.rs             # Program entry
+│           ├── states/            # Account structs
+│           │   ├── campaign.rs
+│           │   └── program_state.rs
+│           └── instructions/       # Program instructions
+│               ├── initialize.rs
+│               ├── create_campaign.rs
+│               ├── donate.rs
+│               └── withdraw.rs
+├── components/               # React components
+│   ├── ui/                  # shadcn/ui
+│   ├── layout/              # Header, footer
+│   └── wallet/             # Wallet integration
+├── contexts/                # React contexts
+│   └── ContextProvider.tsx
+├── hooks/                   # Custom hooks
+│   └── useCampaigns.ts      # Campaign operations
+├── lib/                     # Utilities
+│   ├── idl.json             # Anchor IDL
+│   ├── program.ts           # Program client
+│   └── utils.ts
+└── types/                   # TypeScript types
+    └── campaign.ts
+```
+
+---
+
+## Smart Contract Features
+
+| Instruction | Description |
+|-------------|-------------|
+| `initialize` | Set up program state (one-time) |
+| `createCampaign` | Create new campaign (min 1 SOL goal) |
+| `donate` | Donate SOL to campaign |
+| `withdraw` | Creator withdrawals |
+
+### Validation Rules
+
+- ✅ Minimum campaign goal: **1 SOL**
+- ✅ Minimum donation: **1 SOL**  
+- ✅ Platform fee: **5%**
+- ✅ Only campaign creator can withdraw
+- ✅ Campaigns must be active to receive donations
+
+---
 
 ## Scripts
 
@@ -58,171 +135,38 @@ pnpm dev          # Start development server
 pnpm build        # Production build
 pnpm start        # Start production server
 pnpm lint         # Run ESLint
-pnpm format       # Check formatting
-pnpm format:fix   # Fix formatting
-pnpm solana-rules # Generate/update Solana AI rules
 ```
 
-## Project Structure
-
-```
-├── app/
-│   ├── layout.tsx        # Root layout with providers
-│   ├── providers.tsx     # Theme + Wallet providers
-│   └── page.tsx          # Home page
-├── components/
-│   ├── ui/               # shadcn/ui components (button, sheet)
-│   ├── layout/           # Header, footer, theme toggle, mobile nav
-│   └── wallet/           # Wallet button wrapper
-├── contexts/
-│   └── ContextProvider.tsx  # Solana wallet context
-├── lib/
-│   └── utils.ts          # Utility functions (cn)
-└── styles/
-    └── globals.css       # Design system & Tailwind v4 config
-```
-
-## Design System
-
-### CSS Utilities
-
-The scaffold includes a comprehensive set of CSS utilities in `globals.css`:
-
-```css
-/* Backgrounds */
-.bg-mesh              /* Auto-detecting mesh gradient */
-
-/* Glassmorphism */
-.glass                /* Frosted glass effect */
-.glass-strong         /* Stronger blur */
-
-/* Glow Effects */
-.glow-green           /* Brand green glow */
-.glow-blue            /* Brand blue glow */
-.text-glow-green      /* Text shadow glow */
-
-/* Animations */
-.animate-fade-in      /* Fade in */
-.animate-fade-in-up   /* Fade in from below */
-.animate-float        /* Floating animation */
-.animate-glow-pulse   /* Pulsing glow */
-
-/* 2026 Trends */
-.soft-ui              /* Neumorphic card */
-.soft-ui-button       /* Neumorphic button */
-.micro-bounce         /* Tactile button feedback */
-.card-lift            /* Hover lift effect */
-.border-glow          /* Interactive border */
-```
-
-### Button Variants
-
-```tsx
-import { Button } from "@/components/ui/button"
-
-<Button variant="default">Primary</Button>
-<Button variant="glow">Glowing</Button>
-<Button variant="soft">Soft UI</Button>
-<Button variant="glass">Glass</Button>
-<Button variant="outline">Outlined</Button>
-<Button variant="ghost">Ghost</Button>
-```
-
-### Theme Toggle
-
-The theme cycles through: **System** → **Light** → **Dark**
-
-System preference is respected by default, with CSS media queries ensuring correct theme on initial load.
-
-## Adding Components
-
-Use the shadcn CLI to add new components:
-
-```bash
-pnpm dlx shadcn@latest add dialog
-pnpm dlx shadcn@latest add dropdown-menu
-pnpm dlx shadcn@latest add input
-```
-
-## Environment Variables
-
-| Variable                 | Description                                    |
-| ------------------------ | ---------------------------------------------- |
-| `NEXT_PUBLIC_HELIUS_URL` | Solana RPC endpoint (defaults to mainnet-beta) |
-
-## Customization
-
-### Brand Colors
-
-Edit the theme variables in `styles/globals.css`:
-
-```css
-@theme {
-  --color-builderz-green: #14f195;
-  --color-builderz-blue: #00ffd5;
-}
-```
-
-### Mesh Gradient
-
-The `.bg-mesh` class automatically switches between light and dark variants based on the theme.
-
-## AI-Assisted Development
-
-This scaffold includes comprehensive Solana development rules for AI coding assistants like Claude Code, powered by [solana-claude-md](https://github.com/builderz-labs/solana-claude-md).
-
-### Setup
-
-Run the interactive setup to generate AI configuration files:
-
-```bash
-pnpm solana-rules
-# Or directly: npx solana-claude-md
-```
-
-Choose from the available options:
-1. **CLAUDE.md** - General Solana development rules
-2. **SOLANA_EXPERT_AGENT.md** - Backend/program development expert
-3. **SOLANA_FRONTEND_AGENT.md** - Frontend/dApp development expert
-4. **All files** - Install all configuration files (recommended)
-
-### Generated Files
-
-| File | Purpose |
-| ---- | ------- |
-| `CLAUDE.md` | Core Solana development rules and best practices |
-| `SOLANA_EXPERT_AGENT.md` | Backend expert: Anchor, native programs, security |
-| `SOLANA_FRONTEND_AGENT.md` | Frontend expert: wallet adapter, transactions, UI |
-
-### Coverage
-
-The rules cover:
-
-- **Modern Tooling** - Pinocchio, Anchor 0.32+, Steel, @solana/kit
-- **Security Best Practices** - Account validation, CPI security, attack vectors
-- **Testing Frameworks** - Mollusk, LiteSVM, Trident fuzzing
-- **Transaction Optimization** - Compute units, priority fees, landing strategies
-- **Frontend Patterns** - Wallet adapter, transaction handling, error states
-- **Common Pitfalls** - Avoiding deprecated crates and unsafe patterns
-
-## Learn More
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Solana Documentation](https://docs.solana.com)
-- [shadcn/ui Documentation](https://ui.shadcn.com)
-- [Tailwind CSS v4](https://tailwindcss.com/docs)
-- [Solana Wallet Adapter](https://github.com/solana-labs/wallet-adapter)
+---
 
 ## Contributing
 
-Contributions are welcome! Feel free to open an issue or submit a PR.
+Contributions are welcome! Please read our contributing guidelines before submitting PRs.
 
-## Links
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
-- [Website](https://builderz.dev)
-- [GitHub](https://github.com/builderz-labs)
-- [Twitter](https://x.com/builaboratory)
+---
+
+## Resources
+
+- [Solana Documentation](https://docs.solana.com)
+- [Anchor Framework](https://www.anchor-lang.com)
+- [Next.js 16](https://nextjs.org)
+- [Tailwind CSS v4](https://tailwindcss.com)
+
+---
 
 ## License
 
-MIT
+MIT License — see [LICENSE.md](./LICENSE.md)
+
+---
+
+## Acknowledgments
+
+Built with inspiration from [Fundus](https://github.com/Daltonic/fundus) — a Solana crowdfunding reference implementation.
+
+Built for the African continent 🌍
