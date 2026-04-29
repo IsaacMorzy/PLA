@@ -130,17 +130,17 @@ export function MobileNav() {
           <p className="text-xs text-muted-foreground mb-3">Follow us</p>
           <div className="flex gap-2">
             <SocialButton
-              href="https://builderz.dev"
+              href="https://peaceleague.africa"
               icon={<Globe className="h-4 w-4" />}
               label="Website"
             />
             <SocialButton
-              href="https://github.com/builderz-labs"
+              href="https://github.com/peaceleagueafrica"
               icon={<Github className="h-4 w-4" />}
               label="GitHub"
             />
             <SocialButton
-              href="https://x.com/builaboratory"
+              href="https://x.com/peaceleagueafrica"
               icon={<Twitter className="h-4 w-4" />}
               label="Twitter"
             />

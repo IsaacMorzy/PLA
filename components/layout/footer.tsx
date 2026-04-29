@@ -123,17 +123,17 @@ export function Footer() {
             {/* Social links */}
             <div className="flex items-center gap-2">
               <SocialLink
-                href="https://builderz.dev"
+                href="https://peaceleague.africa"
                 icon={<Globe className="h-4 w-4" />}
                 label="Website"
               />
               <SocialLink
-                href="https://github.com/builderz-labs"
+                href="https://github.com/peaceleagueafrica"
                 icon={<Github className="h-4 w-4" />}
                 label="GitHub"
               />
               <SocialLink
-                href="https://x.com/builaboratory"
+                href="https://x.com/peaceleagueafrica"
                 icon={<Twitter className="h-4 w-4" />}
                 label="Twitter"
               />

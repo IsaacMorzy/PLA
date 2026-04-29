@@ -27,7 +27,7 @@ export function Logo({ className }: LogoProps) {
     <Link href="/" className={className}>
       <Image
         src={logoSrc}
-        alt="Builderz"
+        alt="PeaceLeague Africa"
         width={140}
         height={40}
         className="w-24 md:w-32 lg:w-36"

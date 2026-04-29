@@ -9,6 +9,18 @@ import * as animations from "@/lib/animations";
 import type { Campaign, CampaignStory } from "@/lib/cosmic";
 import { Accordion, Tabs } from "@/components/ui/tailgrids";
 
+// African countries we serve (flag emoji + name)
+const AFRICAN_FLAGS = [
+  { flag: "🇳🇬", code: "NG", name: "Nigeria" },
+  { flag: "🇰🇪", code: "KE", name: "Kenya" },
+  { flag: "🇬🇭", code: "GH", name: "Ghana" },
+  { flag: "🇿🇦", code: "ZA", name: "South Africa" },
+  { flag: "🇪🇬", code: "EG", name: "Egypt" },
+  { flag: "🇸🇳", code: "SN", name: "Senegal" },
+  { flag: "🇨🇲", code: "CM", name: "Cameroon" },
+  { flag: "🇪🇹", code: "ET", name: "Ethiopia" },
+];
+
 interface HomeClientProps {
   campaigns: Campaign[];
   stories: CampaignStory[];
@@ -33,20 +45,13 @@ function GlassBento({ children, className = "" }: { children: React.ReactNode; c
 }
 
 export default function HomeClient({ campaigns, stories }: HomeClientProps) {
-  const stats = [
-    { icon: <Users className="h-8 w-8" />, value: "2,500+", label: "Donors" },
-    { icon: <Heart className="h-8 w-8" />, value: `${campaigns.length}+`, label: "Campaigns" },
-    { icon: <TrendingUp className="h-8 w-8" />, value: "500+", label: "SOL Raised" },
-    { icon: <Shield className="h-8 w-8" />, value: "100%", label: "Transparent" },
-  ];
-
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Stats Bar - Glass */}
-      <StatsSection stats={stats} />
+      {/* Countries We Serve - Flags */}
+      <CountriesSection />
 
       {/* Featured Campaigns */}
       <CampaignsSection campaigns={campaigns} />
@@ -187,28 +192,38 @@ function HeroSection() {
   );
 }
 
-// Stats Section - Stripe bento grid with Tailgrids gold
-function StatsSection({ stats }: { stats: { icon: React.ReactNode; value: string; label: string }[] }) {
+// Countries We Serve - African Flags
+function CountriesSection() {
   return (
-    <section className="py-12 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Stripe bento grid layout */}
-        <GlassBento className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={animations.staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
-          >
-            {stats.map((stat, i) => (
-              <motion.div key={i} variants={animations.fadeInUp} className="text-center">
-                <div className="flex justify-center mb-2 text-[#d4a853]">{stat.icon}</div>
-                <div className="text-3xl font-bold text-white">{stat.value}</div>
-                <div className="text-sm text-white/60">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
+    <section className="py-10 px-4">
+      <div className="max-w-5xl mx-auto">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={animations.fadeInUp}
+          className="text-center mb-8"
+        >
+          <p className="text-white/60 text-sm uppercase tracking-widest font-medium">
+            Active Across Africa
+          </p>
+        </motion.div>
+
+        <GlassBento className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
+          {AFRICAN_FLAGS.map((country, i) => (
+            <motion.div
+              key={country.code}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05, duration: 0.3 }}
+              whileHover={{ scale: 1.1 }}
+              className="flex flex-col items-center gap-1 p-3 rounded-xl hover:bg-white/5 transition-all cursor-default"
+            >
+              <span className="text-3xl md:text-4xl">{country.flag}</span>
+              <span className="text-xs text-white/60 hidden md:block">{country.name}</span>
+            </motion.div>
+          ))}
         </GlassBento>
       </div>
     </section>
