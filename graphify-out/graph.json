@@ -1,0 +1,802 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "next-env.d.ts",
+      "file_type": "code",
+      "source_file": "next-env.d.ts",
+      "source_location": "L1",
+      "id": "next_env_d_ts",
+      "community": 8,
+      "norm_label": "next-env.d.ts"
+    },
+    {
+      "label": "next.config.ts",
+      "file_type": "code",
+      "source_file": "next.config.ts",
+      "source_location": "L1",
+      "id": "next_config_ts",
+      "community": 9,
+      "norm_label": "next.config.ts"
+    },
+    {
+      "label": "postcss.config.js",
+      "file_type": "code",
+      "source_file": "postcss.config.js",
+      "source_location": "L1",
+      "id": "postcss_config_js",
+      "community": 10,
+      "norm_label": "postcss.config.js"
+    },
+    {
+      "label": "logo.tsx",
+      "file_type": "code",
+      "source_file": "components/logo.tsx",
+      "source_location": "L1",
+      "id": "components_logo_tsx",
+      "community": 0,
+      "norm_label": "logo.tsx"
+    },
+    {
+      "label": "Logo()",
+      "file_type": "code",
+      "source_file": "components/logo.tsx",
+      "source_location": "L12",
+      "id": "components_logo_logo",
+      "community": 0,
+      "norm_label": "logo()"
+    },
+    {
+      "label": "header.tsx",
+      "file_type": "code",
+      "source_file": "components/layout/header.tsx",
+      "source_location": "L1",
+      "id": "components_layout_header_tsx",
+      "community": 11,
+      "norm_label": "header.tsx"
+    },
+    {
+      "label": "theme-toggle.tsx",
+      "file_type": "code",
+      "source_file": "components/layout/theme-toggle.tsx",
+      "source_location": "L1",
+      "id": "components_layout_theme_toggle_tsx",
+      "community": 1,
+      "norm_label": "theme-toggle.tsx"
+    },
+    {
+      "label": "ThemeToggle()",
+      "file_type": "code",
+      "source_file": "components/layout/theme-toggle.tsx",
+      "source_location": "L8",
+      "id": "layout_theme_toggle_themetoggle",
+      "community": 1,
+      "norm_label": "themetoggle()"
+    },
+    {
+      "label": "mobile-nav.tsx",
+      "file_type": "code",
+      "source_file": "components/layout/mobile-nav.tsx",
+      "source_location": "L1",
+      "id": "components_layout_mobile_nav_tsx",
+      "community": 12,
+      "norm_label": "mobile-nav.tsx"
+    },
+    {
+      "label": "footer.tsx",
+      "file_type": "code",
+      "source_file": "components/layout/footer.tsx",
+      "source_location": "L1",
+      "id": "components_layout_footer_tsx",
+      "community": 2,
+      "norm_label": "footer.tsx"
+    },
+    {
+      "label": "Footer()",
+      "file_type": "code",
+      "source_file": "components/layout/footer.tsx",
+      "source_location": "L9",
+      "id": "layout_footer_footer",
+      "community": 2,
+      "norm_label": "footer()"
+    },
+    {
+      "label": "wallet-button.tsx",
+      "file_type": "code",
+      "source_file": "components/wallet/wallet-button.tsx",
+      "source_location": "L1",
+      "id": "components_wallet_wallet_button_tsx",
+      "community": 3,
+      "norm_label": "wallet-button.tsx"
+    },
+    {
+      "label": "WalletButton()",
+      "file_type": "code",
+      "source_file": "components/wallet/wallet-button.tsx",
+      "source_location": "L11",
+      "id": "wallet_wallet_button_walletbutton",
+      "community": 3,
+      "norm_label": "walletbutton()"
+    },
+    {
+      "label": "visually-hidden.tsx",
+      "file_type": "code",
+      "source_file": "components/ui/visually-hidden.tsx",
+      "source_location": "L1",
+      "id": "components_ui_visually_hidden_tsx",
+      "community": 13,
+      "norm_label": "visually-hidden.tsx"
+    },
+    {
+      "label": "sheet.tsx",
+      "file_type": "code",
+      "source_file": "components/ui/sheet.tsx",
+      "source_location": "L1",
+      "id": "components_ui_sheet_tsx",
+      "community": 14,
+      "norm_label": "sheet.tsx"
+    },
+    {
+      "label": "button.tsx",
+      "file_type": "code",
+      "source_file": "components/ui/button.tsx",
+      "source_location": "L1",
+      "id": "components_ui_button_tsx",
+      "community": 15,
+      "norm_label": "button.tsx"
+    },
+    {
+      "label": "ContextProvider.tsx",
+      "file_type": "code",
+      "source_file": "contexts/ContextProvider.tsx",
+      "source_location": "L1",
+      "id": "contexts_contextprovider_tsx",
+      "community": 4,
+      "norm_label": "contextprovider.tsx"
+    },
+    {
+      "label": "WalletContextProvider()",
+      "file_type": "code",
+      "source_file": "contexts/ContextProvider.tsx",
+      "source_location": "L13",
+      "id": "contexts_contextprovider_walletcontextprovider",
+      "community": 4,
+      "norm_label": "walletcontextprovider()"
+    },
+    {
+      "label": "utils.ts",
+      "file_type": "code",
+      "source_file": "lib/utils.ts",
+      "source_location": "L1",
+      "id": "lib_utils_ts",
+      "community": 5,
+      "norm_label": "utils.ts"
+    },
+    {
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "lib/utils.ts",
+      "source_location": "L4",
+      "id": "lib_utils_cn",
+      "community": 5,
+      "norm_label": "cn()"
+    },
+    {
+      "label": "providers.tsx",
+      "file_type": "code",
+      "source_file": "app/providers.tsx",
+      "source_location": "L1",
+      "id": "app_providers_tsx",
+      "community": 6,
+      "norm_label": "providers.tsx"
+    },
+    {
+      "label": "Providers()",
+      "file_type": "code",
+      "source_file": "app/providers.tsx",
+      "source_location": "L10",
+      "id": "app_providers_providers",
+      "community": 6,
+      "norm_label": "providers()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "app/page.tsx",
+      "source_location": "L1",
+      "id": "app_page_tsx",
+      "community": 16,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "app/layout.tsx",
+      "source_location": "L1",
+      "id": "app_layout_tsx",
+      "community": 7,
+      "norm_label": "layout.tsx"
+    },
+    {
+      "label": "RootLayout()",
+      "file_type": "code",
+      "source_file": "app/layout.tsx",
+      "source_location": "L13",
+      "id": "app_layout_rootlayout",
+      "community": 7,
+      "norm_label": "rootlayout()"
+    },
+    {
+      "label": "Readme",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": null,
+      "community": 17,
+      "norm_label": "readme",
+      "id": "README"
+    },
+    {
+      "label": "Solana Frontend Agent",
+      "file_type": "document",
+      "source_file": "SOLANA_FRONTEND_AGENT.md",
+      "source_location": null,
+      "community": 18,
+      "norm_label": "solana frontend agent",
+      "id": "SOLANA_FRONTEND_AGENT"
+    },
+    {
+      "label": "Solana Expert Agent",
+      "file_type": "document",
+      "source_file": "SOLANA_EXPERT_AGENT.md",
+      "source_location": null,
+      "community": 19,
+      "norm_label": "solana expert agent",
+      "id": "SOLANA_EXPERT_AGENT"
+    },
+    {
+      "label": "License",
+      "file_type": "document",
+      "source_file": "LICENSE.md",
+      "source_location": null,
+      "community": 20,
+      "norm_label": "license",
+      "id": "LICENSE"
+    },
+    {
+      "label": "Claude",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "community": 21,
+      "norm_label": "claude",
+      "id": "CLAUDE"
+    },
+    {
+      "id": "solana_crowdfunding_program",
+      "label": "Solana Crowdfunding Program",
+      "file_type": "concept",
+      "source": "tutorial",
+      "description": "Anchor Rust program for crowdfunding smart contract",
+      "community": 100
+    },
+    {
+      "id": "campaign_account",
+      "label": "Campaign Account",
+      "file_type": "concept",
+      "source": "tutorial",
+      "description": "Data structure for crowdfunding campaign with owner, name, target amount, current amount",
+      "community": 100
+    },
+    {
+      "id": "create_campaign_instruction",
+      "label": "Create Campaign",
+      "file_type": "instruction",
+      "source": "tutorial",
+      "description": "Anchor instruction to create new campaign with name, description, target_amount",
+      "community": 100
+    },
+    {
+      "id": "donate_instruction",
+      "label": "Donate",
+      "file_type": "instruction",
+      "source": "tutorial",
+      "description": "Instruction to donate SOL to a campaign, increases current_amount",
+      "community": 100
+    },
+    {
+      "id": "withdraw_instruction",
+      "label": "Withdraw",
+      "file_type": "instruction",
+      "source": "tutorial",
+      "description": "Instruction for campaign owner to withdraw raised SOL after goal met",
+      "community": 100
+    },
+    {
+      "id": "phantom_wallet_connection",
+      "label": "Phantom Wallet Connection",
+      "file_type": "concept",
+      "source": "tutorial",
+      "description": "Connect user Phantom wallet to Next.js frontend using @solana/wallet-adapter",
+      "community": 101
+    },
+    {
+      "id": "anchor_provider",
+      "label": "AnchorProvider",
+      "file_type": "concept",
+      "source": "tutorial",
+      "description": "Bridge between frontend and Anchor program for transactions",
+      "community": 101
+    },
+    {
+      "id": "program_interface",
+      "label": "Program Interface",
+      "file_type": "concept",
+      "source": "tutorial",
+      "description": "TypeScript class wrapping IDL to interact with Solana program",
+      "community": 101
+    },
+    {
+      "id": "idl_json",
+      "label": "IDL.json",
+      "file_type": "file",
+      "source": "tutorial",
+      "description": "Interface Definition Language file from Anchor build - describes program structure",
+      "community": 101
+    },
+    {
+      "id": "connect_wallet_flow",
+      "label": "Connect Wallet Flow",
+      "file_type": "workflow",
+      "source": "tutorial",
+      "description": "User connects Phantom wallet \u2192 app detects wallet \u2192 enables interactions",
+      "community": 102
+    },
+    {
+      "id": "create_campaign_flow",
+      "label": "Create Campaign Flow",
+      "file_type": "workflow",
+      "source": "tutorial",
+      "description": "User fills form \u2192 calls create instruction \u2192 campaign created on chain",
+      "community": 102
+    },
+    {
+      "id": "fund_project_flow",
+      "label": "Fund Project Flow",
+      "file_type": "workflow",
+      "source": "tutorial",
+      "description": "User clicks donate \u2192 signs transaction \u2192 SOL transferred to campaign PDA",
+      "community": 102
+    },
+    {
+      "id": "withdraw_flow",
+      "label": "Withdraw Flow",
+      "file_type": "workflow",
+      "source": "tutorial",
+      "description": "Owner claims funds \u2192 SOL withdrawn to wallet if goal reached",
+      "community": 102
+    },
+    {
+      "id": "solana_devnet_setup",
+      "label": "Solana Devnet Setup",
+      "file_type": "setup",
+      "source": "tutorial",
+      "description": "solana config set --url devnet, airdrop SOL for testing",
+      "community": 103
+    },
+    {
+      "id": "anchor_deploy",
+      "label": "Anchor Deploy",
+      "file_type": "command",
+      "source": "tutorial",
+      "description": "anchor build && anchor deploy - deploys program to devnet",
+      "community": 103
+    },
+    {
+      "id": "fundus_program",
+      "label": "Fundus Program",
+      "file_type": "concept",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Solana Anchor crowdfunding program",
+      "community": 100
+    },
+    {
+      "id": "campaign_state",
+      "label": "Campaign State",
+      "file_type": "concept",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Data structure: cid, creator, title, description, image_url, goal, amount_raised, balance, active",
+      "community": 100
+    },
+    {
+      "id": "program_state",
+      "label": "Program State",
+      "file_type": "concept",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Global state: campaign_count, platform_fee (5%), platform_address",
+      "community": 100
+    },
+    {
+      "id": "initialize_instruction",
+      "label": "Initialize",
+      "file_type": "instruction",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "One-time program initialization",
+      "community": 100
+    },
+    {
+      "id": "create_campaign_instruction",
+      "label": "Create Campaign",
+      "file_type": "instruction",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Create campaign with title, description, image_url, goal",
+      "community": 100
+    },
+    {
+      "id": "update_campaign_instruction",
+      "label": "Update Campaign",
+      "file_type": "instruction",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Update campaign details",
+      "community": 100
+    },
+    {
+      "id": "delete_campaign_instruction",
+      "label": "Delete Campaign",
+      "file_type": "instruction",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Delete campaign",
+      "community": 100
+    },
+    {
+      "id": "donate_instruction",
+      "label": "Donate",
+      "file_type": "instruction",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Transfer SOL to campaign, min 1 SOL, creates transaction record",
+      "community": 100
+    },
+    {
+      "id": "withdraw_instruction",
+      "label": "Withdraw",
+      "file_type": "instruction",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Creator withdraws, 5% platform fee, min 1 SOL",
+      "community": 100
+    },
+    {
+      "id": "campaign_pda",
+      "label": "Campaign PDA",
+      "file_type": "concept",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "seeds=[b\"campaign\", cid.to_le_bytes()]",
+      "community": 101
+    },
+    {
+      "id": "donor_transaction_pda",
+      "label": "Donor Transaction PDA",
+      "file_type": "concept",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "seeds=[b\"donor\", donor.key(), cid, donor_count]",
+      "community": 101
+    },
+    {
+      "id": "withdraw_transaction_pda",
+      "label": "Withdraw Transaction PDA",
+      "file_type": "concept",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "seeds=[b\"withdraw\", creator.key(), cid, withdraw_count]",
+      "community": 101
+    },
+    {
+      "id": "campaign_listing",
+      "label": "Campaign Listing",
+      "file_type": "feature",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Display all campaigns with progress bars",
+      "community": 102
+    },
+    {
+      "id": "create_campaign_form",
+      "label": "Create Campaign Form",
+      "file_type": "feature",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Form to create new campaign",
+      "community": 102
+    },
+    {
+      "id": "donation_flow",
+      "label": "Donation Flow",
+      "file_type": "feature",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Connect wallet, enter amount, confirm transaction",
+      "community": 102
+    },
+    {
+      "id": "withdrawal_flow",
+      "label": "Withdrawal Flow",
+      "file_type": "feature",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Creator withdraws raised funds after goal met",
+      "community": 102
+    },
+    {
+      "id": "min_goal_validation",
+      "label": "Min Goal Validation",
+      "file_type": "rule",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Minimum 1 SOL (1B lamports) for campaign goal",
+      "community": 103
+    },
+    {
+      "id": "min_donation_validation",
+      "label": "Min Donation Validation",
+      "file_type": "rule",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Minimum 1 SOL per donation",
+      "community": 103
+    },
+    {
+      "id": "platform_fee",
+      "label": "Platform Fee",
+      "file_type": "rule",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "5% fee on withdrawals goes to platform_address",
+      "community": 103
+    },
+    {
+      "id": "creator_only_withdraw",
+      "label": "Creator-Only Withdrawal",
+      "file_type": "rule",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Only campaign creator can withdraw",
+      "community": 103
+    },
+    {
+      "id": "wallet_adapter_replacement",
+      "label": "Wallet Adapter Replacement",
+      "file_type": "migration",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Replace @solana/wallet-adapter with @solana/kit + wallet-standard",
+      "community": 104
+    },
+    {
+      "id": "idl_client_replacement",
+      "label": "IDL Client Replacement",
+      "file_type": "migration",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Replace manual IDL with Codama-generated client",
+      "community": 104
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/logo.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "components_logo_tsx",
+      "_tgt": "components_logo_logo",
+      "source": "components_logo_tsx",
+      "target": "components_logo_logo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/layout/theme-toggle.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "components_layout_theme_toggle_tsx",
+      "_tgt": "layout_theme_toggle_themetoggle",
+      "source": "components_layout_theme_toggle_tsx",
+      "target": "layout_theme_toggle_themetoggle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/layout/footer.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_src": "components_layout_footer_tsx",
+      "_tgt": "layout_footer_footer",
+      "source": "components_layout_footer_tsx",
+      "target": "layout_footer_footer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/wallet/wallet-button.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "components_wallet_wallet_button_tsx",
+      "_tgt": "wallet_wallet_button_walletbutton",
+      "source": "components_wallet_wallet_button_tsx",
+      "target": "wallet_wallet_button_walletbutton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "contexts/ContextProvider.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_src": "contexts_contextprovider_tsx",
+      "_tgt": "contexts_contextprovider_walletcontextprovider",
+      "source": "contexts_contextprovider_tsx",
+      "target": "contexts_contextprovider_walletcontextprovider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/utils.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "lib_utils_ts",
+      "_tgt": "lib_utils_cn",
+      "source": "lib_utils_ts",
+      "target": "lib_utils_cn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/providers.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "app_providers_tsx",
+      "_tgt": "app_providers_providers",
+      "source": "app_providers_tsx",
+      "target": "app_providers_providers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/layout.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_src": "app_layout_tsx",
+      "_tgt": "app_layout_rootlayout",
+      "source": "app_layout_tsx",
+      "target": "app_layout_rootlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "solana_crowdfunding_program",
+      "target": "campaign_account",
+      "label": "contains"
+    },
+    {
+      "source": "solana_crowdfunding_program",
+      "target": "create_campaign_instruction",
+      "label": "implements"
+    },
+    {
+      "source": "solana_crowdfunding_program",
+      "target": "donate_instruction",
+      "label": "implements"
+    },
+    {
+      "source": "solana_crowdfunding_program",
+      "target": "withdraw_instruction",
+      "label": "implements"
+    },
+    {
+      "source": "phantom_wallet_connection",
+      "target": "anchor_provider",
+      "label": "enables"
+    },
+    {
+      "source": "anchor_provider",
+      "target": "program_interface",
+      "label": "creates"
+    },
+    {
+      "source": "program_interface",
+      "target": "idl_json",
+      "label": "uses"
+    },
+    {
+      "source": "phantom_wallet_connection",
+      "target": "connect_wallet_flow",
+      "label": "starts"
+    },
+    {
+      "source": "create_campaign_instruction",
+      "target": "create_campaign_flow",
+      "label": "part_of"
+    },
+    {
+      "source": "donate_instruction",
+      "target": "fund_project_flow",
+      "label": "part_of"
+    },
+    {
+      "source": "withdraw_instruction",
+      "target": "withdraw_flow",
+      "label": "part_of"
+    },
+    {
+      "source": "solana_devnet_setup",
+      "target": "anchor_deploy",
+      "label": "prerequisites"
+    },
+    {
+      "source": "fundus_program",
+      "target": "campaign_state",
+      "label": "contains"
+    },
+    {
+      "source": "fundus_program",
+      "target": "program_state",
+      "label": "uses"
+    },
+    {
+      "source": "fundus_program",
+      "target": "create_campaign_instruction",
+      "label": "implements"
+    },
+    {
+      "source": "fundus_program",
+      "target": "donate_instruction",
+      "label": "implements"
+    },
+    {
+      "source": "fundus_program",
+      "target": "withdraw_instruction",
+      "label": "implements"
+    },
+    {
+      "source": "campaign_state",
+      "target": "campaign_pda",
+      "label": "stored_at"
+    },
+    {
+      "source": "create_campaign_instruction",
+      "target": "campaign_pda",
+      "label": "creates"
+    },
+    {
+      "source": "donate_instruction",
+      "target": "donor_transaction_pda",
+      "label": "creates"
+    },
+    {
+      "source": "withdraw_instruction",
+      "target": "withdraw_transaction_pda",
+      "label": "creates"
+    },
+    {
+      "source": "donate_instruction",
+      "target": "min_donation_validation",
+      "label": "enforces"
+    },
+    {
+      "source": "withdraw_instruction",
+      "target": "creator_only_withdraw",
+      "label": "enforces"
+    },
+    {
+      "source": "withdraw_instruction",
+      "target": "platform_fee",
+      "label": "deducts"
+    },
+    {
+      "source": "wallet_adapter_replacement",
+      "target": "fundus_program",
+      "label": "refactors"
+    },
+    {
+      "source": "idl_client_replacement",
+      "target": "fundus_program",
+      "label": "upgrades"
+    }
+  ],
+  "hyperedges": []
+}

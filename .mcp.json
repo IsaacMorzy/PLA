@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "graphify": {
+      "command": "/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/.venv/bin/python",
+      "args": ["-m", "graphify", "mcp"]
+    }
+  }
+}

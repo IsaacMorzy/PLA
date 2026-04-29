@@ -1,0 +1,186 @@
+{
+  "nodes": [
+    {
+      "id": "solana_crowdfunding_program",
+      "label": "Solana Crowdfunding Program",
+      "file_type": "concept",
+      "source": "tutorial",
+      "description": "Anchor Rust program for crowdfunding smart contract",
+      "community": 100
+    },
+    {
+      "id": "campaign_account",
+      "label": "Campaign Account",
+      "file_type": "concept",
+      "source": "tutorial",
+      "description": "Data structure for crowdfunding campaign with owner, name, target amount, current amount",
+      "community": 100
+    },
+    {
+      "id": "create_campaign_instruction",
+      "label": "Create Campaign",
+      "file_type": "instruction",
+      "source": "tutorial",
+      "description": "Anchor instruction to create new campaign with name, description, target_amount",
+      "community": 100
+    },
+    {
+      "id": "donate_instruction",
+      "label": "Donate",
+      "file_type": "instruction",
+      "source": "tutorial",
+      "description": "Instruction to donate SOL to a campaign, increases current_amount",
+      "community": 100
+    },
+    {
+      "id": "withdraw_instruction",
+      "label": "Withdraw",
+      "file_type": "instruction",
+      "source": "tutorial",
+      "description": "Instruction for campaign owner to withdraw raised SOL after goal met",
+      "community": 100
+    },
+    {
+      "id": "phantom_wallet_connection",
+      "label": "Phantom Wallet Connection",
+      "file_type": "concept",
+      "source": "tutorial",
+      "description": "Connect user Phantom wallet to Next.js frontend using @solana/wallet-adapter",
+      "community": 101
+    },
+    {
+      "id": "anchor_provider",
+      "label": "AnchorProvider",
+      "file_type": "concept",
+      "source": "tutorial",
+      "description": "Bridge between frontend and Anchor program for transactions",
+      "community": 101
+    },
+    {
+      "id": "program_interface",
+      "label": "Program Interface",
+      "file_type": "concept",
+      "source": "tutorial",
+      "description": "TypeScript class wrapping IDL to interact with Solana program",
+      "community": 101
+    },
+    {
+      "id": "idl_json",
+      "label": "IDL.json",
+      "file_type": "file",
+      "source": "tutorial",
+      "description": "Interface Definition Language file from Anchor build - describes program structure",
+      "community": 101
+    },
+    {
+      "id": "connect_wallet_flow",
+      "label": "Connect Wallet Flow",
+      "file_type": "workflow",
+      "source": "tutorial",
+      "description": "User connects Phantom wallet \u2192 app detects wallet \u2192 enables interactions",
+      "community": 102
+    },
+    {
+      "id": "create_campaign_flow",
+      "label": "Create Campaign Flow",
+      "file_type": "workflow",
+      "source": "tutorial",
+      "description": "User fills form \u2192 calls create instruction \u2192 campaign created on chain",
+      "community": 102
+    },
+    {
+      "id": "fund_project_flow",
+      "label": "Fund Project Flow",
+      "file_type": "workflow",
+      "source": "tutorial",
+      "description": "User clicks donate \u2192 signs transaction \u2192 SOL transferred to campaign PDA",
+      "community": 102
+    },
+    {
+      "id": "withdraw_flow",
+      "label": "Withdraw Flow",
+      "file_type": "workflow",
+      "source": "tutorial",
+      "description": "Owner claims funds \u2192 SOL withdrawn to wallet if goal reached",
+      "community": 102
+    },
+    {
+      "id": "solana_devnet_setup",
+      "label": "Solana Devnet Setup",
+      "file_type": "setup",
+      "source": "tutorial",
+      "description": "solana config set --url devnet, airdrop SOL for testing",
+      "community": 103
+    },
+    {
+      "id": "anchor_deploy",
+      "label": "Anchor Deploy",
+      "file_type": "command",
+      "source": "tutorial",
+      "description": "anchor build && anchor deploy - deploys program to devnet",
+      "community": 103
+    }
+  ],
+  "edges": [
+    {
+      "source": "solana_crowdfunding_program",
+      "target": "campaign_account",
+      "label": "contains"
+    },
+    {
+      "source": "solana_crowdfunding_program",
+      "target": "create_campaign_instruction",
+      "label": "implements"
+    },
+    {
+      "source": "solana_crowdfunding_program",
+      "target": "donate_instruction",
+      "label": "implements"
+    },
+    {
+      "source": "solana_crowdfunding_program",
+      "target": "withdraw_instruction",
+      "label": "implements"
+    },
+    {
+      "source": "phantom_wallet_connection",
+      "target": "anchor_provider",
+      "label": "enables"
+    },
+    {
+      "source": "anchor_provider",
+      "target": "program_interface",
+      "label": "creates"
+    },
+    {
+      "source": "program_interface",
+      "target": "idl_json",
+      "label": "uses"
+    },
+    {
+      "source": "phantom_wallet_connection",
+      "target": "connect_wallet_flow",
+      "label": "starts"
+    },
+    {
+      "source": "create_campaign_instruction",
+      "target": "create_campaign_flow",
+      "label": "part_of"
+    },
+    {
+      "source": "donate_instruction",
+      "target": "fund_project_flow",
+      "label": "part_of"
+    },
+    {
+      "source": "withdraw_instruction",
+      "target": "withdraw_flow",
+      "label": "part_of"
+    },
+    {
+      "source": "solana_devnet_setup",
+      "target": "anchor_deploy",
+      "label": "prerequisites"
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "nodes": [
+    {
+      "id": "fundus_program",
+      "label": "Fundus Program",
+      "file_type": "concept",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Solana Anchor crowdfunding program",
+      "community": 100
+    },
+    {
+      "id": "campaign_state",
+      "label": "Campaign State",
+      "file_type": "concept",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Data structure: cid, creator, title, description, image_url, goal, amount_raised, balance, active",
+      "community": 100
+    },
+    {
+      "id": "program_state",
+      "label": "Program State",
+      "file_type": "concept",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Global state: campaign_count, platform_fee (5%), platform_address",
+      "community": 100
+    },
+    {
+      "id": "initialize_instruction",
+      "label": "Initialize",
+      "file_type": "instruction",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "One-time program initialization",
+      "community": 100
+    },
+    {
+      "id": "create_campaign_instruction",
+      "label": "Create Campaign",
+      "file_type": "instruction",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Create campaign with title, description, image_url, goal",
+      "community": 100
+    },
+    {
+      "id": "update_campaign_instruction",
+      "label": "Update Campaign",
+      "file_type": "instruction",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Update campaign details",
+      "community": 100
+    },
+    {
+      "id": "delete_campaign_instruction",
+      "label": "Delete Campaign",
+      "file_type": "instruction",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Delete campaign",
+      "community": 100
+    },
+    {
+      "id": "donate_instruction",
+      "label": "Donate",
+      "file_type": "instruction",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Transfer SOL to campaign, min 1 SOL, creates transaction record",
+      "community": 100
+    },
+    {
+      "id": "withdraw_instruction",
+      "label": "Withdraw",
+      "file_type": "instruction",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Creator withdraws, 5% platform fee, min 1 SOL",
+      "community": 100
+    },
+    {
+      "id": "campaign_pda",
+      "label": "Campaign PDA",
+      "file_type": "concept",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "seeds=[b\"campaign\", cid.to_le_bytes()]",
+      "community": 101
+    },
+    {
+      "id": "donor_transaction_pda",
+      "label": "Donor Transaction PDA",
+      "file_type": "concept",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "seeds=[b\"donor\", donor.key(), cid, donor_count]",
+      "community": 101
+    },
+    {
+      "id": "withdraw_transaction_pda",
+      "label": "Withdraw Transaction PDA",
+      "file_type": "concept",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "seeds=[b\"withdraw\", creator.key(), cid, withdraw_count]",
+      "community": 101
+    },
+    {
+      "id": "campaign_listing",
+      "label": "Campaign Listing",
+      "file_type": "feature",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Display all campaigns with progress bars",
+      "community": 102
+    },
+    {
+      "id": "create_campaign_form",
+      "label": "Create Campaign Form",
+      "file_type": "feature",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Form to create new campaign",
+      "community": 102
+    },
+    {
+      "id": "donation_flow",
+      "label": "Donation Flow",
+      "file_type": "feature",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Connect wallet, enter amount, confirm transaction",
+      "community": 102
+    },
+    {
+      "id": "withdrawal_flow",
+      "label": "Withdrawal Flow",
+      "file_type": "feature",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Creator withdraws raised funds after goal met",
+      "community": 102
+    },
+    {
+      "id": "min_goal_validation",
+      "label": "Min Goal Validation",
+      "file_type": "rule",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Minimum 1 SOL (1B lamports) for campaign goal",
+      "community": 103
+    },
+    {
+      "id": "min_donation_validation",
+      "label": "Min Donation Validation",
+      "file_type": "rule",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Minimum 1 SOL per donation",
+      "community": 103
+    },
+    {
+      "id": "platform_fee",
+      "label": "Platform Fee",
+      "file_type": "rule",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "5% fee on withdrawals goes to platform_address",
+      "community": 103
+    },
+    {
+      "id": "creator_only_withdraw",
+      "label": "Creator-Only Withdrawal",
+      "file_type": "rule",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Only campaign creator can withdraw",
+      "community": 103
+    },
+    {
+      "id": "wallet_adapter_replacement",
+      "label": "Wallet Adapter Replacement",
+      "file_type": "migration",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Replace @solana/wallet-adapter with @solana/kit + wallet-standard",
+      "community": 104
+    },
+    {
+      "id": "idl_client_replacement",
+      "label": "IDL Client Replacement",
+      "file_type": "migration",
+      "source": "FUNDUS_REFERENCE.md",
+      "description": "Replace manual IDL with Codama-generated client",
+      "community": 104
+    }
+  ],
+  "edges": [
+    {
+      "source": "fundus_program",
+      "target": "campaign_state",
+      "label": "contains"
+    },
+    {
+      "source": "fundus_program",
+      "target": "program_state",
+      "label": "uses"
+    },
+    {
+      "source": "fundus_program",
+      "target": "create_campaign_instruction",
+      "label": "implements"
+    },
+    {
+      "source": "fundus_program",
+      "target": "donate_instruction",
+      "label": "implements"
+    },
+    {
+      "source": "fundus_program",
+      "target": "withdraw_instruction",
+      "label": "implements"
+    },
+    {
+      "source": "campaign_state",
+      "target": "campaign_pda",
+      "label": "stored_at"
+    },
+    {
+      "source": "create_campaign_instruction",
+      "target": "campaign_pda",
+      "label": "creates"
+    },
+    {
+      "source": "donate_instruction",
+      "target": "donor_transaction_pda",
+      "label": "creates"
+    },
+    {
+      "source": "withdraw_instruction",
+      "target": "withdraw_transaction_pda",
+      "label": "creates"
+    },
+    {
+      "source": "donate_instruction",
+      "target": "min_donation_validation",
+      "label": "enforces"
+    },
+    {
+      "source": "withdraw_instruction",
+      "target": "creator_only_withdraw",
+      "label": "enforces"
+    },
+    {
+      "source": "withdraw_instruction",
+      "target": "platform_fee",
+      "label": "deducts"
+    },
+    {
+      "source": "wallet_adapter_replacement",
+      "target": "fundus_program",
+      "label": "refactors"
+    },
+    {
+      "source": "idl_client_replacement",
+      "target": "fundus_program",
+      "label": "upgrades"
+    }
+  ]
+}

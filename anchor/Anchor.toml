@@ -1,0 +1,11 @@
+[profile.release]
+overflow-checks = true
+lto = true
+opt-level = 3
+
+[provider]
+cluster = "devnet"
+wallet = "~/.config/solana/id.json"
+
+[registry]
+name = "peaceleague"
