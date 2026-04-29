@@ -107,7 +107,7 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
                   {category.icon} {category.label}
                 </span>
               )}
-              <h1 className="text-3xl font-bold text-white mt-2">{campaign.title}</h1>
+              <h1 className="text-3xl font-bold text-white mt-2 font-display">{campaign.title}</h1>
               <div className="flex flex-wrap gap-4 mt-3 text-sm text-white/60">
                 {campaign.metadata?.location && (
                   <div className="flex items-center gap-1">
@@ -151,12 +151,12 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
                 
                 <div className="mt-2">
                   <progress 
-                    className={`progress ${percent >= 100 ? "progress-success" : percent >= 50 ? "progress-warning" : "progress-primary"}`} 
+                    className={`progress ${percent >= 100 ? "progress-[#d4a853]" : percent >= 50 ? "progress-[#d4a853]" : "progress-[#d4a853]"}`} 
                     value={percent} 
                     max={100} 
                   />
                   <div className="flex justify-between mt-2 text-sm">
-                    <span className="font-bold text-success">{raised.toFixed(1)} SOL raised</span>
+                    <span className="font-bold text-[#d4a853]">{raised.toFixed(1)} SOL raised</span>
                     <span className="text-white/60">{percent}% of goal</span>
                   </div>
                   <p className="text-xs text-white/40 mt-1">Goal: {goal} SOL</p>
@@ -187,7 +187,7 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
                   {[1, 2, 3].map((i) => (
                     <div key={i} className="flex items-center gap-3 p-2 rounded-lg bg-white/5">
                       <div className="avatar placeholder">
-                        <div className="bg-success/20 text-success rounded-full w-8">
+                        <div className="bg-[#d4a853]/20 text-[#d4a853] rounded-full w-8">
                           <span className="text-xs">{String.fromCharCode(64 + i)}</span>
                         </div>
                       </div>
@@ -195,7 +195,7 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
                         <p className="text-sm font-medium text-white">Anonymous</p>
                         <p className="text-xs text-white/50">{(Math.random() * 5).toFixed(2)} SOL</p>
                       </div>
-                      <CheckCircle className="h-4 w-4 text-success" />
+                      <CheckCircle className="h-4 w-4 text-[#d4a853]" />
                     </div>
                   ))}
                 </div>

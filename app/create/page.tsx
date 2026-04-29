@@ -117,7 +117,7 @@ export default function CreateCampaignPage() {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", damping: 15 }}
-                className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center mb-4"
+                className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-[#d4a853] to-[#c46d46] flex items-center justify-center mb-4"
               >
                 <CheckCircle className="h-10 w-10 text-white" />
               </motion.div>
@@ -128,7 +128,7 @@ export default function CreateCampaignPage() {
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
                   href={`/campaign/${formData.slug}`}
-                  className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition-opacity"
+                  className="px-6 py-3 bg-gradient-to-r from-[#d4a853] to-[#c46d46] text-white font-medium rounded-xl hover:opacity-90 transition-opacity"
                 >
                   View Campaign
                 </Link>
@@ -146,19 +146,52 @@ export default function CreateCampaignPage() {
     );
   }
 
-  return (
-    <main className="min-h-screen pt-24 pb-12 px-4">
-      <div className="max-w-2xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={animations.fadeInUp}
-          className="text-center mb-8"
-        >
-          <h1 className="text-3xl font-bold text-white">Start a Campaign</h1>
-          <p className="text-white/60 mt-2">Create your fundraising campaign in minutes</p>
-        </motion.div>
+return (
+      <main className="min-h-screen pt-24 pb-12 px-4 bg-[#1a1815]">
+        <div className="max-w-2xl mx-auto">
+          {/* Header */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={animations.fadeInUp}
+            className="text-center mb-8"
+          >
+            <h1 className="text-3xl font-bold text-white font-display">Start a Campaign</h1>
+            <p className="text-white/60 mt-2">Create your fundraising campaign in minutes</p>
+          </motion.div>
+
+          {/* Progress Steps */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={animations.fadeInUp}
+            className="flex items-center justify-center gap-2 mb-8 flex-wrap"
+          >
+            {[
+              { num: 1, icon: Heart, label: "Connect" },
+              { num: 2, icon: FileText, label: "Details" },
+              { num: 3, icon: Target, label: "Goal" },
+              { num: 4, icon: CheckCircle, label: "Review" },
+            ].map(({ num, icon: Icon, label }) => (
+              <div key={num} className="flex items-center">
+                <motion.div
+                  initial={{ scale: 0.8 }}
+                  animate={{ scale: step === num ? 1 : 0.9 }}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm ${
+                    step === num
+                      ? "bg-[#d4a853] text-[#1a1815]"
+                      : step > num
+                      ? "bg-[#d4a853]/20 text-[#d4a853] border border-[#d4a853]/30"
+                      : "bg-white/10 text-white/40 border border-white/10"
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span className="text-sm hidden sm:inline">{label}</span>
+                </motion.div>
+                {num < 4 && <div className="w-6 sm:w-8 h-px bg-white/20" />}
+              </div>
+            ))}
+          </motion.div>
 
         {/* Progress Steps */}
         <motion.div
@@ -179,9 +212,9 @@ export default function CreateCampaignPage() {
                 animate={{ scale: step === num ? 1 : 0.9 }}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm ${
                   step === num
-                    ? "bg-gradient-to-r from-emerald-500/80 to-cyan-500/80 text-white"
+                    ? "bg-[#d4a853] text-[#1a1815]"
                     : step > num
-                    ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                    ? "bg-[#d4a853]/20 text-[#d4a853] border border-[#d4a853]/30"
                     : "bg-white/10 text-white/40 border border-white/10"
                 }`}
               >
@@ -216,7 +249,7 @@ export default function CreateCampaignPage() {
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-2 px-4 py-2 bg-emerald-500/20 border border-emerald-500/30 rounded-lg text-emerald-400"
+                        className="flex items-center gap-2 px-4 py-2 bg-[#d4a853]/20 border border-[#d4a853]/30 rounded-lg text-[#d4a853]"
                       >
                         <CheckCircle className="h-5 w-5" />
                         <span>Connected: {publicKey?.toString().slice(0, 8)}...</span>
@@ -243,7 +276,7 @@ export default function CreateCampaignPage() {
                       type="text"
                       value={formData.title}
                       onChange={(e) => updateForm("title", e.target.value)}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-emerald-500/50 transition-colors"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#d4a853]/50 transition-colors"
                       placeholder="e.g., Clean Water for Rural Village"
                     />
                   </div>
@@ -342,8 +375,8 @@ export default function CreateCampaignPage() {
                     </p>
                   </div>
 
-                  <div className="flex items-start gap-3 px-4 py-3 bg-cyan-500/10 border border-cyan-500/20 rounded-xl">
-                    <Target className="h-5 w-5 text-cyan-400 flex-shrink-0 mt-0.5" />
+                  <div className="flex items-start gap-3 px-4 py-3 bg-[#d4a853]/10 border border-[#d4a853]/20 rounded-xl">
+                    <Target className="h-5 w-5 text-[#d4a853] flex-shrink-0 mt-0.5" />
                     <span className="text-white/70 text-sm">
                       You can adjust your goal later, but lowering it may affect donor confidence.
                     </span>
@@ -414,7 +447,7 @@ export default function CreateCampaignPage() {
                 <button
                   onClick={nextStep}
                   disabled={!canProceed()}
-                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#d4a853] to-[#c46d46] text-white font-medium rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span>Continue</span>
                   <ArrowRight className="h-4 w-4" />
@@ -423,7 +456,7 @@ export default function CreateCampaignPage() {
                 <button
                   onClick={handleSubmit}
                   disabled={isSubmitting || !isConnected}
-                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#d4a853] to-[#c46d46] text-white font-medium rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>

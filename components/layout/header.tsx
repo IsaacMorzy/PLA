@@ -75,7 +75,7 @@ function NavLink({
         relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200
         ${
           active
-            ? "text-builderz-green"
+            ? "text-[#d4a853]"
             : "text-muted-foreground hover:text-foreground"
         }
         hover:bg-accent/50
@@ -85,11 +85,11 @@ function NavLink({
       {children}
       {/* Active indicator */}
       {active && (
-        <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-builderz-green" />
+        <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#d4a853]" />
       )}
       {/* Hover underline */}
       {!active && (
-        <span className="absolute bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-builderz-green to-builderz-blue rounded-full transition-all duration-300 group-hover:w-4 group-hover:-translate-x-1/2" />
+        <span className="absolute bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-[#d4a853] to-[#d4a853] rounded-full transition-all duration-300 group-hover:w-4 group-hover:-translate-x-1/2" />
       )}
     </Link>
   );

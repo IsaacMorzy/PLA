@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import * as animations from "@/lib/animations";
+import { Tabs } from "@/components/ui/tailgrids";
 
 interface Campaign {
   id: string;
@@ -23,6 +25,61 @@ interface CampaignsClientProps {
 }
 
 export function CampaignsClient({ initialCampaigns }: CampaignsClientProps) {
+  const [filter, setFilter] = useState("all");
+
+  // Filter campaigns by category
+  const filteredCampaigns = filter === "all" 
+    ? initialCampaigns 
+    : initialCampaigns.filter(c => c.metadata?.category === filter);
+
+  // Tab options for filtering
+  const tabs = [
+    { 
+      id: "all", 
+      label: "All", 
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredCampaigns.map((campaign) => (
+            <CampaignCard key={campaign.id} campaign={campaign} />
+          ))}
+        </div>
+      )
+    },
+    { 
+      id: "healthcare", 
+      label: "Healthcare", 
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredCampaigns.map((campaign) => (
+            <CampaignCard key={campaign.id} campaign={campaign} />
+          ))}
+        </div>
+      )
+    },
+    { 
+      id: "education", 
+      label: "Education", 
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredCampaigns.map((campaign) => (
+            <CampaignCard key={campaign.id} campaign={campaign} />
+          ))}
+        </div>
+      )
+    },
+    { 
+      id: "community", 
+      label: "Community", 
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredCampaigns.map((campaign) => (
+            <CampaignCard key={campaign.id} campaign={campaign} />
+          ))}
+        </div>
+      )
+    },
+  ];
+
   return (
     <main className="min-h-screen pt-24 pb-12 px-4">
       <div className="max-w-6xl mx-auto">
@@ -33,96 +90,71 @@ export function CampaignsClient({ initialCampaigns }: CampaignsClientProps) {
           variants={animations.fadeInUp}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold text-white">Campaigns</h1>
+          <h1 className="text-4xl font-bold text-white font-display">Campaigns</h1>
           <p className="text-white/60 mt-2">
             Support causes that matter across Africa
           </p>
         </motion.div>
-        
-        {initialCampaigns.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {initialCampaigns.map((campaign) => (
-              <motion.div
-                key={campaign.id}
-                initial="hidden"
-                animate="visible"
-                variants={animations.fadeInUp}
-                className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl overflow-hidden shadow-xl hover:bg-white/20 transition-all duration-300"
-              >
-                {/* Image */}
-                <div className="relative h-48 w-full">
-                  <img
-                    src={campaign.metadata?.image || "https://images.unsplash.com/photo-1488521787991-ed7bbaa77390?w=800&h=600&fit=crop"}
-                    alt={campaign.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-3 right-3">
-                    <span className="px-3 py-1 bg-black/50 backdrop-blur-sm text-white text-xs rounded-full">
-                      {campaign.metadata?.category || "community"}
-                    </span>
-                  </div>
-                </div>
-                
-                {/* Content */}
-                <div className="p-5">
-                  <h3 className="text-lg font-semibold text-white mb-2">
-                    {campaign.title}
-                  </h3>
-                  <p className="text-white/60 text-sm mb-4 line-clamp-2">
-                    {campaign.metadata?.description || "Help support this campaign"}
-                  </p>
-                  
-                  {/* Progress */}
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-white/80">
-                        ${(campaign.metadata?.raised || 0).toLocaleString()} raised
-                      </span>
-                      <span className="text-white/60">
-                        of ${(campaign.metadata?.goal || 5).toLocaleString()} goal
-                      </span>
-                    </div>
-                    <div className="h-2 bg-white/20 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: Math.min(((campaign.metadata?.raised || 0) / (campaign.metadata?.goal || 1)) * 100, 100) + "%" }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="h-full bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full"
-                      />
-                    </div>
-                  </div>
-                  
-                  {/* Location & Donate */}
-                  <div className="flex justify-between items-center mt-4 pt-4 border-t border-white/10">
-                    <span className="text-white/60 text-sm">
-                      📍 {campaign.metadata?.location || "Africa"}
-                    </span>
-                    <a
-                      href={`/campaign/${campaign.slug}`}
-                      className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white text-sm font-medium rounded-lg hover:opacity-90 transition-opacity"
-                    >
-                      Donate
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        ) : (
-          <motion.div 
-            initial="hidden"
-            animate="visible"
-            variants={animations.fadeInUp}
-            className="text-center py-20"
-          >
-            <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-xl font-semibold text-white">No campaigns found</h3>
-            <p className="text-white/60 mt-2">
-              Check back soon for new campaigns
-            </p>
-          </motion.div>
-        )}
+
+        {/* Tailgrids Tabs for filtering */}
+        <Tabs tabs={tabs} defaultTab="all" className="mb-8" />
       </div>
     </main>
+  );
+}
+
+// Campaign Card Component
+function CampaignCard({ campaign }: { campaign: Campaign }) {
+  return (
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={animations.fadeInUp}
+      className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-2xl overflow-hidden shadow-lg hover:border-[#d4a853]/30 hover:shadow-[0_0_30px_-5px_rgba(212,168,83,0.15)] hover:scale-[1.02] transition-all duration-300"
+    >
+      {/* Image */}
+      <div className="relative h-48 w-full">
+        <img
+          src={campaign.metadata?.image || "https://images.unsplash.com/photo-1488521787991-ed7bbaa77390?w=800&h=600&fit=crop"}
+          alt={campaign.title}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute top-3 right-3">
+          <span className="px-3 py-1 bg-[#1a1815]/80 backdrop-blur-sm text-white text-xs rounded-full">
+            {campaign.metadata?.category || "community"}
+          </span>
+        </div>
+      </div>
+      
+      {/* Content */}
+      <div className="p-5">
+        <h3 className="text-lg font-semibold text-white mb-2">
+          {campaign.title}
+        </h3>
+        <p className="text-white/60 text-sm mb-4 line-clamp-2">
+          {campaign.metadata?.description || "Help support this campaign"}
+        </p>
+        
+        {/* Progress */}
+        <div className="space-y-2">
+          <div className="flex justify-between text-sm">
+            <span className="text-white/80">
+              ${(campaign.metadata?.raised || 0).toLocaleString()} raised
+            </span>
+            <span className="text-white/60">
+              ${(campaign.metadata?.goal || 0).toLocaleString()} goal
+            </span>
+          </div>
+<div className="h-2 bg-white/10 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-gradient-to-r from-[#d4a853] to-[#c46d46] rounded-full"
+              style={{ 
+                width: Math.min(100, ((campaign.metadata?.raised || 0) / (campaign.metadata?.goal || 1)) * 100) + "%"
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 }

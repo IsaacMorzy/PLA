@@ -39,10 +39,14 @@ export default async function DonorListPage() {
   })) : fallbackDonors
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] relative overflow-hidden">
+    <div className="min-h-screen bg-[#1a1815] relative overflow-hidden">
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[400px] h-[400px] bg-gradient-to-r from-emerald-500/15 to-teal-500/15 rounded-full blur-[100px] animate-pulse delay-1000" />
+        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full blur-[150px] opacity-20" 
+          style={{ background: 'radial-gradient(circle, #d4a853 0%, transparent 70%)' }} 
+        />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[120px] opacity-15" 
+          style={{ background: 'radial-gradient(circle, #c46d46 0%, transparent 70%)' }} 
+        />
       </div>
 
       <Header />
@@ -50,13 +54,13 @@ export default async function DonorListPage() {
       <main className="relative z-10 pt-24 pb-16">
         <section className="max-w-4xl mx-auto px-6 mb-16">
           <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Our Donors</h1>
-            <p className="text-xl text-gray-300">Thank you to our amazing community of supporters</p>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 font-display">Our Donors</h1>
+            <p className="text-xl text-white/60">Thank you to our amazing community of supporters</p>
           </div>
 
-          <Card>
+          <Card variant="default">
             <div className="overflow-hidden">
-              <div className="grid grid-cols-3 gap-4 p-4 bg-white/[0.02] border-b border-white/[0.08] text-sm font-medium text-gray-400">
+              <div className="grid grid-cols-3 gap-4 p-4 bg-white/[0.02] border-b border-white/[0.08] text-sm font-medium text-white/40">
                 <div className="col-span-2">Donor</div>
                 <div className="text-right">Amount</div>
               </div>
@@ -66,11 +70,11 @@ export default async function DonorListPage() {
                     <div className="col-span-2">
                       <p className="font-medium text-white">{donor.title}</p>
                       {donor.metadata.message && (
-                        <p className="text-sm text-gray-400">{donor.metadata.message}</p>
+                        <p className="text-sm text-white/50">{donor.metadata.message}</p>
                       )}
                     </div>
                     <div className="text-right">
-                      <span className="inline-block px-3 py-1 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-full text-indigo-400 text-sm font-medium">
+                      <span className="inline-block px-3 py-1 bg-[#d4a853]/20 rounded-full text-[#d4a853] text-sm font-medium">
                         {donor.metadata.amount}
                       </span>
                     </div>
@@ -80,7 +84,7 @@ export default async function DonorListPage() {
             </div>
           </Card>
 
-          <p className="text-center text-gray-500 text-sm mt-8">
+          <p className="text-center text-white/30 text-sm mt-8">
             * Showing recent donors. Many more choose to give anonymously.
           </p>
         </section>

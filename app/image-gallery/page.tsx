@@ -32,20 +32,24 @@ export default async function ImageGalleryPage() {
   })) : fallbackImages
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] relative overflow-hidden">
+    <div className="min-h-screen bg-[#1a1815] relative overflow-hidden">
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[400px] h-[400px] bg-gradient-to-r from-emerald-500/15 to-teal-500/15 rounded-full blur-[100px] animate-pulse delay-1000" />
+        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full blur-[150px] opacity-20" 
+          style={{ background: 'radial-gradient(circle, #d4a853 0%, transparent 70%)' }} 
+        />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[120px] opacity-15" 
+          style={{ background: 'radial-gradient(circle, #c46d46 0%, transparent 70%)' }} 
+        />
       </div>
 
       <Header />
 
       <main className="relative z-10 pt-24 pb-16">
         <section className="max-w-6xl mx-auto px-6 mb-12">
-          <Card className="text-center">
+          <Card variant="gradient" className="text-center">
             <CardContent className="py-12">
-              <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Image Gallery</h1>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 font-display">Image Gallery</h1>
+              <p className="text-xl text-white/60 max-w-2xl mx-auto">
                 See the real impact of your donations.
               </p>
             </CardContent>
@@ -55,7 +59,7 @@ export default async function ImageGalleryPage() {
         <section className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayGallery.map((item) => (
-              <Card key={item.id} className="overflow-hidden group hover:border-indigo-500/30 transition-colors">
+              <Card key={item.id} variant="default" className="overflow-hidden group hover:border-[#d4a853]/30 transition-colors">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img 
                     src={item.metadata.image} 
@@ -65,7 +69,7 @@ export default async function ImageGalleryPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <p className="font-semibold text-white">{item.title}</p>
-                    <p className="text-sm text-gray-300">{item.metadata.location}</p>
+                    <p className="text-sm text-white/70">{item.metadata.location}</p>
                   </div>
                 </div>
               </Card>

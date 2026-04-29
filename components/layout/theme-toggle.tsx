@@ -2,32 +2,25 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Moon, Sun, Monitor } from "lucide-react";
+import { Moon, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// PeaceLeague Africa - Locked to dark mode for premium aesthetic
 export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    // Force dark mode on init
+    setTheme("dark");
+  }, [setTheme]);
 
-  // Cycle through: system -> light -> dark -> system
-  const cycleTheme = () => {
-    if (theme === "system") {
-      setTheme("light");
-    } else if (theme === "light") {
-      setTheme("dark");
-    } else {
-      setTheme("system");
-    }
-  };
-
+  // Dark mode is locked - show info badge
   if (!mounted) {
     return (
       <Button variant="ghost" size="icon" className="h-9 w-9 rounded-xl">
-        <span className="sr-only">Toggle theme</span>
+        <span className="sr-only">Dark mode locked</span>
       </Button>
     );
   }
@@ -36,23 +29,11 @@ export function ThemeToggle() {
     <Button
       variant="ghost"
       size="icon"
-      onClick={cycleTheme}
-      className="h-9 w-9 rounded-xl hover:bg-accent/80 hover:text-builderz-green transition-all duration-200"
+      // Hidden but accessible - dark mode is locked
+      className="h-9 w-9 rounded-xl opacity-30 hover:opacity-50 transition-all"
+      title="Dark mode locked for premium experience"
     >
-      {theme === "system" ? (
-        <Monitor className="h-[18px] w-[18px] transition-transform duration-300 hover:scale-110" />
-      ) : resolvedTheme === "dark" ? (
-        <Moon className="h-[18px] w-[18px] transition-transform duration-300 hover:rotate-12" />
-      ) : (
-        <Sun className="h-[18px] w-[18px] transition-transform duration-300 hover:rotate-45" />
-      )}
-      <span className="sr-only">
-        {theme === "system"
-          ? "Using system theme"
-          : resolvedTheme === "dark"
-            ? "Switch to system theme"
-            : "Switch to dark theme"}
-      </span>
+      <Lock className="h-[16px] w-[16px] text-[#d4a853]" />
     </Button>
   );
 }

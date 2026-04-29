@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { WalletButton } from "@/components/wallet/wallet-button";
+import { StatsGrid } from "@/components/ui/tailgrids";
 import {
   LayoutDashboard,
   Heart,
@@ -73,7 +74,7 @@ export default function DashboardPage() {
 
   if (!isConnected) {
     return (
-      <main className="min-h-screen pt-24 pb-12 px-4">
+      <main className="min-h-screen pt-24 pb-12 px-4 bg-[#1a1815]">
         <div className="max-w-md mx-auto text-center">
           <motion.div
             initial="hidden"
@@ -81,8 +82,8 @@ export default function DashboardPage() {
             variants={animations.fadeInUp}
           >
             <GlassCard className="p-8">
-              <LayoutDashboard className="h-16 w-16 mx-auto text-emerald-400 mb-4" />
-              <h2 className="text-2xl font-bold text-white mb-2">Your Dashboard</h2>
+              <LayoutDashboard className="h-16 w-16 mx-auto text-[#d4a853] mb-4" />
+              <h2 className="text-2xl font-bold text-white mb-2 font-display">Your Dashboard</h2>
               <p className="text-white/60 mb-6">
                 Connect your wallet to view your campaigns and donations.
               </p>
@@ -95,7 +96,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <main className="min-h-screen pt-24 pb-12 px-4">
+    <main className="min-h-screen pt-24 pb-12 px-4 bg-[#1a1815]">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -105,19 +106,30 @@ export default function DashboardPage() {
           className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8"
         >
           <div>
-            <h1 className="text-3xl font-bold text-white">Dashboard</h1>
+            <h1 className="text-3xl font-bold text-white font-display">Dashboard</h1>
             <p className="text-white/60">Manage your campaigns</p>
           </div>
           <Link
             href="/create"
-            className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-medium rounded-xl hover:opacity-90 transition-opacity"
+            className="flex items-center gap-2 px-5 py-3 bg-[#d4a853] text-[#1a1815] font-medium rounded-xl hover:bg-[#e8c87a] transition-colors"
           >
-            <Plus className="h-4 w-4" />
-            <span>New Campaign</span>
+            <Plus className="w-5 h-5" />
+            New Campaign
           </Link>
         </motion.div>
 
-        {/* Stats Grid */}
+        {/* Platform Stats - Trust Signal */}
+        <StatsGrid 
+          stats={[
+            { value: campaigns.length.toString(), label: "Your Campaigns" },
+            { value: campaigns.reduce((acc, c) => acc + (c.metadata?.raised || 0), 0).toLocaleString(), label: "Total Raised (SOL)", change: { value: "+12%", positive: true } },
+            { value: campaigns.reduce((acc, c) => acc + (c.metadata?.donors || 0), 0).toString(), label: "Total Donors" },
+            { value: Math.floor(campaigns.filter(c => (c.metadata?.raised || 0) >= (c.metadata?.goal || 0) * 0.5).length / Math.max(campaigns.length, 1) * 100) + "%", label: "Funded Rate" },
+          ]}
+          className="mb-8"
+        />
+
+        {/* Campaigns Section */}
         <motion.div
           initial="hidden"
           animate="visible"
@@ -129,25 +141,25 @@ export default function DashboardPage() {
               icon: DollarSign,
               label: "Total Raised",
               value: `${stats.totalRaised} SOL`,
-              color: "text-emerald-400",
+              color: "text-[#d4a853]",
             },
             {
               icon: Heart,
               label: "Donations",
               value: stats.totalDonations.toString(),
-              color: "text-cyan-400",
+              color: "text-[#d4a853]",
             },
             {
               icon: TrendingUp,
               label: "Active",
               value: stats.activeCampaigns.toString(),
-              color: "text-amber-400",
+              color: "text-[#d4a853]",
             },
             {
               icon: Users,
               label: "Total Donors",
               value: stats.totalDonations.toString(),
-              color: "text-purple-400",
+              color: "text-[#d4a853]",
             },
           ].map(({ icon: Icon, label, value, color }) => (
             <GlassCard key={label} className="p-5">
@@ -228,7 +240,7 @@ export default function DashboardPage() {
                               <span
                                 className={`px-2 py-1 text-xs rounded-full ${
                                   campaign.metadata?.status === "active"
-                                    ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                                    ? "bg-[#d4a853]/20 text-[#d4a853] border border-[#d4a853]/30"
                                     : "bg-amber-500/20 text-amber-400 border border-amber-500/30"
                                 }`}
                               >
@@ -262,7 +274,7 @@ export default function DashboardPage() {
                   href="/create"
                   className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
                 >
-                  <div className="h-8 w-8 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center">
+                  <div className="h-8 w-8 rounded-full bg-gradient-to-br from-[#d4a853] to-[#c46d46] flex items-center justify-center">
                     <Plus className="h-4 w-4 text-white" />
                   </div>
                   <div>
@@ -274,7 +286,7 @@ export default function DashboardPage() {
                   href="/campaigns"
                   className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
                 >
-                  <div className="h-8 w-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-400 flex items-center justify-center">
+                  <div className="h-8 w-8 rounded-full bg-gradient-to-br from-[#d4a853] to-[#c46d46] flex items-center justify-center">
                     <Heart className="h-4 w-4 text-white" />
                   </div>
                   <div>

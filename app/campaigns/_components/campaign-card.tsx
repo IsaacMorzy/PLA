@@ -79,7 +79,7 @@ export function CampaignCard({ campaign, index = 0 }: CampaignCardProps) {
               </span>
             </div>
             <div className="absolute top-3 right-3">
-              <span className={`badge ${status === "active" ? "bg-success/80" : "bg-white/20"} text-white text-xs`}>
+              <span className={`badge ${status === "active" ? "bg-[#d4a853]/80" : "bg-white/20"} text-white text-xs`}>
                 {status === "active" ? "Active" : "Completed"}
               </span>
             </div>
@@ -87,7 +87,7 @@ export function CampaignCard({ campaign, index = 0 }: CampaignCardProps) {
           
           {/* Content */}
           <div className="p-4 space-y-3">
-            <h3 className="font-semibold text-lg text-white line-clamp-1 group-hover:text-success transition-colors">
+            <h3 className="font-semibold text-lg text-white line-clamp-1 group-hover:text-[#d4a853] transition-colors">
               {campaign.title}
             </h3>
             
@@ -99,12 +99,12 @@ export function CampaignCard({ campaign, index = 0 }: CampaignCardProps) {
             <div className="space-y-1">
               <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-gradient-to-r from-success to-warning rounded-full transition-all duration-500"
+                  className="h-full bg-gradient-to-r from-[#d4a853] to-[#d4a853] rounded-full transition-all duration-500"
                   style={{ width: `${percentage}%` }}
                 />
               </div>
               <div className="flex justify-between text-xs">
-                <span className="font-medium text-success">{raised.toFixed(1)} SOL</span>
+                <span className="font-medium text-[#d4a853]">{raised.toFixed(1)} SOL</span>
                 <span className="text-white/60">{percentage}% of {goal} SOL</span>
               </div>
             </div>

@@ -60,7 +60,7 @@ export function Footer() {
 
           {/* Right: Version badge */}
           <div className="hidden sm:flex items-center">
-            <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-builderz-green/10 text-builderz-green border border-builderz-green/20">
+            <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#d4a853]/10 text-[#d4a853] border border-[#d4a853]/20">
               v2.0
             </span>
           </div>
@@ -76,7 +76,7 @@ function FooterLink({ href, icon }: { href: string; icon: React.ReactNode }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="p-2 rounded-lg text-muted-foreground/70 hover:text-builderz-green hover:bg-accent/50 transition-all duration-200"
+      className="p-2 rounded-lg text-muted-foreground/70 hover:text-[#d4a853] hover:bg-accent/50 transition-all duration-200"
     >
       {icon}
     </Link>

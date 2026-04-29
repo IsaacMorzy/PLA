@@ -166,9 +166,9 @@ function NavItem({
     <Link
       href={href}
       onClick={onClick}
-      className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-foreground hover:bg-accent/80 hover:text-builderz-green transition-all duration-200 group"
+      className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-foreground hover:bg-accent/80 hover:text-[#d4a853] transition-all duration-200 group"
     >
-      <span className="text-muted-foreground group-hover:text-builderz-green transition-colors">
+      <span className="text-muted-foreground group-hover:text-[#d4a853] transition-colors">
         {icon}
       </span>
       <span className="font-medium">{children}</span>
@@ -190,7 +190,7 @@ function SocialButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-border/50 bg-accent/30 hover:bg-accent hover:border-builderz-green/30 hover:text-builderz-green transition-all duration-200 text-sm text-muted-foreground"
+      className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-border/50 bg-accent/30 hover:bg-accent hover:border-[#d4a853]/30 hover:text-[#d4a853] transition-all duration-200 text-sm text-muted-foreground"
     >
       {icon}
       <span className="hidden sm:inline">{label}</span>
