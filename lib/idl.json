@@ -1,0 +1,317 @@
+{
+  "version": "0.1.0",
+  "name": "peaceleague",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "programState",
+          "isMut": true,
+          "isSigner": false,
+          "pda": {
+            "seeds": [
+              {
+                "type": "const",
+                "value": "program_state"
+              }
+            ]
+          }
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "createCampaign",
+      "accounts": [
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "programState",
+          "isMut": true,
+          "isSigner": false,
+          "pda": {
+            "seeds": [
+              {
+                "type": "const",
+                "value": "program_state"
+              }
+            ]
+          }
+        },
+        {
+          "name": "campaign",
+          "isMut": true,
+          "isSigner": false,
+          "pda": {
+            "seeds": [
+              {
+                "type": "const",
+                "value": "campaign"
+              },
+              {
+                "type": "account",
+                "account": "ProgramState",
+                "field": "campaignCount"
+              }
+            ]
+          }
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "imageUrl",
+          "type": "string"
+        },
+        {
+          "name": "goal",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "donate",
+      "accounts": [
+        {
+          "name": "donor",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "campaign",
+          "isMut": true,
+          "isSigner": false,
+          "pda": {
+            "seeds": [
+              {
+                "type": "const",
+                "value": "campaign"
+              },
+              {
+                "type": "account",
+                "account": "Campaign",
+                "field": "cid"
+              }
+            ]
+          }
+        },
+        {
+          "name": "programState",
+          "isMut": false,
+          "isSigner": false,
+          "pda": {
+            "seeds": [
+              {
+                "type": "const",
+                "value": "program_state"
+              }
+            ]
+          }
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "withdraw",
+      "accounts": [
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "campaign",
+          "isMut": true,
+          "isSigner": false,
+          "pda": {
+            "seeds": [
+              {
+                "type": "const",
+                "value": "campaign"
+              },
+              {
+                "type": "account",
+                "account": "Campaign",
+                "field": "cid"
+              }
+            ]
+          }
+        },
+        {
+          "name": "destination",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Campaign",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "cid",
+            "type": "u64"
+          },
+          {
+            "name": "creator",
+            "type": "publicKey"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "imageUrl",
+            "type": "string"
+          },
+          {
+            "name": "goal",
+            "type": "u64"
+          },
+          {
+            "name": "amountRaised",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "donors",
+            "type": "u64"
+          },
+          {
+            "name": "balance",
+            "type": "u64"
+          },
+          {
+            "name": "isActive",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProgramState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "publicKey"
+          },
+          {
+            "name": "campaignCount",
+            "type": "u64"
+          },
+          {
+            "name": "totalRaised",
+            "type": "u64"
+          },
+          {
+            "name": "platformFee",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidGoal",
+      "msg": "Goal must be at least 1 SOL"
+    },
+    {
+      "code": 6001,
+      "name": "EmptyTitle",
+      "msg": "Title cannot be empty"
+    },
+    {
+      "code": 6002,
+      "name": "EmptyDescription",
+      "msg": "Description cannot be empty"
+    },
+    {
+      "code": 6003,
+      "name": "InactiveCampaign",
+      "msg": "Campaign is not active"
+    },
+    {
+      "code": 6004,
+      "name": "NotCreator",
+      "msg": "Only creator can withdraw"
+    },
+    {
+      "code": 6005,
+      "name": "InsufficientBalance",
+      "msg": "Amount exceeds balance"
+    }
+  ],
+  "metadata": {
+    "address": "CcmjoYupPASLWApnqmud3QJXqw7c3cC3ZSow2LmHW675"
+  }
+}
