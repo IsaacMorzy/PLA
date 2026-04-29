@@ -16,6 +16,7 @@
     "solana-rules": "solana-claude-md"
   },
   "dependencies": {
+    "@coral-xyz/anchor": "^0.32.1",
     "@cosmicjs/sdk": "^2.0.1",
     "@radix-ui/react-dialog": "^1.1.4",
     "@radix-ui/react-slot": "^1.1.1",

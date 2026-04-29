@@ -1,4 +1,4 @@
-//! Peace League Africa - Solana Crowdfunding Program
+write the //! Peace League Africa - Solana Crowdfunding Program
 //! 
 //! A crowdfunding platform for African causes built on Solana
 
