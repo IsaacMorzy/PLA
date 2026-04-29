@@ -377,18 +377,19 @@ function HowItWorksSection() {
   );
 }
 
-// Impact Stories Section - Glass with Tailgrids gold stars
+// Impact Stories Section - Overlap style
 function ImpactStoriesSection({ stories }: { stories: CampaignStory[] }) {
   const defaultStories: CampaignStory[] = [
-    { id: "1", title: "Sarah Story", slug: "sarah-story", metadata: { author: "Sarah M.", location: "Kenya", content: "The transparency gave donors confidence. We reached our goal in 48 hours." } },
-    { id: "2", title: "James Story", slug: "james-story", metadata: { author: "James T.", location: "USA", content: "I could see exactly where my donation went. That's what made me give." } },
+    { id: "1", title: "Sarah M.", slug: "sarah", metadata: { author: "Sarah M.", location: "Kenya", content: "The transparency gave donors confidence. We reached our goal in 48 hours." } },
+    { id: "2", title: "James T.", slug: "james", metadata: { author: "James T.", location: "USA", content: "I could see exactly where my donation went. That's what made me give." } },
   ];
   
   const displayStories = stories.length > 0 ? stories : defaultStories;
 
   return (
-    <section className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-24 px-4">
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -396,39 +397,51 @@ function ImpactStoriesSection({ stories }: { stories: CampaignStory[] }) {
           variants={animations.fadeInUp}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold text-white">Impact Stories</h2>
-          <p className="text-white/60 mt-2">Real change from real people</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white font-display">
+            Impact Stories
+          </h2>
+          <p className="text-white/60 mt-3">Real change from real people</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        {/* Overlap cards */}
+        <div className="grid md:grid-cols-2 gap-6 md:gap-12">
           {displayStories.map((story, i) => (
             <motion.div
               key={i}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={animations.fadeInUp}
-              transition={{ delay: i * 0.1 }}
+              variants={animations.staggerCard}
+              transition={{ delay: i * 0.15 }}
+              // Stagger for overlap
+              className={`relative ${i === 1 ? "md:translate-y-8" : ""}`}
             >
-              <GlassCard className="p-6">
-                <div className="flex gap-1 mb-3">
+              <div className="group glass rounded-2xl p-8 hover:bg-accent/40 transition-all duration-500">
+                {/* Stars */}
+                <div className="flex gap-1 mb-5">
                   {[...Array(5)].map((_, j) => (
                     <Star key={j} className="h-4 w-4 fill-[#d4a853] text-[#d4a853]" />
                   ))}
                 </div>
-                <p className="text-lg text-white">&ldquo;{story.metadata?.content || story.metadata?.beneficiary_story}&rdquo;</p>
-                <div className="flex items-center gap-3 mt-4">
-                  <div className="avatar placeholder">
-                    <div className="bg-[#d4a853]/20 text-[#d4a853] w-10 rounded-full">
-                      <span className="text-sm">{story.metadata?.author?.[0] || "?"}</span>
-                    </div>
+
+                {/* Quote */}
+                <blockquote className="text-lg text-white/90 leading-relaxed mb-6">
+                  &ldquo;{story.metadata?.content || story.metadata?.beneficiary_story}&rdquo;
+                </blockquote>
+
+                {/* Author */}
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#d4a853]/20 flex items-center justify-center">
+                    <span className="text-lg font-semibold text-[#d4a853]">
+                      {story.metadata?.author?.[0] || "?"}
+                    </span>
                   </div>
                   <div>
                     <p className="font-medium text-white">{story.metadata?.author}</p>
-                    <p className="text-xs text-white/60">{story.metadata?.location}</p>
+                    <p className="text-xs text-white/50">{story.metadata?.location}</p>
                   </div>
                 </div>
-              </GlassCard>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -437,60 +450,90 @@ function ImpactStoriesSection({ stories }: { stories: CampaignStory[] }) {
   );
 }
 
-// Features Section - Glass with Tailgrids gold icons
+// Features Section - Tailgrids-style overlap design
 function FeaturesSection() {
   const features = [
     {
-      icon: <Shield className="h-10 w-10" />,
+      icon: Shield,
       title: "100% Transparent",
-      description: "Every transaction is recorded on the Solana blockchain. Donors can verify exactly where funds go.",
+      description: "Every transaction on Solana. Verify where every SOL goes.",
+      accent: "from-emerald-500 to-teal-500",
     },
     {
-      icon: <Globe className="h-10 w-10" />,
+      icon: Globe,
       title: "Borderless Giving",
-      description: "Send SOL anywhere in the world with minimal fees. No banking intermediates = more impact.",
+      description: "Send SOL anywhere. Near-zero fees. More impact.",
+      accent: "from-blue-500 to-cyan-500",
     },
     {
-      icon: <Heart className="h-10 w-10" />,
+      icon: Heart,
       title: "Direct Impact",
-      description: "Campaign owners receive funds directly. No third parties, no delays, no deductions.",
+      description: "Campaign owners receive directly. No middlemen.",
+      accent: "from-rose-500 to-pink-500",
     },
     {
-      icon: <Users className="h-10 w-10" />,
+      icon: Users,
       title: "Global Community",
-      description: "Join thousands of donors from around the world making a difference in Africa.",
+      description: "Join thousands making real change in Africa.",
+      accent: "from-violet-500 to-purple-500",
     },
   ];
 
   return (
-    <section className="py-20 px-4">
+    <section className="py-24 px-4">
       <div className="max-w-6xl mx-auto">
+        {/* Header */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={animations.fadeInUp}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl font-bold text-white">Why Choose PeaceLeague?</h2>
-          <p className="text-white/60 mt-2">The modern way to fund causes across Africa</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white font-display">
+            Why PeaceLeague?
+          </h2>
+          <p className="text-white/60 mt-3">The modern way to fund causes across Africa</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Overlap grid - Tailgrids style */}
+        <div className="grid md:grid-cols-2 gap-6 md:gap-10">
           {features.map((feature, i) => (
             <motion.div
               key={i}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={animations.fadeInUp}
+              variants={animations.staggerCard}
               transition={{ delay: i * 0.1 }}
+              // Staggered overlap: even rows extend beyond grid
+              className={`relative ${i % 2 === 1 ? "md:translate-y-8" : ""}`}
             >
-              <GlassCard className="p-6 text-center hover:bg-white/[0.08] transition-all">
-                <div className="text-[#d4a853] mx-auto mb-3">{feature.icon}</div>
-                <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
-                <p className="text-sm text-white/60 mt-2">{feature.description}</p>
-              </GlassCard>
+              {/* Glass card with overlap */}
+              <div className="group relative glass rounded-2xl p-8 hover:bg-accent/40 transition-all duration-500">
+                {/* Gradient accent bar */}
+                <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${feature.accent} rounded-t-2xl`} />
+
+                {/* Icon container */}
+                <div className="relative mb-6">
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.accent} flex items-center justify-center shadow-lg shadow-black/20 group-hover:scale-110 transition-transform duration-500`}>
+                    <feature.icon className="w-8 h-8 text-white" />
+                  </div>
+                </div>
+
+                {/* Content */}
+                <h3 className="text-xl font-semibold text-white mb-3 font-display">
+                  {feature.title}
+                </h3>
+                <p className="text-white/60 leading-relaxed">
+                  {feature.description}
+                </p>
+
+                {/* Decorative arrow on hover */}
+                <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300">
+                  <ArrowUpRight className="w-5 h-5 text-white/60" />
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -1034,11 +1077,33 @@ function FAQSection() {
   );
 }
 
-// Team / Mission Section
+// Mission Section - Tailgrids overlap style
 function MissionSection() {
+  const values = [
+    {
+      title: "Transparency First",
+      icon: Shield,
+      accent: "from-emerald-500 to-teal-500",
+      description: "Every transaction on-chain. Verify your impact. No exceptions.",
+    },
+    {
+      title: "Zero Fees",
+      icon: Heart,
+      accent: "from-rose-500 to-pink-500",
+      description: "100% of your donation goes to the cause. We don't take a cut.",
+    },
+    {
+      title: "Direct Connection",
+      icon: Globe,
+      accent: "from-blue-500 to-cyan-500",
+      description: "No middlemen. Give directly, track directly, impact directly.",
+    },
+  ];
+
   return (
-    <section className="py-24 px-4 bg-white/[0.02]">
+    <section className="py-24 px-4">
       <div className="max-w-6xl mx-auto">
+        {/* Header */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -1046,49 +1111,53 @@ function MissionSection() {
           variants={animations.fadeInUp}
           className="text-center mb-16"
         >
-          <span className="text-sm font-medium text-[#d4a853] uppercase tracking-wider">Our Mission</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">
+          <span className="text-sm font-medium text-[#d4a853] uppercase tracking-wider">
+            Our Mission
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 font-display">
             Building the Future of African Giving
           </h2>
-          <p className="text-white/60 mt-4 max-w-2xl mx-auto">
-            We believe technology should make giving easier, not harder. Our mission is to enable anyone, anywhere to support African causes with complete confidence their donation creates real impact.
+          <p className="text-white/60 mt-4 max-w-xl mx-auto">
+            Technology that makes giving easier. Anyone, anywhere, complete confidence.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              title: "Transparency First",
-              description: "Every transaction is recorded on-chain. Donors can verify their impact. No exceptions, no exceptions."
-            },
-            {
-              title: "Zero Fees",
-              description: "We don't take a cut. 100% of your donation goes to the cause. Network fees are negligible."
-            },
-            {
-              title: "Direct Connection",
-              description: "No intermediaries between donors and beneficiaries. Give directly, track directly, make impact directly."
-            }
-          ].map((value, i) => (
+        {/* Overlap grid */}
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+          {values.map((value, i) => (
             <motion.div
               key={i}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={animations.fadeInUp}
+              variants={animations.staggerCard}
               transition={{ delay: i * 0.1 }}
+              // Stagger the cards for overlap effect
+              className={`relative ${i === 1 ? "md:translate-y-6" : ""}`}
             >
-              <GlassCard className="p-8 text-center h-full">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#d4a853]/20 flex items-center justify-center">
-                  <Shield className="h-8 w-8 text-[#d4a853]" />
+              <div className="group relative glass rounded-2xl p-8 h-full hover:bg-accent/40 transition-all duration-500">
+                {/* Gradient accent */}
+                <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${value.accent} rounded-t-2xl`} />
+
+                {/* Icon */}
+                <div className="mb-6">
+                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${value.accent} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <value.icon className="w-7 h-7 text-white" />
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3">{value.title}</h3>
-                <p className="text-white/70">{value.description}</p>
-              </GlassCard>
-            </motion.div>
-          ))}
-        </div>
+
+                {/* Content */}
+                <h3 className="text-xl font-semibold text-white mb-3 font-display">
+                  {value.title}
+                </h3>
+                <p className="text-white/60 leading-relaxed">
+                  {value.description}
+</p>
+            </div>
+          </motion.div>
+        ))}
       </div>
-    </section>
+    </div>
+  </section>
   );
 }
