@@ -1,6 +1,6 @@
 ---
 session: ses_2291
-updated: 2026-04-29T17:07:59.608Z
+updated: 2026-04-30T14:16:48.731Z
 ---
 
 
@@ -8,46 +8,55 @@ updated: 2026-04-29T17:07:59.608Z
 # Session Summary
 
 ## Goal
-Apply Tailgrids-style overlap/overlay design to all feature sections on the homepage for a more elegant, editorial look.
+Update DESIGN.md to use Helius (helius.dev) as the design reference instead of Stripe, plus add blog pages to the website.
 
 ## Constraints & Preferences
-- Use gradient accent bars on cards (not solid colors)
-- Apply staggered Y-offset for overlap effect (even/odd cards offset by ~24px)
-- Use glassmorphism cards with hover animations
-- Keep 2-column grid layout for overlap to work
-- Follow Fraunces + DM Sans typography from DESIGN.md
+- Use Helius design principles: dark theme (#0a0a0a), clean borders (#222222), gold accents (#d4a853)
+- Follow Helius navigation pattern: centered nav links, logo left, CTA right
+- Include blog and blog detail pages
+- Keep Tailgrids components from current codebase
 
 ## Progress
 ### Done
-- [x] FeaturesSection redesigned with Tailgrids overlap - gradient icon containers, accent bars, hover scale
-- [x] MissionSection redesigned with 3-column overlap grid, staggered Y-offset
-- [x] ImpactStoriesSection redesigned with overlap + proper avatar styling
+- [x] Connected Cosmic CMS content to homepage, testimonials, team, and gallery pages
+- [x] Added graphify-out/, thoughts/, .mindmodel/ to .gitignore
+- [x] Committed gitignore update (3fecdf2)
+- [x] Created Helius-inspired DESIGN.md (replacing Stripe design)
+- [x] Added blog section to DESIGN.md with listing and detail page specs
 
 ### In Progress
-- [ ] Verify build passes after overlap design changes
-
-### Blocked
-- (none)
+- [ ] Blog pages not yet created - need /blog and /blog/[slug] routes
+- [ ] Blog cosmic object type not yet created in CMS
 
 ## Key Decisions
-- **Overlap stagger pattern applied**: Odd-indexed cards get `md:translate-y-8` for Features/Impact, `md:translate-y-6` for Mission - creates that "breathing room" editorial look from Tailgrids Fincash
-- **Gradient accent bars**: Each feature gets unique accent color (emerald, blue, rose, violet) for visual variety
-- **ArrowUpRight icon**: Added decorative hover arrow to Features cards
+- **Helius over Stripe**: User requested Helius-style design - cleaner, darker, professional developer platform aesthetic
+- **Keep Tailgrids components**: Current codebase uses Tailgrids UI library, preserve those components
 
 ## Next Steps
-1. Run `npm run build` to verify build passes with overlap changes
-2. Apply overlap design to any other sections that need it (campaign cards, team grid)
-3. Commit changes to git
+1. Create /blog page with blog listing
+2. Create /blog/[slug] page with blog detail
+3. Create "blog-posts" object type in Cosmic CMS
+4. Add sample blog content to Cosmic
+5. Update navigation to include Blog link
 
 ## Critical Context
-- **Reference design**: Tailgrids Fincash features page uses glassmorphism cards with staggered Y-offset between rows
-- **Overlap phenomenon**: Cards positioned beyond their grid cell boundaries into adjacent cells - creates depth and editorial feel
-- **Animation variants used**: `staggerCard` from lib/animations.ts for card entrances
+- Helius website: https://www.helius.dev
+- Current DESIGN.md updated with Helius reference
+- Current website in `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/`
+- Cosmic bucket: `peaceleague-africa` (slug)
+- Build passes ✅
 
 ## File Operations
 ### Read
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/home-client.tsx` (FeaturesSection, MissionSection, ImpactStoriesSection)
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/lib/animations.ts`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/DESIGN.md`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/.gitignore`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/home-client.tsx`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/lib/cosmic.ts`
 
 ### Modified
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/home-client.tsx` (FeaturesSection, MissionSection, ImpactStoriesSection replaced with overlap designs)
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/DESIGN.md` - Complete rewrite with Helius design
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/.gitignore` - Added graphify-out/, thoughts/, .mindmodel/
+
+### To Create
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/blog/page.tsx`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/blog/[slug]/page.tsx`
