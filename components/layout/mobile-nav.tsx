@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, Home, HeartHandshake, Users, Calendar, BookOpen, HelpCircle, Briefcase, Github, Twitter, Globe, Image, Award, Heart } from "lucide-react";
+import { Menu, Home, HeartHandshake, Users, Calendar, BookOpen, HelpCircle, Briefcase, Github, Twitter, Globe, Image, Award, Heart, FileText } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -116,6 +116,13 @@ export function MobileNav() {
             onClick={() => setOpen(false)}
           >
             Careers
+          </NavItem>
+          <NavItem
+            href="/blog"
+            icon={<FileText className="h-4 w-4" />}
+            onClick={() => setOpen(false)}
+          >
+            Blog
           </NavItem>
         </nav>
 

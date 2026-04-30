@@ -20,6 +20,7 @@ import {
   Sparkles,
   Globe,
   ArrowRight,
+  FileText,
 } from "lucide-react";
 
 // Navigation hierarchy
@@ -37,6 +38,7 @@ const NAV_STRUCTURE = {
     { href: "/donor-list", label: "Donors", icon: Heart, description: "Our supporters" },
   ],
   Resources: [
+    { href: "/blog", label: "Blog", icon: FileText, description: "Latest updates" },
     { href: "/faq", label: "FAQ", icon: HelpCircle, description: "Common questions" },
     { href: "/careers", label: "Careers", icon: Briefcase, description: "Join us" },
   ],

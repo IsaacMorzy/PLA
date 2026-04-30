@@ -63,12 +63,18 @@ function HeroSection() {
           </motion.p>
 
           {/* CTAs */}
-          <motion.div variants={animations.fadeInUp} className="flex flex-wrap justify-center gap-4">
-            <Link href="/create" className="inline-flex items-center gap-2 px-6 py-3 bg-[#d4a853] text-slate-900 font-semibold rounded-xl hover:bg-[#eab308] transition-colors">
+          <motion.div variants={animations.fadeInUp} className="flex flex-wrap justify-center gap-4 pt-4">
+            <Link
+              href="/create"
+              className="group relative inline-flex items-center gap-2 px-7 py-3.5 bg-[#d4a853] text-slate-900 font-semibold rounded-xl hover:bg-[#eab308] hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg shadow-[#d4a853]/20 hover:shadow-xl hover:shadow-[#d4a853]/30"
+            >
               <span>Start Campaign</span>
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link href="#campaigns" className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white rounded-xl hover:bg-white/5 transition-colors">
+            <Link
+              href="#campaigns"
+              className="group inline-flex items-center gap-2 px-7 py-3.5 border border-white/20 text-white rounded-xl hover:bg-white/10 hover:border-white/30 hover:scale-105 active:scale-95 transition-all duration-200"
+            >
               <Heart className="h-4 w-4 text-[#d4a853]" />
               <span>Donate Now</span>
             </Link>
@@ -91,7 +97,7 @@ function FeaturedCampaignsSection({ campaigns }: { campaigns: Campaign[] }) {
   const display = campaigns.length > 0 ? campaigns : fallback;
 
   return (
-    <section id="campaigns" className="py-24 px-4">
+    <section id="campaigns" className="py-32 px-4">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial="hidden"
@@ -163,7 +169,7 @@ function ImpactStatsSection() {
   ];
 
   return (
-    <section className="py-16 px-4 border-y border-white/5">
+    <section className="py-20 px-4 border-y border-white/5">
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((s, i) => (
@@ -242,7 +248,7 @@ function SolutionsSection() {
   ];
 
   return (
-    <section className="py-24 px-4">
+    <section className="py-32 px-4">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial="hidden"

@@ -1,11 +1,11 @@
 # Graph Report - peaceleagueafrica  (2026-04-30)
 
 ## Corpus Check
-- 62 files · ~195,953 words
+- 63 files · ~196,531 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 197 nodes · 147 edges · 24 communities detected
+- 200 nodes · 149 edges · 24 communities detected
 - Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 19 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
@@ -21,7 +21,6 @@
 - [[_COMMUNITY_Community 10|Community 10]]
 - [[_COMMUNITY_Community 18|Community 18]]
 - [[_COMMUNITY_Community 29|Community 29]]
-- [[_COMMUNITY_Community 55|Community 55]]
 - [[_COMMUNITY_Community 56|Community 56]]
 - [[_COMMUNITY_Community 57|Community 57]]
 - [[_COMMUNITY_Community 58|Community 58]]
@@ -34,6 +33,7 @@
 - [[_COMMUNITY_Community 65|Community 65]]
 - [[_COMMUNITY_Community 66|Community 66]]
 - [[_COMMUNITY_Community 67|Community 67]]
+- [[_COMMUNITY_Community 68|Community 68]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `GET()` - 8 edges
@@ -70,7 +70,7 @@ Cohesion: 0.11
 Nodes (20): Campaign Account, Campaign PDA, Campaign State, Create Campaign Flow, Create Campaign, Creator-Only Withdrawal, Donate, Donor Transaction PDA (+12 more)
 
 ### Community 2 - "Community 2"
-Cohesion: 0.17
+Cohesion: 0.14
 Nodes (2): getCampaignBySlug(), CampaignPage()
 
 ### Community 3 - "Community 3"
@@ -105,62 +105,62 @@ Nodes (1): ProgramState
 Cohesion: 1.0
 Nodes (2): Anchor Deploy, Solana Devnet Setup
 
-### Community 55 - "Community 55"
+### Community 56 - "Community 56"
 Cohesion: 1.0
 Nodes (1): Readme
 
-### Community 56 - "Community 56"
+### Community 57 - "Community 57"
 Cohesion: 1.0
 Nodes (1): Solana Frontend Agent
 
-### Community 57 - "Community 57"
+### Community 58 - "Community 58"
 Cohesion: 1.0
 Nodes (1): Solana Expert Agent
 
-### Community 58 - "Community 58"
+### Community 59 - "Community 59"
 Cohesion: 1.0
 Nodes (1): License
 
-### Community 59 - "Community 59"
+### Community 60 - "Community 60"
 Cohesion: 1.0
 Nodes (1): Claude
 
-### Community 60 - "Community 60"
+### Community 61 - "Community 61"
 Cohesion: 1.0
 Nodes (1): Initialize
 
-### Community 61 - "Community 61"
+### Community 62 - "Community 62"
 Cohesion: 1.0
 Nodes (1): Update Campaign
 
-### Community 62 - "Community 62"
+### Community 63 - "Community 63"
 Cohesion: 1.0
 Nodes (1): Delete Campaign
 
-### Community 63 - "Community 63"
+### Community 64 - "Community 64"
 Cohesion: 1.0
 Nodes (1): Campaign Listing
 
-### Community 64 - "Community 64"
+### Community 65 - "Community 65"
 Cohesion: 1.0
 Nodes (1): Create Campaign Form
 
-### Community 65 - "Community 65"
+### Community 66 - "Community 66"
 Cohesion: 1.0
 Nodes (1): Donation Flow
 
-### Community 66 - "Community 66"
+### Community 67 - "Community 67"
 Cohesion: 1.0
 Nodes (1): Withdrawal Flow
 
-### Community 67 - "Community 67"
+### Community 68 - "Community 68"
 Cohesion: 1.0
 Nodes (1): Min Goal Validation
 
 ## Knowledge Gaps
 - **16 isolated node(s):** `ProgramState`, `InitializeCtx`, `CreateCampaignCtx`, `DonateCtx`, `WithdrawCtx` (+11 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **Thin community `Community 2`** (12 nodes): `page.tsx`, `getCampaignBySlug()`, `getCampaignsByCategory()`, `getCampaignUpdates()`, `getFeaturedCampaigns()`, `getGallery()`, `getRecentDonors()`, `getStories()`, `getTeamMembers()`, `getTestimonials()`, `cosmic.ts`, `CampaignPage()`
+- **Thin community `Community 2`** (14 nodes): `page.tsx`, `getBlogPostBySlug()`, `getBlogPosts()`, `getCampaignBySlug()`, `getCampaignsByCategory()`, `getCampaignUpdates()`, `getFeaturedCampaigns()`, `getGallery()`, `getRecentDonors()`, `getStories()`, `getTeamMembers()`, `getTestimonials()`, `cosmic.ts`, `CampaignPage()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 9`** (5 nodes): `campaign.rs`, `Campaign`, `.can_donate()`, `.is_funded()`, `.seeds()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
@@ -168,42 +168,42 @@ Nodes (1): Min Goal Validation
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 29`** (2 nodes): `Anchor Deploy`, `Solana Devnet Setup`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 55`** (1 nodes): `Readme`
+- **Thin community `Community 56`** (1 nodes): `Readme`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 56`** (1 nodes): `Solana Frontend Agent`
+- **Thin community `Community 57`** (1 nodes): `Solana Frontend Agent`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 57`** (1 nodes): `Solana Expert Agent`
+- **Thin community `Community 58`** (1 nodes): `Solana Expert Agent`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 58`** (1 nodes): `License`
+- **Thin community `Community 59`** (1 nodes): `License`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 59`** (1 nodes): `Claude`
+- **Thin community `Community 60`** (1 nodes): `Claude`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 60`** (1 nodes): `Initialize`
+- **Thin community `Community 61`** (1 nodes): `Initialize`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 61`** (1 nodes): `Update Campaign`
+- **Thin community `Community 62`** (1 nodes): `Update Campaign`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 62`** (1 nodes): `Delete Campaign`
+- **Thin community `Community 63`** (1 nodes): `Delete Campaign`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 63`** (1 nodes): `Campaign Listing`
+- **Thin community `Community 64`** (1 nodes): `Campaign Listing`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 64`** (1 nodes): `Create Campaign Form`
+- **Thin community `Community 65`** (1 nodes): `Create Campaign Form`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 65`** (1 nodes): `Donation Flow`
+- **Thin community `Community 66`** (1 nodes): `Donation Flow`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 66`** (1 nodes): `Withdrawal Flow`
+- **Thin community `Community 67`** (1 nodes): `Withdrawal Flow`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 67`** (1 nodes): `Min Goal Validation`
+- **Thin community `Community 68`** (1 nodes): `Min Goal Validation`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `GET()` connect `Community 0` to `Community 1`, `Community 2`?**
-  _High betweenness centrality (0.144) - this node is a cross-community bridge._
+  _High betweenness centrality (0.146) - this node is a cross-community bridge._
 - **Why does `Initialize` connect `Community 1` to `Community 0`?**
   _High betweenness centrality (0.070) - this node is a cross-community bridge._
 - **Why does `getCampaignBySlug()` connect `Community 2` to `Community 0`?**
-  _High betweenness centrality (0.057) - this node is a cross-community bridge._
+  _High betweenness centrality (0.062) - this node is a cross-community bridge._
 - **Are the 6 inferred relationships involving `GET()` (e.g. with `Initialize` and `create_campaign()`) actually correct?**
   _`GET()` has 6 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `ProgramState`, `InitializeCtx`, `CreateCampaignCtx` to the rest of the system?**

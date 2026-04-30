@@ -10,6 +10,7 @@ export const cosmic = createBucketClient(bucketConfig);
 
 export const campaignsObjectType = "campaigns";
 export const storiesObjectType = "stories";
+export const blogObjectType = "blog-posts";
 export const updatesObjectType = "campaign-updates";
 export const testimonialsObjectType = "testimonials";
 export const teamMembersObjectType = "team-members";
@@ -83,6 +84,23 @@ export interface GalleryItem {
   };
 }
 
+export interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  content?: string;
+  metadata: {
+    excerpt?: string;
+    featured_image?: string;
+    author?: string;
+    author_image?: string;
+    published_date?: string;
+    category?: string;
+    tags?: string;
+    read_time?: string;
+  };
+}
+
 export interface Donor {
   id: string;
   title: string;
@@ -153,6 +171,35 @@ export async function getStories(): Promise<CampaignStory[]> {
   } catch (error) {
     console.error("Error fetching stories:", error);
     return [];
+  }
+}
+
+// Blog Posts
+export async function getBlogPosts(limit = 100): Promise<BlogPost[]> {
+  try {
+    const response = await cosmic.objects.find({ 
+      type: blogObjectType, 
+      sort: "-created_at",
+      limit 
+    });
+    return response.objects as unknown as BlogPost[];
+  } catch (error) {
+    console.error("Error fetching blog posts:", error);
+    return [];
+  }
+}
+
+export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+  try {
+    const response = await cosmic.objects.find({
+      type: blogObjectType,
+      query: { slug },
+      limit: 1,
+    });
+    return (response.objects[0] as unknown as BlogPost) || null;
+  } catch (error) {
+    console.error("Error fetching blog post:", error);
+    return null;
   }
 }
 
