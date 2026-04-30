@@ -46,3 +46,8 @@ yarn-error.log*
 
 # keypairs
 *keypair*.json
+
+# generated / cache
+graphify-out/
+thoughts/
+.mindmodel/
