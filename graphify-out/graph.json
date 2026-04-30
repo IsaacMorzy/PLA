@@ -2910,8 +2910,8 @@
       "source_file": "app/blog/[slug]/page.tsx",
       "source_location": "L15",
       "weight": 1.0,
-      "_src": "page_generatemetadata",
-      "_tgt": "cosmic_getblogpostbyslug",
+      "_src": "cosmic_getblogpostbyslug",
+      "_tgt": "page_generatemetadata",
       "source": "cosmic_getblogpostbyslug",
       "target": "page_generatemetadata"
     },

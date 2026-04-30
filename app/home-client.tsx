@@ -292,7 +292,7 @@ function TestimonialsSection({ stories }: { stories: CampaignStory[] }) {
   const display = stories.length > 0 ? stories : defaultStories;
 
   return (
-    <section className="py-24 px-4">
+    <section className="py-32 px-4">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial="hidden"
@@ -330,7 +330,7 @@ function TestimonialsSection({ stories }: { stories: CampaignStory[] }) {
 // ─── Section 7: Final CTA ────────────────────────────────────────────────────────
 function FinalCTASection() {
   return (
-    <section className="py-24 px-4">
+    <section className="py-32 px-4">
       <div className="max-w-2xl mx-auto text-center">
         <motion.div
           initial="hidden"
@@ -339,15 +339,23 @@ function FinalCTASection() {
           variants={animations.fadeInUp}
         >
           <h2 className="text-3xl font-bold text-white mb-4">Ready to Make a Difference?</h2>
-          <p className="text-white/60 mb-8">
+          <p className="text-white/60 mb-10">
             Join thousands of donors supporting causes across Africa. Your contribution creates lasting change.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/create" className="inline-flex items-center gap-2 px-6 py-3 bg-[#d4a853] text-slate-900 font-semibold rounded-xl hover:bg-[#eab308] transition-colors">
-              Start a Campaign
+            <Link
+              href="/create"
+              className="group relative inline-flex items-center gap-2 px-7 py-3.5 bg-[#d4a853] text-slate-900 font-semibold rounded-xl hover:bg-[#eab308] hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg shadow-[#d4a853]/20 hover:shadow-xl hover:shadow-[#d4a853]/30"
+            >
+              <span>Start a Campaign</span>
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link href="#campaigns" className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white rounded-xl hover:bg-white/5 transition-colors">
-              Donate Now
+            <Link
+              href="#campaigns"
+              className="group inline-flex items-center gap-2 px-7 py-3.5 border border-white/20 text-white rounded-xl hover:bg-white/10 hover:border-white/30 hover:scale-105 active:scale-95 transition-all duration-200"
+            >
+              <Heart className="h-4 w-4 text-[#d4a853]" />
+              <span>Donate Now</span>
             </Link>
           </div>
         </motion.div>

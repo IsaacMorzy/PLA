@@ -1,7 +1,7 @@
 # Graph Report - peaceleagueafrica  (2026-04-30)
 
 ## Corpus Check
-- 64 files · ~197,086 words
+- 64 files · ~197,158 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
