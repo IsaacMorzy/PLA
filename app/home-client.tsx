@@ -5,6 +5,7 @@ import { ArrowRight, Heart, Globe, Star, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import * as animations from "@/lib/animations";
 import type { Campaign, CampaignStory } from "@/lib/cosmic";
+import { Card, FeatureCard, StatsCard, ProfileCard } from "@/components/ui/glass-card";
 
 interface HomeClientProps {
   campaigns: Campaign[];
@@ -116,8 +117,8 @@ function FeaturedCampaignsSection({ campaigns }: { campaigns: Campaign[] }) {
                 variants={animations.fadeInUp}
                 transition={{ delay: i * 0.08 }}
               >
-                <Link href={`/campaign/${c.slug}`} className="group block">
-                  <div className="premium-card rounded-2xl overflow-hidden hover:bg-white/[0.06] transition-all p-5 h-full">
+                <Link href={`/campaign/${c.slug}`} className="group block h-full">
+                  <Card hover className="h-full p-5">
                     <div className="h-32 bg-white/5 rounded-xl flex items-center justify-center mb-4">
                       <Globe className="h-8 w-8 text-white/30" />
                     </div>
@@ -134,7 +135,7 @@ function FeaturedCampaignsSection({ campaigns }: { campaigns: Campaign[] }) {
                       <span className="text-[#d4a853] font-medium">{raised} SOL</span>
                       <span className="text-white/40">{c.metadata?.donors || 0} donors</span>
                     </div>
-                  </div>
+                  </Card>
                 </Link>
               </motion.div>
             );
@@ -263,10 +264,10 @@ function SolutionsSection() {
               variants={animations.fadeInUp}
               transition={{ delay: i * 0.08 }}
             >
-              <div className="premium-card rounded-2xl p-6 h-full">
+              <Card variant="gold" hover className="p-6 h-full">
                 <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
                 <p className="text-sm text-white/50">{item.description}</p>
-              </div>
+              </Card>
             </motion.div>
           ))}
         </div>
@@ -307,27 +308,11 @@ function TestimonialsSection({ stories }: { stories: CampaignStory[] }) {
               variants={animations.fadeInUp}
               transition={{ delay: i * 0.1 }}
             >
-              <div className="premium-card rounded-2xl p-6 h-full">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, j) => (
-                    <Star key={j} className="h-4 w-4 fill-[#d4a853] text-[#d4a853]" />
-                  ))}
-                </div>
-                <blockquote className="text-white/80 mb-4">
-                  &ldquo;{story.metadata?.content}&rdquo;
-                </blockquote>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#d4a853]/20 flex items-center justify-center">
-                    <span className="font-semibold text-[#d4a853]">
-                      {(story.metadata?.author || "?")[0]}
-                    </span>
-                  </div>
-                  <div>
-                    <p className="font-medium text-white text-sm">{story.metadata?.author}</p>
-                    <p className="text-xs text-white/40">{story.metadata?.location}</p>
-                  </div>
-                </div>
-              </div>
+              <ProfileCard
+                name={story.metadata?.author || "Anonymous"}
+                role={story.metadata?.location}
+                content={story.metadata?.content || ""}
+              />
             </motion.div>
           ))}
         </div>
