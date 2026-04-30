@@ -1,12 +1,12 @@
 # Graph Report - peaceleagueafrica  (2026-04-30)
 
 ## Corpus Check
-- 63 files · ~196,531 words
+- 64 files · ~197,086 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 200 nodes · 149 edges · 24 communities detected
-- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 19 edges (avg confidence: 0.8)
+- 202 nodes · 151 edges · 24 communities detected
+- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 20 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
@@ -52,30 +52,30 @@
   anchor/programs/peaceleague/src/instructions/initialize.rs → app/api/cosmic/route.ts
 - `create_campaign()` --calls--> `GET()`  [INFERRED]
   anchor/programs/peaceleague/src/instructions/mod.rs → app/api/cosmic/route.ts
+- `createCampaign()` --calls--> `POST()`  [INFERRED]
+  lib/actions.ts → app/api/cosmic/route.ts
 - `getCampaignBySlug()` --calls--> `GET()`  [INFERRED]
   lib/cosmic.ts → app/api/cosmic/route.ts
 - `create_campaign()` --calls--> `GET()`  [INFERRED]
   anchor/programs/peaceleague/src/lib.rs → app/api/cosmic/route.ts
-- `create_campaign()` --calls--> `GET()`  [INFERRED]
-  anchor/programs/peaceleague/src/instructions/create_campaign.rs → app/api/cosmic/route.ts
 
 ## Communities
 
 ### Community 0 - "Community 0"
 Cohesion: 0.11
-Nodes (18): createCampaignAction(), createCampaign(), deleteCampaign(), getCampaigns(), listCampaigns(), updateCampaign(), handleDonate(), CampaignError (+10 more)
-
-### Community 1 - "Community 1"
-Cohesion: 0.11
 Nodes (20): Campaign Account, Campaign PDA, Campaign State, Create Campaign Flow, Create Campaign, Creator-Only Withdrawal, Donate, Donor Transaction PDA (+12 more)
 
+### Community 1 - "Community 1"
+Cohesion: 0.13
+Nodes (15): deleteCampaign(), getCampaigns(), listCampaigns(), updateCampaign(), handleDonate(), CampaignError, create_campaign(), CreateCampaign (+7 more)
+
 ### Community 2 - "Community 2"
-Cohesion: 0.14
-Nodes (2): getCampaignBySlug(), CampaignPage()
+Cohesion: 0.12
+Nodes (4): getBlogPostBySlug(), getCampaignBySlug(), CampaignPage(), generateMetadata()
 
 ### Community 3 - "Community 3"
-Cohesion: 0.18
-Nodes (4): getCampaigns(), CampaignsPage(), fetchCampaigns(), GlassCard()
+Cohesion: 0.13
+Nodes (7): createCampaignAction(), createCampaign(), getCampaigns(), CampaignsPage(), fetchCampaigns(), GlassCard(), handleSubmit()
 
 ### Community 4 - "Community 4"
 Cohesion: 0.2
@@ -160,8 +160,6 @@ Nodes (1): Min Goal Validation
 ## Knowledge Gaps
 - **16 isolated node(s):** `ProgramState`, `InitializeCtx`, `CreateCampaignCtx`, `DonateCtx`, `WithdrawCtx` (+11 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **Thin community `Community 2`** (14 nodes): `page.tsx`, `getBlogPostBySlug()`, `getBlogPosts()`, `getCampaignBySlug()`, `getCampaignsByCategory()`, `getCampaignUpdates()`, `getFeaturedCampaigns()`, `getGallery()`, `getRecentDonors()`, `getStories()`, `getTeamMembers()`, `getTestimonials()`, `cosmic.ts`, `CampaignPage()`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 9`** (5 nodes): `campaign.rs`, `Campaign`, `.can_donate()`, `.is_funded()`, `.seeds()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 18`** (2 nodes): `program_state.rs`, `ProgramState`
@@ -198,12 +196,12 @@ Nodes (1): Min Goal Validation
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `GET()` connect `Community 0` to `Community 1`, `Community 2`?**
-  _High betweenness centrality (0.146) - this node is a cross-community bridge._
-- **Why does `Initialize` connect `Community 1` to `Community 0`?**
-  _High betweenness centrality (0.070) - this node is a cross-community bridge._
-- **Why does `getCampaignBySlug()` connect `Community 2` to `Community 0`?**
-  _High betweenness centrality (0.062) - this node is a cross-community bridge._
+- **Why does `GET()` connect `Community 1` to `Community 0`, `Community 2`?**
+  _High betweenness centrality (0.150) - this node is a cross-community bridge._
+- **Why does `Initialize` connect `Community 0` to `Community 1`?**
+  _High betweenness centrality (0.071) - this node is a cross-community bridge._
+- **Why does `getCampaignBySlug()` connect `Community 2` to `Community 1`?**
+  _High betweenness centrality (0.068) - this node is a cross-community bridge._
 - **Are the 6 inferred relationships involving `GET()` (e.g. with `Initialize` and `create_campaign()`) actually correct?**
   _`GET()` has 6 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `ProgramState`, `InitializeCtx`, `CreateCampaignCtx` to the rest of the system?**
@@ -211,4 +209,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.11 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.11 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.13 - nodes in this community are weakly interconnected._
