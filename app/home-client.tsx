@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Heart, Globe, Star, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import * as animations from "@/lib/animations";
+import { cn } from "@/lib/utils";
 import type { Campaign, CampaignStory } from "@/lib/cosmic";
 import { Card, FeatureCard, StatsCard, ProfileCard } from "@/components/ui/glass-card";
 
@@ -238,7 +239,7 @@ function HowItWorksSection() {
   );
 }
 
-// ─── Section 5: Solutions (Who It's For Grid) ─────────────────────────────
+// ─── Section 5: Solutions (Who It's For - Overlap/Zigzag Pattern) ────────
 function SolutionsSection() {
   const audiences = [
     { title: "Individual Causes", description: "Medical bills, education costs, community projects. Start a campaign in 2 minutes." },
@@ -260,7 +261,8 @@ function SolutionsSection() {
           <h2 className="text-3xl font-bold text-white">Who It's For</h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Overlap/Zigzag Grid - alternating offset */}
+        <div className="grid md:grid-cols-2 gap-6 md:gap-12">
           {audiences.map((item, i) => (
             <motion.div
               key={item.title}
@@ -268,11 +270,17 @@ function SolutionsSection() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={animations.fadeInUp}
-              transition={{ delay: i * 0.08 }}
+              transition={{ delay: i * 0.1 }}
+              className={cn(
+                'relative',
+                i % 2 === 1 && 'md:mt-24' // Zigzag offset pattern
+              )}
             >
-              <Card variant="gold" hover className="p-6 h-full">
-                <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                <p className="text-sm text-white/50">{item.description}</p>
+              <Card variant="gold" hover className="p-6 h-full relative">
+                {/* Gold accent bar */}
+                <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#d4a853] to-[#c46d46] rounded-l-xl" />
+                <h3 className="text-lg font-semibold text-white mb-2 pl-3">{item.title}</h3>
+                <p className="text-sm text-white/50 pl-3">{item.description}</p>
               </Card>
             </motion.div>
           ))}
@@ -293,18 +301,19 @@ function TestimonialsSection({ stories }: { stories: CampaignStory[] }) {
 
   return (
     <section className="py-32 px-4">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={animations.fadeInUp}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
           <h2 className="text-3xl font-bold text-white">Impact Stories</h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        {/* Zigzag/Overlap Layout */}
+        <div className="relative">
           {display.map((story, i) => (
             <motion.div
               key={i}
@@ -312,15 +321,24 @@ function TestimonialsSection({ stories }: { stories: CampaignStory[] }) {
               whileInView="visible"
               viewport={{ once: true }}
               variants={animations.fadeInUp}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.15 }}
+              className={`relative z-10 ${
+                i % 2 === 0 
+                  ? 'md:mr-[55%] md:-mt-8' 
+                  : 'md:ml-[55%] md:mt-8 md:mb-[-3rem]'
+              }`}
             >
               <ProfileCard
                 name={story.metadata?.author || "Anonymous"}
                 role={story.metadata?.location}
                 content={story.metadata?.content || ""}
+                className="shadow-xl shadow-black/20"
               />
             </motion.div>
           ))}
+          
+          {/* Center decorative line */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#d4a853]/30 to-transparent -translate-x-1/2" />
         </div>
       </div>
     </section>

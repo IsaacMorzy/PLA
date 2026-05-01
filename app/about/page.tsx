@@ -65,28 +65,47 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Mission & Vision - Feature Cards */}
-        <section className="max-w-6xl mx-auto px-6 mb-16">
-          <div className="grid md:grid-cols-2 gap-6 stagger-children">
-            <FeatureCard 
-              icon={
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              }
-              title="Our Mission"
-              description="To democratize fundraising in Africa by connecting passionate donors with community-driven projects. We ensure every contribution creates real, measurable impact."
-            />
-            <FeatureCard 
-              icon={
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-              }
-              title="Our Vision"
-              description="A Africa where every community has access to the resources they need to thrive. We envision a continent united by generosity and driven by transparency."
-            />
+        {/* Mission & Vision - Overlap Design with Zigzag Pattern */}
+        <section className="max-w-6xl mx-auto px-6 mb-16 relative">
+          {/* Overlap background elements */}
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-[#d4a853]/5 rounded-full blur-[80px] -z-10" />
+          <div className="absolute bottom-20 right-1/4 w-48 h-48 bg-[#c46d46]/5 rounded-full blur-[60px] -z-10" />
+          
+          <div className="grid md:grid-cols-2 gap-8 stagger-children">
+            {/* Mission Card - positioned higher in zigzag */}
+            <div className="relative md:-mt-8 md:mb-8">
+              <div className="absolute -top-4 -left-4 w-full h-full border border-[#d4a853]/20 rounded-2xl -z-10" />
+              <Card variant="gold" className="p-8 relative">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-[#d4a853]/10 rounded-full blur-2xl" />
+                <div className="w-14 h-14 rounded-2xl bg-[#d4a853]/15 flex items-center justify-center text-[#d4a853] mb-6">
+                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 font-display">Our Mission</h3>
+                <p className="text-white/70 text-lg leading-relaxed">
+                  To democratize fundraising in Africa by connecting passionate donors with community-driven projects. We ensure every contribution creates real, measurable impact.
+                </p>
+              </Card>
+            </div>
+            
+            {/* Vision Card - positioned lower in zigzag */}
+            <div className="relative md:mt-8">
+              <div className="absolute -bottom-4 -right-4 w-full h-full border border-[#c46d46]/20 rounded-2xl -z-10" />
+              <Card variant="terracotta" className="p-8 relative">
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#c46d46]/10 rounded-full blur-2xl" />
+                <div className="w-14 h-14 rounded-2xl bg-[#c46d46]/15 flex items-center justify-center text-[#c46d46] mb-6">
+                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 font-display">Our Vision</h3>
+                <p className="text-white/70 text-lg leading-relaxed">
+                  A Africa where every community has access to the resources they need to thrive. We envision a continent united by generosity and driven by transparency.
+                </p>
+              </Card>
+            </div>
           </div>
         </section>
 

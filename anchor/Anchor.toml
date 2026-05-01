@@ -14,9 +14,12 @@ anchor-spl = "0.32"
 default = []
 anchor-debug = []
 
+[program.build]
+anchor-lang = "0.32"
+
 [provider]
-cluster = "devnet"
-wallet = "~/.config/solana/id.json"
+cluster = "localnet"
+wallet = "/home/morzy/.config/solana/id.json"
 
 [program]
-peaceleague = "CVPzfvBudPvhXcJwKXKCc56VgAFttgZdTKyXrrgErDnb"
+peaceleague = "65VieGUg5tJEQDAHEgTLXqxVaKJWdQEnzAXyrdLuRt2K"

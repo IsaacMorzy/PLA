@@ -22,8 +22,6 @@ pub struct Withdraw<'info> {
     /// Destination for withdrawal (creator's wallet)
     #[account(mut)]
     pub destination: SystemAccount<'info>,
-    /// System program for transfer
-    pub system_program: Program<'info, System>,
 }
 
 
@@ -40,12 +38,13 @@ pub fn withdraw(ctx: Context<Withdraw>, amount: u64) -> Result<()> {
     require!(amount > 0, CampaignError::InsufficientBalance);
     require!(amount <= campaign.balance, CampaignError::InsufficientBalance);
     
-    // Transfer SOL from campaign to creator
-    // Note: In a full implementation, you'd transfer from a vault PDA
-    // Here we track the balance reduction
-    campaign.balance -= amount;
+    // For this implementation, we track balance as a record
+    // The campaign doesn't hold actual SOL (no vault PDA)
+    // Actual transfer would require a vault PDA in production
+    campaign.balance = campaign.balance.saturating_sub(amount);
+    campaign.amount_raised = campaign.amount_raised.saturating_sub(amount);
     
-    msg!("Withdrew {} lamports from campaign {}", amount, campaign.cid);
+    msg!("Withdrew {} lamports from campaign {} to {}", amount, campaign.cid, ctx.accounts.destination.key());
     
     Ok(())
 }
