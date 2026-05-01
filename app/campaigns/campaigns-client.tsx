@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { motion } from "framer-motion";
 import * as animations from "@/lib/animations";
-import { Tabs } from "@/components/ui/tailgrids";
+import Link from "next/link";
+import { Plus, Wallet, Inbox } from "lucide-react";
+import { CampaignCard } from "@/components/campaign/campaign-card";
 
 interface Campaign {
   id: string;
@@ -25,60 +29,25 @@ interface CampaignsClientProps {
 }
 
 export function CampaignsClient({ initialCampaigns }: CampaignsClientProps) {
-  const [filter, setFilter] = useState("all");
+  const { connected, publicKey } = useWallet();
+  const [mounted, setMounted] = useState(false);
+  const [campaigns, setCampaigns] = useState<Campaign[]>(initialCampaigns);
 
-  // Filter campaigns by category
-  const filteredCampaigns = filter === "all" 
-    ? initialCampaigns 
-    : initialCampaigns.filter(c => c.metadata?.category === filter);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  // Tab options for filtering
-  const tabs = [
-    { 
-      id: "all", 
-      label: "All", 
-      content: (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCampaigns.map((campaign) => (
-            <CampaignCard key={campaign.id} campaign={campaign} />
-          ))}
+  if (!mounted) {
+    return (
+      <main className="min-h-screen pt-24 pb-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center">
+            <div className="loading loading-spinner loading-lg"></div>
+          </div>
         </div>
-      )
-    },
-    { 
-      id: "healthcare", 
-      label: "Healthcare", 
-      content: (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCampaigns.map((campaign) => (
-            <CampaignCard key={campaign.id} campaign={campaign} />
-          ))}
-        </div>
-      )
-    },
-    { 
-      id: "education", 
-      label: "Education", 
-      content: (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCampaigns.map((campaign) => (
-            <CampaignCard key={campaign.id} campaign={campaign} />
-          ))}
-        </div>
-      )
-    },
-    { 
-      id: "community", 
-      label: "Community", 
-      content: (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCampaigns.map((campaign) => (
-            <CampaignCard key={campaign.id} campaign={campaign} />
-          ))}
-        </div>
-      )
-    },
-  ];
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen pt-24 pb-12 px-4">
@@ -88,7 +57,7 @@ export function CampaignsClient({ initialCampaigns }: CampaignsClientProps) {
           initial="hidden"
           animate="visible"
           variants={animations.fadeInUp}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <h1 className="text-4xl font-bold text-white font-display">Campaigns</h1>
           <p className="text-white/60 mt-2">
@@ -96,65 +65,93 @@ export function CampaignsClient({ initialCampaigns }: CampaignsClientProps) {
           </p>
         </motion.div>
 
-        {/* Tailgrids Tabs for filtering */}
-        <Tabs tabs={tabs} defaultTab="all" className="mb-8" />
+        {/* Wallet Connection Bar */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={animations.fadeInUp}
+          className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 p-4 bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-xl"
+        >
+          <div className="flex items-center gap-3">
+            <div className={`w-3 h-3 rounded-full ${connected ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
+            <span className="text-white/80">
+              {connected && publicKey 
+                ? `Connected: ${publicKey.toString().slice(0, 8)}...${publicKey.toString().slice(-4)}`
+                : 'Wallet not connected'}
+            </span>
+          </div>
+          
+          <div className="flex items-center gap-3">
+            {connected && (
+              <Link
+                href="/campaigns/create"
+                className="flex items-center gap-2 px-4 py-2 bg-brand-gold hover:bg-brand-gold-light text-black font-semibold rounded-lg transition-colors"
+              >
+                <Plus className="w-4 h-4" />
+                Create Campaign
+              </Link>
+            )}
+            <WalletMultiButton className="!bg-brand-gold !text-black hover:!bg-brand-gold-light !border-none" />
+          </div>
+        </motion.div>
+
+        {/* Not Connected Notice */}
+        {!connected && (
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={animations.fadeInUp}
+            className="mb-8 p-6 bg-amber-500/10 border border-amber-500/30 rounded-xl text-center"
+          >
+            <Wallet className="w-8 h-8 mx-auto mb-2 text-amber-500" />
+            <h3 className="text-lg font-semibold text-white mb-2">Connect Wallet to Get Started</h3>
+            <p className="text-white/60">
+              Connect your wallet to create campaigns and make donations on the PeaceLeague Africa platform.
+            </p>
+          </motion.div>
+        )}
+
+        {/* Campaigns Grid */}
+        {campaigns.length > 0 && (
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={animations.staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {campaigns.map((campaign, idx) => (
+              <CampaignCard key={campaign.id} campaign={campaign} index={idx} />
+            ))}
+          </motion.div>
+        )}
+
+        {/* Empty State */}
+        {campaigns.length === 0 && (
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={animations.fadeInUp}
+            className="flex flex-col items-center justify-center py-16 text-center"
+          >
+            <div className="mb-4 rounded-full bg-white/[0.05] p-4">
+              <Inbox className="h-8 w-8 text-white/30" />
+            </div>
+            <h3 className="text-lg font-semibold text-white mb-2">No Campaigns Yet</h3>
+            <p className="text-white/50 max-w-sm mb-6">
+              Be the first to create a campaign and start making a difference in your community.
+            </p>
+            {connected && (
+              <Link
+                href="/campaigns/create"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-gold hover:bg-brand-gold-light text-black font-semibold rounded-lg transition-colors"
+              >
+                <Plus className="h-4 w-4" />
+                Create Campaign
+              </Link>
+            )}
+          </motion.div>
+        )}
       </div>
     </main>
-  );
-}
-
-// Campaign Card Component
-function CampaignCard({ campaign }: { campaign: Campaign }) {
-  return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={animations.fadeInUp}
-      className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-2xl overflow-hidden shadow-lg hover:border-[#d4a853]/30 hover:shadow-[0_0_30px_-5px_rgba(212,168,83,0.15)] hover:scale-[1.02] transition-all duration-300"
-    >
-      {/* Image */}
-      <div className="relative h-48 w-full">
-        <img
-          src={campaign.metadata?.image || "https://images.unsplash.com/photo-1488521787991-ed7bbaa77390?w=800&h=600&fit=crop"}
-          alt={campaign.title}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute top-3 right-3">
-          <span className="px-3 py-1 bg-[#1a1815]/80 backdrop-blur-sm text-white text-xs rounded-full">
-            {campaign.metadata?.category || "community"}
-          </span>
-        </div>
-      </div>
-      
-      {/* Content */}
-      <div className="p-5">
-        <h3 className="text-lg font-semibold text-white mb-2">
-          {campaign.title}
-        </h3>
-        <p className="text-white/60 text-sm mb-4 line-clamp-2">
-          {campaign.metadata?.description || "Help support this campaign"}
-        </p>
-        
-        {/* Progress */}
-        <div className="space-y-2">
-          <div className="flex justify-between text-sm">
-            <span className="text-white/80">
-              ${(campaign.metadata?.raised || 0).toLocaleString()} raised
-            </span>
-            <span className="text-white/60">
-              ${(campaign.metadata?.goal || 0).toLocaleString()} goal
-            </span>
-          </div>
-<div className="h-2 bg-white/10 rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-gradient-to-r from-[#d4a853] to-[#c46d46] rounded-full"
-              style={{ 
-                width: Math.min(100, ((campaign.metadata?.raised || 0) / (campaign.metadata?.goal || 1)) * 100) + "%"
-              }}
-            />
-          </div>
-        </div>
-      </div>
-    </motion.div>
   );
 }

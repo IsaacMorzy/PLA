@@ -7,17 +7,25 @@ import {
 } from "@solana/wallet-adapter-react";
 import { FC, ReactNode, useCallback, useMemo } from "react";
 import { WalletModalProvider as ReactUIWalletModalProvider } from "@solana/wallet-adapter-react-ui";
+import { PhantomWalletAdapter } from "@solana/wallet-adapter-phantom";
+import { SolflareWalletAdapter } from "@solana/wallet-adapter-solflare";
 
-const DEFAULT_RPC = "https://api.mainnet-beta.solana.com";
+const LOCALNET_RPC = "http://127.0.0.1:8899";
 
 export const WalletContextProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const endpoint = process.env.NEXT_PUBLIC_HELIUS_URL || DEFAULT_RPC;
-  const wallets = useMemo(() => [], []);
+  const endpoint = process.env.NEXT_PUBLIC_SOLANA_RPC || LOCALNET_RPC;
+  
+  const wallets = useMemo(() => {
+    return [
+      new PhantomWalletAdapter(),
+      new SolflareWalletAdapter(),
+    ];
+  }, []);
 
   const onError = useCallback((error: WalletError) => {
-    console.error(error);
+    console.error("Wallet error:", error);
   }, []);
 
   return (

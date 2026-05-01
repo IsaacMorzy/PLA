@@ -244,3 +244,154 @@ export function solToLamports(sol: number): number {
 export function lamportsToSol(lamports: number | bigint): number {
   return Number(lamports) / LAMPORTS_PER_SOL;
 }
+
+// Anchor instruction discriminators
+const INITIALIZE_DISCRIMINATOR = Buffer.from([96, 98, 97, 49, 49, 54, 56, 57]); // "initialize"
+const CREATE_CAMPAIGN_DISCRIMINATOR = Buffer.from([0x1a, 0x5f, 0xc2, 0xcf, 0x03, 0x9a, 0x1e, 0xcd]); // "create_campaign"
+const DONATE_DISCRIMINATOR = Buffer.from([0x17, 0x3d, 0x3e, 0x5c, 0x95, 0x51, 0x68, 0xc3]); // "donate"
+const WITHDRAW_DISCRIMINATOR = Buffer.from([0x1c, 0x4a, 0xcf, 0xf0, 0x7e, 0x8f, 0x9f, 0xb2]); // "withdraw"
+const DELETE_DISCRIMINATOR = Buffer.from([0x19, 0x8e, 0x9e, 0x06, 0x90, 0xb4, 0x29, 0xac]); // "delete_campaign"
+
+/**
+ * Create campaign transaction
+ */
+export async function createCampaignTx(
+  connection: Connection,
+  payer: PublicKey,
+  title: string,
+  description: string,
+  imageUrl: string,
+  goalLamports: number
+): Promise<{ tx: any; campaignAddress: PublicKey }> {
+  const { Transaction, TransactionInstruction, SystemProgram, ComputeBudgetProgram } = await import("@solana/web3.js");
+  
+  const stateAddress = getStateAddress();
+  const stateInfo = await connection.getAccountInfo(stateAddress);
+  
+  let campaignId = 0;
+  if (stateInfo) {
+    const campaignCount = readBigInt64LE(Buffer.from(stateInfo.data), 0);
+    campaignId = Number(campaignCount);
+  }
+  
+  const [campaignAddress] = PublicKey.findProgramAddressSync(
+    [Buffer.from(CAMPAIGN_SEED), Buffer.from([campaignId])],
+    PROGRAM_ID
+  );
+
+  // Calculate campaign account size
+  // author (32) + title (4 + 64) + description (4 + 512) + image_url (4 + 128) + goal (8) + raised (8) + donated_count (4) + created_at (8) + is_deleted (1) + bump (1) + campaign_id (8)
+  const accountSpace = 8 + 32 + 4 + 64 + 4 + 512 + 4 + 128 + 8 + 8 + 4 + 8 + 1 + 1 + 8;
+  const rentExempt = await connection.getMinimumBalanceForRentExemption(accountSpace);
+
+  const tx = new Transaction();
+  
+  // Add compute budget
+  tx.add(
+    ComputeBudgetProgram.setComputeUnitLimit({ units: 200000 }),
+    ComputeBudgetProgram.setComputeUnitPrice({ microLamports: 10000 })
+  );
+
+  // Create campaign account
+  tx.add(
+    SystemProgram.createAccount({
+      fromPubkey: payer,
+      newAccountPubkey: campaignAddress,
+      lamports: rentExempt,
+      space: accountSpace,
+      programId: PROGRAM_ID,
+    })
+  );
+
+  // Create campaign instruction
+  const data = Buffer.concat([
+    CREATE_CAMPAIGN_DISCRIMINATOR,
+    Buffer.from([64]), // title len prefix
+    Buffer.from(title.slice(0, 64), "utf8"),
+    Buffer.from([512]), // description len prefix
+    Buffer.from(description.slice(0, 512), "utf8"),
+    Buffer.from([128]), // image_url len prefix
+    Buffer.from(imageUrl.slice(0, 128), "utf8"),
+    Buffer.from(new Uint8Array(8)),
+  ]);
+  
+  // Encode goal as le bytes
+  const goalBytes = new ArrayBuffer(8);
+  new DataView(goalBytes).setBigUint64(0, BigInt(goalLamports), true);
+  data.set(new Uint8Array(goalBytes), data.length - 8);
+
+  tx.add(
+    new TransactionInstruction({
+      keys: [
+        { pubkey: campaignAddress, isWritable: true, isSigner: false },
+        { pubkey: stateAddress, isWritable: true, isSigner: false },
+        { pubkey: payer, isWritable: true, isSigner: true },
+        { pubkey: SystemProgram.programId, isWritable: false, isSigner: false },
+      ],
+      programId: PROGRAM_ID,
+      data,
+    })
+  );
+
+  return { tx, campaignAddress };
+}
+
+/**
+ * Donate to campaign transaction
+ */
+export async function donateToCampaignTx(
+  connection: Connection,
+  payer: PublicKey,
+  campaignId: number,
+  amountLamports: number
+): Promise<{ tx: any; campaignAddress: PublicKey }> {
+  const { Transaction, TransactionInstruction, SystemProgram, ComputeBudgetProgram } = await import("@solana/web3.js");
+  
+  const campaignAddress = getCampaignAddress(campaignId);
+
+  const tx = new Transaction();
+  
+  // Add compute budget
+  tx.add(
+    ComputeBudgetProgram.setComputeUnitLimit({ units: 100000 }),
+    ComputeBudgetProgram.setComputeUnitPrice({ microLamports: 10000 })
+  );
+
+  // Donate instruction
+  const data = Buffer.concat([
+    DONATE_DISCRIMINATOR,
+    Buffer.from(new Uint8Array(8)),
+  ]);
+  
+  // Encode campaign id and amount
+  const idBytes = new ArrayBuffer(8);
+  new DataView(idBytes).setBigUint64(0, BigInt(campaignId), true);
+  data.set(new Uint8Array(idBytes), data.length - 8);
+  
+  const amountBytes = new ArrayBuffer(8);
+  new DataView(amountBytes).setBigUint64(0, BigInt(amountLamports), true);
+  data.set(new Uint8Array(amountBytes), data.length - 8);
+
+  tx.add(
+    new TransactionInstruction({
+      keys: [
+        { pubkey: campaignAddress, isWritable: true, isSigner: false },
+        { pubkey: payer, isWritable: true, isSigner: true },
+        { pubkey: SystemProgram.programId, isWritable: false, isSigner: false },
+      ],
+      programId: PROGRAM_ID,
+      data,
+    })
+  );
+
+  // Add transfer instruction
+  tx.add(
+    SystemProgram.transfer({
+      fromPubkey: payer,
+      toPubkey: campaignAddress,
+      lamports: amountLamports,
+    })
+  );
+
+  return { tx, campaignAddress };
+}
