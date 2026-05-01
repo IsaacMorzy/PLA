@@ -38,7 +38,7 @@ export function Header() {
     >
       <nav
         className={`
-          grid grid-cols-[auto_1fx_auto] items-center gap-4 px-5 py-3 
+          flex items-center justify-between gap-3 px-4 py-2 
           glass-strong rounded-2xl shadow-lg transition-all duration-300
           ${scrolled ? "translate-y-[-20px]" : ""}
         `}
@@ -49,8 +49,8 @@ export function Header() {
           <Logo />
         </div>
 
-        {/* Center: Navigation links - Tailwind Grid per helius.dev */}
-        <div className="hidden lg:flex items-center justify-center gap-1">
+        {/* Center: Navigation links - visible on md+ screens */}
+        <div className="hidden md:flex items-center justify-center gap-1">
           {NAV_LINKS.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -58,8 +58,8 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={`
-                  px-4 py-2.5 rounded-xl text-sm font-medium 
-                  transition-all duration-200
+                  px-3 py-2 rounded-lg text-sm font-medium 
+                  transition-all duration-200 whitespace-nowrap
                   ${
                     isActive
                       ? "text-[#d4a853]"
