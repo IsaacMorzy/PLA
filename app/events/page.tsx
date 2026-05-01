@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { GlassCard } from '@/components/ui/glass-card'
-import { Footer } from '@/components/layout/footer'
 
 export const metadata: Metadata = {
   title: 'Events - PeaceLeague Africa',
@@ -98,8 +97,6 @@ export default function EventsPage() {
           </GlassCard>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

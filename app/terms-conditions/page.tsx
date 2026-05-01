@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/glass-card'
-import { Footer } from '@/components/layout/footer'
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions - PeaceLeague Africa',
@@ -61,8 +60,6 @@ export default function TermsConditionsPage() {
           </Card>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

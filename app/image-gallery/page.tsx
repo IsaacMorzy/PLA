@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { getGallery } from '@/lib/cosmic'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/glass-card'
-import { Footer } from '@/components/layout/footer'
 
 export const metadata: Metadata = {
   title: 'Image Gallery - PeaceLeague Africa',
@@ -74,8 +73,6 @@ export default async function ImageGalleryPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

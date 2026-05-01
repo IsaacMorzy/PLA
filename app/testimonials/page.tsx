@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { getTestimonials } from '@/lib/cosmic'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, ProfileCard } from '@/components/ui/glass-card'
-import { Footer } from '@/components/layout/footer'
 
 export const metadata: Metadata = {
   title: 'Testimonials - PeaceLeague Africa',
@@ -86,8 +85,6 @@ export default async function TestimonialsPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

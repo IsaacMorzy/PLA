@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/glass-card'
-import { Footer } from '@/components/layout/footer'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy - PeaceLeague Africa',
@@ -56,8 +55,6 @@ export default function PrivacyPolicyPage() {
           </Card>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

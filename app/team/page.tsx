@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { getTeamMembers } from '@/lib/cosmic'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/glass-card'
-import { Footer } from '@/components/layout/footer'
 
 export const metadata: Metadata = {
   title: 'Our Team - PeaceLeague Africa',
@@ -103,8 +102,6 @@ export default async function TeamPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

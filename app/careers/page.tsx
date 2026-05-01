@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { GlassCard } from '@/components/ui/glass-card'
-import { Footer } from '@/components/layout/footer'
 
 export const metadata: Metadata = {
   title: 'Careers - PeaceLeague Africa',
@@ -127,8 +126,6 @@ export default function CareersPage() {
           </GlassCard>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

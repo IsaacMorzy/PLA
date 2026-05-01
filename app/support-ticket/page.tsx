@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/glass-card'
-import { Footer } from '@/components/layout/footer'
 
 export const metadata: Metadata = {
   title: 'Support Ticket - PeaceLeague Africa',
@@ -68,8 +67,6 @@ export default function SupportTicketPage() {
           </Card>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

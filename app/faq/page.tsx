@@ -2,7 +2,6 @@
 
 import { GlassCard } from '@/components/ui/glass-card'
 import { Accordion } from '@/components/ui/tailgrids'
-import { Footer } from '@/components/layout/footer'
 
 const faqItems = [
   {
@@ -89,8 +88,6 @@ export default function FAQPage() {
           </GlassCard>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

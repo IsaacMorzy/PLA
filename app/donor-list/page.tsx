@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { getRecentDonors } from '@/lib/cosmic'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/glass-card'
-import { Footer } from '@/components/layout/footer'
 
 export const metadata: Metadata = {
   title: 'Donor List - PeaceLeague Africa',
@@ -86,8 +85,6 @@ export default async function DonorListPage() {
           </p>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

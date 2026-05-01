@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { getBlogPosts, type BlogPost } from '@/lib/cosmic'
-import { Footer } from '@/components/layout/footer'
 import { GlassCard } from '@/components/ui/glass-card'
 import Link from 'next/link'
 
@@ -102,8 +101,6 @@ export default async function BlogPage() {
           )}
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

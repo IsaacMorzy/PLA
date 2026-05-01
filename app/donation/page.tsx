@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Card, CardContent, CardFooter } from '@/components/ui/glass-card'
-import { Footer } from '@/components/layout/footer'
 
 export default function DonationPage() {
   const [amount, setAmount] = useState('')
@@ -106,8 +105,6 @@ export default function DonationPage() {
           </Card>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { GlassCard } from '@/components/ui/glass-card'
 import { ContactForm } from '@/components/ui/tailgrids'
-import { Footer } from '@/components/layout/footer'
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
@@ -92,8 +91,6 @@ export default function ContactPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }
