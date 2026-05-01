@@ -1,6 +1,6 @@
 ---
 session: ses_2291
-updated: 2026-04-30T14:16:48.731Z
+updated: 2026-04-30T16:25:57.588Z
 ---
 
 
@@ -8,55 +8,56 @@ updated: 2026-04-30T14:16:48.731Z
 # Session Summary
 
 ## Goal
-Update DESIGN.md to use Helius (helius.dev) as the design reference instead of Stripe, plus add blog pages to the website.
+Deploy the PeaceLeague Africa Anchor program to Solana devnet to enable crowdfunding functionality (create/donate/withdraw campaigns).
 
 ## Constraints & Preferences
-- Use Helius design principles: dark theme (#0a0a0a), clean borders (#222222), gold accents (#d4a853)
-- Follow Helius navigation pattern: centered nav links, logo left, CTA right
-- Include blog and blog detail pages
-- Keep Tailgrids components from current codebase
+- Use Anchor CLI 1.0.1 with Anchor 0.32
+- Follow SOLANA_EXPERT_AGENT.md patterns
+- Use M2.5 model for subagent delegation (saved in memory)
+- Track progress via multica issues
 
 ## Progress
 ### Done
-- [x] Connected Cosmic CMS content to homepage, testimonials, team, and gallery pages
-- [x] Added graphify-out/, thoughts/, .mindmodel/ to .gitignore
-- [x] Committed gitignore update (3fecdf2)
-- [x] Created Helius-inspired DESIGN.md (replacing Stripe design)
-- [x] Added blog section to DESIGN.md with listing and detail page specs
+- [x] Installed Anchor CLI 1.0.1 via cargo install
+- [x] Fixed Anchor lib.rs compilation errors (wrong imports: `anchor_lang::system_program::{transfer, Transfer}`)
+- [x] Added `idl-build` feature to Cargo.toml
+- [x] Built BPF program successfully (`target/sbpf-solana-solana/release/peaceleague.so`)
+- [x] Created multica issue PEA-27 (Fixed) and PEA-28 (Deploy)
 
 ### In Progress
-- [ ] Blog pages not yet created - need /blog and /blog/[slug] routes
-- [ ] Blog cosmic object type not yet created in CMS
+- [ ] Deploy to devnet - blocked by airdrop rate limit
+
+### Blocked
+- **Solana devnet airdrop rate limited**: "You've either reached your airdrop limit today or the airdrop faucet has run dry"
+- Wallet: `FJ1JeTwazBpG2NaYbv1titZqYtAzz87hAjCoyVUbyLZp` (0 SOL)
+- Tried: multiple airdrop attempts, different faucet endpoints (Chainstack, QuickNode) - all failed
 
 ## Key Decisions
-- **Helius over Stripe**: User requested Helius-style design - cleaner, darker, professional developer platform aesthetic
-- **Keep Tailgrids components**: Current codebase uses Tailgrids UI library, preserve those components
+- **Program ID**: Changed from original to keypair-generated `Fk7iWdM7fUTDgvmTgwx1T3KMqWn3F61bUnBczVrjsBME`
+- **Wallet path**: Used absolute path `/home/morzy/.config/solana/id.json` in Anchor.toml
+- **Import pattern**: `use anchor_lang::system_program::{transfer, Transfer}` (the correct Anchor 0.32 pattern)
 
 ## Next Steps
-1. Create /blog page with blog listing
-2. Create /blog/[slug] page with blog detail
-3. Create "blog-posts" object type in Cosmic CMS
-4. Add sample blog content to Cosmic
-5. Update navigation to include Blog link
+1. Obtain SOL for wallet (airdrop, wallet with existing funds, or wait)
+2. Run `anchor deploy` to deploy to devnet
+3. Test program with `anchor test` or local validator
+4. Generate IDL client for frontend
 
 ## Critical Context
-- Helius website: https://www.helius.dev
-- Current DESIGN.md updated with Helius reference
-- Current website in `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/`
-- Cosmic bucket: `peaceleague-africa` (slug)
-- Build passes ✅
+- **Program**: `peaceleague` with instructions: `initialize`, `create_campaign`, `donate`, `withdraw`, `delete_campaign`
+- **Compiled path**: `anchor/target/deploy/peaceleague.so` and `anchor/target/sbpf-solana-solana/release/peaceleague.so`
+- **Multica issues**: PEA-27 (done), PEA-28 (in_progress)
+- Alternative faucets to try: DevnetFaucet.org, SolFaucet.com, QuickNode with API key
+- Can also use local `solana-test-validator` for testing
 
 ## File Operations
 ### Read
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/DESIGN.md`
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/.gitignore`
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/home-client.tsx`
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/lib/cosmic.ts`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/anchor/Anchor.toml`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/anchor/programs/peaceleague/Cargo.toml`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/anchor/programs/peaceleague/src/lib.rs`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/lib/peaceleague-client.ts`
 
 ### Modified
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/DESIGN.md` - Complete rewrite with Helius design
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/.gitignore` - Added graphify-out/, thoughts/, .mindmodel/
-
-### To Create
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/blog/page.tsx`
-- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/app/blog/[slug]/page.tsx`
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/anchor/Anchor.toml` - wallet path, program ID
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/anchor/programs/peaceleague/Cargo.toml` - added idl-build feature
+- `/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica/anchor/programs/peaceleague/src/lib.rs` - complete rewrite for Anchor 0.32
