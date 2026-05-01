@@ -43,7 +43,7 @@
     "solana-ui-stack": "^0.3.1",
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.6.0",
-    "zod": "^4.4.1"
+    "zod": "^3.23.0"
   },
   "devDependencies": {
     "@cosmicjs/mcp": "^1.1.0",
