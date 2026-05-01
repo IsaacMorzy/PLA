@@ -315,7 +315,7 @@ export default function CampaignDetailPage({ params }: PageProps) {
                       onClick={handleDonateClick}
                       disabled={!connected}
                       className="w-full h-12 text-base font-medium"
-                      variant="solana"
+                      variant="glow"
                     >
                       <Heart className="h-5 w-5" />
                       Donate SOL
