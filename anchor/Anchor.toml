@@ -18,7 +18,7 @@ anchor-debug = []
 anchor-lang = "0.32"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "/home/morzy/.config/solana/id.json"
 
 [program]

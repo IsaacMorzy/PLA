@@ -25,7 +25,7 @@ export function getConnection(): Connection {
 export { getConnection as getSolanaRpc };
 
 // Program ID
-export const PROGRAM_ID = new PublicKey("CVPzfvBudPvhXcJwKXKCc56VgAFttgZdTKyXrrgErDnb");
+export const PROGRAM_ID = new PublicKey("65VieGUg5tJEQDAHEgTLXqxVaKJWdQEnzAXyrdLuRt2K");
 
 // PDA Seeds
 const STATE_SEED = "state";
@@ -88,7 +88,8 @@ export interface CampaignAccount {
  * Parse campaign account
  */
 export function parseCampaignAccount(data: Buffer): CampaignAccount {
-  let offset = 0;
+  // Skip 8-byte Anchor account discriminator
+  let offset = 8;
   
   // author (32)
   const author = new PublicKey(data.subarray(offset, offset + 32));
@@ -155,7 +156,8 @@ export async function getProgramState(): Promise<ProgramStateAccount | null> {
     if (!accountInfo) return null;
     
     const data = Buffer.from(accountInfo.data);
-    let offset = 0;
+    // Skip 8-byte Anchor account discriminator
+    let offset = 8;
     
     const campaignCount = readBigInt64LE(data, offset);
     offset += 8;
@@ -245,12 +247,12 @@ export function lamportsToSol(lamports: number | bigint): number {
   return Number(lamports) / LAMPORTS_PER_SOL;
 }
 
-// Anchor instruction discriminators
-const INITIALIZE_DISCRIMINATOR = Buffer.from([96, 98, 97, 49, 49, 54, 56, 57]); // "initialize"
-const CREATE_CAMPAIGN_DISCRIMINATOR = Buffer.from([0x1a, 0x5f, 0xc2, 0xcf, 0x03, 0x9a, 0x1e, 0xcd]); // "create_campaign"
-const DONATE_DISCRIMINATOR = Buffer.from([0x17, 0x3d, 0x3e, 0x5c, 0x95, 0x51, 0x68, 0xc3]); // "donate"
-const WITHDRAW_DISCRIMINATOR = Buffer.from([0x1c, 0x4a, 0xcf, 0xf0, 0x7e, 0x8f, 0x9f, 0xb2]); // "withdraw"
-const DELETE_DISCRIMINATOR = Buffer.from([0x19, 0x8e, 0x9e, 0x06, 0x90, 0xb4, 0x29, 0xac]); // "delete_campaign"
+// Anchor instruction discriminators (sha256("global:<name>")[0..8])
+const INITIALIZE_DISCRIMINATOR = Buffer.from([175, 175, 109, 31, 13, 152, 155, 237]);
+const CREATE_CAMPAIGN_DISCRIMINATOR = Buffer.from([111, 131, 187, 98, 160, 193, 114, 244]);
+const DONATE_DISCRIMINATOR = Buffer.from([121, 186, 218, 211, 73, 70, 196, 180]);
+const WITHDRAW_DISCRIMINATOR = Buffer.from([183, 18, 70, 156, 148, 109, 161, 34]);
+const DELETE_DISCRIMINATOR = Buffer.from([223, 105, 48, 131, 88, 27, 249, 227]);
 
 /**
  * Create campaign transaction
@@ -270,7 +272,8 @@ export async function createCampaignTx(
   
   let campaignId = 0;
   if (stateInfo) {
-    const campaignCount = readBigInt64LE(Buffer.from(stateInfo.data), 0);
+    // Skip 8-byte Anchor discriminator
+    const campaignCount = readBigInt64LE(Buffer.from(stateInfo.data), 8);
     campaignId = Number(campaignCount);
   }
   

@@ -130,7 +130,7 @@ Use @solana/kit (not older wallet-adapter):
 ```typescript
 import { useWallet, useConnection } from '@solana/kit';
 
-// Program ID: CVPzfvBudPvhXcJwKXKCc56VgAFttgZdTKyXrrgErDnb
+// Program ID: 65VieGUg5tJEQDAHEgTLXqxVaKJWdQEnzAXyrdLuRt2K
 
 // Instructions:
 // - initialize()

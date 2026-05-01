@@ -8,8 +8,8 @@
       "file_type": "code",
       "source_file": "next-env.d.ts",
       "source_location": "L1",
-      "id": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_next_env_d_ts",
-      "community": 32,
+      "id": "next_env_d_ts",
+      "community": 38,
       "norm_label": "next-env.d.ts"
     },
     {
@@ -18,7 +18,7 @@
       "source_file": "next.config.ts",
       "source_location": "L1",
       "id": "next_config_ts",
-      "community": 33,
+      "community": 39,
       "norm_label": "next.config.ts"
     },
     {
@@ -27,7 +27,7 @@
       "source_file": "postcss.config.js",
       "source_location": "L1",
       "id": "postcss_config_js",
-      "community": 34,
+      "community": 40,
       "norm_label": "postcss.config.js"
     },
     {
@@ -54,7 +54,7 @@
       "source_file": "components/campaign/campaign-card.tsx",
       "source_location": "L1",
       "id": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_components_campaign_campaign_card_tsx",
-      "community": 12,
+      "community": 13,
       "norm_label": "campaign-card.tsx"
     },
     {
@@ -63,7 +63,7 @@
       "source_file": "app/campaigns/_components/campaign-card.tsx",
       "source_location": "L44",
       "id": "campaign_card_campaigncard",
-      "community": 12,
+      "community": 13,
       "norm_label": "campaigncard()"
     },
     {
@@ -72,26 +72,17 @@
       "source_file": "components/layout/header.tsx",
       "source_location": "L1",
       "id": "components_layout_header_tsx",
-      "community": 13,
+      "community": 18,
       "norm_label": "header.tsx"
     },
     {
       "label": "handleScroll()",
       "file_type": "code",
       "source_file": "components/layout/header.tsx",
-      "source_location": "L54",
+      "source_location": "L26",
       "id": "header_handlescroll",
-      "community": 13,
+      "community": 18,
       "norm_label": "handlescroll()"
-    },
-    {
-      "label": "handleClickOutside()",
-      "file_type": "code",
-      "source_file": "components/layout/header.tsx",
-      "source_location": "L63",
-      "id": "header_handleclickoutside",
-      "community": 13,
-      "norm_label": "handleclickoutside()"
     },
     {
       "label": "theme-toggle.tsx",
@@ -99,7 +90,7 @@
       "source_file": "components/layout/theme-toggle.tsx",
       "source_location": "L1",
       "id": "components_layout_theme_toggle_tsx",
-      "community": 18,
+      "community": 19,
       "norm_label": "theme-toggle.tsx"
     },
     {
@@ -108,7 +99,7 @@
       "source_file": "components/layout/theme-toggle.tsx",
       "source_location": "L9",
       "id": "theme_toggle_themetoggle",
-      "community": 18,
+      "community": 19,
       "norm_label": "themetoggle()"
     },
     {
@@ -117,7 +108,7 @@
       "source_file": "components/layout/mobile-nav.tsx",
       "source_location": "L1",
       "id": "components_layout_mobile_nav_tsx",
-      "community": 35,
+      "community": 41,
       "norm_label": "mobile-nav.tsx"
     },
     {
@@ -133,7 +124,7 @@
       "label": "Footer()",
       "file_type": "code",
       "source_file": "components/layout/footer.tsx",
-      "source_location": "L31",
+      "source_location": "L32",
       "id": "footer_footer",
       "community": 14,
       "norm_label": "footer()"
@@ -142,7 +133,7 @@
       "label": "SocialLink()",
       "file_type": "code",
       "source_file": "components/layout/footer.tsx",
-      "source_location": "L161",
+      "source_location": "L148",
       "id": "footer_sociallink",
       "community": 14,
       "norm_label": "sociallink()"
@@ -153,7 +144,7 @@
       "source_file": "components/wallet/wallet-button.tsx",
       "source_location": "L1",
       "id": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_components_wallet_wallet_button_tsx",
-      "community": 8,
+      "community": 9,
       "norm_label": "wallet-button.tsx"
     },
     {
@@ -162,7 +153,7 @@
       "source_file": "components/wallet/wallet-button.tsx",
       "source_location": "L9",
       "id": "wallet_button_truncateaddress",
-      "community": 8,
+      "community": 9,
       "norm_label": "truncateaddress()"
     },
     {
@@ -171,7 +162,7 @@
       "source_file": "components/wallet/wallet-button.tsx",
       "source_location": "L22",
       "id": "wallet_button_handleclickoutside",
-      "community": 8,
+      "community": 9,
       "norm_label": "handleclickoutside()"
     },
     {
@@ -180,7 +171,7 @@
       "source_file": "components/wallet/wallet-button.tsx",
       "source_location": "L37",
       "id": "wallet_button_handlecopyaddress",
-      "community": 8,
+      "community": 9,
       "norm_label": "handlecopyaddress()"
     },
     {
@@ -189,7 +180,7 @@
       "source_file": "components/wallet/wallet-button.tsx",
       "source_location": "L45",
       "id": "wallet_button_handledisconnect",
-      "community": 8,
+      "community": 9,
       "norm_label": "handledisconnect()"
     },
     {
@@ -198,7 +189,7 @@
       "source_file": "components/ui/visually-hidden.tsx",
       "source_location": "L1",
       "id": "components_ui_visually_hidden_tsx",
-      "community": 36,
+      "community": 42,
       "norm_label": "visually-hidden.tsx"
     },
     {
@@ -207,7 +198,7 @@
       "source_file": "components/ui/dialog.tsx",
       "source_location": "L1",
       "id": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_components_ui_dialog_tsx",
-      "community": 37,
+      "community": 43,
       "norm_label": "dialog.tsx"
     },
     {
@@ -216,7 +207,7 @@
       "source_file": "components/ui/feature.tsx",
       "source_location": "L1",
       "id": "components_ui_feature_tsx",
-      "community": 38,
+      "community": 44,
       "norm_label": "feature.tsx"
     },
     {
@@ -252,7 +243,7 @@
       "source_file": "components/ui/sheet.tsx",
       "source_location": "L1",
       "id": "components_ui_sheet_tsx",
-      "community": 39,
+      "community": 45,
       "norm_label": "sheet.tsx"
     },
     {
@@ -261,7 +252,7 @@
       "source_file": "components/ui/input.tsx",
       "source_location": "L1",
       "id": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_components_ui_input_tsx",
-      "community": 40,
+      "community": 46,
       "norm_label": "input.tsx"
     },
     {
@@ -270,8 +261,26 @@
       "source_file": "components/ui/button.tsx",
       "source_location": "L1",
       "id": "components_ui_button_tsx",
-      "community": 41,
+      "community": 47,
       "norm_label": "button.tsx"
+    },
+    {
+      "label": "newsletter-form.tsx",
+      "file_type": "code",
+      "source_file": "components/ui/newsletter-form.tsx",
+      "source_location": "L1",
+      "id": "components_ui_newsletter_form_tsx",
+      "community": 20,
+      "norm_label": "newsletter-form.tsx"
+    },
+    {
+      "label": "NewsletterForm()",
+      "file_type": "code",
+      "source_file": "components/ui/newsletter-form.tsx",
+      "source_location": "L11",
+      "id": "newsletter_form_newsletterform",
+      "community": 20,
+      "norm_label": "newsletterform()"
     },
     {
       "label": "label.tsx",
@@ -279,7 +288,7 @@
       "source_file": "components/ui/label.tsx",
       "source_location": "L1",
       "id": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_components_ui_label_tsx",
-      "community": 42,
+      "community": 48,
       "norm_label": "label.tsx"
     },
     {
@@ -288,7 +297,7 @@
       "source_file": "components/ui/tailgrids.tsx",
       "source_location": "L1",
       "id": "components_ui_tailgrids_tsx",
-      "community": 19,
+      "community": 21,
       "norm_label": "tailgrids.tsx"
     },
     {
@@ -297,7 +306,7 @@
       "source_file": "components/ui/tailgrids.tsx",
       "source_location": "L22",
       "id": "tailgrids_toggleitem",
-      "community": 19,
+      "community": 21,
       "norm_label": "toggleitem()"
     },
     {
@@ -306,7 +315,7 @@
       "source_file": "components/ui/glass-card.tsx",
       "source_location": "L1",
       "id": "components_ui_glass_card_tsx",
-      "community": 9,
+      "community": 10,
       "norm_label": "glass-card.tsx"
     },
     {
@@ -315,7 +324,7 @@
       "source_file": "components/ui/glass-card.tsx",
       "source_location": "L10",
       "id": "glass_card_card",
-      "community": 9,
+      "community": 10,
       "norm_label": "card()"
     },
     {
@@ -324,7 +333,7 @@
       "source_file": "components/ui/glass-card.tsx",
       "source_location": "L40",
       "id": "glass_card_cardtitle",
-      "community": 9,
+      "community": 10,
       "norm_label": "cardtitle()"
     },
     {
@@ -333,7 +342,7 @@
       "source_file": "components/ui/glass-card.tsx",
       "source_location": "L56",
       "id": "glass_card_cardcontent",
-      "community": 9,
+      "community": 10,
       "norm_label": "cardcontent()"
     },
     {
@@ -342,7 +351,7 @@
       "source_file": "components/ui/glass-card.tsx",
       "source_location": "L72",
       "id": "glass_card_cardfooter",
-      "community": 9,
+      "community": 10,
       "norm_label": "cardfooter()"
     },
     {
@@ -351,7 +360,7 @@
       "source_file": "components/ui/address-display.tsx",
       "source_location": "L1",
       "id": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_components_ui_address_display_tsx",
-      "community": 20,
+      "community": 22,
       "norm_label": "address-display.tsx"
     },
     {
@@ -360,16 +369,97 @@
       "source_file": "components/ui/address-display.tsx",
       "source_location": "L31",
       "id": "address_display_handlecopy",
-      "community": 20,
+      "community": 22,
       "norm_label": "handlecopy()"
+    },
+    {
+      "label": "skeleton.tsx",
+      "file_type": "code",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L1",
+      "id": "components_ui_skeleton_tsx",
+      "community": 8,
+      "norm_label": "skeleton.tsx"
+    },
+    {
+      "label": "Skeleton()",
+      "file_type": "code",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L11",
+      "id": "skeleton_skeleton",
+      "community": 8,
+      "norm_label": "skeleton()"
+    },
+    {
+      "label": "CampaignCardSkeleton()",
+      "file_type": "code",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L40",
+      "id": "skeleton_campaigncardskeleton",
+      "community": 8,
+      "norm_label": "campaigncardskeleton()"
+    },
+    {
+      "label": "CampaignGridSkeleton()",
+      "file_type": "code",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L78",
+      "id": "skeleton_campaigngridskeleton",
+      "community": 8,
+      "norm_label": "campaigngridskeleton()"
+    },
+    {
+      "label": "StatsCardSkeleton()",
+      "file_type": "code",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L93",
+      "id": "skeleton_statscardskeleton",
+      "community": 8,
+      "norm_label": "statscardskeleton()"
+    },
+    {
+      "label": "TeamMemberSkeleton()",
+      "file_type": "code",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L112",
+      "id": "skeleton_teammemberskeleton",
+      "community": 8,
+      "norm_label": "teammemberskeleton()"
+    },
+    {
+      "label": "TableRowSkeleton()",
+      "file_type": "code",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L130",
+      "id": "skeleton_tablerowskeleton",
+      "community": 8,
+      "norm_label": "tablerowskeleton()"
+    },
+    {
+      "label": "HeroSkeleton()",
+      "file_type": "code",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L148",
+      "id": "skeleton_heroskeleton",
+      "community": 8,
+      "norm_label": "heroskeleton()"
+    },
+    {
+      "label": "FeatureCardSkeleton()",
+      "file_type": "code",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L167",
+      "id": "skeleton_featurecardskeleton",
+      "community": 8,
+      "norm_label": "featurecardskeleton()"
     },
     {
       "label": "peaceleague.ts",
       "file_type": "code",
       "source_file": "anchor/tests/peaceleague.ts",
       "source_location": "L1",
-      "id": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_anchor_tests_peaceleague_ts",
-      "community": 43,
+      "id": "anchor_tests_peaceleague_ts",
+      "community": 49,
       "norm_label": "peaceleague.ts"
     },
     {
@@ -486,7 +576,7 @@
       "source_file": "anchor/programs/peaceleague/src/states/program_state.rs",
       "source_location": "L1",
       "id": "anchor_programs_peaceleague_src_states_program_state_rs",
-      "community": 21,
+      "community": 23,
       "norm_label": "program_state.rs"
     },
     {
@@ -495,7 +585,7 @@
       "source_file": "anchor/programs/peaceleague/src/states/program_state.rs",
       "source_location": "L9",
       "id": "program_state_programstate",
-      "community": 21,
+      "community": 23,
       "norm_label": "programstate"
     },
     {
@@ -504,7 +594,7 @@
       "source_file": "anchor/programs/peaceleague/src/states/mod.rs",
       "source_location": "L1",
       "id": "anchor_programs_peaceleague_src_states_mod_rs",
-      "community": 44,
+      "community": 50,
       "norm_label": "mod.rs"
     },
     {
@@ -513,7 +603,7 @@
       "source_file": "anchor/programs/peaceleague/src/states/campaign.rs",
       "source_location": "L1",
       "id": "anchor_programs_peaceleague_src_states_campaign_rs",
-      "community": 10,
+      "community": 11,
       "norm_label": "campaign.rs"
     },
     {
@@ -522,7 +612,7 @@
       "source_file": "anchor/programs/peaceleague/src/states/campaign.rs",
       "source_location": "L8",
       "id": "campaign_campaign",
-      "community": 10,
+      "community": 11,
       "norm_label": "campaign"
     },
     {
@@ -531,7 +621,7 @@
       "source_file": "anchor/programs/peaceleague/src/states/campaign.rs",
       "source_location": "L37",
       "id": "campaign_campaign_seeds",
-      "community": 10,
+      "community": 11,
       "norm_label": ".seeds()"
     },
     {
@@ -540,7 +630,7 @@
       "source_file": "anchor/programs/peaceleague/src/states/campaign.rs",
       "source_location": "L42",
       "id": "campaign_campaign_is_funded",
-      "community": 10,
+      "community": 11,
       "norm_label": ".is_funded()"
     },
     {
@@ -549,7 +639,7 @@
       "source_file": "anchor/programs/peaceleague/src/states/campaign.rs",
       "source_location": "L47",
       "id": "campaign_campaign_can_donate",
-      "community": 10,
+      "community": 11,
       "norm_label": ".can_donate()"
     },
     {
@@ -769,12 +859,30 @@
       "norm_label": "withdraw"
     },
     {
+      "label": "init-state.js",
+      "file_type": "code",
+      "source_file": "scripts/init-state.js",
+      "source_location": "L1",
+      "id": "scripts_init_state_js",
+      "community": 24,
+      "norm_label": "init-state.js"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "scripts/init-state.js",
+      "source_location": "L10",
+      "id": "init_state_main",
+      "community": 24,
+      "norm_label": "main()"
+    },
+    {
       "label": "campaign.ts",
       "file_type": "code",
       "source_file": "types/campaign.ts",
       "source_location": "L1",
       "id": "types_campaign_ts",
-      "community": 45,
+      "community": 51,
       "norm_label": "campaign.ts"
     },
     {
@@ -783,7 +891,7 @@
       "source_file": "contexts/ContextProvider.tsx",
       "source_location": "L1",
       "id": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_contexts_contextprovider_tsx",
-      "community": 22,
+      "community": 25,
       "norm_label": "contextprovider.tsx"
     },
     {
@@ -792,7 +900,7 @@
       "source_file": "contexts/ContextProvider.tsx",
       "source_location": "L15",
       "id": "contextprovider_walletcontextprovider",
-      "community": 22,
+      "community": 25,
       "norm_label": "walletcontextprovider()"
     },
     {
@@ -801,7 +909,7 @@
       "source_file": "lib/utils.ts",
       "source_location": "L1",
       "id": "lib_utils_ts",
-      "community": 23,
+      "community": 26,
       "norm_label": "utils.ts"
     },
     {
@@ -810,7 +918,7 @@
       "source_file": "lib/utils.ts",
       "source_location": "L4",
       "id": "utils_cn",
-      "community": 23,
+      "community": 26,
       "norm_label": "cn()"
     },
     {
@@ -819,7 +927,7 @@
       "source_file": "lib/program.test.ts",
       "source_location": "L1",
       "id": "lib_program_test_ts",
-      "community": 46,
+      "community": 52,
       "norm_label": "program.test.ts"
     },
     {
@@ -827,7 +935,7 @@
       "file_type": "code",
       "source_file": "lib/peaceleague-client.ts",
       "source_location": "L1",
-      "id": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "id": "lib_peaceleague_client_ts",
       "community": 5,
       "norm_label": "peaceleague-client.ts"
     },
@@ -889,7 +997,7 @@
       "label": "getProgramState()",
       "file_type": "code",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L151",
+      "source_location": "L152",
       "id": "peaceleague_client_getprogramstate",
       "community": 5,
       "norm_label": "getprogramstate()"
@@ -898,7 +1006,7 @@
       "label": "getCampaigns()",
       "file_type": "code",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L176",
+      "source_location": "L178",
       "id": "peaceleague_client_getcampaigns",
       "community": 5,
       "norm_label": "getcampaigns()"
@@ -907,7 +1015,7 @@
       "label": "getCampaign()",
       "file_type": "code",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L202",
+      "source_location": "L204",
       "id": "peaceleague_client_getcampaign",
       "community": 5,
       "norm_label": "getcampaign()"
@@ -916,7 +1024,7 @@
       "label": "getCampaignsByAuthor()",
       "file_type": "code",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L217",
+      "source_location": "L219",
       "id": "peaceleague_client_getcampaignsbyauthor",
       "community": 5,
       "norm_label": "getcampaignsbyauthor()"
@@ -925,7 +1033,7 @@
       "label": "solToLamports()",
       "file_type": "code",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L240",
+      "source_location": "L242",
       "id": "peaceleague_client_soltolamports",
       "community": 5,
       "norm_label": "soltolamports()"
@@ -934,7 +1042,7 @@
       "label": "lamportsToSol()",
       "file_type": "code",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L244",
+      "source_location": "L246",
       "id": "peaceleague_client_lamportstosol",
       "community": 5,
       "norm_label": "lamportstosol()"
@@ -943,7 +1051,7 @@
       "label": "createCampaignTx()",
       "file_type": "code",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L258",
+      "source_location": "L260",
       "id": "peaceleague_client_createcampaigntx",
       "community": 5,
       "norm_label": "createcampaigntx()"
@@ -952,7 +1060,7 @@
       "label": "donateToCampaignTx()",
       "file_type": "code",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L342",
+      "source_location": "L345",
       "id": "peaceleague_client_donatetocampaigntx",
       "community": 5,
       "norm_label": "donatetocampaigntx()"
@@ -963,7 +1071,7 @@
       "source_file": "/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica-anchor/lib/solana-rpc.ts",
       "source_location": "L1",
       "id": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_anchor_lib_solana_rpc_ts",
-      "community": 3,
+      "community": 4,
       "norm_label": "solana-rpc.ts"
     },
     {
@@ -972,7 +1080,7 @@
       "source_file": "/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica-anchor/lib/solana-rpc.ts",
       "source_location": "L6",
       "id": "solana_rpc_getsolanarpc",
-      "community": 3,
+      "community": 4,
       "norm_label": "getsolanarpc()"
     },
     {
@@ -981,7 +1089,7 @@
       "source_file": "/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica-anchor/lib/solana-rpc.ts",
       "source_location": "L15",
       "id": "solana_rpc_lamportstosol",
-      "community": 3,
+      "community": 4,
       "norm_label": "lamportstosol()"
     },
     {
@@ -990,7 +1098,7 @@
       "source_file": "/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica-anchor/lib/solana-rpc.ts",
       "source_location": "L20",
       "id": "solana_rpc_soltolamports",
-      "community": 3,
+      "community": 4,
       "norm_label": "soltolamports()"
     },
     {
@@ -999,7 +1107,7 @@
       "source_file": "/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica-anchor/lib/solana-rpc.ts",
       "source_location": "L25",
       "id": "solana_rpc_formatsol",
-      "community": 3,
+      "community": 4,
       "norm_label": "formatsol()"
     },
     {
@@ -1008,7 +1116,7 @@
       "source_file": "/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica-anchor/lib/solana-rpc.ts",
       "source_location": "L33",
       "id": "solana_rpc_getcurrentslot",
-      "community": 3,
+      "community": 4,
       "norm_label": "getcurrentslot()"
     },
     {
@@ -1017,7 +1125,7 @@
       "source_file": "/home/morzy/Documents/crypto/solana/dapps/peaceleagueafrica-anchor/lib/solana-rpc.ts",
       "source_location": "L40",
       "id": "solana_rpc_getrecentblockhash",
-      "community": 3,
+      "community": 4,
       "norm_label": "getrecentblockhash()"
     },
     {
@@ -1107,7 +1215,7 @@
       "source_file": "lib/cosmic.ts",
       "source_location": "L1",
       "id": "lib_cosmic_ts",
-      "community": 4,
+      "community": 3,
       "norm_label": "cosmic.ts"
     },
     {
@@ -1125,7 +1233,7 @@
       "source_file": "lib/cosmic.ts",
       "source_location": "L126",
       "id": "cosmic_getcampaignsbycategory",
-      "community": 4,
+      "community": 3,
       "norm_label": "getcampaignsbycategory()"
     },
     {
@@ -1134,7 +1242,7 @@
       "source_file": "lib/cosmic.ts",
       "source_location": "L139",
       "id": "cosmic_getcampaignbyslug",
-      "community": 4,
+      "community": 3,
       "norm_label": "getcampaignbyslug()"
     },
     {
@@ -1143,7 +1251,7 @@
       "source_file": "lib/cosmic.ts",
       "source_location": "L153",
       "id": "cosmic_getfeaturedcampaigns",
-      "community": 4,
+      "community": 3,
       "norm_label": "getfeaturedcampaigns()"
     },
     {
@@ -1152,7 +1260,7 @@
       "source_file": "lib/cosmic.ts",
       "source_location": "L167",
       "id": "cosmic_getstories",
-      "community": 4,
+      "community": 3,
       "norm_label": "getstories()"
     },
     {
@@ -1161,7 +1269,7 @@
       "source_file": "lib/cosmic.ts",
       "source_location": "L178",
       "id": "cosmic_getblogposts",
-      "community": 4,
+      "community": 3,
       "norm_label": "getblogposts()"
     },
     {
@@ -1170,7 +1278,7 @@
       "source_file": "lib/cosmic.ts",
       "source_location": "L192",
       "id": "cosmic_getblogpostbyslug",
-      "community": 4,
+      "community": 3,
       "norm_label": "getblogpostbyslug()"
     },
     {
@@ -1179,7 +1287,7 @@
       "source_file": "lib/cosmic.ts",
       "source_location": "L206",
       "id": "cosmic_getcampaignupdates",
-      "community": 4,
+      "community": 3,
       "norm_label": "getcampaignupdates()"
     },
     {
@@ -1188,7 +1296,7 @@
       "source_file": "lib/cosmic.ts",
       "source_location": "L220",
       "id": "cosmic_gettestimonials",
-      "community": 4,
+      "community": 3,
       "norm_label": "gettestimonials()"
     },
     {
@@ -1197,7 +1305,7 @@
       "source_file": "lib/cosmic.ts",
       "source_location": "L231",
       "id": "cosmic_getteammembers",
-      "community": 4,
+      "community": 3,
       "norm_label": "getteammembers()"
     },
     {
@@ -1206,7 +1314,7 @@
       "source_file": "lib/cosmic.ts",
       "source_location": "L242",
       "id": "cosmic_getgallery",
-      "community": 4,
+      "community": 3,
       "norm_label": "getgallery()"
     },
     {
@@ -1215,7 +1323,7 @@
       "source_file": "lib/cosmic.ts",
       "source_location": "L256",
       "id": "cosmic_getrecentdonors",
-      "community": 4,
+      "community": 3,
       "norm_label": "getrecentdonors()"
     },
     {
@@ -1224,8 +1332,26 @@
       "source_file": "lib/animations.ts",
       "source_location": "L1",
       "id": "lib_animations_ts",
-      "community": 47,
+      "community": 53,
       "norm_label": "animations.ts"
+    },
+    {
+      "label": "loading.tsx",
+      "file_type": "code",
+      "source_file": "app/loading.tsx",
+      "source_location": "L1",
+      "id": "app_loading_tsx",
+      "community": 27,
+      "norm_label": "loading.tsx"
+    },
+    {
+      "label": "Loading()",
+      "file_type": "code",
+      "source_file": "app/loading.tsx",
+      "source_location": "L5",
+      "id": "loading_loading",
+      "community": 27,
+      "norm_label": "loading()"
     },
     {
       "label": "providers.tsx",
@@ -1233,7 +1359,7 @@
       "source_file": "app/providers.tsx",
       "source_location": "L1",
       "id": "app_providers_tsx",
-      "community": 24,
+      "community": 28,
       "norm_label": "providers.tsx"
     },
     {
@@ -1242,7 +1368,7 @@
       "source_file": "app/providers.tsx",
       "source_location": "L11",
       "id": "providers_providers",
-      "community": 24,
+      "community": 28,
       "norm_label": "providers()"
     },
     {
@@ -1251,7 +1377,7 @@
       "source_file": "app/page.tsx",
       "source_location": "L1",
       "id": "app_page_tsx",
-      "community": 25,
+      "community": 29,
       "norm_label": "page.tsx"
     },
     {
@@ -1260,8 +1386,26 @@
       "source_file": "app/page.tsx",
       "source_location": "L15",
       "id": "page_generatestaticparams",
-      "community": 25,
+      "community": 29,
       "norm_label": "generatestaticparams()"
+    },
+    {
+      "label": "global-error.tsx",
+      "file_type": "code",
+      "source_file": "app/global-error.tsx",
+      "source_location": "L1",
+      "id": "app_global_error_tsx",
+      "community": 30,
+      "norm_label": "global-error.tsx"
+    },
+    {
+      "label": "GlobalError()",
+      "file_type": "code",
+      "source_file": "app/global-error.tsx",
+      "source_location": "L5",
+      "id": "global_error_globalerror",
+      "community": 30,
+      "norm_label": "globalerror()"
     },
     {
       "label": "home-client.tsx",
@@ -1285,16 +1429,34 @@
       "label": "HeroSection()",
       "file_type": "code",
       "source_file": "app/home-client.tsx",
-      "source_location": "L31",
+      "source_location": "L33",
       "id": "home_client_herosection",
       "community": 7,
       "norm_label": "herosection()"
     },
     {
+      "label": "CountriesSection()",
+      "file_type": "code",
+      "source_file": "app/home-client.tsx",
+      "source_location": "L92",
+      "id": "home_client_countriessection",
+      "community": 7,
+      "norm_label": "countriessection()"
+    },
+    {
+      "label": "TrustTransparencySection()",
+      "file_type": "code",
+      "source_file": "app/home-client.tsx",
+      "source_location": "L144",
+      "id": "home_client_trusttransparencysection",
+      "community": 7,
+      "norm_label": "trusttransparencysection()"
+    },
+    {
       "label": "FeaturedCampaignsSection()",
       "file_type": "code",
       "source_file": "app/home-client.tsx",
-      "source_location": "L90",
+      "source_location": "L194",
       "id": "home_client_featuredcampaignssection",
       "community": 7,
       "norm_label": "featuredcampaignssection()"
@@ -1303,7 +1465,7 @@
       "label": "ImpactStatsSection()",
       "file_type": "code",
       "source_file": "app/home-client.tsx",
-      "source_location": "L164",
+      "source_location": "L268",
       "id": "home_client_impactstatssection",
       "community": 7,
       "norm_label": "impactstatssection()"
@@ -1312,7 +1474,7 @@
       "label": "HowItWorksSection()",
       "file_type": "code",
       "source_file": "app/home-client.tsx",
-      "source_location": "L197",
+      "source_location": "L301",
       "id": "home_client_howitworkssection",
       "community": 7,
       "norm_label": "howitworkssection()"
@@ -1321,7 +1483,7 @@
       "label": "SolutionsSection()",
       "file_type": "code",
       "source_file": "app/home-client.tsx",
-      "source_location": "L243",
+      "source_location": "L347",
       "id": "home_client_solutionssection",
       "community": 7,
       "norm_label": "solutionssection()"
@@ -1330,7 +1492,7 @@
       "label": "TestimonialsSection()",
       "file_type": "code",
       "source_file": "app/home-client.tsx",
-      "source_location": "L294",
+      "source_location": "L398",
       "id": "home_client_testimonialssection",
       "community": 7,
       "norm_label": "testimonialssection()"
@@ -1341,7 +1503,7 @@
       "source_file": "app/layout.tsx",
       "source_location": "L1",
       "id": "app_layout_tsx",
-      "community": 26,
+      "community": 31,
       "norm_label": "layout.tsx"
     },
     {
@@ -1350,7 +1512,7 @@
       "source_file": "app/layout.tsx",
       "source_location": "L13",
       "id": "layout_rootlayout",
-      "community": 26,
+      "community": 31,
       "norm_label": "rootlayout()"
     },
     {
@@ -1359,7 +1521,7 @@
       "source_file": "app/privacy-policy/page.tsx",
       "source_location": "L1",
       "id": "app_privacy_policy_page_tsx",
-      "community": 48,
+      "community": 54,
       "norm_label": "page.tsx"
     },
     {
@@ -1386,7 +1548,7 @@
       "source_file": "app/campaign/[slug]/page.tsx",
       "source_location": "L1",
       "id": "app_campaign_slug_page_tsx",
-      "community": 4,
+      "community": 3,
       "norm_label": "page.tsx"
     },
     {
@@ -1395,7 +1557,7 @@
       "source_file": "app/campaign/[slug]/page.tsx",
       "source_location": "L8",
       "id": "page_campaignpage",
-      "community": 4,
+      "community": 3,
       "norm_label": "campaignpage()"
     },
     {
@@ -1404,7 +1566,7 @@
       "source_file": "app/about/page.tsx",
       "source_location": "L1",
       "id": "app_about_page_tsx",
-      "community": 49,
+      "community": 55,
       "norm_label": "page.tsx"
     },
     {
@@ -1476,7 +1638,7 @@
       "source_file": "app/campaigns/loading.tsx",
       "source_location": "L1",
       "id": "app_campaigns_loading_tsx",
-      "community": 50,
+      "community": 56,
       "norm_label": "loading.tsx"
     },
     {
@@ -1484,8 +1646,8 @@
       "file_type": "code",
       "source_file": "app/campaigns/campaigns-client.tsx",
       "source_location": "L1",
-      "id": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_campaigns_client_tsx",
-      "community": 51,
+      "id": "app_campaigns_campaigns_client_tsx",
+      "community": 57,
       "norm_label": "campaigns-client.tsx"
     },
     {
@@ -1511,26 +1673,26 @@
       "file_type": "code",
       "source_file": "app/campaigns/create/page.tsx",
       "source_location": "L1",
-      "id": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_create_page_tsx",
-      "community": 3,
+      "id": "app_campaigns_create_page_tsx",
+      "community": 4,
       "norm_label": "page.tsx"
     },
     {
       "label": "onSubmit()",
       "file_type": "code",
       "source_file": "app/campaigns/create/page.tsx",
-      "source_location": "L70",
+      "source_location": "L72",
       "id": "page_onsubmit",
-      "community": 3,
+      "community": 4,
       "norm_label": "onsubmit()"
     },
     {
       "label": "handleTransactionSuccess()",
       "file_type": "code",
       "source_file": "app/campaigns/create/page.tsx",
-      "source_location": "L103",
+      "source_location": "L105",
       "id": "page_handletransactionsuccess",
-      "community": 3,
+      "community": 4,
       "norm_label": "handletransactionsuccess()"
     },
     {
@@ -1538,53 +1700,53 @@
       "file_type": "code",
       "source_file": "app/campaigns/[id]/page.tsx",
       "source_location": "L1",
-      "id": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_id_page_tsx",
-      "community": 3,
+      "id": "app_campaigns_id_page_tsx",
+      "community": 4,
       "norm_label": "page.tsx"
     },
     {
       "label": "loadCampaign()",
       "file_type": "code",
       "source_file": "app/campaigns/[id]/page.tsx",
-      "source_location": "L49",
+      "source_location": "L50",
       "id": "page_loadcampaign",
-      "community": 3,
+      "community": 4,
       "norm_label": "loadcampaign()"
     },
     {
       "label": "validateAmount()",
       "file_type": "code",
       "source_file": "app/campaigns/[id]/page.tsx",
-      "source_location": "L60",
+      "source_location": "L61",
       "id": "page_validateamount",
-      "community": 3,
+      "community": 4,
       "norm_label": "validateamount()"
     },
     {
       "label": "handleDonateClick()",
       "file_type": "code",
       "source_file": "app/campaigns/[id]/page.tsx",
-      "source_location": "L71",
+      "source_location": "L72",
       "id": "page_handledonateclick",
-      "community": 3,
+      "community": 4,
       "norm_label": "handledonateclick()"
     },
     {
       "label": "handleTxSuccess()",
       "file_type": "code",
       "source_file": "app/campaigns/[id]/page.tsx",
-      "source_location": "L107",
+      "source_location": "L108",
       "id": "page_handletxsuccess",
-      "community": 3,
+      "community": 4,
       "norm_label": "handletxsuccess()"
     },
     {
       "label": "resetDonation()",
       "file_type": "code",
       "source_file": "app/campaigns/[id]/page.tsx",
-      "source_location": "L112",
+      "source_location": "L113",
       "id": "page_resetdonation",
-      "community": 3,
+      "community": 4,
       "norm_label": "resetdonation()"
     },
     {
@@ -1593,7 +1755,7 @@
       "source_file": "app/campaigns/_components/campaign-card.tsx",
       "source_location": "L1",
       "id": "app_campaigns_components_campaign_card_tsx",
-      "community": 12,
+      "community": 13,
       "norm_label": "campaign-card.tsx"
     },
     {
@@ -1602,7 +1764,7 @@
       "source_file": "app/campaigns/_components/campaign-filters.tsx",
       "source_location": "L1",
       "id": "app_campaigns_components_campaign_filters_tsx",
-      "community": 27,
+      "community": 32,
       "norm_label": "campaign-filters.tsx"
     },
     {
@@ -1611,7 +1773,7 @@
       "source_file": "app/campaigns/_components/campaign-filters.tsx",
       "source_location": "L30",
       "id": "campaign_filters_campaignfilters",
-      "community": 27,
+      "community": 32,
       "norm_label": "campaignfilters()"
     },
     {
@@ -1620,7 +1782,7 @@
       "source_file": "app/campaigns/_components/campaign-grid.tsx",
       "source_location": "L1",
       "id": "app_campaigns_components_campaign_grid_tsx",
-      "community": 28,
+      "community": 33,
       "norm_label": "campaign-grid.tsx"
     },
     {
@@ -1629,7 +1791,7 @@
       "source_file": "app/campaigns/_components/campaign-grid.tsx",
       "source_location": "L27",
       "id": "campaign_grid_campaigngrid",
-      "community": 28,
+      "community": 33,
       "norm_label": "campaigngrid()"
     },
     {
@@ -1638,8 +1800,26 @@
       "source_file": "app/careers/page.tsx",
       "source_location": "L1",
       "id": "app_careers_page_tsx",
-      "community": 52,
+      "community": 58,
       "norm_label": "page.tsx"
+    },
+    {
+      "label": "route.ts",
+      "file_type": "code",
+      "source_file": "app/api/newsletter/route.ts",
+      "source_location": "L1",
+      "id": "app_api_newsletter_route_ts",
+      "community": 1,
+      "norm_label": "route.ts"
+    },
+    {
+      "label": "POST()",
+      "file_type": "code",
+      "source_file": "app/api/cosmic/route.ts",
+      "source_location": "L32",
+      "id": "route_post",
+      "community": 1,
+      "norm_label": "post()"
     },
     {
       "label": "route.ts",
@@ -1658,15 +1838,6 @@
       "id": "route_get",
       "community": 1,
       "norm_label": "get()"
-    },
-    {
-      "label": "POST()",
-      "file_type": "code",
-      "source_file": "app/api/cosmic/route.ts",
-      "source_location": "L32",
-      "id": "route_post",
-      "community": 1,
-      "norm_label": "post()"
     },
     {
       "label": "PATCH()",
@@ -1692,7 +1863,7 @@
       "source_file": "app/team/page.tsx",
       "source_location": "L1",
       "id": "app_team_page_tsx",
-      "community": 29,
+      "community": 34,
       "norm_label": "page.tsx"
     },
     {
@@ -1701,7 +1872,7 @@
       "source_file": "app/team/page.tsx",
       "source_location": "L43",
       "id": "page_getinitials",
-      "community": 29,
+      "community": 34,
       "norm_label": "getinitials()"
     },
     {
@@ -1710,7 +1881,7 @@
       "source_file": "app/faq/page.tsx",
       "source_location": "L1",
       "id": "app_faq_page_tsx",
-      "community": 53,
+      "community": 59,
       "norm_label": "page.tsx"
     },
     {
@@ -1719,7 +1890,7 @@
       "source_file": "app/contact/page.tsx",
       "source_location": "L1",
       "id": "app_contact_page_tsx",
-      "community": 54,
+      "community": 60,
       "norm_label": "page.tsx"
     },
     {
@@ -1746,8 +1917,26 @@
       "source_file": "app/terms-conditions/page.tsx",
       "source_location": "L1",
       "id": "app_terms_conditions_page_tsx",
-      "community": 55,
+      "community": 61,
       "norm_label": "page.tsx"
+    },
+    {
+      "label": "newsletter.ts",
+      "file_type": "code",
+      "source_file": "app/actions/newsletter.ts",
+      "source_location": "L1",
+      "id": "app_actions_newsletter_ts",
+      "community": 35,
+      "norm_label": "newsletter.ts"
+    },
+    {
+      "label": "subscribeToNewsletter()",
+      "file_type": "code",
+      "source_file": "app/actions/newsletter.ts",
+      "source_location": "L5",
+      "id": "newsletter_subscribetonewsletter",
+      "community": 35,
+      "norm_label": "subscribetonewsletter()"
     },
     {
       "label": "page.tsx",
@@ -1755,7 +1944,7 @@
       "source_file": "app/donor-list/page.tsx",
       "source_location": "L1",
       "id": "app_donor_list_page_tsx",
-      "community": 56,
+      "community": 62,
       "norm_label": "page.tsx"
     },
     {
@@ -1764,7 +1953,7 @@
       "source_file": "app/events/page.tsx",
       "source_location": "L1",
       "id": "app_events_page_tsx",
-      "community": 57,
+      "community": 63,
       "norm_label": "page.tsx"
     },
     {
@@ -1773,7 +1962,7 @@
       "source_file": "app/testimonials/page.tsx",
       "source_location": "L1",
       "id": "app_testimonials_page_tsx",
-      "community": 58,
+      "community": 64,
       "norm_label": "page.tsx"
     },
     {
@@ -1809,7 +1998,7 @@
       "source_file": "app/image-gallery/page.tsx",
       "source_location": "L1",
       "id": "app_image_gallery_page_tsx",
-      "community": 59,
+      "community": 65,
       "norm_label": "page.tsx"
     },
     {
@@ -1818,7 +2007,7 @@
       "source_file": "app/support-ticket/page.tsx",
       "source_location": "L1",
       "id": "app_support_ticket_page_tsx",
-      "community": 60,
+      "community": 66,
       "norm_label": "page.tsx"
     },
     {
@@ -1827,7 +2016,7 @@
       "source_file": "app/how-it-works/page.tsx",
       "source_location": "L1",
       "id": "app_how_it_works_page_tsx",
-      "community": 30,
+      "community": 36,
       "norm_label": "page.tsx"
     },
     {
@@ -1836,7 +2025,7 @@
       "source_file": "app/how-it-works/page.tsx",
       "source_location": "L74",
       "id": "page_howitworkspage",
-      "community": 30,
+      "community": 36,
       "norm_label": "howitworkspage()"
     },
     {
@@ -1845,7 +2034,7 @@
       "source_file": "app/blog/page.tsx",
       "source_location": "L1",
       "id": "app_blog_page_tsx",
-      "community": 61,
+      "community": 67,
       "norm_label": "page.tsx"
     },
     {
@@ -1854,7 +2043,7 @@
       "source_file": "app/blog/[slug]/page.tsx",
       "source_location": "L1",
       "id": "app_blog_slug_page_tsx",
-      "community": 4,
+      "community": 3,
       "norm_label": "page.tsx"
     },
     {
@@ -1863,7 +2052,7 @@
       "source_file": "app/blog/[slug]/page.tsx",
       "source_location": "L13",
       "id": "page_generatemetadata",
-      "community": 4,
+      "community": 3,
       "norm_label": "generatemetadata()"
     },
     {
@@ -1871,7 +2060,7 @@
       "file_type": "document",
       "source_file": "README.md",
       "source_location": null,
-      "community": 62,
+      "community": 68,
       "norm_label": "readme",
       "id": "README"
     },
@@ -1880,7 +2069,7 @@
       "file_type": "document",
       "source_file": "SOLANA_FRONTEND_AGENT.md",
       "source_location": null,
-      "community": 63,
+      "community": 69,
       "norm_label": "solana frontend agent",
       "id": "SOLANA_FRONTEND_AGENT"
     },
@@ -1889,7 +2078,7 @@
       "file_type": "document",
       "source_file": "SOLANA_EXPERT_AGENT.md",
       "source_location": null,
-      "community": 64,
+      "community": 70,
       "norm_label": "solana expert agent",
       "id": "SOLANA_EXPERT_AGENT"
     },
@@ -1898,7 +2087,7 @@
       "file_type": "document",
       "source_file": "LICENSE.md",
       "source_location": null,
-      "community": 65,
+      "community": 71,
       "norm_label": "license",
       "id": "LICENSE"
     },
@@ -1907,7 +2096,7 @@
       "file_type": "document",
       "source_file": "CLAUDE.md",
       "source_location": null,
-      "community": 66,
+      "community": 72,
       "norm_label": "claude",
       "id": "CLAUDE"
     },
@@ -1961,7 +2150,7 @@
       "file_type": "concept",
       "source": "tutorial",
       "description": "Connect user Phantom wallet to Next.js frontend using @solana/wallet-adapter",
-      "community": 11,
+      "community": 12,
       "norm_label": "phantom wallet connection",
       "id": "phantom_wallet_connection"
     },
@@ -1970,7 +2159,7 @@
       "file_type": "concept",
       "source": "tutorial",
       "description": "Bridge between frontend and Anchor program for transactions",
-      "community": 11,
+      "community": 12,
       "norm_label": "anchorprovider",
       "id": "anchor_provider"
     },
@@ -1979,7 +2168,7 @@
       "file_type": "concept",
       "source": "tutorial",
       "description": "TypeScript class wrapping IDL to interact with Solana program",
-      "community": 11,
+      "community": 12,
       "norm_label": "program interface",
       "id": "program_interface"
     },
@@ -1988,7 +2177,7 @@
       "file_type": "file",
       "source": "tutorial",
       "description": "Interface Definition Language file from Anchor build - describes program structure",
-      "community": 11,
+      "community": 12,
       "norm_label": "idl.json",
       "id": "idl_json"
     },
@@ -1997,7 +2186,7 @@
       "file_type": "workflow",
       "source": "tutorial",
       "description": "User connects Phantom wallet \u2192 app detects wallet \u2192 enables interactions",
-      "community": 11,
+      "community": 12,
       "norm_label": "connect wallet flow",
       "id": "connect_wallet_flow"
     },
@@ -2033,7 +2222,7 @@
       "file_type": "setup",
       "source": "tutorial",
       "description": "solana config set --url devnet, airdrop SOL for testing",
-      "community": 31,
+      "community": 37,
       "norm_label": "solana devnet setup",
       "id": "solana_devnet_setup"
     },
@@ -2042,7 +2231,7 @@
       "file_type": "command",
       "source": "tutorial",
       "description": "anchor build && anchor deploy - deploys program to devnet",
-      "community": 31,
+      "community": 37,
       "norm_label": "anchor deploy",
       "id": "anchor_deploy"
     },
@@ -2078,7 +2267,7 @@
       "file_type": "instruction",
       "source": "FUNDUS_REFERENCE.md",
       "description": "One-time program initialization",
-      "community": 67,
+      "community": 73,
       "norm_label": "initialize",
       "id": "initialize_instruction"
     },
@@ -2087,7 +2276,7 @@
       "file_type": "instruction",
       "source": "FUNDUS_REFERENCE.md",
       "description": "Update campaign details",
-      "community": 68,
+      "community": 74,
       "norm_label": "update campaign",
       "id": "update_campaign_instruction"
     },
@@ -2096,7 +2285,7 @@
       "file_type": "instruction",
       "source": "FUNDUS_REFERENCE.md",
       "description": "Delete campaign",
-      "community": 69,
+      "community": 75,
       "norm_label": "delete campaign",
       "id": "delete_campaign_instruction"
     },
@@ -2132,7 +2321,7 @@
       "file_type": "feature",
       "source": "FUNDUS_REFERENCE.md",
       "description": "Display all campaigns with progress bars",
-      "community": 70,
+      "community": 76,
       "norm_label": "campaign listing",
       "id": "campaign_listing"
     },
@@ -2141,7 +2330,7 @@
       "file_type": "feature",
       "source": "FUNDUS_REFERENCE.md",
       "description": "Form to create new campaign",
-      "community": 71,
+      "community": 77,
       "norm_label": "create campaign form",
       "id": "create_campaign_form"
     },
@@ -2150,7 +2339,7 @@
       "file_type": "feature",
       "source": "FUNDUS_REFERENCE.md",
       "description": "Connect wallet, enter amount, confirm transaction",
-      "community": 72,
+      "community": 78,
       "norm_label": "donation flow",
       "id": "donation_flow"
     },
@@ -2159,7 +2348,7 @@
       "file_type": "feature",
       "source": "FUNDUS_REFERENCE.md",
       "description": "Creator withdraws raised funds after goal met",
-      "community": 73,
+      "community": 79,
       "norm_label": "withdrawal flow",
       "id": "withdrawal_flow"
     },
@@ -2168,7 +2357,7 @@
       "file_type": "rule",
       "source": "FUNDUS_REFERENCE.md",
       "description": "Minimum 1 SOL (1B lamports) for campaign goal",
-      "community": 74,
+      "community": 80,
       "norm_label": "min goal validation",
       "id": "min_goal_validation"
     },
@@ -2259,24 +2448,12 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/layout/header.tsx",
-      "source_location": "L54",
+      "source_location": "L26",
       "weight": 1.0,
       "_src": "components_layout_header_tsx",
       "_tgt": "header_handlescroll",
       "source": "components_layout_header_tsx",
       "target": "header_handlescroll",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "components/layout/header.tsx",
-      "source_location": "L63",
-      "weight": 1.0,
-      "_src": "components_layout_header_tsx",
-      "_tgt": "header_handleclickoutside",
-      "source": "components_layout_header_tsx",
-      "target": "header_handleclickoutside",
       "confidence_score": 1.0
     },
     {
@@ -2295,7 +2472,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/layout/footer.tsx",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0,
       "_src": "components_layout_footer_tsx",
       "_tgt": "footer_footer",
@@ -2307,7 +2484,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/layout/footer.tsx",
-      "source_location": "L161",
+      "source_location": "L148",
       "weight": 1.0,
       "_src": "components_layout_footer_tsx",
       "_tgt": "footer_sociallink",
@@ -2390,6 +2567,18 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "components/ui/newsletter-form.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "components_ui_newsletter_form_tsx",
+      "_tgt": "newsletter_form_newsletterform",
+      "source": "components_ui_newsletter_form_tsx",
+      "target": "newsletter_form_newsletterform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "components/ui/tailgrids.tsx",
       "source_location": "L22",
       "weight": 1.0,
@@ -2457,6 +2646,102 @@
       "_tgt": "address_display_handlecopy",
       "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_components_ui_address_display_tsx",
       "target": "address_display_handlecopy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "components_ui_skeleton_tsx",
+      "_tgt": "skeleton_skeleton",
+      "source": "components_ui_skeleton_tsx",
+      "target": "skeleton_skeleton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_src": "components_ui_skeleton_tsx",
+      "_tgt": "skeleton_campaigncardskeleton",
+      "source": "components_ui_skeleton_tsx",
+      "target": "skeleton_campaigncardskeleton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L78",
+      "weight": 1.0,
+      "_src": "components_ui_skeleton_tsx",
+      "_tgt": "skeleton_campaigngridskeleton",
+      "source": "components_ui_skeleton_tsx",
+      "target": "skeleton_campaigngridskeleton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L93",
+      "weight": 1.0,
+      "_src": "components_ui_skeleton_tsx",
+      "_tgt": "skeleton_statscardskeleton",
+      "source": "components_ui_skeleton_tsx",
+      "target": "skeleton_statscardskeleton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L112",
+      "weight": 1.0,
+      "_src": "components_ui_skeleton_tsx",
+      "_tgt": "skeleton_teammemberskeleton",
+      "source": "components_ui_skeleton_tsx",
+      "target": "skeleton_teammemberskeleton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L130",
+      "weight": 1.0,
+      "_src": "components_ui_skeleton_tsx",
+      "_tgt": "skeleton_tablerowskeleton",
+      "source": "components_ui_skeleton_tsx",
+      "target": "skeleton_tablerowskeleton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L148",
+      "weight": 1.0,
+      "_src": "components_ui_skeleton_tsx",
+      "_tgt": "skeleton_heroskeleton",
+      "source": "components_ui_skeleton_tsx",
+      "target": "skeleton_heroskeleton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/ui/skeleton.tsx",
+      "source_location": "L167",
+      "weight": 1.0,
+      "_src": "components_ui_skeleton_tsx",
+      "_tgt": "skeleton_featurecardskeleton",
+      "source": "components_ui_skeleton_tsx",
+      "target": "skeleton_featurecardskeleton",
       "confidence_score": 1.0
     },
     {
@@ -2990,6 +3275,18 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "scripts/init-state.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "scripts_init_state_js",
+      "_tgt": "init_state_main",
+      "source": "scripts_init_state_js",
+      "target": "init_state_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "contexts/ContextProvider.tsx",
       "source_location": "L15",
       "weight": 1.0,
@@ -3017,9 +3314,9 @@
       "source_file": "lib/peaceleague-client.ts",
       "source_location": "L17",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "_src": "lib_peaceleague_client_ts",
       "_tgt": "peaceleague_client_getconnection",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "source": "lib_peaceleague_client_ts",
       "target": "peaceleague_client_getconnection",
       "confidence_score": 1.0
     },
@@ -3029,9 +3326,9 @@
       "source_file": "lib/peaceleague-client.ts",
       "source_location": "L37",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "_src": "lib_peaceleague_client_ts",
       "_tgt": "peaceleague_client_getstateaddress",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "source": "lib_peaceleague_client_ts",
       "target": "peaceleague_client_getstateaddress",
       "confidence_score": 1.0
     },
@@ -3041,9 +3338,9 @@
       "source_file": "lib/peaceleague-client.ts",
       "source_location": "L47",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "_src": "lib_peaceleague_client_ts",
       "_tgt": "peaceleague_client_getcampaignaddress",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "source": "lib_peaceleague_client_ts",
       "target": "peaceleague_client_getcampaignaddress",
       "confidence_score": 1.0
     },
@@ -3053,9 +3350,9 @@
       "source_file": "lib/peaceleague-client.ts",
       "source_location": "L57",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "_src": "lib_peaceleague_client_ts",
       "_tgt": "peaceleague_client_readbigint64le",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "source": "lib_peaceleague_client_ts",
       "target": "peaceleague_client_readbigint64le",
       "confidence_score": 1.0
     },
@@ -3065,9 +3362,9 @@
       "source_file": "lib/peaceleague-client.ts",
       "source_location": "L65",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "_src": "lib_peaceleague_client_ts",
       "_tgt": "peaceleague_client_readuint32le",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "source": "lib_peaceleague_client_ts",
       "target": "peaceleague_client_readuint32le",
       "confidence_score": 1.0
     },
@@ -3077,9 +3374,9 @@
       "source_file": "lib/peaceleague-client.ts",
       "source_location": "L90",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "_src": "lib_peaceleague_client_ts",
       "_tgt": "peaceleague_client_parsecampaignaccount",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "source": "lib_peaceleague_client_ts",
       "target": "peaceleague_client_parsecampaignaccount",
       "confidence_score": 1.0
     },
@@ -3087,11 +3384,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L151",
+      "source_location": "L152",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "_src": "lib_peaceleague_client_ts",
       "_tgt": "peaceleague_client_getprogramstate",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "source": "lib_peaceleague_client_ts",
       "target": "peaceleague_client_getprogramstate",
       "confidence_score": 1.0
     },
@@ -3099,11 +3396,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L176",
+      "source_location": "L178",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "_src": "lib_peaceleague_client_ts",
       "_tgt": "peaceleague_client_getcampaigns",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "source": "lib_peaceleague_client_ts",
       "target": "peaceleague_client_getcampaigns",
       "confidence_score": 1.0
     },
@@ -3111,11 +3408,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L202",
+      "source_location": "L204",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "_src": "lib_peaceleague_client_ts",
       "_tgt": "peaceleague_client_getcampaign",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "source": "lib_peaceleague_client_ts",
       "target": "peaceleague_client_getcampaign",
       "confidence_score": 1.0
     },
@@ -3123,11 +3420,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L217",
+      "source_location": "L219",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "_src": "lib_peaceleague_client_ts",
       "_tgt": "peaceleague_client_getcampaignsbyauthor",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "source": "lib_peaceleague_client_ts",
       "target": "peaceleague_client_getcampaignsbyauthor",
       "confidence_score": 1.0
     },
@@ -3135,11 +3432,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L240",
+      "source_location": "L242",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "_src": "lib_peaceleague_client_ts",
       "_tgt": "peaceleague_client_soltolamports",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "source": "lib_peaceleague_client_ts",
       "target": "peaceleague_client_soltolamports",
       "confidence_score": 1.0
     },
@@ -3147,11 +3444,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L244",
+      "source_location": "L246",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "_src": "lib_peaceleague_client_ts",
       "_tgt": "peaceleague_client_lamportstosol",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "source": "lib_peaceleague_client_ts",
       "target": "peaceleague_client_lamportstosol",
       "confidence_score": 1.0
     },
@@ -3159,11 +3456,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L258",
+      "source_location": "L260",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "_src": "lib_peaceleague_client_ts",
       "_tgt": "peaceleague_client_createcampaigntx",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "source": "lib_peaceleague_client_ts",
       "target": "peaceleague_client_createcampaigntx",
       "confidence_score": 1.0
     },
@@ -3171,11 +3468,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L342",
+      "source_location": "L345",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "_src": "lib_peaceleague_client_ts",
       "_tgt": "peaceleague_client_donatetocampaigntx",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_lib_peaceleague_client_ts",
+      "source": "lib_peaceleague_client_ts",
       "target": "peaceleague_client_donatetocampaigntx",
       "confidence_score": 1.0
     },
@@ -3183,7 +3480,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L153",
+      "source_location": "L154",
       "weight": 1.0,
       "_src": "peaceleague_client_getprogramstate",
       "_tgt": "peaceleague_client_getconnection",
@@ -3195,7 +3492,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L180",
+      "source_location": "L182",
       "weight": 1.0,
       "_src": "peaceleague_client_getcampaigns",
       "_tgt": "peaceleague_client_getconnection",
@@ -3207,7 +3504,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L204",
+      "source_location": "L206",
       "weight": 1.0,
       "_src": "peaceleague_client_getcampaign",
       "_tgt": "peaceleague_client_getconnection",
@@ -3219,7 +3516,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L154",
+      "source_location": "L155",
       "weight": 1.0,
       "_src": "peaceleague_client_getprogramstate",
       "_tgt": "peaceleague_client_getstateaddress",
@@ -3231,7 +3528,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L268",
+      "source_location": "L270",
       "weight": 1.0,
       "_src": "peaceleague_client_createcampaigntx",
       "_tgt": "peaceleague_client_getstateaddress",
@@ -3243,7 +3540,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L186",
+      "source_location": "L188",
       "weight": 1.0,
       "_src": "peaceleague_client_getcampaigns",
       "_tgt": "peaceleague_client_getcampaignaddress",
@@ -3255,7 +3552,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L205",
+      "source_location": "L207",
       "weight": 1.0,
       "_src": "peaceleague_client_getcampaign",
       "_tgt": "peaceleague_client_getcampaignaddress",
@@ -3267,7 +3564,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L350",
+      "source_location": "L353",
       "weight": 1.0,
       "_src": "peaceleague_client_donatetocampaigntx",
       "_tgt": "peaceleague_client_getcampaignaddress",
@@ -3279,7 +3576,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L116",
+      "source_location": "L117",
       "weight": 1.0,
       "_src": "peaceleague_client_parsecampaignaccount",
       "_tgt": "peaceleague_client_readbigint64le",
@@ -3291,7 +3588,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L160",
+      "source_location": "L162",
       "weight": 1.0,
       "_src": "peaceleague_client_getprogramstate",
       "_tgt": "peaceleague_client_readbigint64le",
@@ -3303,7 +3600,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L273",
+      "source_location": "L276",
       "weight": 1.0,
       "_src": "peaceleague_client_createcampaigntx",
       "_tgt": "peaceleague_client_readbigint64le",
@@ -3315,7 +3612,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L98",
+      "source_location": "L99",
       "weight": 1.0,
       "_src": "peaceleague_client_parsecampaignaccount",
       "_tgt": "peaceleague_client_readuint32le",
@@ -3327,7 +3624,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L189",
+      "source_location": "L191",
       "weight": 1.0,
       "_src": "peaceleague_client_getcampaigns",
       "_tgt": "peaceleague_client_parsecampaignaccount",
@@ -3339,7 +3636,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L207",
+      "source_location": "L209",
       "weight": 1.0,
       "_src": "peaceleague_client_getcampaign",
       "_tgt": "peaceleague_client_parsecampaignaccount",
@@ -3351,7 +3648,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L177",
+      "source_location": "L179",
       "weight": 1.0,
       "_src": "peaceleague_client_getcampaigns",
       "_tgt": "peaceleague_client_getprogramstate",
@@ -3363,7 +3660,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L221",
+      "source_location": "L223",
       "weight": 1.0,
       "_src": "peaceleague_client_getcampaignsbyauthor",
       "_tgt": "peaceleague_client_getprogramstate",
@@ -3375,7 +3672,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/peaceleague-client.ts",
-      "source_location": "L229",
+      "source_location": "L231",
       "weight": 1.0,
       "_src": "peaceleague_client_getcampaignsbyauthor",
       "_tgt": "peaceleague_client_getcampaign",
@@ -3390,8 +3687,8 @@
       "source_file": "app/campaigns/[id]/page.tsx",
       "source_location": "L51",
       "weight": 1.0,
-      "_src": "page_loadcampaign",
-      "_tgt": "peaceleague_client_getcampaign",
+      "_src": "peaceleague_client_getcampaign",
+      "_tgt": "page_loadcampaign",
       "source": "peaceleague_client_getcampaign",
       "target": "page_loadcampaign"
     },
@@ -3402,8 +3699,8 @@
       "source_file": "app/campaigns/create/page.tsx",
       "source_location": "L79",
       "weight": 1.0,
-      "_src": "page_onsubmit",
-      "_tgt": "peaceleague_client_createcampaigntx",
+      "_src": "peaceleague_client_createcampaigntx",
+      "_tgt": "page_onsubmit",
       "source": "peaceleague_client_createcampaigntx",
       "target": "page_onsubmit"
     },
@@ -3414,8 +3711,8 @@
       "source_file": "app/campaigns/[id]/page.tsx",
       "source_location": "L88",
       "weight": 1.0,
-      "_src": "page_handledonateclick",
-      "_tgt": "peaceleague_client_donatetocampaigntx",
+      "_src": "peaceleague_client_donatetocampaigntx",
+      "_tgt": "page_handledonateclick",
       "source": "peaceleague_client_donatetocampaigntx",
       "target": "page_handledonateclick"
     },
@@ -3522,8 +3819,8 @@
       "source_file": "app/campaigns/create/page.tsx",
       "source_location": "L77",
       "weight": 1.0,
-      "_src": "page_onsubmit",
-      "_tgt": "solana_rpc_soltolamports",
+      "_src": "solana_rpc_soltolamports",
+      "_tgt": "page_onsubmit",
       "source": "solana_rpc_soltolamports",
       "target": "page_onsubmit"
     },
@@ -3534,8 +3831,8 @@
       "source_file": "app/campaigns/[id]/page.tsx",
       "source_location": "L86",
       "weight": 1.0,
-      "_src": "page_handledonateclick",
-      "_tgt": "solana_rpc_soltolamports",
+      "_src": "solana_rpc_soltolamports",
+      "_tgt": "page_handledonateclick",
       "source": "solana_rpc_soltolamports",
       "target": "page_handledonateclick"
     },
@@ -3926,6 +4223,18 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "app/loading.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "app_loading_tsx",
+      "_tgt": "loading_loading",
+      "source": "app_loading_tsx",
+      "target": "loading_loading",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "app/providers.tsx",
       "source_location": "L11",
       "weight": 1.0,
@@ -3950,6 +4259,18 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "app/global-error.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "app_global_error_tsx",
+      "_tgt": "global_error_globalerror",
+      "source": "app_global_error_tsx",
+      "target": "global_error_globalerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "app/home-client.tsx",
       "source_location": "L16",
       "weight": 1.0,
@@ -3963,7 +4284,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/home-client.tsx",
-      "source_location": "L31",
+      "source_location": "L33",
       "weight": 1.0,
       "_src": "app_home_client_tsx",
       "_tgt": "home_client_herosection",
@@ -3975,7 +4296,31 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/home-client.tsx",
-      "source_location": "L90",
+      "source_location": "L92",
+      "weight": 1.0,
+      "_src": "app_home_client_tsx",
+      "_tgt": "home_client_countriessection",
+      "source": "app_home_client_tsx",
+      "target": "home_client_countriessection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/home-client.tsx",
+      "source_location": "L144",
+      "weight": 1.0,
+      "_src": "app_home_client_tsx",
+      "_tgt": "home_client_trusttransparencysection",
+      "source": "app_home_client_tsx",
+      "target": "home_client_trusttransparencysection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/home-client.tsx",
+      "source_location": "L194",
       "weight": 1.0,
       "_src": "app_home_client_tsx",
       "_tgt": "home_client_featuredcampaignssection",
@@ -3987,7 +4332,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/home-client.tsx",
-      "source_location": "L164",
+      "source_location": "L268",
       "weight": 1.0,
       "_src": "app_home_client_tsx",
       "_tgt": "home_client_impactstatssection",
@@ -3999,7 +4344,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/home-client.tsx",
-      "source_location": "L197",
+      "source_location": "L301",
       "weight": 1.0,
       "_src": "app_home_client_tsx",
       "_tgt": "home_client_howitworkssection",
@@ -4011,7 +4356,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/home-client.tsx",
-      "source_location": "L243",
+      "source_location": "L347",
       "weight": 1.0,
       "_src": "app_home_client_tsx",
       "_tgt": "home_client_solutionssection",
@@ -4023,7 +4368,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/home-client.tsx",
-      "source_location": "L294",
+      "source_location": "L398",
       "weight": 1.0,
       "_src": "app_home_client_tsx",
       "_tgt": "home_client_testimonialssection",
@@ -4167,11 +4512,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/campaigns/create/page.tsx",
-      "source_location": "L70",
+      "source_location": "L72",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_create_page_tsx",
+      "_src": "app_campaigns_create_page_tsx",
       "_tgt": "page_onsubmit",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_create_page_tsx",
+      "source": "app_campaigns_create_page_tsx",
       "target": "page_onsubmit",
       "confidence_score": 1.0
     },
@@ -4179,11 +4524,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/campaigns/create/page.tsx",
-      "source_location": "L103",
+      "source_location": "L105",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_create_page_tsx",
+      "_src": "app_campaigns_create_page_tsx",
       "_tgt": "page_handletransactionsuccess",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_create_page_tsx",
+      "source": "app_campaigns_create_page_tsx",
       "target": "page_handletransactionsuccess",
       "confidence_score": 1.0
     },
@@ -4191,11 +4536,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/campaigns/[id]/page.tsx",
-      "source_location": "L49",
+      "source_location": "L50",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_id_page_tsx",
+      "_src": "app_campaigns_id_page_tsx",
       "_tgt": "page_loadcampaign",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_id_page_tsx",
+      "source": "app_campaigns_id_page_tsx",
       "target": "page_loadcampaign",
       "confidence_score": 1.0
     },
@@ -4203,11 +4548,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/campaigns/[id]/page.tsx",
-      "source_location": "L60",
+      "source_location": "L61",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_id_page_tsx",
+      "_src": "app_campaigns_id_page_tsx",
       "_tgt": "page_validateamount",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_id_page_tsx",
+      "source": "app_campaigns_id_page_tsx",
       "target": "page_validateamount",
       "confidence_score": 1.0
     },
@@ -4215,11 +4560,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/campaigns/[id]/page.tsx",
-      "source_location": "L71",
+      "source_location": "L72",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_id_page_tsx",
+      "_src": "app_campaigns_id_page_tsx",
       "_tgt": "page_handledonateclick",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_id_page_tsx",
+      "source": "app_campaigns_id_page_tsx",
       "target": "page_handledonateclick",
       "confidence_score": 1.0
     },
@@ -4227,11 +4572,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/campaigns/[id]/page.tsx",
-      "source_location": "L107",
+      "source_location": "L108",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_id_page_tsx",
+      "_src": "app_campaigns_id_page_tsx",
       "_tgt": "page_handletxsuccess",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_id_page_tsx",
+      "source": "app_campaigns_id_page_tsx",
       "target": "page_handletxsuccess",
       "confidence_score": 1.0
     },
@@ -4239,11 +4584,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/campaigns/[id]/page.tsx",
-      "source_location": "L112",
+      "source_location": "L113",
       "weight": 1.0,
-      "_src": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_id_page_tsx",
+      "_src": "app_campaigns_id_page_tsx",
       "_tgt": "page_resetdonation",
-      "source": "home_morzy_documents_crypto_solana_dapps_peaceleagueafrica_app_campaigns_id_page_tsx",
+      "source": "app_campaigns_id_page_tsx",
       "target": "page_resetdonation",
       "confidence_score": 1.0
     },
@@ -4251,7 +4596,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "app/campaigns/[id]/page.tsx",
-      "source_location": "L109",
+      "source_location": "L110",
       "weight": 1.0,
       "_src": "page_handletxsuccess",
       "_tgt": "page_loadcampaign",
@@ -4263,7 +4608,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "app/campaigns/[id]/page.tsx",
-      "source_location": "L72",
+      "source_location": "L73",
       "weight": 1.0,
       "_src": "page_handledonateclick",
       "_tgt": "page_validateamount",
@@ -4298,13 +4643,13 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/cosmic/route.ts",
-      "source_location": "L4",
+      "source_file": "app/api/newsletter/route.ts",
+      "source_location": "L3",
       "weight": 1.0,
-      "_src": "app_api_cosmic_route_ts",
-      "_tgt": "route_get",
-      "source": "app_api_cosmic_route_ts",
-      "target": "route_get",
+      "_src": "app_api_newsletter_route_ts",
+      "_tgt": "route_post",
+      "source": "app_api_newsletter_route_ts",
+      "target": "route_post",
       "confidence_score": 1.0
     },
     {
@@ -4315,8 +4660,20 @@
       "weight": 1.0,
       "_src": "app_api_cosmic_route_ts",
       "_tgt": "route_post",
+      "source": "route_post",
+      "target": "app_api_cosmic_route_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/cosmic/route.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "app_api_cosmic_route_ts",
+      "_tgt": "route_get",
       "source": "app_api_cosmic_route_ts",
-      "target": "route_post",
+      "target": "route_get",
       "confidence_score": 1.0
     },
     {
@@ -4377,6 +4734,18 @@
       "_tgt": "page_fetchcampaigns",
       "source": "app_dashboard_page_tsx",
       "target": "page_fetchcampaigns",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/actions/newsletter.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "app_actions_newsletter_ts",
+      "_tgt": "newsletter_subscribetonewsletter",
+      "source": "app_actions_newsletter_ts",
+      "target": "newsletter_subscribetonewsletter",
       "confidence_score": 1.0
     },
     {

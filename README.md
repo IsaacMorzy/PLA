@@ -22,7 +22,7 @@ A Solana Anchor program for the PeaceLeague Africa crowdfunding platform.
 ## Program ID
 
 ```
-CVPzfvBudPvhXcJwKXKCc56VgAFttgZdTKyXrrgErDnb
+65VieGUg5tJEQDAHEgTLXqxVaKJWdQEnzAXyrdLuRt2K
 ```
 
 ## Account Structure
