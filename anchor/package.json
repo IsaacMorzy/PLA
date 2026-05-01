@@ -1,0 +1,21 @@
+{
+  "name": "peaceleague-tests",
+  "version": "0.1.0",
+  "scripts": {
+    "test": "anchor test",
+    "test:mocha": "mocha tests/peaceleague.ts --timeout 60000 --exit"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.32.0",
+    "@solana/web3.js": "^1.98.0",
+    "@types/chai": "^5.2.3",
+    "chai": "^6.2.2"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.0.0",
+    "mocha": "^11.7.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.0"
+  }
+}
