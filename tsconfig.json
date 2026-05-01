@@ -39,6 +39,9 @@
   "exclude": [
     "node_modules",
     "lib/program.test.ts",
-    "anchor"
+    "anchor",
+    "graphify-out",
+    "test-results",
+    "thoughts"
   ]
 }
