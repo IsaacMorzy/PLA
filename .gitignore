@@ -24,6 +24,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+*.log
 
 # local env files
 .env
@@ -46,6 +47,12 @@ yarn-error.log*
 
 # keypairs
 *keypair*.json
+
+# test-ledger (can regenerate with solana-test-validator --ledger)
+test-ledger/
+test-ledger-funds/
+test-ledger-new/
+anchor/test-ledger/
 
 # generated / cache
 graphify-out/
