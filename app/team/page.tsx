@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { getTeamMembers } from '@/lib/cosmic'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/glass-card'
-import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 
 export const metadata: Metadata = {
@@ -54,8 +53,6 @@ export default async function TeamPage() {
           style={{ background: 'radial-gradient(circle, #c46d46 0%, transparent 70%)' }} 
         />
       </div>
-
-      <Header />
 
       <main className="relative z-10 pt-24 pb-16">
         {/* Hero Section */}

@@ -8,13 +8,20 @@ import { ThemeToggle } from "./theme-toggle";
 import { MobileNav } from "./mobile-nav";
 import { WalletButton } from "@/components/wallet/wallet-button";
 
-// Navigation structure - simplified per helius.dev style
+// Navigation structure - includes all website links
 const NAV_LINKS = [
+  { href: "/", label: "Home" },
   { href: "/campaigns", label: "Campaigns" },
   { href: "/about", label: "About" },
   { href: "/how-it-works", label: "How It Works" },
-  { href: "/blog", label: "Blog" },
+  { href: "/events", label: "Events" },
+  { href: "/team", label: "Team" },
+  { href: "/testimonials", label: "Testimonials" },
+  { href: "/image-gallery", label: "Gallery" },
+  { href: "/donor-list", label: "Donors" },
   { href: "/faq", label: "FAQ" },
+  { href: "/careers", label: "Careers" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export function Header() {

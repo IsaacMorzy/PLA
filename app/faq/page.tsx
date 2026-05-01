@@ -2,7 +2,6 @@
 
 import { GlassCard } from '@/components/ui/glass-card'
 import { Accordion } from '@/components/ui/tailgrids'
-import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 
 const faqItems = [
@@ -60,8 +59,6 @@ export default function FAQPage() {
           backgroundSize: '32px 32px'
         }} />
       </div>
-
-      <Header />
 
       <main className="relative z-10 pt-24 pb-16">
         <section className="max-w-6xl mx-auto px-6 mb-16">

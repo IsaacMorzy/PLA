@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { getBlogPostBySlug } from '@/lib/cosmic'
-import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { GlassCard } from '@/components/ui/glass-card'
 import Link from 'next/link'
@@ -42,8 +41,6 @@ export default async function BlogPostPage({ params }: Props) {
           style={{ background: 'radial-gradient(circle, #c46d46 0%, transparent 70%)' }} 
         />
       </div>
-
-      <Header />
 
       <main className="relative z-10 pt-24 pb-16">
         <article className="max-w-3xl mx-auto px-6">

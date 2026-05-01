@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { Card, CardContent, GlassCard, FeatureCard, StatsCard } from '@/components/ui/glass-card'
-import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 
 export const metadata: Metadata = {
@@ -21,8 +20,6 @@ export default function AboutPage() {
           style={{ background: 'radial-gradient(circle, #c46d46 0%, transparent 70%)' }} 
         />
       </div>
-
-      <Header />
 
       <main className="relative z-10 pt-24 pb-16">
         {/* Hero Section - warm gold gradient text */}

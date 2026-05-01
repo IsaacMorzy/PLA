@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { GlassCard } from '@/components/ui/glass-card'
 import { ContactForm } from '@/components/ui/tailgrids'
-import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 
 export default function ContactPage() {
@@ -20,8 +19,6 @@ export default function ContactPage() {
           backgroundSize: '32px 32px'
         }} />
       </div>
-
-      <Header />
 
       <main className="relative z-10 pt-24 pb-16">
         <section className="max-w-6xl mx-auto px-6 mb-16">
