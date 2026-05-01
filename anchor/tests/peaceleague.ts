@@ -1,9 +1,10 @@
-import anchor, { Program } from "@coral-xyz/anchor";
-import type { Peaceleague } from "../target/types/peaceleague.ts";
-import { assert } from "chai";
-import { SystemProgram, Keypair } from "@solana/web3.js";
+import * as anchor from "@coral-xyz/anchor";
+import { Program } from "@coral-xyz/anchor";
+import { Keypair, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
+import { BN } from "bn.js";
 
-const { BN } = anchor;
+// Program ID - matches Anchor.toml
+const PROGRAM_ID = new PublicKey("Fk7iWdM7fUTDgvmTgwx1T3KMqWn3F61bUnBczVrjsBME");
 
 describe("peaceleague", () => {
   const provider = anchor.AnchorProvider.local("http://127.0.0.1:8899");

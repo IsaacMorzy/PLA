@@ -8,6 +8,7 @@ import * as animations from "@/lib/animations";
 import Link from "next/link";
 import { Plus, Wallet, Inbox } from "lucide-react";
 import { CampaignCard } from "@/components/campaign/campaign-card";
+import { CampaignGridSkeleton, Skeleton } from "@/components/ui/skeleton";
 
 interface Campaign {
   id: string;
@@ -40,10 +41,15 @@ export function CampaignsClient({ initialCampaigns }: CampaignsClientProps) {
   if (!mounted) {
     return (
       <main className="min-h-screen pt-24 pb-12 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center">
-            <div className="loading loading-spinner loading-lg"></div>
+        <div className="max-w-6xl mx-auto space-y-8">
+          {/* Header skeleton */}
+          <div className="text-center space-y-4">
+            <Skeleton className="h-10 w-40 rounded-lg mx-auto" />
+            <Skeleton className="h-6 w-64 rounded mx-auto" />
           </div>
+          
+          {/* Grid skeleton */}
+          <CampaignGridSkeleton count={6} />
         </div>
       </main>
     );

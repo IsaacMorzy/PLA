@@ -30,17 +30,25 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
-    <header
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl transition-all duration-500 ${
-        scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
-      }`}
-    >
+return (
+    <>
+      {/* Skip link for keyboard/screen reader users */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-brand-gold focus:text-[#1a1815] focus:rounded-lg focus:font-semibold"
+      >
+        Skip to main content
+      </a>
+
+      <header
+        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl transition-all duration-500 ${
+          scrolled ? "bg-[#0a0a0a]/90 backdrop-blur-xl border border-[#222222] shadow-lg" : ""
+        }`}
+      >
       <nav
         className={`
           flex items-center justify-between gap-3 px-4 py-2 
-          glass-strong rounded-2xl shadow-lg transition-all duration-300
-          ${scrolled ? "translate-y-[-20px]" : ""}
+          rounded-2xl transition-all duration-300
         `}
       >
         {/* Left: Mobile nav + Logo */}
@@ -60,6 +68,7 @@ export function Header() {
                 className={`
                   px-3 py-2 rounded-lg text-sm font-medium 
                   transition-all duration-200 whitespace-nowrap
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]
                   ${
                     isActive
                       ? "text-[#d4a853]"
@@ -82,5 +91,6 @@ export function Header() {
         </div>
       </nav>
     </header>
+    </>
   );
 }

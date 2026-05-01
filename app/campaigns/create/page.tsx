@@ -17,6 +17,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TokenInput } from "@/components/ui/token-input";
 import { TransactionDialog } from "@/components/ui/transaction-dialog";
+import { GlassCard } from "@/components/ui/glass-card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 
 const campaignSchema = z.object({
@@ -109,8 +111,33 @@ export default function CreateCampaignOnChainPage() {
   if (!mounted) {
     return (
       <main className="min-h-screen pt-24 pb-12 px-4">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="loading loading-spinner loading-lg"></div>
+        <div className="max-w-2xl mx-auto space-y-6">
+          {/* Back link skeleton */}
+          <Skeleton className="h-6 w-20 rounded" />
+          
+          <GlassCard className="p-8 space-y-6">
+            {/* Title */}
+            <Skeleton className="h-9 w-48 rounded-lg" />
+            
+            {/* Form fields */}
+            <div className="space-y-4">
+              <Skeleton className="h-5 w-24 rounded" />
+              <Skeleton className="h-12 w-full rounded-lg" />
+            </div>
+            
+            <div className="space-y-4">
+              <Skeleton className="h-5 w-32 rounded" />
+              <Skeleton className="h-24 w-full rounded-lg" />
+            </div>
+            
+            <div className="space-y-4">
+              <Skeleton className="h-5 w-20 rounded" />
+              <Skeleton className="h-12 w-full rounded-lg" />
+            </div>
+            
+            {/* Submit button */}
+            <Skeleton className="h-12 w-full rounded-xl" />
+          </GlassCard>
         </div>
       </main>
     );

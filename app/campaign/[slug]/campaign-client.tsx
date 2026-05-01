@@ -266,7 +266,10 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
               className="btn btn-primary"
             >
               {isDonating ? (
-                <span className="loading loading-spinner" />
+                <span className="flex items-center gap-2">
+                  <span className="h-4 w-4 rounded-full border-2 border-white/20 border-t-white animate-spin" />
+                  <span>Donating...</span>
+                </span>
               ) : (
                 <>
                   <Heart className="h-4 w-4" />

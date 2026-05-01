@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Heart, Globe, Star, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Heart, Globe, Star, CheckCircle2, Shield, MapPin, Wallet, Activity, Users, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import * as animations from "@/lib/animations";
 import { cn } from "@/lib/utils";
@@ -17,8 +17,10 @@ export default function HomeClient({ campaigns, stories }: HomeClientProps) {
   return (
     <main className="min-h-screen">
       <HeroSection />
+      <CountriesSection />
       <FeaturedCampaignsSection campaigns={campaigns} />
       <ImpactStatsSection />
+      <TrustTransparencySection />
       <HowItWorksSection />
       <SolutionsSection />
       <TestimonialsSection stories={stories} />
@@ -86,6 +88,108 @@ function HeroSection() {
   );
 }
 
+// ─── Countries Section (WHO WE SERVE) ────────────────────────────────────────────────
+function CountriesSection() {
+  const countries = [
+    { flag: "🇳🇬", name: "Nigeria", region: "West Africa", campaigns: 45 },
+    { flag: "🇰🇪", name: "Kenya", region: "East Africa", campaigns: 38 },
+    { flag: "🇬🇭", name: "Ghana", region: "West Africa", campaigns: 24 },
+    { flag: "🇿🇦", name: "South Africa", region: "Southern Africa", campaigns: 18 },
+    { flag: "🇪🇬", name: "Egypt", region: "North Africa", campaigns: 12 },
+    { flag: "🇸🇳", name: "Senegal", region: "West Africa", campaigns: 9 },
+    { flag: "🇨🇲", name: "Cameroon", region: "Central Africa", campaigns: 7 },
+    { flag: "🇪🇹", name: "Ethiopia", region: "East Africa", campaigns: 5 },
+  ];
+
+  return (
+    <section className="py-20 px-4 border-y border-white/5">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={animations.fadeInUp}
+          className="text-center mb-12"
+        >
+          <h2 className="text-2xl font-bold text-white mb-2">Serving Communities Across Africa</h2>
+          <p className="text-white/50">8 countries and growing • Verified campaigns</p>
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {countries.map((country, i) => (
+            <motion.div
+              key={country.name}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={animations.fadeInUp}
+              transition={{ delay: i * 0.05 }}
+            >
+              <Card hover className="p-4 flex items-center gap-3">
+                <span className="text-3xl">{country.flag}</span>
+                <div>
+                  <p className="font-semibold text-white">{country.name}</p>
+                  <p className="text-xs text-white/40">{country.region}</p>
+                </div>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Trust & Transparency Section ─────────────────────────────────────────────────
+function TrustTransparencySection() {
+  const features = [
+    { icon: Shield, title: "On-Chain Verification", description: "Every transaction recorded on Solana blockchain - publicly verifiable" },
+    { icon: Wallet, title: "Direct Fund Transfers", description: "100% of donations go to campaign owners - no middlemen" },
+    { icon: Activity, title: "Real-Time Tracking", description: "Watch your impact unfold with live donation updates" },
+    { icon: TrendingUp, title: "Zero Platform Fees", description: "We don't take a cut. Every SOL counts." },
+  ];
+
+  return (
+    <section className="py-24 px-4 bg-white/[0.02]">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={animations.fadeInUp}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl font-bold text-white mb-4">Why Donors Trust Us</h2>
+          <p className="text-white/50 max-w-xl mx-auto">
+            PeaceLeague Africa is built on Solana for complete transparency. Every SOL donated is tracked on-chain and can be verified by anyone, anywhere.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feature, i) => (
+            <motion.div
+              key={feature.title}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={animations.fadeInUp}
+              transition={{ delay: i * 0.1 }}
+            >
+              <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#d4a853]/30 transition-all">
+                <div className="w-12 h-12 rounded-xl bg-[#d4a853]/10 flex items-center justify-center mb-4">
+                  <feature.icon className="h-6 w-6 text-[#d4a853]" />
+                </div>
+                <h3 className="font-semibold text-white mb-2">{feature.title}</h3>
+                <p className="text-sm text-white/50">{feature.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── Section 2: Featured Campaigns (Bento Grid) ────────────────────────────────
 function FeaturedCampaignsSection({ campaigns }: { campaigns: Campaign[] }) {
   const fallback = [
@@ -124,7 +228,7 @@ function FeaturedCampaignsSection({ campaigns }: { campaigns: Campaign[] }) {
                 variants={animations.fadeInUp}
                 transition={{ delay: i * 0.08 }}
               >
-                <Link href={`/campaign/${c.slug}`} className="group block h-full">
+                <Link href={`/campaign/${c.slug}`} className="group block h-full cursor-pointer">
                   <Card hover className="h-full p-5">
                     <div className="h-32 bg-white/5 rounded-xl flex items-center justify-center mb-4">
                       <Globe className="h-8 w-8 text-white/30" />
@@ -150,7 +254,7 @@ function FeaturedCampaignsSection({ campaigns }: { campaigns: Campaign[] }) {
         </div>
 
         <div className="text-center mt-8">
-          <Link href="/campaigns" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors">
+          <Link href="/campaigns" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors cursor-pointer">
             <span>View all campaigns</span>
             <ArrowRight className="h-4 w-4" />
           </Link>

@@ -39,8 +39,8 @@ const benefits = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.672 2.99 1.56l-1.45 1.45C13.69 4.78 12.9 4.5 12 4.5c-2.76 0-5 2.24-5 5 0 .9.28 1.69.78 2.44l-1.45 1.45A5.97 5.97 0 004 12c0-3.31 2.69-6 6-6z" />
       </svg>
     ),
-    title: 'No Upfront Costs', 
-    description: 'We only charge a small fee when you reach your goal.' 
+    title: 'Zero Platform Fees', 
+    description: 'We don\'t take a cut. 100% of your donation goes to the cause.' 
   },
   { 
     icon: (
@@ -48,8 +48,8 @@ const benefits = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
-    title: 'Real-Time Updates', 
-    description: 'Keep donors informed with progress reports.' 
+    title: 'On-Chain Verification', 
+    description: 'Every transaction recorded on Solana - publicly verifiable by anyone.' 
   },
   { 
     icon: (
@@ -57,8 +57,8 @@ const benefits = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-5.618 3.04A12.02 12.02 0 003 12c0 1.605.315 3.109.874 4.456l2.157-2.157A11.95 11.95 0 0112 14.055a11.95 11.95 0 01-5.031-1.218l2.157 2.157A12.02 12.02 0 0012 20.055c1.605 0 3.109-.315 4.456-.874l-2.157-2.157a11.95 11.95 0 013.218-5.031z" />
       </svg>
     ),
-    title: 'Secure Payments', 
-    description: 'Bank-level encryption protects every transaction.' 
+    title: 'Instant Transfers', 
+    description: 'Campaign owners withdraw immediately - no waiting periods.' 
   },
   { 
     icon: (
@@ -67,7 +67,7 @@ const benefits = [
       </svg>
     ),
     title: 'Global Reach', 
-    description: 'Access donors from anywhere in the world.' 
+    description: 'Send SOL from anywhere - transaction under $0.01.' 
   },
 ]
 

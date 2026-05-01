@@ -18,6 +18,7 @@ import { TokenBalance } from "@/components/ui/token-balance";
 import { TokenInput } from "@/components/ui/token-input";
 import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/ui/glass-card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { TransactionDialog } from "@/components/ui/transaction-dialog";
 import { AddressDisplay } from "@/components/ui/address-display";
 
@@ -119,9 +120,29 @@ export default function CampaignDetailPage({ params }: PageProps) {
   if (!mounted) {
     return (
       <main className="min-h-screen pt-24 pb-12 px-4">
-        <div className="max-w-4xl mx-auto">
-          <GlassCard className="h-96 flex items-center justify-center">
-            <div className="loading loading-spinner loading-lg text-brand-gold" />
+        <div className="max-w-4xl mx-auto space-y-6">
+          {/* Back link skeleton */}
+          <Skeleton className="h-6 w-24 rounded" />
+          
+          <GlassCard className="p-8 space-y-6">
+            {/* Image skeleton */}
+            <Skeleton variant="card" className="h-80 w-full" />
+            
+            {/* Title & meta */}
+            <div className="space-y-4">
+              <Skeleton className="h-10 w-3/4 rounded-lg" />
+              <div className="flex gap-4">
+                <Skeleton className="h-5 w-32 rounded" />
+                <Skeleton className="h-5 w-24 rounded" />
+              </div>
+            </div>
+            
+            {/* Description */}
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-full rounded" />
+              <Skeleton className="h-4 w-full rounded" />
+              <Skeleton className="h-4 w-2/3 rounded" />
+            </div>
           </GlassCard>
         </div>
       </main>
@@ -131,9 +152,23 @@ export default function CampaignDetailPage({ params }: PageProps) {
   if (loading) {
     return (
       <main className="min-h-screen pt-24 pb-12 px-4">
-        <div className="max-w-4xl mx-auto">
-          <GlassCard className="h-96 flex items-center justify-center">
-            <div className="loading loading-spinner loading-lg text-brand-gold" />
+        <div className="max-w-4xl mx-auto space-y-6">
+          <Skeleton className="h-6 w-24 rounded" />
+          
+          <GlassCard className="p-8 space-y-6">
+            <Skeleton variant="card" className="h-80 w-full" />
+            <div className="space-y-4">
+              <Skeleton className="h-10 w-3/4 rounded-lg" />
+              <div className="flex gap-4">
+                <Skeleton className="h-5 w-32 rounded" />
+                <Skeleton className="h-5 w-24 rounded" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-full rounded" />
+              <Skeleton className="h-4 w-full rounded" />
+              <Skeleton className="h-4 w-2/3 rounded" />
+            </div>
           </GlassCard>
         </div>
       </main>

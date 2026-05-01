@@ -110,7 +110,7 @@ export default function AboutPage() {
         </section>
 
         {/* Values - using Cards */}
-        <section className="max-w-6xl mx-auto px-6">
+        <section className="max-w-6xl mx-auto px-6 mb-16">
           <Card variant="gradient" className="p-8 md:p-12">
             <h2 className="text-2xl md:text-3xl font-semibold text-white font-display mb-8 text-center">Our Values</h2>
             <div className="grid md:grid-cols-3 gap-8 stagger-children">
@@ -141,6 +141,54 @@ export default function AboutPage() {
               ))}
             </div>
           </Card>
+        </section>
+
+        {/* Why Web3 Section */}
+        <section className="max-w-6xl mx-auto px-6 mb-16">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <GlassCard variant="default" className="p-8">
+              <div className="w-14 h-14 rounded-2xl bg-[#9945ff]/15 flex items-center justify-center text-[#9945ff] mb-6">
+                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4 font-display">Why Blockchain?</h3>
+              <ul className="space-y-4">
+                {[
+                  'Every donation is recorded on-chain — publicly verifiable',
+                  'Campaigns can\'t be modified after the fact',
+                  'Funds go directly to creators via program PDAs',
+                  'Total cost under $0.01 per transaction',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-[#9945ff]/20 flex items-center justify-center text-[#9945ff] text-sm flex-shrink-0 mt-0.5">✓</span>
+                    <span className="text-white/70">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </GlassCard>
+            <GlassCard variant="default" className="p-8">
+              <div className="w-14 h-14 rounded-2xl bg-[#00ffa3]/15 flex items-center justify-center text-[#00ffa3] mb-6">
+                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4 font-display">Built on Solana</h3>
+              <ul className="space-y-4">
+                {[
+                  'Transactions confirm in ~400ms',
+                  'Over 65,000 TPS capacity',
+                  'Less than $0.001 per transaction',
+                  'Carbon-negative blockchain',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-[#00ffa3]/20 flex items-center justify-center text-[#00ffa3] text-sm flex-shrink-0 mt-0.5">✓</span>
+                    <span className="text-white/70">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </GlassCard>
+          </div>
         </section>
       </main>
 

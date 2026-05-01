@@ -35,7 +35,7 @@ export default function RootLayout({
           {/* Vignette effect for depth */}
           <div className="fixed inset-0 pointer-events-none z-[9997] bg-gradient-to-b from-black/20 via-transparent to-black/30" />
           <Header />
-          <main className="min-h-screen pt-20">{children}</main>
+          <main id="main-content" className="min-h-screen pt-20">{children}</main>
           <Footer />
           <Toaster position="bottom-right" />
         </Providers>

@@ -4,7 +4,8 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Github, Twitter, Globe, Mail, MapPin, Heart, ArrowRight, Sparkles } from "lucide-react";
+import { Github, Twitter, Globe, MapPin, Heart, Sparkles } from "lucide-react";
+import { NewsletterForm } from "@/components/ui/newsletter-form";
 
 // Footer navigation structure
 const FOOTER_LINKS = {
@@ -67,21 +68,7 @@ export function Footer() {
               </p>
               
               {/* Newsletter signup */}
-              <div className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[#d4a853]">
-                  Stay Updated
-                </p>
-                <div className="flex gap-2">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="flex-1 px-4 py-2.5 text-sm rounded-xl bg-accent/50 border border-border/50 focus:border-[#d4a853]/50 focus:outline-none focus:ring-1 focus:ring-[#d4a853]/20 transition-all"
-                  />
-                  <button className="px-4 py-2.5 bg-[#d4a853] text-black rounded-xl font-medium text-sm hover:brightness-110 transition-all">
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
+              <NewsletterForm />
             </div>
 
             {/* Link columns */}
