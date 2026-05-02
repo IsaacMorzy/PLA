@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { Card, CardContent, GlassCard, FeatureCard, StatsCard } from '@/components/ui/glass-card'
+import { Footer } from '@/components/layout/footer'
 
 export const metadata: Metadata = {
   title: 'About Us - PeaceLeague Africa',
