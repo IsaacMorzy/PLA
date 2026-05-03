@@ -9,14 +9,13 @@ import { FC, ReactNode, useCallback, useMemo } from "react";
 import { WalletModalProvider as ReactUIWalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { PhantomWalletAdapter } from "@solana/wallet-adapter-phantom";
 import { SolflareWalletAdapter } from "@solana/wallet-adapter-solflare";
-
-const LOCALNET_RPC = "http://127.0.0.1:8899";
+import { SOLANA_RPC_URL } from "@/lib/solana-config";
 
 export const WalletContextProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const endpoint = process.env.NEXT_PUBLIC_SOLANA_RPC || LOCALNET_RPC;
-  
+  const endpoint = SOLANA_RPC_URL;
+
   const wallets = useMemo(() => {
     return [
       new PhantomWalletAdapter(),

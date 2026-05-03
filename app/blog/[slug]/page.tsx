@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { getBlogPostBySlug } from '@/lib/cosmic'
-import { Footer } from '@/components/layout/footer'
 import { GlassCard } from '@/components/ui/glass-card'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -129,8 +128,6 @@ export default async function BlogPostPage({ params }: Props) {
           )}
         </article>
       </main>
-
-      <Footer />
     </div>
   )
 }

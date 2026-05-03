@@ -1,10 +1,10 @@
 # Progress Tracker
 
 ## Current Phase
-- Complete
+- In Progress
 
 ## Current Goal
-- Complete Header navigation testing and verification
+- Unify CMS and on-chain campaign flows, starting with the shared Solana client foundation
 
 ## Completed
 - ✅ Updated all page components (about, contact, blog, careers, donation, donor-list, events, faq, how-it-works, image-gallery, privacy-policy, support-ticket, team, terms-conditions, testimonials)
@@ -17,11 +17,24 @@
 - ✅ Applied glass card styling consistently across all pages
 
 ## In Progress
-- None
+- ✅ Phase 1 started: shared Solana config + Anchor IDL-based frontend client rewrite
+- ✅ Phase 2 started: added Cosmic ↔ on-chain linkage fields and `lib/campaigns.ts` merge layer
+- ✅ `/campaigns` now reads from merged campaign data with chain-backed progress values
+- ✅ `/campaign/[slug]` now uses merged detail data and submits real on-chain donation transactions
+- ✅ `/campaigns/[id]` now redirects to the canonical slug route when a linked CMS campaign exists
+- ✅ `/campaigns/create` now writes linked Cosmic metadata after successful on-chain creation
+- ✅ `/create` is now the canonical on-chain creation route
+- ✅ `/campaigns/create` now redirects to `/create`
+- ✅ Added a backfill script and smoke-test doc for validating linked campaign flows
+- ✅ Added passing unit coverage for PDA derivation, merge logic, account decoding, and transaction builders
+- ✅ Refreshed the stale Anchor integration test suite to match the current program/client contract
+- ⏳ Next: run the live smoke test against the configured cluster and backfill any existing Cosmic campaigns
 
 ## Next Up
-- Final verification of all pages and navigation functionality
-- Deployment preparation
+- Smoke-test the on-chain flows against the configured cluster
+- Backfill existing Cosmic campaigns with on-chain linkage metadata
+- Run the refreshed Anchor integration suite in an environment with Anchor CLI + local validator
+- Follow `docs/development/release-checklist.md` before deployment
 
 ## Open Questions
 - Are there any additional accessibility features that need to be implemented?

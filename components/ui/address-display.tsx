@@ -4,6 +4,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Copy, Check, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getExplorerUrl } from "@/lib/solana-config";
 
 interface AddressDisplayProps {
   address: string;
@@ -11,6 +12,7 @@ interface AddressDisplayProps {
   showCopy?: boolean;
   showExplorer?: boolean;
   explorerUrl?: string;
+  explorerHref?: string;
   className?: string;
 }
 
@@ -19,7 +21,8 @@ export function AddressDisplay({
   truncate = true,
   showCopy = true,
   showExplorer = true,
-  explorerUrl = "https://explorer.solana.com/tx",
+  explorerUrl,
+  explorerHref,
   className,
 }: AddressDisplayProps) {
   const [copied, setCopied] = useState(false);
@@ -59,7 +62,7 @@ export function AddressDisplay({
       {showExplorer && (
         <Button variant="ghost" size="icon" className="h-8 w-8 text-white/60 hover:text-white" asChild>
           <a
-            href={`${explorerUrl}/${address}`}
+            href={explorerHref ?? (explorerUrl ? `${explorerUrl}/${address}` : getExplorerUrl("address", address))}
             target="_blank"
             rel="noopener noreferrer"
           >

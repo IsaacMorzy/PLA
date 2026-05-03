@@ -70,6 +70,42 @@ cd anchor
 cargo build-sbf
 ```
 
+## Frontend + Unified Campaign Flow
+
+### Environment
+
+Copy `.env.example` and set:
+
+- `NEXT_PUBLIC_SOLANA_CLUSTER`
+- `NEXT_PUBLIC_SOLANA_RPC`
+- `NEXT_PUBLIC_PROGRAM_ID`
+- `COSMIC_BUCKET_SLUG`
+- `COSMIC_READ_KEY`
+- `COSMIC_WRITE_KEY`
+
+### Checks
+
+```bash
+pnpm -s exec tsc --noEmit
+pnpm test:unit
+```
+
+### Backfill old Cosmic campaigns
+
+```bash
+pnpm backfill:campaign-links
+# review output
+node scripts/backfill-campaign-links.js --apply
+```
+
+### Smoke test
+
+See:
+- `docs/development/onchain-smoke-test.md`
+- `docs/development/devnet-runbook.md`
+- `docs/development/localnet-setup.md`
+- `docs/development/release-checklist.md`
+
 ### Deploy
 
 ```bash

@@ -1,12 +1,12 @@
-import { createSolanaRpc, devnet } from "@solana/kit";
+import { createSolanaRpc } from "@solana/kit";
+import { SOLANA_RPC_URL } from "@/lib/solana-config";
 
 // RPC client singleton
 let rpc: ReturnType<typeof createSolanaRpc> | null = null;
 
 export function getSolanaRpc() {
   if (!rpc) {
-    const endpoint = process.env.NEXT_PUBLIC_HELIUS_URL || "https://api.devnet.solana.com";
-    rpc = createSolanaRpc(endpoint);
+    rpc = createSolanaRpc(SOLANA_RPC_URL);
   }
   return rpc;
 }

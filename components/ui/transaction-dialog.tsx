@@ -14,6 +14,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Loader2, CheckCircle, XCircle, ExternalLink } from "lucide-react";
+import { getExplorerUrl } from "@/lib/solana-config";
 
 type TxState = "idle" | "signing" | "confirming" | "success" | "error";
 
@@ -138,7 +139,7 @@ export function TransactionDialog({
                 <p className="font-medium text-white">Transaction Confirmed!</p>
                 {signature && (
                   <a
-                    href={`https://explorer.solana.com/tx/${signature}?cluster=custom&rpcUrl=http://127.0.0.1:8899`}
+                    href={getExplorerUrl("tx", signature)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1 text-sm text-brand-gold hover:underline"

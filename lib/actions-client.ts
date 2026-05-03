@@ -12,6 +12,11 @@ export async function createCampaignAction(formData: {
   beneficiary_story?: string;
   category?: string;
   location?: string;
+  onchain_campaign_id?: number;
+  campaign_pda?: string;
+  author_wallet?: string;
+  tx_signature?: string;
+  cluster?: string;
 }) {
   return createCampaign(formData);
 }

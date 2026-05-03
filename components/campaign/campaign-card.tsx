@@ -116,7 +116,7 @@ export function CampaignCard({ campaign, index = 0 }: CampaignCardProps) {
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
-                  style={{ transformOrigin: "left" }}
+                  style={{ transformOrigin: "left", width: `${percentage}%` }}
                 />
               </div>
 

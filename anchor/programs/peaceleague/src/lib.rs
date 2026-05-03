@@ -4,7 +4,7 @@
 #![allow(unexpected_cfgs)]
 
 use anchor_lang::prelude::*;
-use anchor_lang::system_program::{Transfer, transfer as system_transfer};
+use anchor_lang::system_program::Transfer;
 
 // ===== Program ID =====
 declare_id!("65VieGUg5tJEQDAHEgTLXqxVaKJWdQEnzAXyrdLuRt2K");
@@ -225,7 +225,7 @@ pub mod peaceleague {
         Ok(())
     }
 
-    pub fn withdraw(ctx: Context<Withdraw>, campaign_id: u64) -> Result<()> {
+    pub fn withdraw(ctx: Context<Withdraw>, _campaign_id: u64) -> Result<()> {
         let campaign = &mut ctx.accounts.campaign;
 
         require!(campaign.author == ctx.accounts.authority.key(), CampaignError::Unauthorized);
@@ -233,24 +233,20 @@ pub mod peaceleague {
         require!(campaign.raised > 0, CampaignError::InsufficientFunds);
 
         let amount = campaign.raised;
-        let bump = campaign.bump;
         campaign.raised = 0;
 
-        // Use Anchor's system_program::transfer with signer seeds
-        // Build seeds inline to minimize stack usage
-        let cpi_context = CpiContext::new(
-            ctx.accounts.system_program.to_account_info(),
-            Transfer {
-                from: ctx.accounts.campaign.to_account_info(),
-                to: ctx.accounts.authority.to_account_info(),
-            },
-        );
-        
-        // Transfer with signer seeds - using with_signer with inline seeds
-        system_transfer(
-            cpi_context.with_signer(&[&[CAMPAIGN_SEED, &campaign_id.to_le_bytes(), &[bump]][..]]),
-            amount,
-        )?;
+        let campaign_info = campaign.to_account_info();
+        let authority_info = ctx.accounts.authority.to_account_info();
+
+        **campaign_info.try_borrow_mut_lamports()? = campaign_info
+            .lamports()
+            .checked_sub(amount)
+            .ok_or(ProgramError::InsufficientFunds)?;
+
+        **authority_info.try_borrow_mut_lamports()? = authority_info
+            .lamports()
+            .checked_add(amount)
+            .ok_or(ProgramError::ArithmeticOverflow)?;
 
         Ok(())
     }

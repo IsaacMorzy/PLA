@@ -13,6 +13,11 @@ export async function createCampaign(data: {
   category?: string;
   location?: string;
   status?: string;
+  onchain_campaign_id?: number;
+  campaign_pda?: string;
+  author_wallet?: string;
+  tx_signature?: string;
+  cluster?: string;
 }) {
   try {
     // SDK v2: insertOne() with object_type, title, slug, metadata
@@ -30,6 +35,11 @@ export async function createCampaign(data: {
         status: data.status || "active",
         category: data.category || "community",
         location: data.location || "",
+        onchain_campaign_id: data.onchain_campaign_id,
+        campaign_pda: data.campaign_pda || "",
+        author_wallet: data.author_wallet || "",
+        tx_signature: data.tx_signature || "",
+        cluster: data.cluster || "",
       },
     });
 

@@ -1,4 +1,7 @@
-import { createBucketClient, BucketConfig } from "@cosmicjs/sdk";
+import * as cosmicSdk from "@cosmicjs/sdk";
+import type { BucketConfig } from "@cosmicjs/sdk";
+
+const { createBucketClient } = cosmicSdk;
 
 const bucketConfig: BucketConfig = {
   bucketSlug: process.env.COSMIC_BUCKET_SLUG || "peaceleague-africa",
@@ -33,6 +36,11 @@ export interface Campaign {
     category?: string;
     location?: string;
     created_at?: string;
+    onchain_campaign_id?: number | string;
+    campaign_pda?: string;
+    author_wallet?: string;
+    tx_signature?: string;
+    cluster?: string;
   };
 }
 

@@ -1,402 +1,257 @@
 import * as anchor from "@coral-xyz/anchor";
-import { Program } from "@coral-xyz/anchor";
-import { Keypair, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
-import { BN } from "bn.js";
 import { assert } from "chai";
+import { Keypair, PublicKey, SystemProgram } from "@solana/web3.js";
 
-// Program ID - matches Anchor.toml
-const PROGRAM_ID = new PublicKey("Fk7iWdM7fUTDgvmTgwx1T3KMqWn3F61bUnBczVrjsBME");
+const PROGRAM_ID = new PublicKey("65VieGUg5tJEQDAHEgTLXqxVaKJWdQEnzAXyrdLuRt2K");
+const STATE_SEED = "state";
+const CAMPAIGN_SEED = "campaign";
+const ONE_SOL = 1_000_000_000;
+
+function campaignPda(id: number) {
+  const idBuffer = Buffer.alloc(8);
+  idBuffer.writeBigUInt64LE(BigInt(id));
+  return PublicKey.findProgramAddressSync(
+    [Buffer.from(CAMPAIGN_SEED), idBuffer],
+    PROGRAM_ID
+  )[0];
+}
 
 describe("peaceleague", () => {
-  // Configure Anchor provider
-  const provider = anchor.AnchorProvider.local("http://127.0.0.1:8899");
+  const provider = anchor.AnchorProvider.local("http://127.0.0.1:8899", {
+    commitment: "confirmed",
+    preflightCommitment: "confirmed",
+  });
+
   anchor.setProvider(provider);
 
-  const program = anchor.workspace.Peaceleague as Program;
+  const program = anchor.workspace.Peaceleague as anchor.Program<any>;
+  const [statePda] = PublicKey.findProgramAddressSync([Buffer.from(STATE_SEED)], PROGRAM_ID);
 
-  const [statePda] = PublicKey.findProgramAddressSync(
-    [Buffer.from("state")],
-    PROGRAM_ID
-  );
+  const donor = Keypair.generate();
+  const attacker = Keypair.generate();
 
-  // Campaign seeds
-  const CAMPAIGN_ID_1 = new BN(300);
-  const CAMPAIGN_ID_2 = new BN(301);
-  const CAMPAIGN_ID_3 = new BN(302);
+  let baseCampaignId = 0;
+  let primaryCampaignId = 0;
+  let deleteCampaignId = 0;
+  let primaryCampaignPda: PublicKey;
+  let deleteCampaignPda: PublicKey;
 
-  const [campaign1Pda] = PublicKey.findProgramAddressSync(
-    [Buffer.from("campaign"), CAMPAIGN_ID_1.toArrayLike(Buffer, "le", 8)],
-    PROGRAM_ID
-  );
-  const [campaign2Pda] = PublicKey.findProgramAddressSync(
-    [Buffer.from("campaign"), CAMPAIGN_ID_2.toArrayLike(Buffer, "le", 8)],
-    PROGRAM_ID
-  );
-  const [campaign3Pda] = PublicKey.findProgramAddressSync(
-    [Buffer.from("campaign"), CAMPAIGN_ID_3.toArrayLike(Buffer, "le", 8)],
-    PROGRAM_ID
-  );
+  async function airdrop(pubkey: PublicKey, lamports = 5 * ONE_SOL) {
+    const sig = await provider.connection.requestAirdrop(pubkey, lamports);
+    await provider.connection.confirmTransaction(sig, "confirmed");
+  }
+
+  async function getState() {
+    return program.account.programState.fetch(statePda);
+  }
+
+  async function getCampaign(id: number) {
+    return program.account.campaign.fetch(campaignPda(id));
+  }
 
   before(async () => {
-    // Airdrop to authority wallet for testing
-    const authority = (provider.wallet as anchor.Wallet).payer;
-    const airdropSig = await provider.connection.requestAirdrop(
-      authority.publicKey,
-      10_000_000_000 // 10 SOL
-    );
-    await provider.connection.confirmTransaction(airdropSig, "confirmed");
-    console.log("Airdrop confirmed");
-  });
+    await Promise.all([
+      airdrop(provider.wallet.publicKey, 10 * ONE_SOL),
+      airdrop(donor.publicKey, 10 * ONE_SOL),
+      airdrop(attacker.publicKey, 2 * ONE_SOL),
+    ]);
 
-  it("Initialize program state", async () => {
     try {
-      await program.account.programState.fetch(statePda);
-      console.log("Program state already initialized");
+      await getState();
     } catch {
-      console.log("Initializing program state...");
-      const tx = await program.methods.initialize().rpc();
-      console.log("Initialize tx:", tx);
+      await program.methods.initialize().accounts({
+        state: statePda,
+        authority: provider.wallet.publicKey,
+        systemProgram: SystemProgram.programId,
+      }).rpc();
     }
+
+    const state = await getState();
+    baseCampaignId = Number(state.campaignCount.toString());
+    primaryCampaignId = baseCampaignId;
+    deleteCampaignId = baseCampaignId + 1;
+    primaryCampaignPda = campaignPda(primaryCampaignId);
+    deleteCampaignPda = campaignPda(deleteCampaignId);
   });
 
-  it("Create campaign 1", async () => {
+  it("initializes program state", async () => {
+    const state = await getState();
+
+    assert.equal(state.authority.toBase58(), provider.wallet.publicKey.toBase58());
+    assert.isAtLeast(Number(state.campaignCount.toString()), baseCampaignId);
+  });
+
+  it("rejects invalid campaign goals below 1 SOL", async () => {
+    const invalidCampaignId = deleteCampaignId + 1000;
+    const invalidCampaignPda = campaignPda(invalidCampaignId);
+
     try {
-      const campaign = await program.account.campaign.fetch(campaign1Pda);
-      console.log("Campaign 1 already exists:", campaign.title);
-      assert.equal(campaign.title, "Test Campaign 1");
-    } catch {
-      const tx = await program.methods
+      await program.methods
         .createCampaign(
-          "Test Campaign 1",
-          "This is a test campaign for PeaceLeague Africa",
-          "https://example.com/image1.jpg",
-          new BN(2_000_000_000) // 2 SOL goal
+          new anchor.BN(invalidCampaignId),
+          "Invalid Goal",
+          "Should fail",
+          "https://example.com/invalid.jpg",
+          new anchor.BN(ONE_SOL - 1)
         )
         .accounts({
-          campaign: campaign1Pda,
+          campaign: invalidCampaignPda,
           state: statePda,
-          authority: (provider.wallet as anchor.Wallet).payer.publicKey,
+          creator: provider.wallet.publicKey,
           systemProgram: SystemProgram.programId,
         })
         .rpc();
 
-      console.log("Create campaign 1 tx:", tx);
-
-      const campaign = await program.account.campaign.fetch(campaign1Pda);
-      console.log("Campaign 1:", { title: campaign.title, goal: campaign.goal.toString() });
-      assert.equal(campaign.title, "Test Campaign 1");
+      assert.fail("expected invalid goal campaign creation to fail");
+    } catch (error: any) {
+      assert.include(String(error), "Goal must be at least 1 SOL");
     }
   });
 
-  it("Create campaign 2", async () => {
-    try {
-      const campaign = await program.account.campaign.fetch(campaign2Pda);
-      console.log("Campaign 2 already exists:", campaign.title);
-      assert.equal(campaign.title, "Campaign 2 - Small Goal");
-    } catch {
-      const tx = await program.methods
-        .createCampaign(
-          "Campaign 2 - Small Goal",
-          "Campaign with small goal",
-          "https://example.com/image2.jpg",
-          new BN(1_000_000_000) // 1 SOL goal
-        )
-        .accounts({
-          campaign: campaign2Pda,
-          state: statePda,
-          authority: (provider.wallet as anchor.Wallet).payer.publicKey,
-          systemProgram: SystemProgram.programId,
-        })
-        .rpc();
+  it("creates a campaign and increments campaign count", async () => {
+    const stateBefore = await getState();
 
-      console.log("Create campaign 2 tx:", tx);
-      const campaign = await program.account.campaign.fetch(campaign2Pda);
-      assert.equal(campaign.title, "Campaign 2 - Small Goal");
-    }
-  });
-
-  it("Create campaign 3", async () => {
-    try {
-      const campaign = await program.account.campaign.fetch(campaign3Pda);
-      console.log("Campaign 3 already exists:", campaign.title);
-      assert.equal(campaign.title, "Campaign 3 - Unauthorized Test");
-    } catch {
-      const tx = await program.methods
-        .createCampaign(
-          "Campaign 3 - Unauthorized Test",
-          "Campaign to test unauthorized withdrawal",
-          "https://example.com/image3.jpg",
-          new BN(2_000_000_000)
-        )
-        .accounts({
-          campaign: campaign3Pda,
-          state: statePda,
-          authority: (provider.wallet as anchor.Wallet).payer.publicKey,
-          systemProgram: SystemProgram.programId,
-        })
-        .rpc();
-
-      console.log("Create campaign 3 tx:", tx);
-    }
-  });
-
-  it("Donate to campaign 1 (#1)", async () => {
-    const campaignBefore = await program.account.campaign.fetch(campaign1Pda);
-    if (campaignBefore.isDeleted) throw new Error("Campaign is deleted");
-
-    const donationAmount = new BN(500_000_000); // 0.5 SOL
-    const raisedBefore = campaignBefore.raised.toNumber();
-
-    const tx = await program.methods
-      .donate(CAMPAIGN_ID_1, donationAmount)
+    await program.methods
+      .createCampaign(
+        new anchor.BN(primaryCampaignId),
+        "Integration Test Campaign",
+        "Campaign created from the refreshed Anchor test suite.",
+        "https://example.com/campaign.jpg",
+        new anchor.BN(2 * ONE_SOL)
+      )
       .accounts({
-        campaign: campaign1Pda,
-        donor: (provider.wallet as anchor.Wallet).payer.publicKey,
+        campaign: primaryCampaignPda,
+        state: statePda,
+        creator: provider.wallet.publicKey,
         systemProgram: SystemProgram.programId,
       })
       .rpc();
 
-    console.log("Donate #1 tx:", tx);
+    const stateAfter = await getState();
+    const campaign = await getCampaign(primaryCampaignId);
 
-    const campaignAfter = await program.account.campaign.fetch(campaign1Pda);
-    console.log("Raised after #1:", campaignAfter.raised.toString());
-    assert.equal(campaignAfter.raised.toNumber(), raisedBefore + donationAmount.toNumber());
+    assert.equal(campaign.title, "Integration Test Campaign");
+    assert.equal(campaign.author.toBase58(), provider.wallet.publicKey.toBase58());
+    assert.equal(Number(campaign.goal.toString()), 2 * ONE_SOL);
+    assert.equal(Number(campaign.raised.toString()), 0);
+    assert.equal(Number(campaign.donatedCount), 0);
+    assert.equal(Number(stateAfter.campaignCount.toString()), Number(stateBefore.campaignCount.toString()) + 1);
   });
 
-  it("Donate to campaign 1 (#2)", async () => {
-    const campaignBefore = await program.account.campaign.fetch(campaign1Pda);
-    if (campaignBefore.isDeleted) throw new Error("Campaign is deleted");
-
-    const tx = await program.methods
-      .donate(CAMPAIGN_ID_1, new BN(300_000_000))
+  it("accepts donations and updates raised amount and donor count", async () => {
+    await program.methods
+      .donate(new anchor.BN(primaryCampaignId), new anchor.BN(ONE_SOL / 2))
       .accounts({
-        campaign: campaign1Pda,
-        donor: (provider.wallet as anchor.Wallet).payer.publicKey,
+        donor: donor.publicKey,
+        campaign: primaryCampaignPda,
+        systemProgram: SystemProgram.programId,
+      })
+      .signers([donor])
+      .rpc();
+
+    const campaign = await getCampaign(primaryCampaignId);
+
+    assert.equal(Number(campaign.raised.toString()), ONE_SOL / 2);
+    assert.equal(Number(campaign.donatedCount), 1);
+  });
+
+  it("rejects zero-value donations", async () => {
+    try {
+      await program.methods
+        .donate(new anchor.BN(primaryCampaignId), new anchor.BN(0))
+        .accounts({
+          donor: donor.publicKey,
+          campaign: primaryCampaignPda,
+          systemProgram: SystemProgram.programId,
+        })
+        .signers([donor])
+        .rpc();
+
+      assert.fail("expected zero donation to fail");
+    } catch (error: any) {
+      assert.include(String(error), "Insufficient funds for withdrawal");
+    }
+  });
+
+  it("rejects unauthorized withdrawals", async () => {
+    try {
+      await program.methods
+        .withdraw(new anchor.BN(primaryCampaignId))
+        .accounts({
+          authority: attacker.publicKey,
+          campaign: primaryCampaignPda,
+          systemProgram: SystemProgram.programId,
+        })
+        .signers([attacker])
+        .rpc();
+
+      assert.fail("expected unauthorized withdraw to fail");
+    } catch (error: any) {
+      assert.include(String(error), "Unauthorized - not campaign author");
+    }
+  });
+
+  it("allows the campaign author to withdraw raised funds", async () => {
+    const campaignBalanceBefore = await provider.connection.getBalance(primaryCampaignPda);
+
+    await program.methods
+      .withdraw(new anchor.BN(primaryCampaignId))
+      .accounts({
+        authority: provider.wallet.publicKey,
+        campaign: primaryCampaignPda,
         systemProgram: SystemProgram.programId,
       })
       .rpc();
 
-    console.log("Donate #2 tx:", tx);
+    const campaign = await getCampaign(primaryCampaignId);
+    const campaignBalanceAfter = await provider.connection.getBalance(primaryCampaignPda);
 
-    const campaignAfter = await program.account.campaign.fetch(campaign1Pda);
-    console.log("Raised after #2:", campaignAfter.raised.toString());
-    assert.equal(campaignAfter.raised.toNumber(), 800_000_000);
+    assert.equal(Number(campaign.raised.toString()), 0);
+    assert.isBelow(campaignBalanceAfter, campaignBalanceBefore);
   });
 
-  it("Donate to campaign 1 (#3)", async () => {
-    const campaignBefore = await program.account.campaign.fetch(campaign1Pda);
-    if (campaignBefore.isDeleted) throw new Error("Campaign is deleted");
-
-    const tx = await program.methods
-      .donate(CAMPAIGN_ID_1, new BN(200_000_000))
+  it("deletes a campaign and blocks future donations", async () => {
+    await program.methods
+      .createCampaign(
+        new anchor.BN(deleteCampaignId),
+        "Delete Me",
+        "Campaign that will be deleted in the test.",
+        "https://example.com/delete.jpg",
+        new anchor.BN(ONE_SOL)
+      )
       .accounts({
-        campaign: campaign1Pda,
-        donor: (provider.wallet as anchor.Wallet).payer.publicKey,
+        campaign: deleteCampaignPda,
+        state: statePda,
+        creator: provider.wallet.publicKey,
         systemProgram: SystemProgram.programId,
       })
       .rpc();
 
-    console.log("Donate #3 tx:", tx);
-
-    const campaignAfter = await program.account.campaign.fetch(campaign1Pda);
-    assert.equal(campaignAfter.raised.toNumber(), 1_000_000_000);
-  });
-
-  it("Goal reached - donate full goal on campaign 2", async () => {
-    const tx = await program.methods
-      .donate(CAMPAIGN_ID_2, new BN(1_000_000_000))
+    await program.methods
+      .deleteCampaign(new anchor.BN(deleteCampaignId))
       .accounts({
-        campaign: campaign2Pda,
-        donor: (provider.wallet as anchor.Wallet).payer.publicKey,
-        systemProgram: SystemProgram.programId,
+        authority: provider.wallet.publicKey,
+        campaign: deleteCampaignPda,
       })
       .rpc();
 
-    console.log("Goal reached tx:", tx);
-
-    const campaign = await program.account.campaign.fetch(campaign2Pda);
-    console.log("Campaign 2 raised:", campaign.raised.toString());
-    assert.equal(campaign.raised.toNumber(), campaign.goal.toNumber());
-  });
-
-  it("Fund campaign 3 for unauthorized test", async () => {
-    const tx = await program.methods
-      .donate(CAMPAIGN_ID_3, new BN(100_000_000))
-      .accounts({
-        campaign: campaign3Pda,
-        donor: (provider.wallet as anchor.Wallet).payer.publicKey,
-        systemProgram: SystemProgram.programId,
-      })
-      .rpc();
-
-    console.log("Fund campaign 3 tx:", tx);
-  });
-
-  it("Unauthorized withdrawal - should fail", async () => {
-    const wrongAuthority = Keypair.generate();
+    const deletedCampaign = await getCampaign(deleteCampaignId);
+    assert.equal(deletedCampaign.isDeleted, true);
 
     try {
       await program.methods
-        .withdraw(CAMPAIGN_ID_3, new BN(50_000_000))
+        .donate(new anchor.BN(deleteCampaignId), new anchor.BN(ONE_SOL))
         .accounts({
-          campaign: campaign3Pda,
-          authority: wrongAuthority.publicKey,
+          donor: donor.publicKey,
+          campaign: deleteCampaignPda,
           systemProgram: SystemProgram.programId,
         })
-        .signers([wrongAuthority])
+        .signers([donor])
         .rpc();
 
-      assert.fail("Should have thrown an error");
-    } catch (e: any) {
-      console.log("Expected error:", e.message?.slice(0, 100));
-      // Program error or Anchor constraint violation expected
+      assert.fail("expected donation to deleted campaign to fail");
+    } catch (error: any) {
+      assert.include(String(error), "Campaign has been deleted");
     }
-  });
-
-  it("Authorized withdrawal - campaign author", async () => {
-    const campaignBefore = await program.account.campaign.fetch(campaign3Pda);
-    if (campaignBefore.raised.toNumber() === 0) {
-      console.log("Already withdrawn, skipping");
-      return;
-    }
-
-    try {
-      const tx = await program.methods
-        .withdraw(CAMPAIGN_ID_3, new BN(100_000_000))
-        .accounts({
-          campaign: campaign3Pda,
-          authority: (provider.wallet as anchor.Wallet).payer.publicKey,
-          systemProgram: SystemProgram.programId,
-        })
-        .rpc();
-
-      console.log("Withdraw tx:", tx);
-
-      const campaignAfter = await program.account.campaign.fetch(campaign3Pda);
-      assert.equal(campaignAfter.raised.toNumber(), 0);
-    } catch (e: any) {
-      if (e.message?.includes("Transfer:")) {
-        console.log("Known withdraw bug - skipping");
-        return;
-      }
-      throw e;
-    }
-  });
-
-  it("Zero amount donation - should fail", async () => {
-    try {
-      await program.methods
-        .donate(CAMPAIGN_ID_1, new BN(0))
-        .accounts({
-          campaign: campaign1Pda,
-          donor: (provider.wallet as anchor.Wallet).payer.publicKey,
-          systemProgram: SystemProgram.programId,
-        })
-        .rpc();
-
-      assert.fail("Should have thrown an error");
-    } catch (e: any) {
-      console.log("Zero donation blocked:", e.message?.slice(0, 80));
-    }
-  });
-
-  it("Invalid campaign ID - should fail", async () => {
-    try {
-      await program.methods
-        .donate(new BN(999), new BN(100_000_000))
-        .accounts({
-          campaign: campaign1Pda,
-          donor: (provider.wallet as anchor.Wallet).payer.publicKey,
-          systemProgram: SystemProgram.programId,
-        })
-        .rpc();
-
-      assert.fail("Should have thrown an error");
-    } catch (e: any) {
-      console.log("Invalid campaign blocked:", e.message?.slice(0, 80));
-    }
-  });
-
-  it("Withdraw from campaign 1", async () => {
-    const campaignBefore = await program.account.campaign.fetch(campaign1Pda);
-    if (campaignBefore.isDeleted || campaignBefore.raised.toNumber() === 0) {
-      console.log("Cannot withdraw, skipping");
-      return;
-    }
-
-    try {
-      const tx = await program.methods
-        .withdraw(CAMPAIGN_ID_1, new BN(campaignBefore.raised.toNumber()))
-        .accounts({
-          campaign: campaign1Pda,
-          authority: (provider.wallet as anchor.Wallet).payer.publicKey,
-          systemProgram: SystemProgram.programId,
-        })
-        .rpc();
-
-      console.log("Withdraw campaign 1 tx:", tx);
-
-      const campaignAfter = await program.account.campaign.fetch(campaign1Pda);
-      assert.equal(campaignAfter.raised.toNumber(), 0);
-    } catch (e: any) {
-      if (e.message?.includes("Transfer:")) {
-        console.log("Known withdraw bug - skipping");
-        return;
-      }
-      throw e;
-    }
-  });
-
-  it("Donation to deleted campaign - should fail", async () => {
-    // Delete campaign 1 first
-    try {
-      await program.methods
-        .deleteCampaign(CAMPAIGN_ID_1)
-        .accounts({
-          campaign: campaign1Pda,
-          authority: (provider.wallet as anchor.Wallet).payer.publicKey,
-        })
-        .rpc();
-    } catch {}
-
-    // Try donating to deleted campaign
-    try {
-      await program.methods
-        .donate(CAMPAIGN_ID_1, new BN(100_000_000))
-        .accounts({
-          campaign: campaign1Pda,
-          donor: (provider.wallet as anchor.Wallet).payer.publicKey,
-          systemProgram: SystemProgram.programId,
-        })
-        .rpc();
-
-      assert.fail("Should have thrown");
-    } catch (e: any) {
-      console.log("Deleted campaign donation blocked:", e.message?.slice(0, 80));
-    }
-  });
-
-  it("Delete campaign 2", async () => {
-    const tx = await program.methods
-      .deleteCampaign(CAMPAIGN_ID_2)
-      .accounts({
-        campaign: campaign2Pda,
-        authority: (provider.wallet as anchor.Wallet).payer.publicKey,
-      })
-      .rpc();
-
-    console.log("Delete campaign 2 tx:", tx);
-
-    const campaign = await program.account.campaign.fetch(campaign2Pda);
-    assert.equal(campaign.isDeleted, true);
-  });
-
-  it("Verify final program state", async () => {
-    const state = await program.account.programState.fetch(statePda);
-    console.log("Final state:", {
-      campaignCount: state.campaignCount.toString(),
-      authority: state.authority.toBase58(),
-    });
-    assert.isTrue(state.campaignCount.toNumber() >= 3);
   });
 });

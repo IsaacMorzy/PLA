@@ -1,9 +1,55 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "model": "anthropic/claude-sonnet-4-5",
+  "small_model": "anthropic/claude-haiku-4-5",
+  "default_agent": "build",
   "instructions": [
-    "/home/morzy/rust-skills/.opencode/instructions/rust-skills.md"
+    "AGENTS.md",
+    ".opencode/skills/awesome-design-md/SKILL.md",
+    ".opencode/skills/ui-ux-pro-max/SKILL.md",
+    "skills/tdd-workflow/SKILL.md",
+    "skills/security-review/SKILL.md",
+    "skills/coding-standards/SKILL.md",
+    "skills/frontend-patterns/SKILL.md",
+    "skills/backend-patterns/SKILL.md",
+    "skills/strategic-compact/SKILL.md"
   ],
   "plugin": [
     ".opencode/plugins/graphify.js"
-  ]
+  ],
+  "agent": {
+    "build": {
+      "description": "Primary coding agent for Solana dapp development",
+      "mode": "primary",
+      "model": "anthropic/claude-sonnet-4-5",
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "read": true,
+        "changed-files": true
+      }
+    }
+  },
+  "command": {
+    "plan": {
+      "description": "Create a detailed implementation plan",
+      "agent": "planner",
+      "subtask": true,
+      "template": "default"
+    },
+    "tdd": {
+      "description": "Enforce TDD workflow",
+      "agent": "tdd-guide",
+      "subtask": true,
+      "template": "default"
+    },
+    "verify": {
+      "description": "Run verification loop",
+      "template": "default"
+    }
+  },
+  "permission": {
+    "mcp_*": "ask"
+  }
 }
