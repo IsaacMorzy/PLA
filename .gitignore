@@ -58,3 +58,16 @@ anchor/test-ledger/
 graphify-out/
 thoughts/
 .mindmodel/
+
+# python / local virtualenvs
+.venv/
+.skillport-venv/
+
+# local agent / editor state
+.opencode/node_modules/
+.tours/
+skills/
+
+# generated graph artifacts
+PEACELEAGUE_GRAPH*
+PeaceLeagueAfrica.gv
