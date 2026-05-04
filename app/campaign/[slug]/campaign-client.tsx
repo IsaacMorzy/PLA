@@ -3,14 +3,15 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
+  AlertCircle,
   ArrowLeft,
+  Clock,
   Globe,
   Heart,
   MapPin,
-  Clock,
-  Users,
   Share2,
-  AlertCircle,
+  Shield,
+  Users,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,26 +21,20 @@ import { Transaction } from "@solana/web3.js";
 import { campaignCategories } from "@/lib/cosmic";
 import type { UnifiedCampaign } from "@/lib/campaigns";
 import {
-  getCampaign as getOnchainCampaign,
   donateToCampaignTx,
+  getCampaign as getOnchainCampaign,
   solToLamports,
   type CampaignAccount,
 } from "@/lib/peaceleague-client";
 import { getExplorerUrl } from "@/lib/solana-config";
 import * as animations from "@/lib/animations";
+import { AddressDisplay } from "@/components/ui/address-display";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/glass-card";
 import { TokenBalance } from "@/components/ui/token-balance";
 import { TokenInput } from "@/components/ui/token-input";
 import { TransactionDialog } from "@/components/ui/transaction-dialog";
-import { AddressDisplay } from "@/components/ui/address-display";
-
-function GlassCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <div className={`bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-xl ${className}`}>
-      {children}
-    </div>
-  );
-}
+import { PageShell, SectionBlock, SitePage } from "@/components/site/page-shell";
 
 interface CampaignClientProps {
   campaign: UnifiedCampaign;
@@ -59,7 +54,7 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
   const [successSignature, setSuccessSignature] = useState<string | null>(null);
 
   const activeCampaignId = campaign.onchainCampaignId;
-  const category = campaignCategories.find((c) => c.id === campaign.category);
+  const category = campaignCategories.find((item) => item.id === campaign.category);
 
   const goalLamports = useMemo(
     () => onchainCampaign?.goal ?? campaign.goalLamports ?? cmsSolToLamports(campaign.cosmic.metadata?.goal),
@@ -121,9 +116,9 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
 
       setTransaction(tx);
       setTransactionOpen(true);
-    } catch (err) {
-      console.error("Donation error:", err);
-      setAmountError(err instanceof Error ? err.message : "Failed to prepare donation transaction");
+    } catch (error) {
+      console.error("Donation error:", error);
+      setAmountError(error instanceof Error ? error.message : "Failed to prepare donation transaction");
     }
   };
 
@@ -133,157 +128,177 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
   };
 
   return (
-    <main className="min-h-screen pt-24 pb-12 px-4">
-      <div className="max-w-5xl mx-auto">
-        <Link
-          href="/campaigns"
-          className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors mb-6"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          <span>Back to Campaigns</span>
-        </Link>
+    <SitePage>
+      <PageShell>
+        <div className="mb-6">
+          <Link href="/campaigns" className="inline-flex items-center gap-2 text-sm text-white/62 transition-colors hover:text-white">
+            <ArrowLeft className="h-4 w-4" />
+            Back to campaigns
+          </Link>
+        </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-6">
-            <motion.div initial="hidden" animate="visible" variants={animations.fadeInUp}>
-              <div className="aspect-video relative rounded-2xl overflow-hidden bg-white/5">
-                {campaign.image ? (
-                  <Image src={campaign.image} alt={campaign.title} fill className="object-cover" priority />
-                ) : (
-                  <div className="flex items-center justify-center h-full">
-                    <Globe className="h-20 w-20 text-white/30" />
-                  </div>
-                )}
-              </div>
-            </motion.div>
+        <div className="grid gap-8 xl:grid-cols-[1.1fr_0.9fr] xl:items-start">
+          <div className="space-y-8">
+            <motion.section initial="hidden" animate="visible" variants={animations.fadeInUp}>
+              <div className="relative overflow-hidden rounded-[2.3rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] shadow-[0_28px_90px_rgba(0,0,0,0.32)]">
+                <div className="relative aspect-[16/10] overflow-hidden bg-[#0f0c09]">
+                  {campaign.image ? (
+                    <Image
+                      src={campaign.image}
+                      alt={campaign.title}
+                      fill
+                      unoptimized
+                      priority
+                      sizes="(max-width: 1280px) 100vw, 60vw"
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center bg-[radial-gradient(circle_at_top_left,rgba(212,168,83,0.26),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(196,109,70,0.18),transparent_28%),linear-gradient(160deg,#16110d,#0f0b08)]">
+                      <Globe className="h-20 w-20 text-white/25" />
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,8,6,0.08),rgba(10,8,6,0.68))]" />
+                </div>
 
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={animations.fadeInUp}
-              transition={{ delay: 0.1 }}
-            >
-              {category && (
-                <span className="badge badge-lg bg-white/10 border-white/30 text-white mb-3">
-                  {category.icon} {category.label}
-                </span>
-              )}
-              <h1 className="text-3xl font-bold text-white mt-2 font-display">{campaign.title}</h1>
-              <div className="flex flex-wrap gap-4 mt-3 text-sm text-white/60">
-                {campaign.location && (
-                  <div className="flex items-center gap-1">
-                    <MapPin className="h-4 w-4" />
-                    <span>{campaign.location}</span>
+                <div className="relative p-6 sm:p-8 lg:p-10">
+                  <div className="flex flex-wrap items-center gap-3">
+                    {category ? (
+                      <span className="rounded-full border border-[#d4a853]/25 bg-[#d4a853]/10 px-3 py-1.5 text-[11px] uppercase tracking-[0.22em] text-[#f1ddab]">
+                        {category.icon} {category.label}
+                      </span>
+                    ) : null}
+                    {campaign.location ? (
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.22em] text-white/55">
+                        <MapPin className="h-3.5 w-3.5 text-[#d4a853]" />
+                        {campaign.location}
+                      </span>
+                    ) : null}
                   </div>
-                )}
-                {createdAt && (
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
-                    <span>Created {new Date(Number(createdAt) * 1000).toLocaleDateString()}</span>
+
+                  <h1 className="mt-6 max-w-4xl font-display text-[2.7rem] leading-[0.96] text-white sm:text-[3.5rem] lg:text-[4.5rem]">
+                    {campaign.title}
+                  </h1>
+
+                  <p className="mt-6 max-w-3xl text-base leading-8 text-white/66 sm:text-lg">
+                    {campaign.description || campaign.beneficiaryStory || "A verified campaign working toward meaningful community impact across Africa."}
+                  </p>
+
+                  <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                    <MetaPill label="Donors" value={`${donorCount}`} icon={<Users className="h-4 w-4 text-[#d4a853]" />} />
+                    <MetaPill
+                      label="Created"
+                      value={createdAt ? new Date(Number(createdAt) * 1000).toLocaleDateString() : "Recently"}
+                      icon={<Clock className="h-4 w-4 text-[#d4a853]" />}
+                    />
+                    <MetaPill label="Status" value={isDeleted ? "Closed" : "Active"} icon={<Shield className="h-4 w-4 text-[#d4a853]" />} />
                   </div>
-                )}
-                <div className="flex items-center gap-1">
-                  <Users className="h-4 w-4" />
-                  <span>{donorCount} donors</span>
                 </div>
               </div>
-            </motion.div>
+            </motion.section>
 
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={animations.fadeInUp}
-              transition={{ delay: 0.2 }}
-            >
-              <h2 className="text-xl font-semibold text-white">The Story</h2>
-              <div className="text-white/70 whitespace-pre-wrap mt-2 leading-relaxed">
-                {campaign.beneficiaryStory || campaign.description || "No story available yet."}
-              </div>
-            </motion.div>
-
-            {campaign.beneficiaryName && (
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={animations.fadeInUp}
-                transition={{ delay: 0.3 }}
-              >
-                <GlassCard className="p-4">
-                  <h3 className="font-semibold text-white mb-2">Beneficiary</h3>
-                  <p className="text-white/70">{campaign.beneficiaryName}</p>
-                </GlassCard>
+            <SectionBlock className="mt-0 grid gap-6 lg:grid-cols-[1fr_0.78fr]">
+              <motion.div initial="hidden" animate="visible" variants={animations.fadeInUp} transition={{ delay: 0.08 }}>
+                <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-7 sm:p-8">
+                  <p className="text-sm uppercase tracking-[0.3em] text-[#d4a853]">The story</p>
+                  <div className="mt-6 whitespace-pre-wrap text-base leading-8 text-white/70">
+                    {campaign.beneficiaryStory || campaign.description || "No story available yet."}
+                  </div>
+                </Card>
               </motion.div>
-            )}
+
+              <motion.div initial="hidden" animate="visible" variants={animations.fadeInUp} transition={{ delay: 0.14 }}>
+                <Card className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(212,168,83,0.12),rgba(255,255,255,0.03))] p-7 sm:p-8">
+                  <p className="text-sm uppercase tracking-[0.3em] text-[#d4a853]">Campaign profile</p>
+                  <div className="mt-6 space-y-5 text-sm text-white/68">
+                    {campaign.beneficiaryName ? (
+                      <div>
+                        <p className="text-[11px] uppercase tracking-[0.22em] text-white/36">Beneficiary</p>
+                        <p className="mt-2 text-base text-white">{campaign.beneficiaryName}</p>
+                      </div>
+                    ) : null}
+                    {activeCampaignId !== undefined ? (
+                      <div>
+                        <p className="text-[11px] uppercase tracking-[0.22em] text-white/36">Campaign ID</p>
+                        <p className="mt-2 font-mono text-white">#{activeCampaignId}</p>
+                      </div>
+                    ) : null}
+                    {campaign.authorWallet ? (
+                      <div>
+                        <p className="text-[11px] uppercase tracking-[0.22em] text-white/36">Organizer wallet</p>
+                        <div className="mt-2 text-white">
+                          <AddressDisplay address={campaign.authorWallet} truncate className="text-white/82" />
+                        </div>
+                      </div>
+                    ) : null}
+                    <div className="rounded-[1.4rem] border border-white/10 bg-black/20 p-4">
+                      <p className="text-sm leading-7 text-white/64">
+                        This page is designed to give donors a clearer read on urgency, legitimacy, and progress before they decide to contribute.
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            </SectionBlock>
           </div>
 
-          <div className="space-y-6">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={animations.fadeInUp}
-              transition={{ delay: 0.2 }}
-            >
-              <GlassCard className="sticky top-24 p-6">
-                <h3 className="text-xl font-semibold text-white mb-4">Support This Cause</h3>
+          <motion.aside initial="hidden" animate="visible" variants={animations.fadeInUp} transition={{ delay: 0.12 }}>
+            <Card className="sticky top-28 rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-7 shadow-[0_24px_80px_rgba(0,0,0,0.24)]">
+              <p className="text-sm uppercase tracking-[0.3em] text-[#d4a853]">Support this cause</p>
+              <h2 className="mt-4 text-3xl font-semibold text-white">Make the impact visible.</h2>
 
-                <div className="space-y-3">
-                  <div className="h-3 bg-white/10 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-[#d4a853] to-[#c46d46] rounded-full transition-all duration-500"
-                      style={{ width: `${progress}%` }}
-                    />
-                  </div>
-                  <div className="flex justify-between items-start gap-4">
-                    <div>
-                      <p className="text-white/60 text-sm">Raised</p>
-                      <div className="font-bold text-[#d4a853]">
-                        <TokenBalance amount={raisedLamports} decimals={9} symbol="SOL" />
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-white/60 text-sm">Goal</p>
-                      <div className="text-white/80">
-                        <TokenBalance amount={goalLamports} decimals={9} symbol="SOL" />
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-xs text-white/40">{progress.toFixed(2)}% funded</p>
+              <div className="mt-7 space-y-4">
+                <div className="h-3 rounded-full bg-white/8">
+                  <div
+                    className="h-3 rounded-full bg-[linear-gradient(90deg,#d4a853,#e6c87d,#c46d46)] transition-all duration-700"
+                    style={{ width: `${progress}%` }}
+                  />
                 </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <MetricBox
+                    label="Raised"
+                    value={<TokenBalance amount={raisedLamports} decimals={9} symbol="SOL" />}
+                    highlight
+                  />
+                  <MetricBox label="Goal" value={<TokenBalance amount={goalLamports} decimals={9} symbol="SOL" />} />
+                </div>
+                <p className="text-xs uppercase tracking-[0.22em] text-white/36">{progress.toFixed(2)}% funded</p>
+              </div>
 
-                {isDeleted && (
-                  <div className="mt-4 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
-                    This campaign has been closed and no longer accepts donations.
-                  </div>
-                )}
+              {isDeleted ? (
+                <div className="mt-5 rounded-[1.25rem] border border-amber-500/25 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
+                  This campaign has been closed and is no longer accepting donations.
+                </div>
+              ) : null}
 
-                {activeCampaignId === undefined && (
-                  <div className="mt-4 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/70">
-                    This page is live in Cosmic, but it is not linked to an on-chain campaign yet.
-                  </div>
-                )}
+              {activeCampaignId === undefined ? (
+                <div className="mt-5 rounded-[1.25rem] border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white/66">
+                  This page exists in Cosmic, but it is not linked to an on-chain fundraiser yet.
+                </div>
+              ) : null}
 
-                {!connected ? (
-                  <div className="text-center py-6 space-y-4 mt-4">
-                    <p className="text-white/60">Connect your wallet to donate</p>
-                    <WalletMultiButton className="!bg-gradient-to-r !from-[#d4a853] !to-[#c46d46] !text-black !w-full !h-12 !font-medium" />
-                  </div>
-                ) : (
-                  <div className="space-y-4 mt-6">
-                    <TokenInput
-                      value={donationAmount}
-                      onChange={(value) => {
-                        setDonationAmount(value);
-                        setAmountError(null);
-                      }}
-                      decimals={9}
-                      symbol="SOL"
-                      label="Donation Amount"
-                      error={amountError || undefined}
-                    />
+              {!connected ? (
+                <div className="mt-7 space-y-4 text-center">
+                  <p className="text-sm text-white/60">Connect your wallet to donate</p>
+                  <WalletMultiButton className="!h-12 !w-full !rounded-full !border-none !bg-gradient-to-r !from-[#d4a853] !to-[#c46d46] !text-black !font-medium" />
+                </div>
+              ) : (
+                <div className="mt-7 space-y-4">
+                  <TokenInput
+                    value={donationAmount}
+                    onChange={(value) => {
+                      setDonationAmount(value);
+                      setAmountError(null);
+                    }}
+                    decimals={9}
+                    symbol="SOL"
+                    label="Donation amount"
+                    error={amountError || undefined}
+                  />
 
-                    {successSignature && (
-                      <div className="px-4 py-3 bg-green-500/10 border border-green-500/20 rounded-xl">
-                        <p className="text-green-400 font-medium mb-2">Thank you for your donation!</p>
+                  {successSignature ? (
+                    <div className="rounded-[1.25rem] border border-green-500/20 bg-green-500/10 px-4 py-3">
+                      <p className="font-medium text-green-400">Thank you for your donation</p>
+                      <div className="mt-2">
                         <AddressDisplay
                           address={successSignature}
                           truncate
@@ -291,60 +306,40 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
                           explorerHref={getExplorerUrl("tx", successSignature)}
                         />
                       </div>
-                    )}
+                    </div>
+                  ) : null}
 
-                    <Button
-                      onClick={handleDonateClick}
-                      disabled={isDeleted || activeCampaignId === undefined}
-                      className="w-full h-12 text-base font-medium"
-                      variant="glow"
-                    >
-                      <Heart className="h-5 w-5" />
-                      Donate SOL
-                    </Button>
-                  </div>
-                )}
-
-                <div className="flex gap-2 mt-4">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="flex-1 border-white/20 text-white hover:bg-white/10"
-                    onClick={async () => {
-                      await navigator.clipboard.writeText(window.location.href);
-                    }}
-                  >
-                    <Share2 className="h-4 w-4" />
-                    Share
+                  <Button onClick={handleDonateClick} disabled={isDeleted || activeCampaignId === undefined} className="h-12 w-full text-base font-medium" variant="glow">
+                    <Heart className="h-5 w-5" />
+                    Donate SOL
                   </Button>
                 </div>
+              )}
 
-                <div className="mt-6 pt-6 border-t border-white/10 space-y-3 text-sm">
-                  {activeCampaignId !== undefined && (
-                    <div className="flex justify-between">
-                      <span className="text-white/60">Campaign ID</span>
-                      <span className="text-white/80 font-mono">#{activeCampaignId}</span>
-                    </div>
-                  )}
-                  {campaign.authorWallet && (
-                    <div className="flex justify-between items-center gap-3">
-                      <span className="text-white/60">Organizer</span>
-                      <AddressDisplay address={campaign.authorWallet} truncate className="text-white/80" />
-                    </div>
-                  )}
+              <div className="mt-5 flex gap-3">
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="h-11 flex-1 border-white/15 text-white hover:bg-white/10"
+                  onClick={async () => {
+                    await navigator.clipboard.writeText(window.location.href);
+                  }}
+                >
+                  <Share2 className="h-4 w-4" />
+                  Share
+                </Button>
+              </div>
+
+              {amountError && activeCampaignId === undefined ? (
+                <div className="mt-4 flex items-start gap-2 rounded-[1.25rem] border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+                  <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+                  <span>{amountError}</span>
                 </div>
-
-                {amountError && activeCampaignId === undefined && (
-                  <div className="mt-4 flex items-start gap-2 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-                    <AlertCircle className="h-4 w-4 mt-0.5 shrink-0" />
-                    <span>{amountError}</span>
-                  </div>
-                )}
-              </GlassCard>
-            </motion.div>
-          </div>
+              ) : null}
+            </Card>
+          </motion.aside>
         </div>
-      </div>
+      </PageShell>
 
       <TransactionDialog
         open={transactionOpen}
@@ -354,6 +349,35 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
         title="Confirm Donation"
         description={`Donate ${donationAmount} SOL to support this campaign`}
       />
-    </main>
+    </SitePage>
+  );
+}
+
+function MetaPill({ label, value, icon }: { label: string; value: string; icon: React.ReactNode }) {
+  return (
+    <div className="rounded-[1.35rem] border border-white/10 bg-black/20 px-4 py-3">
+      <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-white/38">
+        {icon}
+        {label}
+      </div>
+      <p className="mt-3 text-sm font-medium text-white">{value}</p>
+    </div>
+  );
+}
+
+function MetricBox({
+  label,
+  value,
+  highlight = false,
+}: {
+  label: string;
+  value: React.ReactNode;
+  highlight?: boolean;
+}) {
+  return (
+    <div className="rounded-[1.3rem] border border-white/10 bg-black/20 px-4 py-4">
+      <p className="text-[11px] uppercase tracking-[0.22em] text-white/36">{label}</p>
+      <div className={`mt-3 text-sm font-medium ${highlight ? "text-[#f1ddab]" : "text-white"}`}>{value}</div>
+    </div>
   );
 }

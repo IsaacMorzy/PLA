@@ -1,122 +1,123 @@
-import { Metadata } from 'next'
-import { GlassCard } from '@/components/ui/glass-card'
-import { HowItWorks } from '@/components/ui/feature'
+import { Metadata } from "next";
+import { ArrowRightLeft, Globe, Shield, Wallet, Zap } from "lucide-react";
+import { HowItWorks, FeatureGrid } from "@/components/ui/feature";
+import { Card } from "@/components/ui/glass-card";
+import { PageHero, PageShell, SectionBlock, SectionIntro, SitePage } from "@/components/site/page-shell";
 
 export const metadata: Metadata = {
-  title: 'How It Works - PeaceLeague Africa',
-  description: 'Learn how crowdfunding works on PeaceLeague Africa.',
-}
+  title: "How It Works - PeaceLeague Africa",
+  description: "Learn how transparent crowdfunding works on PeaceLeague Africa.",
+};
 
 const steps = [
   {
-    number: '01',
-    title: 'Create a Campaign',
-    description: 'Start by sharing your story. Tell us what problem you want to solve and how the funds will make a difference.',
+    number: "01",
+    title: "Create a campaign",
+    description: "Tell the story, define the need, connect your wallet, and set a clear funding goal.",
   },
   {
-    number: '02',
-    title: 'Share Your Story',
-    description: 'Your campaign goes live. Share it on social media, with friends, and with your community to spread the word.',
+    number: "02",
+    title: "Share it with confidence",
+    description: "Campaign pages are structured to feel credible and clear when donors arrive.",
   },
   {
-    number: '03',
-    title: 'Receive Support',
-    description: 'Donors from around the world contribute to your cause. Every amount makes a difference.',
+    number: "03",
+    title: "Receive transparent support",
+    description: "Donors contribute in SOL while campaign progress stays visible and publicly verifiable.",
   },
   {
-    number: '04',
-    title: 'Create Impact',
-    description: 'Once funded, implement your project. Share updates with donors to show the real-world impact.',
+    number: "04",
+    title: "Turn funding into impact",
+    description: "Organizers can move quickly, share updates, and show the outcome behind every contribution.",
   },
-]
+];
 
 const benefits = [
-  { 
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.672 2.99 1.56l-1.45 1.45C13.69 4.78 12.9 4.5 12 4.5c-2.76 0-5 2.24-5 5 0 .9.28 1.69.78 2.44l-1.45 1.45A5.97 5.97 0 004 12c0-3.31 2.69-6 6-6z" />
-      </svg>
-    ),
-    title: 'Zero Platform Fees', 
-    description: 'We don\'t take a cut. 100% of your donation goes to the cause.' 
+  {
+    icon: <Wallet className="h-6 w-6" />,
+    title: "Zero platform fee",
+    description: "PeaceLeague is designed so support goes to the cause instead of being absorbed by the platform.",
   },
-  { 
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-    ),
-    title: 'On-Chain Verification', 
-    description: 'Every transaction recorded on Solana - publicly verifiable by anyone.' 
+  {
+    icon: <Shield className="h-6 w-6" />,
+    title: "On-chain verification",
+    description: "Donors can verify movement rather than relying only on interface claims or static updates.",
   },
-  { 
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-5.618 3.04A12.02 12.02 0 003 12c0 1.605.315 3.109.874 4.456l2.157-2.157A11.95 11.95 0 0112 14.055a11.95 11.95 0 01-5.031-1.218l2.157 2.157A12.02 12.02 0 0012 20.055c1.605 0 3.109-.315 4.456-.874l-2.157-2.157a11.95 11.95 0 013.218-5.031z" />
-      </svg>
-    ),
-    title: 'Instant Transfers', 
-    description: 'Campaign owners withdraw immediately - no waiting periods.' 
+  {
+    icon: <Zap className="h-6 w-6" />,
+    title: "Fast settlement",
+    description: "Solana enables quick transactions and a smoother giving experience at global scale.",
   },
-  { 
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-1.343 3-3s-1.343-3-3-3m0 3c-1.657 0-3 1.343-3 3s1.343 3 3 3m0-9c-3.314 0-9 3.686-9 9" />
-      </svg>
-    ),
-    title: 'Global Reach', 
-    description: 'Send SOL from anywhere - transaction under $0.01.' 
+  {
+    icon: <Globe className="h-6 w-6" />,
+    title: "Global donor reach",
+    description: "Anyone with SOL can support causes across Africa without heavyweight payment friction.",
   },
-]
+];
 
 export default function HowItWorksPage() {
   return (
-    <div className="min-h-screen bg-[#1a1815] relative overflow-hidden">
-      {/* Background mesh */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-[-30%] left-[-20%] w-[600px] h-[600px] bg-[#d4a853]/5 rounded-full blur-[150px]" />
-        <div className="absolute bottom-[-30%] right-[-20%] w-[500px] h-[500px] bg-[#c46d46]/5 rounded-full blur-[120px]" />
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #d4a853 1px, transparent 0)`,
-          backgroundSize: '32px 32px'
-        }} />
-      </div>
+    <SitePage>
+      <PageShell>
+        <PageHero
+          eyebrow="How it works"
+          title={
+            <>
+              Four clear steps from
+              <span className="block text-[#f1ddab]">story to support to visible impact.</span>
+            </>
+          }
+          description="PeaceLeague Africa is built to remove uncertainty from digital giving. Campaign creators get a stronger launch surface, and donors get a clearer sense of legitimacy before they contribute."
+          ctaHref="/create"
+          ctaLabel="Start a campaign"
+        />
 
-      <main className="relative z-10 pt-24 pb-16">
-        <section className="max-w-6xl mx-auto px-6 mb-16">
-          <GlassCard variant="gradient" className="text-center py-16 px-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-display">
-              How <span className="text-[#d4a853]">Crowdfunding</span> Works
-            </h1>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Four simple steps from idea to impact. Anyone can raise funds for causes they care about.
-            </p>
-          </GlassCard>
-        </section>
+        <SectionBlock>
+          <SectionIntro
+            eyebrow="Flow"
+            title="A simpler fundraising path, presented with more clarity."
+            description="The platform should make every phase easy to understand: launch, share, fund, and deliver."
+          />
+          <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-8">
+            <HowItWorks steps={steps} className="[&_h3]:text-xl [&_p]:leading-7 [&_p]:text-white/62" />
+          </Card>
+        </SectionBlock>
 
-        {/* Steps */}
-        <section className="max-w-6xl mx-auto px-6 mb-16">
-          <HowItWorks steps={steps} />
-        </section>
-
-        {/* Benefits */}
-        <section className="max-w-6xl mx-auto px-6">
-          <GlassCard variant="default" className="p-8">
-            <h2 className="text-2xl font-semibold text-white mb-8 text-center font-display">Why Fund With Us</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {benefits.map((benefit, i) => (
-                <div key={i} className="text-center p-4">
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#d4a853]/10 flex items-center justify-center text-[#d4a853]">
-                    {benefit.icon}
+        <SectionBlock>
+          <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            <Card className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(212,168,83,0.12),rgba(255,255,255,0.03))] p-8">
+              <p className="text-sm uppercase tracking-[0.3em] text-[#d4a853]">Why this matters</p>
+              <h2 className="mt-4 font-display text-4xl leading-tight text-white">Trust is a product experience, not just a promise.</h2>
+              <p className="mt-5 text-base leading-8 text-white/64">
+                Donors need confidence. Organizers need momentum. This system is designed to improve both by combining transparent infrastructure with stronger storytelling surfaces.
+              </p>
+              <div className="mt-8 rounded-[1.5rem] border border-white/10 bg-black/20 p-5">
+                <div className="flex items-start gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#d4a853]/10 text-[#d4a853]">
+                    <ArrowRightLeft className="h-5 w-5" />
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{benefit.title}</h3>
-                  <p className="text-sm text-white/60">{benefit.description}</p>
+                  <div>
+                    <p className="font-medium text-white">From donor hesitation to donor conviction</p>
+                    <p className="mt-2 text-sm leading-7 text-white/60">
+                      Better structure, clearer proof, and more confident presentation all increase the likelihood of support.
+                    </p>
+                  </div>
                 </div>
-              ))}
+              </div>
+            </Card>
+
+            <div>
+              <SectionIntro
+                eyebrow="Platform advantages"
+                title="The reasons this flow feels stronger than generic crowdfunding."
+                description="These are not add-ons. They are the trust mechanisms that make the experience feel serious."
+                className="mb-6"
+              />
+              <FeatureGrid features={benefits} columns={2} className="[&>div]:rounded-[1.7rem] [&>div]:border-white/10 [&>div]:bg-white/[0.04] [&>div]:p-7" />
             </div>
-          </GlassCard>
-        </section>
-      </main>
-    </div>
-  )
+          </div>
+        </SectionBlock>
+      </PageShell>
+    </SitePage>
+  );
 }

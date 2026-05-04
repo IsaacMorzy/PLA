@@ -1,107 +1,97 @@
-import { Metadata } from 'next'
-import { getTeamMembers } from '@/lib/cosmic'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/glass-card'
+import { Metadata } from "next";
+import { getTeamMembers } from "@/lib/cosmic";
+import { Card } from "@/components/ui/glass-card";
+import { PageHero, PageShell, SectionBlock, SectionIntro, SitePage } from "@/components/site/page-shell";
 
 export const metadata: Metadata = {
-  title: 'Our Team - PeaceLeague Africa',
-  description: 'Meet the team behind PeaceLeague Africa.',
-}
+  title: "Our Team - PeaceLeague Africa",
+  description: "Meet the team behind PeaceLeague Africa.",
+};
 
 export default async function TeamPage() {
-  const teamMembers = await getTeamMembers()
-  
-  // Fallback data if no CMS content
+  const teamMembers = await getTeamMembers();
+
   const fallbackMembers = [
-    { id: '1', title: 'Sarah Chen', metadata: { role: 'Founder & CEO', bio: '10+ years in fintech, passionate about financial inclusion in Africa.' }},
-    { id: '2', title: 'James Okonkwo', metadata: { role: 'CTO', bio: 'Former Solana validator, blockchain architecture expert.' }},
-    { id: '3', title: 'Amara Diallo', metadata: { role: 'Director of Operations', bio: 'Extensive experience in NGO management across West Africa.' }},
-    { id: '4', title: 'Michael Rodriguez', metadata: { role: 'Head of Partnerships', bio: 'Building bridges between donors and communities.' }},
-    { id: '5', title: 'Fatima Al-Hassan', metadata: { role: 'Lead Developer', bio: 'Full-stack engineer focused on scalable systems.' }},
-    { id: '6', title: 'Kwame Asante', metadata: { role: 'Community Manager', bio: 'Connecting with campaigners across the continent.' }},
-  ]
+    { id: "1", title: "Sarah Chen", metadata: { role: "Founder & CEO", bio: "10+ years in fintech, focused on financial inclusion and trusted giving systems." } },
+    { id: "2", title: "James Okonkwo", metadata: { role: "CTO", bio: "Former Solana validator and blockchain systems engineer." } },
+    { id: "3", title: "Amara Diallo", metadata: { role: "Director of Operations", bio: "Leads cross-regional coordination and program execution." } },
+    { id: "4", title: "Michael Rodriguez", metadata: { role: "Head of Partnerships", bio: "Builds strategic relationships with donors and ecosystem partners." } },
+    { id: "5", title: "Fatima Al-Hassan", metadata: { role: "Lead Developer", bio: "Designs scalable product systems and user-facing web experiences." } },
+    { id: "6", title: "Kwame Asante", metadata: { role: "Community Manager", bio: "Connects organizers and supporters across the continent." } },
+  ];
 
-  const displayTeam = teamMembers.length > 0 ? teamMembers.map(member => ({
-    id: member.id,
-    title: member.title || 'Team Member',
-    metadata: {
-      role: member.metadata?.role || '',
-      bio: member.metadata?.bio || '',
-      image: member.metadata?.image || ''
-    }
-  })) : fallbackMembers.map(m => ({
-    id: m.id,
-    title: m.title,
-    metadata: {
-      role: m.metadata.role,
-      bio: m.metadata.bio,
-      image: ''
-    }
-  }))
+  const displayTeam =
+    teamMembers.length > 0
+      ? teamMembers.map((member) => ({
+          id: member.id,
+          title: member.title || "Team Member",
+          metadata: {
+            role: member.metadata?.role || "",
+            bio: member.metadata?.bio || "",
+            image: member.metadata?.image || "",
+          },
+        }))
+      : fallbackMembers.map((member) => ({
+          ...member,
+          metadata: { ...member.metadata, image: "" },
+        }));
 
-  const getInitials = (name: string) => name.split(' ').map(n => n[0]).join('')
+  const getInitials = (name: string) =>
+    name
+      .split(" ")
+      .map((part) => part[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase();
 
   return (
-    <div className="min-h-screen bg-[#1a1815] relative overflow-hidden page-enter">
-      {/* Warm gold mesh background */}
-      <div className="fixed inset-0 pointer-events-none bg-mesh opacity-50" />
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full blur-[150px] opacity-20" 
-          style={{ background: 'radial-gradient(circle, #d4a853 0%, transparent 70%)' }} 
+    <SitePage>
+      <PageShell>
+        <PageHero
+          eyebrow="Our team"
+          title={
+            <>
+              The people building a more
+              <span className="block text-[#f1ddab]">credible future for giving.</span>
+            </>
+          }
+          description="PeaceLeague Africa combines product, community, and operational expertise to make transparent fundraising feel both trustworthy and human."
+          align="left"
         />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[120px] opacity-15" 
-          style={{ background: 'radial-gradient(circle, #c46d46 0%, transparent 70%)' }} 
-        />
-      </div>
 
-      <main className="relative z-10 pt-24 pb-16">
-        {/* Hero Section */}
-        <section className="max-w-6xl mx-auto px-6 mb-16">
-          <Card variant="gold" className="p-8 md:p-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-white font-display mb-4">
-              Meet Our Team
-            </h1>
-            <p className="text-xl text-white/70 max-w-2xl">
-              A dedicated group of professionals working to transform crowdfunding across Africa.
-            </p>
-          </Card>
-        </section>
+        <SectionBlock>
+          <SectionIntro
+            eyebrow="Team"
+            title="A multidisciplinary group shaping trust, technology, and community outcomes."
+            description="This page should feel less like a directory and more like a portrait of the people building the platform."
+          />
 
-        {/* Team Grid - asymmetric layout */}
-        <section className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {displayTeam.map((member, index) => (
-              <Card 
-                key={member.id} 
-                variant={index % 3 === 0 ? 'gold' : index % 2 === 0 ? 'default' : 'gradient'} 
-                hover 
-                className="p-6"
+              <Card
+                key={member.id}
+                className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-7"
               >
-                <CardContent className="flex flex-col items-center text-center">
-                  {/* Avatar with gradient border */}
-                  <div className="relative mb-4">
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#d4a853] to-[#c46d46] p-[2px]">
-                      <div className="w-full h-full rounded-full bg-[#1a1815] flex items-center justify-center">
-                        {member.metadata.image ? (
-                          <img 
-                            src={member.metadata.image} 
-                            alt={member.title} 
-                            className="w-full h-full object-cover rounded-full" 
-                          />
-                        ) : (
-                          <span className="text-xl font-bold text-[#d4a853]">{getInitials(member.title)}</span>
-                        )}
-                      </div>
-                    </div>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.24em] text-white/36">Team member {String(index + 1).padStart(2, "0")}</p>
+                    <h2 className="mt-4 font-display text-3xl text-white">{member.title}</h2>
+                    <p className="mt-2 text-sm text-[#f1ddab]">{member.metadata.role}</p>
                   </div>
-                  <h3 className="text-lg font-semibold text-white">{member.title}</h3>
-                  <p className="text-[#d4a853] text-sm mb-2">{member.metadata.role}</p>
-                  <p className="text-white/60 text-sm">{member.metadata.bio}</p>
-                </CardContent>
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 text-lg font-semibold text-[#f1ddab]">
+                    {member.metadata.image ? (
+                      <img src={member.metadata.image} alt={member.title} className="h-full w-full rounded-full object-cover" />
+                    ) : (
+                      getInitials(member.title)
+                    )}
+                  </div>
+                </div>
+                <p className="mt-6 text-sm leading-7 text-white/64">{member.metadata.bio}</p>
               </Card>
             ))}
           </div>
-        </section>
-      </main>
-    </div>
-  )
+        </SectionBlock>
+      </PageShell>
+    </SitePage>
+  );
 }

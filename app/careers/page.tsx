@@ -1,131 +1,117 @@
-import { Metadata } from 'next'
-import { GlassCard } from '@/components/ui/glass-card'
+import { Metadata } from "next";
+import Link from "next/link";
+import { Briefcase, MapPin, Sparkles } from "lucide-react";
+import { Card } from "@/components/ui/glass-card";
+import { FeatureGrid } from "@/components/ui/feature";
+import { PageHero, PageShell, SectionBlock, SectionIntro, SitePage } from "@/components/site/page-shell";
 
 export const metadata: Metadata = {
-  title: 'Careers - PeaceLeague Africa',
-  description: 'Join our team and help make a difference.',
-}
+  title: "Careers - PeaceLeague Africa",
+  description: "Join our team and help make a difference.",
+};
 
 const jobs = [
   {
-    title: 'Community Manager',
-    department: 'Operations',
-    location: 'Remote (Africa)',
-    type: 'Full-time',
-    description: 'Build relationships with campaign creators and donors across the continent.',
+    title: "Community Manager",
+    department: "Operations",
+    location: "Remote (Africa)",
+    type: "Full-time",
+    description: "Build strong relationships with campaign creators and donors across the continent.",
   },
   {
-    title: 'Frontend Developer',
-    department: 'Engineering',
-    location: 'Remote',
-    type: 'Full-time',
-    description: 'Build beautiful, accessible interfaces for our crowdfunding platform.',
+    title: "Frontend Developer",
+    department: "Engineering",
+    location: "Remote",
+    type: "Full-time",
+    description: "Design and build beautiful, accessible interfaces for our crowdfunding platform.",
   },
   {
-    title: 'Partnership Manager',
-    department: 'Business Development',
-    location: 'Nairobi, Kenya',
-    type: 'Full-time',
-    description: 'Forge partnerships with NGOs, companies, and governments.',
+    title: "Partnership Manager",
+    department: "Business Development",
+    location: "Nairobi, Kenya",
+    type: "Full-time",
+    description: "Forge partnerships with NGOs, companies, and institutions across Africa and beyond.",
   },
   {
-    title: 'Content Writer',
-    department: 'Marketing',
-    location: 'Remote',
-    type: 'Contract',
-    description: 'Tell compelling stories about campaigns and their impact.',
+    title: "Content Writer",
+    department: "Marketing",
+    location: "Remote",
+    type: "Contract",
+    description: "Tell compelling stories about campaigns, donors, and measurable impact.",
   },
-]
+];
 
 const benefits = [
-  'Competitive salary',
-  'Health insurance',
-  'Remote work flexibility',
-  'Learning budget',
-  'Annual team retreat',
-  'Impact-driven culture',
-]
+  { icon: <Sparkles className="h-6 w-6" />, title: "Mission-led work", description: "Every role contributes to a more credible and effective fundraising experience." },
+  { icon: <Briefcase className="h-6 w-6" />, title: "Flexible structure", description: "Remote-friendly workflows and strong cross-functional collaboration." },
+  { icon: <MapPin className="h-6 w-6" />, title: "Pan-African perspective", description: "Work on products and partnerships with real continental reach." },
+];
 
 export default function CareersPage() {
   return (
-    <div className="min-h-screen bg-[#1a1815] relative overflow-hidden">
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full blur-[150px] opacity-20" 
-          style={{ background: 'radial-gradient(circle, #d4a853 0%, transparent 70%)' }} 
+    <SitePage>
+      <PageShell>
+        <PageHero
+          eyebrow="Careers"
+          title={
+            <>
+              Build the future of
+              <span className="block text-[#f1ddab]">transparent giving with us.</span>
+            </>
+          }
+          description="PeaceLeague Africa needs operators, builders, and storytellers who care about trust, access, and community impact."
+          ctaHref="mailto:careers@peaceleague.africa"
+          ctaLabel="Email careers"
         />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[120px] opacity-15" 
-          style={{ background: 'radial-gradient(circle, #c46d46 0%, transparent 70%)' }} 
-        />
-      </div>
 
-      <main className="relative z-10 pt-24 pb-16">
-        <section className="max-w-6xl mx-auto px-6 mb-16">
-          <GlassCard variant="gradient" className="text-center py-16 px-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-display">
-              Join Our <span className="text-[#d4a853]">Team</span>
-            </h1>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Help us democratize fundraising in Africa. Work with a passionate team making real impact.
-            </p>
-          </GlassCard>
-        </section>
-
-        <section className="max-w-6xl mx-auto px-6 mb-16">
-          <div className="grid md:grid-cols-2 gap-6">
-            {jobs.map((job, i) => (
-              <GlassCard key={i} variant={i % 2 === 0 ? 'gold' : 'default'} className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="px-3 py-1 bg-[#d4a853]/20 text-[#d4a853] text-sm rounded-full">
+        <SectionBlock>
+          <SectionIntro
+            eyebrow="Open roles"
+            title="A cleaner, more intentional hiring surface."
+            description="Open positions should feel as credible and well-structured as the rest of the site — clear, scannable, and mission-driven."
+          />
+          <div className="grid gap-6 lg:grid-cols-2">
+            {jobs.map((job, index) => (
+              <Card
+                key={job.title}
+                className={`rounded-[2rem] border border-white/10 p-7 ${index % 2 === 0 ? "bg-[linear-gradient(180deg,rgba(212,168,83,0.12),rgba(255,255,255,0.03))]" : "bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))]"}`}
+              >
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-[#f1ddab]">
                     {job.department}
                   </span>
-                  <span className="px-3 py-1 bg-[#d4a853]/20 text-[#d4a853] text-sm rounded-full">
+                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/50">
                     {job.type}
                   </span>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-1">{job.title}</h3>
-                <p className="text-white/50 text-sm mb-3">{job.location}</p>
-                <p className="text-white/60 mb-4">{job.description}</p>
-                <button className="px-4 py-2 bg-[#d4a853]/20 hover:bg-[#d4a853]/30 text-[#d4a853] text-sm rounded-lg transition-colors">
-                  Apply Now
-                </button>
-              </GlassCard>
+                <h2 className="mt-5 font-display text-3xl text-white">{job.title}</h2>
+                <p className="mt-3 inline-flex items-center gap-2 text-sm text-white/55">
+                  <MapPin className="h-4 w-4 text-[#d4a853]" />
+                  {job.location}
+                </p>
+                <p className="mt-5 text-sm leading-7 text-white/64">{job.description}</p>
+                <div className="mt-6 border-t border-white/10 pt-5">
+                  <Link
+                    href="mailto:careers@peaceleague.africa"
+                    className="inline-flex items-center rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-4 py-2 text-sm font-medium text-[#f1ddab] transition duration-300 hover:bg-[#d4a853]/16 hover:text-white"
+                  >
+                    Apply for this role
+                  </Link>
+                </div>
+              </Card>
             ))}
           </div>
-        </section>
+        </SectionBlock>
 
-        <section className="max-w-6xl mx-auto px-6 mb-16">
-          <GlassCard variant="default" className="p-8">
-            <h2 className="text-2xl font-semibold text-white mb-6 text-center font-display">Benefits</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {benefits.map((benefit, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-6 h-6 bg-[#d4a853]/20 rounded-full flex items-center justify-center">
-                    <svg className="w-4 h-4 text-[#d4a853]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span className="text-white/60">{benefit}</span>
-                </div>
-              ))}
-            </div>
-          </GlassCard>
-        </section>
-
-        <section className="max-w-6xl mx-auto px-6">
-          <GlassCard variant="gold" className="p-8 text-center">
-            <h2 className="text-2xl font-semibold text-white mb-4 font-display">Don&apos;t see the right role?</h2>
-            <p className="text-white/60 mb-6">
-              We&apos;re always looking for talented people. Send us your resume and we&apos;ll keep you in mind.
-            </p>
-            <a
-              href="mailto:careers@peaceleague.africa"
-              className="inline-block px-8 py-3 bg-[#d4a853] text-[#1a1815] font-semibold rounded-xl hover:bg-[#e8c87a] transition-colors"
-            >
-              Email Us
-            </a>
-          </GlassCard>
-        </section>
-      </main>
-    </div>
-  )
+        <SectionBlock>
+          <SectionIntro
+            eyebrow="Why join"
+            title="The platform is ambitious. The team should feel the same way."
+            description="We want the culture around PeaceLeague Africa to feel serious, collaborative, and rooted in meaningful work."
+          />
+          <FeatureGrid features={benefits} columns={3} className="[&>div]:rounded-[1.7rem] [&>div]:border-white/10 [&>div]:bg-white/[0.04] [&>div]:p-7" />
+        </SectionBlock>
+      </PageShell>
+    </SitePage>
+  );
 }

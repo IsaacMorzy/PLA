@@ -35,7 +35,7 @@ export function AppWorkflow({ steps, className = '' }: AppWorkflowProps) {
           >
             {/* Step number / icon */}
             <div className="relative flex-shrink-0">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#d4a853] to-[#c46d46] flex items-center justify-center">
+              <div className="w-12 h-12 rounded-[1rem] bg-gradient-to-br from-[#d4a853] to-[#c46d46] flex items-center justify-center">
                 {step.icon ? (
                   <div className="text-white">{step.icon}</div>
                 ) : (
@@ -86,7 +86,7 @@ interface FeatureTab {
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={cn(
-                'px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300',
+                'px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300',
                 activeTab === tab.id 
                   ? 'bg-[#d4a853] text-[#1a1815]' 
                   : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border border-white/10'
@@ -113,7 +113,7 @@ interface FeatureTab {
           {active.image && (
             <div className="order-1 lg:order-2">
               <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#d4a853]/10 to-[#c46d46]/10 p-8 border border-white/10">
-                <img src={active.image} alt={active.title} className="w-full h-auto rounded-xl" />
+                <img src={active.image} alt={active.title} className="w-full h-auto rounded-[1rem]" />
                 {/* Glow effect */}
                 <div className="absolute inset-0 rounded-2xl ring-1 ring-[#d4a853]/20" />
               </div>
@@ -152,7 +152,7 @@ interface FeatureItem {
             className="group p-6 rounded-2xl bg-white/[0.02] border border-white/[0.08] hover:border-[#d4a853]/30 transition-all duration-300 hover:-translate-y-1"
           >
             {/* Icon */}
-            <div className="w-12 h-12 rounded-xl bg-[#d4a853]/10 flex items-center justify-center text-[#d4a853] mb-4 group-hover:bg-[#d4a853]/20 transition-colors">
+            <div className="w-12 h-12 rounded-[1rem] bg-[#d4a853]/10 flex items-center justify-center text-[#d4a853] mb-4 group-hover:bg-[#d4a853]/20 transition-colors">
               {feature.icon}
             </div>
             <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>

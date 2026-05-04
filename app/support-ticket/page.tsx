@@ -1,72 +1,65 @@
-import { Metadata } from 'next'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/glass-card'
+import { Metadata } from "next";
+import { LifeBuoy, MailWarning, ShieldAlert } from "lucide-react";
+import { Card } from "@/components/ui/glass-card";
+import { ContactForm } from "@/components/ui/tailgrids";
+import { PageHero, PageShell, SectionBlock, SectionIntro, SitePage } from "@/components/site/page-shell";
 
 export const metadata: Metadata = {
-  title: 'Support Ticket - PeaceLeague Africa',
-  description: 'Submit a support request.',
-}
+  title: "Support Ticket - PeaceLeague Africa",
+  description: "Submit a support request.",
+};
 
 export default function SupportTicketPage() {
   return (
-    <div className="min-h-screen bg-[#1a1815] relative overflow-hidden">
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full blur-[150px] opacity-20" 
-          style={{ background: 'radial-gradient(circle, #d4a853 0%, transparent 70%)' }} 
+    <SitePage>
+      <PageShell className="max-w-6xl">
+        <PageHero
+          eyebrow="Support"
+          title={
+            <>
+              Submit a request with
+              <span className="block text-[#f1ddab]">clarity and the right context.</span>
+            </>
+          }
+          description="Support pages should feel stable and reassuring. This redesign makes the request flow easier to scan and more in line with the rest of the platform."
+          align="left"
         />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[120px] opacity-15" 
-          style={{ background: 'radial-gradient(circle, #c46d46 0%, transparent 70%)' }} 
-        />
-      </div>
 
-      <main className="relative z-10 pt-24 pb-16">
-        <section className="max-w-2xl mx-auto px-6">
-          <Card variant="gold">
-            <CardHeader>
-              <CardTitle className="text-white">Submit a Support Request</CardTitle>
-              <CardDescription className="text-white/60">We are here to help. Fill out the form below.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium text-white/70 mb-2">Your Email</label>
-                  <input 
-                    type="email" 
-                    placeholder="you@example.com"
-                    className="w-full px-4 py-3 bg-white/[0.02] border border-white/[0.08] rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#d4a853]"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-white/70 mb-2">Subject</label>
-                  <select className="w-full px-4 py-3 bg-white/[0.02] border border-white/[0.08] rounded-xl text-white focus:outline-none focus:border-[#d4a853]">
-                    <option value="">Select a topic</option>
-                    <option value="donation">Donation Issue</option>
-                    <option value="campaign">Campaign Question</option>
-                    <option value="account">Account Help</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-white/70 mb-2">Message</label>
-                  <textarea 
-                    rows={5}
-                    placeholder="Describe your issue..."
-                    className="w-full px-4 py-3 bg-white/[0.02] border border-white/[0.08] rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#d4a853] resize-none"
-                  />
-                </div>
-                <button 
-                  type="submit"
-                  className="w-full py-3 px-6 bg-[#d4a853] text-[#1a1815] font-semibold rounded-xl hover:bg-[#e8c87a] transition-colors"
-                >
-                  Submit Request
-                </button>
-              </form>
-            </CardContent>
-            <CardFooter className="justify-center">
-              <p className="text-sm text-white/40">Average response time: 24-48 hours</p>
-            </CardFooter>
-          </Card>
-        </section>
-      </main>
-    </div>
-  )
+        <SectionBlock>
+          <div className="grid gap-6 lg:grid-cols-[1fr_0.82fr] lg:items-start">
+            <div>
+              <SectionIntro
+                eyebrow="Open a ticket"
+                title="Describe the issue once, and let the layout do the rest."
+                description="This page is built to reduce ambiguity and help users provide useful details faster."
+              />
+              <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-8">
+                <ContactForm className="[&_button]:rounded-full [&_button]:bg-[#d4a853] [&_button]:text-[#17120d] [&_input]:rounded-[1rem] [&_input]:border-white/10 [&_input]:bg-black/20 [&_label]:text-white/78 [&_select]:rounded-[1rem] [&_select]:border-white/10 [&_select]:bg-black/20 [&_textarea]:rounded-[1rem] [&_textarea]:border-white/10 [&_textarea]:bg-black/20" />
+              </Card>
+            </div>
+
+            <div className="space-y-5">
+              {[{
+                icon: <LifeBuoy className="h-5 w-5" />, title: "General support", body: "Questions about campaigns, platform usage, or navigation issues.",
+              }, {
+                icon: <MailWarning className="h-5 w-5" />, title: "Transaction help", body: "Donation and wallet-related issues should include the relevant transaction details.",
+              }, {
+                icon: <ShieldAlert className="h-5 w-5" />, title: "Urgent trust issue", body: "If something appears suspicious or incorrect, flag it with as much context as possible.",
+              }].map((item) => (
+                <Card key={item.title} className="rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(212,168,83,0.1),rgba(255,255,255,0.03))] p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#d4a853]/10 text-[#d4a853]">{item.icon}</div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.24em] text-white/38">{item.title}</p>
+                      <p className="mt-3 text-sm leading-7 text-white/64">{item.body}</p>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </SectionBlock>
+      </PageShell>
+    </SitePage>
+  );
 }

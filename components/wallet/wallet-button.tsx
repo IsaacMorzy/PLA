@@ -105,7 +105,7 @@ export function WalletButton() {
         aria-label={`Wallet: ${truncateAddress(publicKey.toBase58())}`}
       >
         <div className="flex items-center gap-2">
-          <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+          <div className="h-2 w-2 rounded-full bg-[#d4a853] animate-pulse" />
           <span className="font-mono text-sm">
             {truncateAddress(publicKey.toBase58())}
           </span>
@@ -124,16 +124,16 @@ export function WalletButton() {
           role="menu"
           className={cn(
             "absolute right-0 top-full mt-2 w-56",
-            "bg-background/95 backdrop-blur-xl",
-            "border border-border/50 rounded-2xl",
+            "bg-[#120f0c]/95 backdrop-blur-xl",
+            "border border-white/10 rounded-[1.4rem]",
             "shadow-2xl shadow-black/10 dark:shadow-black/30",
             "overflow-hidden animate-fade-in-up",
             "z-50"
           )}
         >
           {/* Wallet info */}
-          <div className="px-4 py-3 border-b border-border/50 bg-accent/20">
-            <p className="text-xs text-muted-foreground">Connected Wallet</p>
+          <div className="border-b border-white/8 bg-white/[0.04] px-4 py-3">
+            <p className="text-xs text-white/40">Connected Wallet</p>
             <p className="font-mono text-sm font-medium truncate">
               {publicKey.toBase58()}
             </p>

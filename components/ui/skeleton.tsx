@@ -22,7 +22,7 @@ export function Skeleton({
         // Variants
         variant === "text" && "h-4 w-full rounded",
         variant === "circular" && "rounded-full",
-        variant === "card" && "h-48 w-full rounded-xl",
+        variant === "card" && "h-48 w-full rounded-[1rem]",
         variant === "chart" && "h-32 w-full rounded-lg",
         // Default box
         variant === "default" && "h-4 w-full rounded",
@@ -92,7 +92,7 @@ export function CampaignGridSkeleton({ count = 3 }: { count?: number }) {
  */
 export function StatsCardSkeleton() {
   return (
-    <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-sm">
+    <div className="rounded-[1rem] border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-sm">
       <div className="flex items-center gap-4">
         <Skeleton variant="circular" className="h-12 w-12" />
         <div className="flex-1 space-y-2">
@@ -111,7 +111,7 @@ export function StatsCardSkeleton() {
  */
 export function TeamMemberSkeleton() {
   return (
-    <div className="flex items-center gap-4 rounded-xl border border-white/[0.08] bg-white/[0.02] p-4 backdrop-blur-sm">
+    <div className="flex items-center gap-4 rounded-[1rem] border border-white/[0.08] bg-white/[0.02] p-4 backdrop-blur-sm">
       <Skeleton variant="circular" className="h-16 w-16 shrink-0" />
       <div className="flex-1 space-y-2">
         <Skeleton className="h-5 w-32" />
@@ -152,8 +152,8 @@ export function HeroSkeleton() {
       <Skeleton className="mx-auto mb-6 h-6 w-full max-w-lg" />
       <Skeleton className="mx-auto mb-8 h-6 w-2/3 max-w-md" />
       <div className="flex justify-center gap-4">
-        <Skeleton className="h-12 w-36 rounded-xl" />
-        <Skeleton className="h-12 w-36 rounded-xl" />
+        <Skeleton className="h-12 w-36 rounded-full" />
+        <Skeleton className="h-12 w-36 rounded-full" />
       </div>
     </div>
   );
@@ -166,7 +166,7 @@ export function HeroSkeleton() {
  */
 export function FeatureCardSkeleton() {
   return (
-    <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-sm">
+    <div className="rounded-[1rem] border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-sm">
       <Skeleton variant="circular" className="mb-4 h-12 w-12" />
       <Skeleton className="mb-2 h-5 w-32" />
       <Skeleton className="h-4 w-full" />

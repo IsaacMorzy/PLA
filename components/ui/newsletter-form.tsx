@@ -44,7 +44,7 @@ export function NewsletterForm({ className = "" }: NewsletterFormProps) {
       <p className="text-xs font-semibold uppercase tracking-wider text-[#d4a853]">
         Stay Updated
       </p>
-      <div className="flex gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row">
         <input
           type="email"
           value={email}
@@ -54,13 +54,13 @@ export function NewsletterForm({ className = "" }: NewsletterFormProps) {
           }}
           placeholder="Enter your email"
           disabled={status === "loading"}
-          className="flex-1 px-4 py-2.5 text-sm rounded-xl bg-accent/50 border border-border/50 focus:border-[#d4a853]/50 focus:outline-none focus:ring-1 focus:ring-[#d4a853]/20 transition-all disabled:opacity-50"
+          className="flex-1 rounded-full border border-border/50 bg-accent/50 px-4 py-3 text-sm focus:border-[#d4a853]/50 focus:outline-none focus:ring-1 focus:ring-[#d4a853]/20 transition-all disabled:opacity-50"
           required
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className="px-4 py-2.5 bg-[#d4a853] text-black rounded-xl font-medium text-sm hover:brightness-110 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+          className="rounded-full bg-[#d4a853] px-5 py-3 text-sm font-medium text-black transition-all hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
         >
           {status === "loading" ? (
             <Loader2 className="w-4 h-4 animate-spin" />

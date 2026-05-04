@@ -13,16 +13,16 @@ const buttonVariants = cva(
           "bg-brand-gold text-[#1a1815] rounded-full shadow-lg shadow-brand-gold/20 hover:bg-brand-gold-light hover:shadow-brand-gold/30 hover:scale-[1.02] active:scale-[0.98]",
         // Destructive
         destructive:
-          "bg-destructive text-destructive-foreground rounded-xl shadow-sm hover:bg-destructive/90 hover:scale-[1.02] active:scale-[0.98]",
+          "bg-destructive text-destructive-foreground rounded-full shadow-sm hover:bg-destructive/90 hover:scale-[1.02] active:scale-[0.98]",
         // Outlined - gold border
         outline:
           "border border-white/20 bg-transparent rounded-full hover:border-brand-gold/50 hover:bg-brand-gold/5 hover:scale-[1.02] active:scale-[0.98] text-white",
         // Secondary - terracotta accent
         secondary:
-          "bg-brand-terracotta text-white rounded-xl hover:bg-brand-terracotta-light hover:scale-[1.02] active:scale-[0.98]",
+          "bg-brand-terracotta text-white rounded-full hover:bg-brand-terracotta-light hover:scale-[1.02] active:scale-[0.98]",
         // Ghost - minimal
         ghost:
-          "rounded-xl hover:bg-white/10 text-white hover:scale-[1.02] active:scale-[0.98]",
+          "rounded-full hover:bg-white/10 text-white hover:scale-[1.02] active:scale-[0.98]",
         // Link - gold text
         link: "text-brand-gold underline-offset-4 hover:underline hover:text-brand-gold-light",
         // Glow - premium gold button
@@ -34,9 +34,9 @@ const buttonVariants = cva(
           "bg-white/5 backdrop-blur-md border border-white/10 text-white rounded-full hover:bg-white/10 hover:border-brand-gold/30 hover:scale-[1.02] active:scale-[0.98]",
       },
       size: {
-        default: "h-10 px-5 py-2",
-        sm: "h-8 px-4 text-xs",
-        lg: "h-12 px-8 text-base",
+        default: "h-11 px-5 py-2.5",
+        sm: "h-9 px-4 text-xs",
+        lg: "h-12 px-7 text-base",
         xl: "h-14 px-10 text-lg",
         icon: "h-10 w-10",
       },

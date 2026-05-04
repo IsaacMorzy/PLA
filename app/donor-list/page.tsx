@@ -1,90 +1,102 @@
-import { Metadata } from 'next'
-import { getRecentDonors } from '@/lib/cosmic'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/glass-card'
+import { Metadata } from "next";
+import { getRecentDonors } from "@/lib/cosmic";
+import { Card } from "@/components/ui/glass-card";
+import { PageHero, PageShell, SectionBlock, SectionIntro, SitePage } from "@/components/site/page-shell";
 
 export const metadata: Metadata = {
-  title: 'Donor List - PeaceLeague Africa',
-  description: 'Our amazing donors who make a difference.',
-}
+  title: "Donor List - PeaceLeague Africa",
+  description: "Our amazing donors who make a difference.",
+};
 
 export default async function DonorListPage() {
-  const donors = await getRecentDonors()
-  
-  // Fallback data if no CMS content
-  const fallbackDonors = [
-    { id: '1', title: 'Anonymous Donor', metadata: { amount: '25 SOL', message: 'Keep up the great work!' }},
-    { id: '2', title: 'Sarah M.', metadata: { amount: '15 SOL', message: 'Supporting education in Africa' }},
-    { id: '3', title: 'CryptoForGood', metadata: { amount: '10 SOL', message: 'Every little helps' }},
-    { id: '4', title: 'Anonymous Donor', metadata: { amount: '8 SOL', message: '' }},
-    { id: '5', title: 'David K.', metadata: { amount: '5 SOL', message: 'Water for all' }},
-    { id: '6', title: 'Anonymous Donor', metadata: { amount: '5 SOL', message: '' }},
-    { id: '7', title: 'Maria L.', metadata: { amount: '3 SOL', message: 'Thank you for what you do' }},
-    { id: '8', title: 'Anonymous Donor', metadata: { amount: '2.5 SOL', message: '' }},
-    { id: '9', title: 'John T.', metadata: { amount: '2 SOL', message: 'Small contribution for a big cause' }},
-    { id: '10', title: 'Anonymous Donor', metadata: { amount: '1.5 SOL', message: '' }},
-    { id: '11', title: 'Emma R.', metadata: { amount: '1 SOL', message: 'Believe in this mission' }},
-    { id: '12', title: 'Robert H.', metadata: { amount: '1 SOL', message: 'Go team!' }},
-  ]
+  const donors = await getRecentDonors();
 
-  const displayDonors = donors.length > 0 ? donors.map(donor => ({
-    id: donor.id,
-    title: donor.metadata?.is_anonymous ? 'Anonymous Donor' : donor.title || 'Anonymous Donor',
-    metadata: {
-      amount: donor.metadata?.amount || '0',
-      message: donor.metadata?.message || '',
-      is_anonymous: donor.metadata?.is_anonymous
-    }
-  })) : fallbackDonors
+  const fallbackDonors = [
+    { id: "1", title: "Anonymous Donor", metadata: { amount: "25 SOL", message: "Keep up the great work!" } },
+    { id: "2", title: "Sarah M.", metadata: { amount: "15 SOL", message: "Supporting education in Africa" } },
+    { id: "3", title: "CryptoForGood", metadata: { amount: "10 SOL", message: "Every little helps" } },
+    { id: "4", title: "Anonymous Donor", metadata: { amount: "8 SOL", message: "" } },
+    { id: "5", title: "David K.", metadata: { amount: "5 SOL", message: "Water for all" } },
+    { id: "6", title: "Anonymous Donor", metadata: { amount: "5 SOL", message: "" } },
+  ];
+
+  const displayDonors =
+    donors.length > 0
+      ? donors.map((donor) => ({
+          id: donor.id,
+          title: donor.metadata?.is_anonymous ? "Anonymous Donor" : donor.title || "Anonymous Donor",
+          metadata: {
+            amount: donor.metadata?.amount || "0",
+            message: donor.metadata?.message || "",
+          },
+        }))
+      : fallbackDonors;
 
   return (
-    <div className="min-h-screen bg-[#1a1815] relative overflow-hidden">
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full blur-[150px] opacity-20" 
-          style={{ background: 'radial-gradient(circle, #d4a853 0%, transparent 70%)' }} 
+    <SitePage>
+      <PageShell className="max-w-6xl">
+        <PageHero
+          eyebrow="Donors"
+          title={
+            <>
+              The community behind the
+              <span className="block text-[#f1ddab]">momentum of every campaign.</span>
+            </>
+          }
+          description="This page works as visible social proof — a simple, cleaner acknowledgment of the people helping move support across Africa."
+          align="center"
         />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[120px] opacity-15" 
-          style={{ background: 'radial-gradient(circle, #c46d46 0%, transparent 70%)' }} 
-        />
-      </div>
 
-      <main className="relative z-10 pt-24 pb-16">
-        <section className="max-w-4xl mx-auto px-6 mb-16">
-          <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 font-display">Our Donors</h1>
-            <p className="text-xl text-white/60">Thank you to our amazing community of supporters</p>
-          </div>
+        <SectionBlock>
+          <SectionIntro
+            eyebrow="Recent support"
+            title="A sharper donor ledger that feels respectful and easy to scan."
+            description="The presentation is intentionally minimal: donor identity, contribution signal, and optional note."
+            className="mx-auto text-center"
+          />
 
-          <Card variant="default">
-            <div className="overflow-hidden">
-              <div className="grid grid-cols-3 gap-4 p-4 bg-white/[0.02] border-b border-white/[0.08] text-sm font-medium text-white/40">
-                <div className="col-span-2">Donor</div>
-                <div className="text-right">Amount</div>
-              </div>
-              <div className="divide-y divide-white/[0.08]">
-                {displayDonors.map((donor) => (
-                  <div key={donor.id} className="grid grid-cols-3 gap-4 p-4 hover:bg-white/[0.02] transition-colors">
-                    <div className="col-span-2">
-                      <p className="font-medium text-white">{donor.title}</p>
-                      {donor.metadata.message && (
-                        <p className="text-sm text-white/50">{donor.metadata.message}</p>
-                      )}
+          <Card className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045]">
+            <div className="grid grid-cols-[1.5fr_0.8fr_1.7fr] gap-4 border-b border-white/8 px-6 py-4 text-[11px] uppercase tracking-[0.25em] text-white/38">
+              <div>Supporter</div>
+              <div>Amount</div>
+              <div className="hidden md:block">Message</div>
+            </div>
+
+            <div className="divide-y divide-white/8">
+              {displayDonors.map((donor, index) => (
+                <div key={donor.id} className="grid grid-cols-1 gap-4 px-6 py-5 md:grid-cols-[1.5fr_0.8fr_1.7fr] md:items-center">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 text-sm font-semibold text-[#f1ddab]">
+                      {donor.title
+                        .split(" ")
+                        .map((part) => part[0])
+                        .join("")
+                        .slice(0, 2)
+                        .toUpperCase()}
                     </div>
-                    <div className="text-right">
-                      <span className="inline-block px-3 py-1 bg-[#d4a853]/20 rounded-full text-[#d4a853] text-sm font-medium">
-                        {donor.metadata.amount}
-                      </span>
+                    <div>
+                      <p className="font-medium text-white">{donor.title}</p>
+                      <p className="text-sm text-white/38">Entry {String(index + 1).padStart(2, "0")}</p>
                     </div>
                   </div>
-                ))}
-              </div>
+
+                  <div>
+                    <span className="inline-flex rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-3 py-1 text-sm font-medium text-[#f1ddab]">
+                      {donor.metadata.amount}
+                    </span>
+                  </div>
+
+                  <div>
+                    <p className="text-sm leading-7 text-white/60">{donor.metadata.message || "No public message shared."}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </Card>
 
-          <p className="text-center text-white/30 text-sm mt-8">
-            * Showing recent donors. Many more choose to give anonymously.
-          </p>
-        </section>
-      </main>
-    </div>
-  )
+          <p className="mt-6 text-center text-sm text-white/35">Many supporters choose to give anonymously. This list highlights recent visible contributions only.</p>
+        </SectionBlock>
+      </PageShell>
+    </SitePage>
+  );
 }

@@ -38,7 +38,7 @@ export function Accordion({ items, allowMultiple = false, className = '' }: Acco
         return (
           <div 
             key={item.id}
-            className="rounded-xl bg-white/[0.02] border border-white/[0.08] overflow-hidden"
+            className="rounded-[1rem] bg-white/[0.02] border border-white/[0.08] overflow-hidden"
           >
             <button
               onClick={() => toggleItem(item.id)}
@@ -96,13 +96,13 @@ export function Tabs({ tabs, defaultTab, className = '' }: TabsProps) {
   return (
     <div className={cn('', className)}>
       {/* Tab List */}
-      <div className="flex gap-2 p-1 rounded-xl bg-white/[0.05] border border-white/[0.08] w-fit">
+      <div className="flex gap-2 p-1 rounded-full bg-white/[0.05] border border-white/[0.08] w-fit">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
+              'px-4 py-2 rounded-full text-sm font-medium transition-all duration-200',
               activeTab === tab.id 
                 ? 'bg-[#d4a853] text-[#1a1815] shadow-sm' 
                 : 'text-white/70 hover:text-white hover:bg-white/[0.05]'
@@ -174,7 +174,7 @@ export function PricingTable({ tiers, className = '' }: PricingTableProps) {
           
           <button 
             className={cn(
-              'w-full py-3 rounded-xl font-medium transition-all',
+              'w-full py-3 rounded-full font-medium transition-all',
               tier.popular 
                 ? 'bg-[#d4a853] text-[#1a1815] hover:bg-[#e8c87a]' 
                 : 'border border-white/20 text-white hover:bg-white/10'
@@ -201,7 +201,7 @@ export function ContactForm({ className = '' }: ContactFormProps) {
           <label className="block text-sm font-medium text-white/80 mb-2">First Name</label>
           <input 
             type="text" 
-            className="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/[0.08] text-white placeholder:text-white/30 focus:border-[#d4a853]/50 focus:outline-none transition-colors"
+            className="w-full px-4 py-3 rounded-[1rem] bg-white/[0.02] border border-white/[0.08] text-white placeholder:text-white/30 focus:border-[#d4a853]/50 focus:outline-none transition-colors"
             placeholder="John"
           />
         </div>
@@ -209,7 +209,7 @@ export function ContactForm({ className = '' }: ContactFormProps) {
           <label className="block text-sm font-medium text-white/80 mb-2">Last Name</label>
           <input 
             type="text" 
-            className="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/[0.08] text-white placeholder:text-white/30 focus:border-[#d4a853]/50 focus:outline-none transition-colors"
+            className="w-full px-4 py-3 rounded-[1rem] bg-white/[0.02] border border-white/[0.08] text-white placeholder:text-white/30 focus:border-[#d4a853]/50 focus:outline-none transition-colors"
             placeholder="Doe"
           />
         </div>
@@ -219,14 +219,14 @@ export function ContactForm({ className = '' }: ContactFormProps) {
         <label className="block text-sm font-medium text-white/80 mb-2">Email</label>
         <input 
           type="email" 
-          className="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/[0.08] text-white placeholder:text-white/30 focus:border-[#d4a853]/50 focus:outline-none transition-colors"
+          className="w-full px-4 py-3 rounded-[1rem] bg-white/[0.02] border border-white/[0.08] text-white placeholder:text-white/30 focus:border-[#d4a853]/50 focus:outline-none transition-colors"
           placeholder="john@example.com"
         />
       </div>
       
       <div>
         <label className="block text-sm font-medium text-white/80 mb-2">Subject</label>
-        <select className="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/[0.08] text-white focus:border-[#d4a853]/50 focus:outline-none transition-colors">
+        <select className="w-full px-4 py-3 rounded-[1rem] bg-white/[0.02] border border-white/[0.08] text-white focus:border-[#d4a853]/50 focus:outline-none transition-colors">
           <option value="">Select a subject</option>
           <option value="general">General Inquiry</option>
           <option value="partnerships">Partnerships</option>
@@ -239,14 +239,14 @@ export function ContactForm({ className = '' }: ContactFormProps) {
         <label className="block text-sm font-medium text-white/80 mb-2">Message</label>
         <textarea 
           rows={4}
-          className="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/[0.08] text-white placeholder:text-white/30 focus:border-[#d4a853]/50 focus:outline-none transition-colors resize-none"
+          className="w-full px-4 py-3 rounded-[1rem] bg-white/[0.02] border border-white/[0.08] text-white placeholder:text-white/30 focus:border-[#d4a853]/50 focus:outline-none transition-colors resize-none"
           placeholder="How can we help you?"
         />
       </div>
       
       <button 
         type="submit"
-        className="w-full py-4 rounded-xl bg-[#d4a853] text-[#1a1815] font-semibold hover:bg-[#e8c87a] transition-colors"
+        className="w-full py-4 rounded-full bg-[#d4a853] text-[#1a1815] font-semibold hover:bg-[#e8c87a] transition-colors"
       >
         Send Message
       </button>
@@ -279,7 +279,7 @@ export function StatsGrid({ stats, className = '' }: StatsGridProps) {
           {stat.change && (
             <div className={cn(
               'text-xs mt-2',
-              stat.change.positive ? 'text-emerald-400' : 'text-red-400'
+              stat.change.positive ? 'text-[#f1ddab]' : 'text-red-400'
             )}>
               {stat.change.positive ? '↑' : '↓'} {stat.change.value}
             </div>

@@ -73,7 +73,7 @@ export function TokenInput({
 
       <div
         className={cn(
-          "flex items-center gap-2 rounded-xl border bg-white/5 px-4 py-3 transition-all",
+          "flex items-center gap-2 rounded-[1rem] border bg-white/5 px-4 py-3 transition-all",
           focused && "ring-2 ring-brand-gold/50",
           error ? "border-red-500/50" : "border-white/20"
         )}

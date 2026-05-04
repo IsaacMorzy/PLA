@@ -1,60 +1,56 @@
-import { Metadata } from 'next'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/glass-card'
+import { Metadata } from "next";
+import { Card } from "@/components/ui/glass-card";
+import { PageHero, PageShell, SectionBlock, SitePage } from "@/components/site/page-shell";
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy - PeaceLeague Africa',
-  description: 'Our commitment to protecting your privacy and data.',
-}
+  title: "Privacy Policy - PeaceLeague Africa",
+  description: "Our commitment to protecting your privacy and data.",
+};
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-[#1a1815] relative overflow-hidden">
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full blur-[150px] opacity-20" 
-          style={{ background: 'radial-gradient(circle, #d4a853 0%, transparent 70%)' }} 
+    <SitePage>
+      <PageShell className="max-w-5xl">
+        <PageHero
+          eyebrow="Privacy policy"
+          title={
+            <>
+              How PeaceLeague Africa handles
+              <span className="block text-[#f1ddab]">privacy and personal data.</span>
+            </>
+          }
+          description="Legal pages should still feel intentional. This version improves readability and structure without overdesigning policy content."
+          align="left"
         />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[120px] opacity-15" 
-          style={{ background: 'radial-gradient(circle, #c46d46 0%, transparent 70%)' }} 
-        />
-      </div>
 
-      <main className="relative z-10 pt-24 pb-16">
-        <section className="max-w-3xl mx-auto px-6">
-          <Card variant="gold">
-            <CardContent>
-              <h1 className="text-3xl font-bold text-white mb-2 font-display">Privacy Policy</h1>
-              <p className="text-white/50 text-sm mb-8">Last updated: April 2026</p>
-
-              <div className="space-y-8 text-white/70">
-                <section>
-                  <h2 className="text-lg font-semibold text-white mb-3">Information We Collect</h2>
-                  <p className="text-white/60">We collect information you provide directly, including name, email, and payment details when making donations. We also collect usage data to improve our services.</p>
-                </section>
-
-                <section>
-                  <h2 className="text-lg font-semibold text-white mb-3">How We Use Your Information</h2>
-                  <p className="text-white/60">Your information is used to process donations, communicate about campaigns, and provide our services. We never sell your personal data to third parties.</p>
-                </section>
-
-                <section>
-                  <h2 className="text-lg font-semibold text-white mb-3">Data Protection</h2>
-                  <p className="text-white/60">We implement industry-standard security measures to protect your data. All transactions are encrypted via blockchain technology.</p>
-                </section>
-
-                <section>
-                  <h2 className="text-lg font-semibold text-white mb-3">Your Rights</h2>
-                  <p className="text-white/60">You have the right to access, correct, or delete your personal data. Contact us to exercise these rights.</p>
-                </section>
-
-                <section>
-                  <h2 className="text-lg font-semibold text-white mb-3">Contact Us</h2>
-                  <p className="text-white/60">For privacy inquiries, reach out to our support team.</p>
-                </section>
-              </div>
-            </CardContent>
+        <SectionBlock>
+          <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-8 sm:p-10 lg:p-12">
+            <p className="text-sm text-white/42">Last updated: April 2026</p>
+            <div className="mt-8 space-y-10 text-white/70 [&_p]:leading-8">
+              <section>
+                <h2 className="font-display text-3xl text-white">Information we collect</h2>
+                <p className="mt-4">We collect information you provide directly, including contact details and information required to interact with campaigns or platform support. We may also collect product usage signals that help us improve reliability and user experience.</p>
+              </section>
+              <section>
+                <h2 className="font-display text-3xl text-white">How we use your information</h2>
+                <p className="mt-4">Your information is used to operate the platform, process relevant communications, improve product performance, and support campaign-related activity. We do not position personal data as a resale asset.</p>
+              </section>
+              <section>
+                <h2 className="font-display text-3xl text-white">Data protection</h2>
+                <p className="mt-4">We apply appropriate technical and organizational measures to protect user data. Where blockchain infrastructure is involved, users should also understand the public nature of on-chain activity.</p>
+              </section>
+              <section>
+                <h2 className="font-display text-3xl text-white">Your rights</h2>
+                <p className="mt-4">You may have rights to access, correct, or request deletion of certain personal information depending on the applicable jurisdiction and the nature of the data involved.</p>
+              </section>
+              <section>
+                <h2 className="font-display text-3xl text-white">Contact</h2>
+                <p className="mt-4">For privacy-related questions or requests, please contact the PeaceLeague Africa support team through the appropriate support or contact channel.</p>
+              </section>
+            </div>
           </Card>
-        </section>
-      </main>
-    </div>
-  )
+        </SectionBlock>
+      </PageShell>
+    </SitePage>
+  );
 }
