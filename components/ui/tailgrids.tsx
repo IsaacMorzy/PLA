@@ -1,3 +1,5 @@
+"use client"
+
 // Tailgrids-style Accordion & Interactive Components - Warm Gold Theme
 
 import { useState } from 'react'
