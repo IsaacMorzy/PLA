@@ -22,6 +22,7 @@ import { TransactionDialog } from "@/components/ui/transaction-dialog";
 import { GlassCard } from "@/components/ui/glass-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
+import { PageHero, PageShell, SectionBlock, SitePage } from "@/components/site/page-shell";
 
 const campaignSchema = z.object({
   title: z
@@ -176,10 +177,10 @@ export default function CreateCampaignPage() {
 
   if (!mounted) {
     return (
-      <main className="min-h-screen pt-24 pb-12 px-4">
-        <div className="max-w-2xl mx-auto space-y-6">
+      <SitePage>
+        <PageShell className="max-w-3xl space-y-6">
           <Skeleton className="h-6 w-20 rounded" />
-          <GlassCard className="p-8 space-y-6">
+          <GlassCard className="space-y-6 rounded-[2rem] border border-white/10 bg-white/[0.045] p-8">
             <Skeleton className="h-9 w-48 rounded-lg" />
             <div className="space-y-4">
               <Skeleton className="h-5 w-24 rounded" />
@@ -193,22 +194,22 @@ export default function CreateCampaignPage() {
               <Skeleton className="h-5 w-20 rounded" />
               <Skeleton className="h-12 w-full rounded-lg" />
             </div>
-            <Skeleton className="h-12 w-full rounded-xl" />
+            <Skeleton className="h-12 w-full rounded-full" />
           </GlassCard>
-        </div>
-      </main>
+        </PageShell>
+      </SitePage>
     );
   }
 
   if (txSignature) {
     return (
-      <main className="min-h-screen pt-24 pb-12 px-4">
-        <div className="max-w-xl mx-auto">
+      <SitePage>
+        <PageShell className="max-w-3xl">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={animations.fadeInUp}
-            className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-2xl p-8 text-center"
+            className="rounded-[2.2rem] border border-white/[0.08] bg-white/[0.03] p-8 text-center backdrop-blur-xl"
           >
             <motion.div
               initial={{ scale: 0 }}
@@ -220,7 +221,7 @@ export default function CreateCampaignPage() {
             </motion.div>
             <h2 className="text-2xl font-bold text-white mb-2">Campaign Created!</h2>
             <p className="text-white/60 mb-6">
-              Your campaign "{createdTitle}" has been created on-chain and synced to the public campaign directory.
+              Your campaign "{createdTitle}" is now live on-chain and synced to the public campaign directory.
             </p>
             <a
               href={getExplorerUrl("tx", txSignature)}
@@ -233,26 +234,26 @@ export default function CreateCampaignPage() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href={createdSlug ? `/campaign/${createdSlug}` : "/campaigns"}
-                className="px-6 py-3 bg-gradient-to-r from-[#d4a853] to-[#c46d46] text-white font-medium rounded-xl hover:opacity-90 transition-opacity"
+                className="rounded-full bg-gradient-to-r from-[#d4a853] to-[#c46d46] px-6 py-3 text-white font-medium transition-opacity hover:opacity-90"
               >
-                View Campaign
+                View live campaign
               </Link>
               <Link
                 href="/campaigns"
-                className="px-6 py-3 bg-white/10 border border-white/20 text-white font-medium rounded-xl hover:bg-white/20 transition-colors"
+                className="rounded-full border border-white/20 bg-white/10 px-6 py-3 text-white font-medium transition-colors hover:bg-white/20"
               >
-                Browse Campaigns
+                Browse all campaigns
               </Link>
             </div>
           </motion.div>
-        </div>
-      </main>
+        </PageShell>
+      </SitePage>
     );
   }
 
   return (
-    <main className="min-h-screen pt-24 pb-12 px-4">
-      <div className="max-w-2xl mx-auto">
+    <SitePage>
+      <PageShell className="max-w-3xl">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -268,24 +269,26 @@ export default function CreateCampaignPage() {
           </Link>
         </motion.div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={animations.fadeInUp}
-          className="text-center mb-8"
-        >
-          <h1 className="text-3xl font-bold text-white font-display">Create Campaign</h1>
-          <p className="text-white/60 mt-2">Launch your campaign on the Solana blockchain</p>
-        </motion.div>
+        <PageHero
+          eyebrow="Create campaign"
+          title={
+            <>
+              Launch a cause with
+              <span className="block text-[#f1ddab]">clear structure and instant credibility.</span>
+            </>
+          }
+          description="This creation flow now sits inside the same premium system as the rest of the site — focused, calm, and built to help organizers move from idea to launch with less friction."
+          align="left"
+        />
 
         {!connected && (
           <motion.div
             initial="hidden"
             animate="visible"
             variants={animations.fadeInUp}
-            className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-2xl p-8 text-center mb-6"
+            className="mt-8 rounded-[2rem] border border-white/[0.08] bg-white/[0.03] p-8 text-center backdrop-blur-xl"
           >
-            <h3 className="text-xl font-semibold text-white mb-4">Connect Your Wallet</h3>
+            <h3 className="mb-4 text-xl font-semibold text-white">Connect wallet to continue</h3>
             <p className="text-white/60 mb-6">
               Connect your Solana wallet to create a campaign on-chain.
             </p>
@@ -298,8 +301,9 @@ export default function CreateCampaignPage() {
             initial="hidden"
             animate="visible"
             variants={animations.fadeInUp}
-            className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-2xl p-6 sm:p-8"
+            className="mt-8 rounded-[2rem] border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-xl sm:p-8"
           >
+            <SectionBlock className="mt-0">
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <motion.div
                 variants={animations.staggerContainer}
@@ -332,7 +336,7 @@ export default function CreateCampaignPage() {
                     {...form.register("description")}
                     rows={4}
                     className={cn(
-                      "w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-[#d4a853]/50 transition-colors resize-none",
+                      "w-full rounded-[1rem] border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-white/30 transition-colors resize-none focus:outline-none focus:border-[#d4a853]/50",
                       form.formState.errors.description && "border-red-500/50 focus:ring-red-500/50"
                     )}
                   />
@@ -378,7 +382,7 @@ export default function CreateCampaignPage() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="flex items-center gap-2 px-4 py-3 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400"
+                    className="flex items-center gap-2 rounded-[1rem] border border-red-500/20 bg-red-500/10 px-4 py-3 text-red-400"
                   >
                     <AlertCircle className="h-5 w-5 flex-shrink-0" />
                     <span className="text-sm">{form.formState.errors.root.message}</span>
@@ -400,7 +404,7 @@ export default function CreateCampaignPage() {
                   ) : (
                     <>
                       <Send className="h-5 w-5" />
-                      <span>Create Campaign on Chain</span>
+                      <span>Launch campaign on-chain</span>
                     </>
                   )}
                 </Button>
@@ -410,18 +414,19 @@ export default function CreateCampaignPage() {
                 Program: {PROGRAM_ID.toString().slice(0, 16)}...
               </p>
             </form>
+            </SectionBlock>
           </motion.div>
         )}
-      </div>
+      </PageShell>
 
       <TransactionDialog
         open={dialogOpen}
         onOpenChange={setDialogOpen}
         transaction={pendingTransaction}
         onSuccess={handleTransactionSuccess}
-        title="Create Campaign"
+        title="Launch Campaign"
         description="Approve this transaction to create your campaign on Solana."
       />
-    </main>
+    </SitePage>
   );
 }

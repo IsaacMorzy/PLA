@@ -1,195 +1,139 @@
-import { Metadata } from 'next'
-import { Card, CardContent, GlassCard, FeatureCard, StatsCard } from '@/components/ui/glass-card'
-import { Footer } from '@/components/layout/footer'
+import { Metadata } from "next";
+import { Activity, Globe, HeartHandshake, Shield, Sparkles, Users } from "lucide-react";
+import { Card } from "@/components/ui/glass-card";
+import { FeatureGrid } from "@/components/ui/feature";
+import { StatsGrid } from "@/components/ui/tailgrids";
+import { PageHero, PageShell, SectionBlock, SectionIntro, SitePage } from "@/components/site/page-shell";
 
 export const metadata: Metadata = {
-  title: 'About Us - PeaceLeague Africa',
-  description: 'Learn about our mission to empower communities through crowdfunding.',
-}
+  title: "About Us - PeaceLeague Africa",
+  description: "Learn about our mission to empower communities through transparent crowdfunding.",
+};
+
+const values = [
+  {
+    icon: <Shield className="h-6 w-6" />,
+    title: "Proof over promises",
+    description: "We design for visible accountability so trust is earned through transparent fundraising signals.",
+  },
+  {
+    icon: <HeartHandshake className="h-6 w-6" />,
+    title: "Community-led impact",
+    description: "Campaigns are rooted in real local needs and shaped around people closest to the problem.",
+  },
+  {
+    icon: <Activity className="h-6 w-6" />,
+    title: "Action with momentum",
+    description: "We prioritize speed, clarity, and direct support so donors and organizers can move decisively.",
+  },
+];
+
+const trustReasons = [
+  "Every donation can be verified through on-chain activity.",
+  "Campaign pages are designed to communicate legitimacy faster.",
+  "The platform is built for direct, low-friction giving across borders.",
+  "Organizers can show progress in a way donors can actually trust.",
+];
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#1a1815] relative overflow-hidden page-enter">
-      {/* Warm gold mesh background */}
-      <div className="fixed inset-0 pointer-events-none bg-mesh opacity-50" />
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full blur-[150px] opacity-20" 
-          style={{ background: 'radial-gradient(circle, #d4a853 0%, transparent 70%)' }} 
+    <SitePage>
+      <PageShell>
+        <PageHero
+          eyebrow="About PeaceLeague Africa"
+          title={
+            <>
+              A trust-first platform for
+              <span className="block text-[#f1ddab]">community fundraising across Africa.</span>
+            </>
+          }
+          description="PeaceLeague Africa combines the warmth of grassroots giving with the clarity of modern on-chain infrastructure. The goal is simple: help more causes look credible, feel urgent, and receive support faster."
+          ctaHref="/campaigns"
+          ctaLabel="Explore campaigns"
         />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[120px] opacity-15" 
-          style={{ background: 'radial-gradient(circle, #c46d46 0%, transparent 70%)' }} 
-        />
-      </div>
 
-      <main className="relative z-10 pt-24 pb-16">
-        {/* Hero Section - warm gold gradient text */}
-        <section className="max-w-6xl mx-auto px-6 mb-16">
-          <Card variant="gold" className="py-16 px-8 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white font-display mb-6">
-              About <span className="gradient-text">PeaceLeague Africa</span>
-            </h1>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Empowering communities across Africa through transparent crowdfunding. 
-              We believe every person deserves the opportunity to create meaningful change.
-            </p>
-          </Card>
-        </section>
+        <SectionBlock>
+          <StatsGrid
+            stats={[
+              { value: "4,320+", label: "SOL raised" },
+              { value: "162+", label: "campaigns funded" },
+              { value: "8", label: "countries represented" },
+              { value: "$0", label: "platform fee" },
+            ]}
+            className="[&>div]:rounded-[1.6rem] [&>div]:border-white/10 [&>div]:bg-[#0e0b08]/75 [&>div]:p-6 [&_.text-2xl]:font-display [&_.text-2xl]:text-5xl [&_.text-2xl]:text-[#f1ddab] [&_.text-white\/60]:text-[11px] [&_.text-white\/60]:uppercase [&_.text-white\/60]:tracking-[0.25em]"
+          />
+        </SectionBlock>
 
-        {/* Stats - using StatsCard */}
-        <section className="max-w-6xl mx-auto px-6 mb-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 stagger-children">
-            <StatsCard label="Total Raised" value="$2M+" change={{ value: '150%', positive: true }} icon={
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            } />
-            <StatsCard label="Donors" value="50K+" change={{ value: '85%', positive: true }} icon={
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-            } />
-            <StatsCard label="Campaigns" value="500+" change={{ value: '120%', positive: true }} icon={
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-              </svg>
-            } />
-            <StatsCard label="Countries" value="12" change={{ value: '3 new', positive: true }} icon={
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A3.5 3.5 0 0011.5 9H13a4 4 0 00-8 0v2.935m0-4.945A3.5 3.5 0 0011.5 5H13a4 4 0 00-8 0v2.945m0-4.945A3.5 3.5 0 0011.5 5H13a4 4 0 00-8 0v2.945" />
-              </svg>
-            } />
+        <SectionBlock>
+          <div className="grid gap-6 lg:grid-cols-2">
+            <Card className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(212,168,83,0.12),rgba(255,255,255,0.03))] p-8">
+              <p className="text-sm uppercase tracking-[0.3em] text-[#d4a853]">Our mission</p>
+              <h2 className="mt-4 font-display text-4xl leading-tight text-white">Make transparent giving feel immediate, dignified, and credible.</h2>
+              <p className="mt-5 text-base leading-8 text-white/64">
+                We help campaign owners tell urgent stories with more structure and help donors understand impact without friction. The platform exists to reduce doubt and strengthen action.
+              </p>
+            </Card>
+            <Card className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(196,109,70,0.12),rgba(255,255,255,0.03))] p-8">
+              <p className="text-sm uppercase tracking-[0.3em] text-[#d4a853]">Our vision</p>
+              <h2 className="mt-4 font-display text-4xl leading-tight text-white">A continent-scale network of campaigns donors can trust at first glance.</h2>
+              <p className="mt-5 text-base leading-8 text-white/64">
+                We want fundraising pages for African communities to feel as polished and convincing as the best product platforms on the internet — while staying human and mission-led.
+              </p>
+            </Card>
           </div>
-        </section>
+        </SectionBlock>
 
-        {/* Mission & Vision - Overlap Design with Zigzag Pattern */}
-        <section className="max-w-6xl mx-auto px-6 mb-16 relative">
-          {/* Overlap background elements */}
-          <div className="absolute top-0 left-1/4 w-64 h-64 bg-[#d4a853]/5 rounded-full blur-[80px] -z-10" />
-          <div className="absolute bottom-20 right-1/4 w-48 h-48 bg-[#c46d46]/5 rounded-full blur-[60px] -z-10" />
-          
-          <div className="grid md:grid-cols-2 gap-8 stagger-children">
-            {/* Mission Card - positioned higher in zigzag */}
-            <div className="relative md:-mt-8 md:mb-8">
-              <div className="absolute -top-4 -left-4 w-full h-full border border-[#d4a853]/20 rounded-2xl -z-10" />
-              <Card variant="gold" className="p-8 relative">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-[#d4a853]/10 rounded-full blur-2xl" />
-                <div className="w-14 h-14 rounded-2xl bg-[#d4a853]/15 flex items-center justify-center text-[#d4a853] mb-6">
-                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-4 font-display">Our Mission</h3>
-                <p className="text-white/70 text-lg leading-relaxed">
-                  To democratize fundraising in Africa by connecting passionate donors with community-driven projects. We ensure every contribution creates real, measurable impact.
-                </p>
-              </Card>
-            </div>
-            
-            {/* Vision Card - positioned lower in zigzag */}
-            <div className="relative md:mt-8">
-              <div className="absolute -bottom-4 -right-4 w-full h-full border border-[#c46d46]/20 rounded-2xl -z-10" />
-              <Card variant="terracotta" className="p-8 relative">
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#c46d46]/10 rounded-full blur-2xl" />
-                <div className="w-14 h-14 rounded-2xl bg-[#c46d46]/15 flex items-center justify-center text-[#c46d46] mb-6">
-                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-4 font-display">Our Vision</h3>
-                <p className="text-white/70 text-lg leading-relaxed">
-                  A Africa where every community has access to the resources they need to thrive. We envision a continent united by generosity and driven by transparency.
-                </p>
-              </Card>
-            </div>
-          </div>
-        </section>
+        <SectionBlock>
+          <SectionIntro
+            eyebrow="Values"
+            title="The principles shaping every campaign, donation, and product decision."
+            description="The redesign is not just aesthetic. It reflects how the platform should behave: clear, accountable, and community-centered."
+          />
+          <FeatureGrid features={values} columns={3} className="[&>div]:rounded-[1.7rem] [&>div]:border-white/10 [&>div]:bg-white/[0.04] [&>div]:p-7" />
+        </SectionBlock>
 
-        {/* Values - using Cards */}
-        <section className="max-w-6xl mx-auto px-6 mb-16">
-          <Card variant="gradient" className="p-8 md:p-12">
-            <h2 className="text-2xl md:text-3xl font-semibold text-white font-display mb-8 text-center">Our Values</h2>
-            <div className="grid md:grid-cols-3 gap-8 stagger-children">
-              {[
-                { 
-                  title: 'Transparency', 
-                  desc: 'Every dollar is tracked and reported back to donors through our blockchain-powered platform.',
-                  icon: '01'
-                },
-                { 
-                  title: 'Community First', 
-                  desc: 'We prioritize local voices and sustainable solutions that empower rather than depend.',
-                  icon: '02'
-                },
-                { 
-                  title: 'Impact Driven', 
-                  desc: 'We measure success by real outcomes, not donations received.',
-                  icon: '03'
-                },
-              ].map((value, i) => (
-                <Card key={i} variant={i === 0 ? 'gold' : 'default'} hover className="p-6 text-center">
-                  <div className="w-12 h-12 rounded-xl bg-[hsla(45,85%,55%,0.15)] flex items-center justify-center mx-auto mb-4">
-                    <span className="text-lg font-bold text-[#d4a853]">{value.icon}</span>
+        <SectionBlock>
+          <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <SectionIntro
+                eyebrow="Why on-chain"
+                title="Technology is here to reinforce trust, not distract from the mission."
+                description="Solana gives PeaceLeague Africa a way to make fundraising activity legible, fast, and verifiable — especially for global donors who need confidence before they contribute."
+                className="mb-0"
+              />
+            </div>
+            <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-7">
+              <div className="grid gap-4 sm:grid-cols-2">
+                {trustReasons.map((reason, index) => (
+                  <div key={reason} className="rounded-[1.4rem] border border-white/8 bg-black/20 p-5">
+                    <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-[#d4a853]/10 text-[#d4a853]">
+                      {index % 2 === 0 ? <Globe className="h-5 w-5" /> : <Users className="h-5 w-5" />}
+                    </div>
+                    <p className="text-sm leading-7 text-white/68">{reason}</p>
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{value.title}</h3>
-                  <p className="text-white/60 text-sm">{value.desc}</p>
-                </Card>
-              ))}
+                ))}
+              </div>
+            </Card>
+          </div>
+        </SectionBlock>
+
+        <SectionBlock>
+          <Card className="rounded-[2.1rem] border border-[#d4a853]/16 bg-[linear-gradient(135deg,rgba(212,168,83,0.16),rgba(255,255,255,0.04),rgba(196,109,70,0.1))] p-8 sm:p-10">
+            <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+              <div>
+                <p className="text-sm uppercase tracking-[0.32em] text-[#f1ddab]">What we are building</p>
+                <h2 className="mt-4 max-w-3xl font-display text-4xl leading-tight text-white sm:text-5xl">
+                  A platform where generosity feels modern, transparent, and impossible to ignore.
+                </h2>
+              </div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-black/20 px-4 py-2 text-sm text-white/70">
+                <Sparkles className="h-4 w-4 text-[#d4a853]" />
+                PeaceLeague Africa, reimagined with precision
+              </div>
             </div>
           </Card>
-        </section>
-
-        {/* Why Web3 Section */}
-        <section className="max-w-6xl mx-auto px-6 mb-16">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <GlassCard variant="default" className="p-8">
-              <div className="w-14 h-14 rounded-2xl bg-[#9945ff]/15 flex items-center justify-center text-[#9945ff] mb-6">
-                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4 font-display">Why Blockchain?</h3>
-              <ul className="space-y-4">
-                {[
-                  'Every donation is recorded on-chain — publicly verifiable',
-                  'Campaigns can\'t be modified after the fact',
-                  'Funds go directly to creators via program PDAs',
-                  'Total cost under $0.01 per transaction',
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="w-6 h-6 rounded-full bg-[#9945ff]/20 flex items-center justify-center text-[#9945ff] text-sm flex-shrink-0 mt-0.5">✓</span>
-                    <span className="text-white/70">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </GlassCard>
-            <GlassCard variant="default" className="p-8">
-              <div className="w-14 h-14 rounded-2xl bg-[#00ffa3]/15 flex items-center justify-center text-[#00ffa3] mb-6">
-                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4 font-display">Built on Solana</h3>
-              <ul className="space-y-4">
-                {[
-                  'Transactions confirm in ~400ms',
-                  'Over 65,000 TPS capacity',
-                  'Less than $0.001 per transaction',
-                  'Carbon-negative blockchain',
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="w-6 h-6 rounded-full bg-[#00ffa3]/20 flex items-center justify-center text-[#00ffa3] text-sm flex-shrink-0 mt-0.5">✓</span>
-                    <span className="text-white/70">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </GlassCard>
-          </div>
-        </section>
-      </main>
-
-      <Footer />
-    </div>
-  )
+        </SectionBlock>
+      </PageShell>
+    </SitePage>
+  );
 }

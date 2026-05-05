@@ -70,7 +70,7 @@ export function TransactionDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-md bg-[#1a1815] border-white/10 text-white">
+      <DialogContent className="sm:max-w-md text-white">
         <DialogHeader>
           <DialogTitle className="text-white">{title}</DialogTitle>
           <DialogDescription className="text-white/60">
@@ -100,7 +100,7 @@ export function TransactionDialog({
                 exit={{ opacity: 0, y: -10 }}
                 className="flex flex-col items-center gap-4"
               >
-                <Loader2 className="h-8 w-8 animate-spin text-brand-gold" />
+                <Loader2 className="h-8 w-8 animate-spin text-[#d4a853]" />
                 <p className="text-sm text-white/60">
                   Waiting for wallet approval...
                 </p>
@@ -115,7 +115,7 @@ export function TransactionDialog({
                 exit={{ opacity: 0, y: -10 }}
                 className="flex flex-col items-center gap-4"
               >
-                <Loader2 className="h-8 w-8 animate-spin text-brand-gold" />
+                <Loader2 className="h-8 w-8 animate-spin text-[#d4a853]" />
                 <p className="text-sm text-white/60">
                   Confirming on Solana...
                 </p>
@@ -142,7 +142,7 @@ export function TransactionDialog({
                     href={getExplorerUrl("tx", signature)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-sm text-brand-gold hover:underline"
+                    className="flex items-center gap-1 text-sm text-[#f1ddab] hover:underline"
                   >
                     View on Solana Explorer
                     <ExternalLink className="h-3 w-3" />
@@ -174,13 +174,13 @@ export function TransactionDialog({
               <Button variant="outline" onClick={handleClose} className="border-white/20 text-white hover:bg-white/10">
                 Cancel
               </Button>
-              <Button onClick={handleConfirm} className="bg-brand-gold text-[#1a1815] hover:bg-brand-gold-light">
+              <Button onClick={handleConfirm} className="bg-[#d4a853] text-[#1a1815] hover:bg-[#e8c87a]">
                 Confirm
               </Button>
             </>
           )}
           {(state === "success" || state === "error") && (
-            <Button onClick={handleClose} className="bg-brand-gold text-[#1a1815] hover:bg-brand-gold-light">
+            <Button onClick={handleClose} className="bg-[#d4a853] text-[#1a1815] hover:bg-[#e8c87a]">
               Close
             </Button>
           )}

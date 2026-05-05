@@ -50,7 +50,7 @@ export function CampaignFilters({
           id="category-filter"
           value={selectedCategory}
           onChange={handleCategoryChange}
-          className="w-full sm:w-auto px-4 py-2 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+          className="w-full rounded-full border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#d4a853]/50 sm:w-auto"
         >
           {categories.map((cat) => (
             <option key={cat.value} value={cat.value}>
@@ -67,7 +67,7 @@ export function CampaignFilters({
           id="sort-filter"
           value={selectedSort}
           onChange={handleSortChange}
-          className="w-full sm:w-auto px-4 py-2 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+          className="w-full rounded-full border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#d4a853]/50 sm:w-auto"
         >
           {sortOptions.map((opt) => (
             <option key={opt.value} value={opt.value}>

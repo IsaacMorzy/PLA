@@ -93,7 +93,7 @@ export function FeatureCard({
 }) {
   return (
     <Card variant="gold" hover className={`p-6 ${className}`}>
-      <div className="w-12 h-12 rounded-xl bg-[hsla(45,85%,55%,0.15)] flex items-center justify-center text-[#d4a853] mb-4">
+      <div className="w-12 h-12 rounded-[1rem] bg-[hsla(45,85%,55%,0.15)] flex items-center justify-center text-[#d4a853] mb-4">
         {icon}
       </div>
       <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
@@ -124,7 +124,7 @@ export function StatsCard({
           <p className="text-white/50 text-sm">{label}</p>
           <p className="text-2xl font-bold text-white mt-1">{value}</p>
           {change && (
-            <p className={`text-sm mt-2 ${change.positive ? 'text-emerald-400' : 'text-red-400'}`}>
+            <p className={`text-sm mt-2 ${change.positive ? 'text-[#f1ddab]' : 'text-red-400'}`}>
               {change.positive ? '↑' : '↓'} {change.value}
             </p>
           )}

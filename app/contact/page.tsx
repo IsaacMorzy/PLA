@@ -1,96 +1,90 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { GlassCard } from '@/components/ui/glass-card'
-import { ContactForm } from '@/components/ui/tailgrids'
+import { useState } from "react";
+import { Mail, MapPin, Clock3 } from "lucide-react";
+import { ContactForm } from "@/components/ui/tailgrids";
+import { Card } from "@/components/ui/glass-card";
+import { PageHero, PageShell, SectionBlock, SectionIntro, SitePage } from "@/components/site/page-shell";
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false)
+  const [submitted, setSubmitted] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#1a1815] relative overflow-hidden">
-      {/* Background mesh */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-[-30%] left-[-20%] w-[600px] h-[600px] bg-[#d4a853]/5 rounded-full blur-[150px]" />
-        <div className="absolute bottom-[-30%] right-[-20%] w-[500px] h-[500px] bg-[#c46d46]/5 rounded-full blur-[120px]" />
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #d4a853 1px, transparent 0)`,
-          backgroundSize: '32px 32px'
-        }} />
-      </div>
+    <SitePage>
+      <PageShell className="max-w-6xl">
+        <PageHero
+          eyebrow="Contact"
+          title={
+            <>
+              Reach the team behind
+              <span className="block text-[#f1ddab]">PeaceLeague Africa.</span>
+            </>
+          }
+          description="This page should feel calm, direct, and trustworthy — a polished place to ask questions, start partnerships, or get support."
+          align="left"
+        />
 
-      <main className="relative z-10 pt-24 pb-16">
-        <section className="max-w-6xl mx-auto px-6 mb-16">
-          <GlassCard variant="gradient" className="text-center py-16 px-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-display">
-              Get In <span className="text-[#d4a853]">Touch</span>
-            </h1>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Have questions? We'd love to hear from you. Reach out and we'll get back to you within 24 hours.
-            </p>
-          </GlassCard>
-        </section>
+        <SectionBlock>
+          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+            <div>
+              <SectionIntro
+                eyebrow="Send a message"
+                title="A clearer contact flow with less friction and more confidence."
+                description="The layout now separates the action from the reassurance so users can decide quickly and act without confusion."
+              />
+              <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-8">
+                {submitted ? (
+                  <div className="py-8 text-center">
+                    <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 text-[#d4a853]">
+                      <Mail className="h-7 w-7" />
+                    </div>
+                    <h2 className="mt-6 font-display text-3xl text-white">Message sent</h2>
+                    <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-white/62">
+                      Thanks for reaching out. We’ll follow up as soon as possible with the right next step.
+                    </p>
+                    <button
+                      onClick={() => setSubmitted(false)}
+                      className="mt-6 rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-5 py-2.5 text-sm font-medium text-[#f1ddab] transition duration-300 hover:bg-[#d4a853]/16 hover:text-white"
+                    >
+                      Send another message
+                    </button>
+                  </div>
+                ) : (
+                  <div onSubmitCapture={() => setSubmitted(true)}>
+                    <ContactForm className="[&_button]:rounded-full [&_button]:bg-[#d4a853] [&_button]:text-[#17120d] [&_input]:rounded-[1rem] [&_input]:border-white/10 [&_input]:bg-black/20 [&_label]:text-white/78 [&_select]:rounded-[1rem] [&_select]:border-white/10 [&_select]:bg-black/20 [&_textarea]:rounded-[1rem] [&_textarea]:border-white/10 [&_textarea]:bg-black/20" />
+                  </div>
+                )}
+              </Card>
+            </div>
 
-        <section className="max-w-4xl mx-auto px-6 mb-16">
-          <GlassCard variant="default" className="p-8">
-            {submitted ? (
-              <div className="text-center py-8">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#d4a853]/20 flex items-center justify-center">
-                  <svg className="w-8 h-8 text-[#d4a853]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h2 className="text-2xl font-semibold text-white mb-2 font-display">Message Sent!</h2>
-                <p className="text-white/60">Thank you for reaching out. We'll get back to you soon.</p>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="mt-6 text-[#d4a853] hover:text-[#e8c87a]"
-                >
-                  Send another message
-                </button>
-              </div>
-            ) : (
-              <ContactForm />
-            )}
-          </GlassCard>
-        </section>
-
-        {/* Contact info */}
-        <section className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-6">
-            <GlassCard variant="default" className="p-6 text-center">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#d4a853]/10 flex items-center justify-center text-[#d4a853]">
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-1">Email</h3>
-              <p className="text-white/60">hello@peaceleague.africa</p>
-            </GlassCard>
-            
-            <GlassCard variant="default" className="p-6 text-center">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#d4a853]/10 flex items-center justify-center text-[#d4a853]">
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-1">Location</h3>
-              <p className="text-white/60">Nairobi, Kenya</p>
-            </GlassCard>
-            
-            <GlassCard variant="default" className="p-6 text-center">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#d4a853]/10 flex items-center justify-center text-[#d4a853]">
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-1">Response Time</h3>
-              <p className="text-white/60">Within 24 hours</p>
-            </GlassCard>
+            <div className="space-y-6">
+              {[{
+                icon: <Mail className="h-5 w-5" />,
+                title: "Email",
+                body: "hello@peaceleague.africa",
+              }, {
+                icon: <MapPin className="h-5 w-5" />,
+                title: "Location",
+                body: "Nairobi, Kenya",
+              }, {
+                icon: <Clock3 className="h-5 w-5" />,
+                title: "Response time",
+                body: "Usually within 24 hours",
+              }].map((item) => (
+                <Card key={item.title} className="rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#d4a853]/10 text-[#d4a853]">{item.icon}</div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.24em] text-white/38">{item.title}</p>
+                      <p className="mt-3 text-base text-white">{item.body}</p>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
           </div>
-        </section>
-      </main>
-    </div>
-  )
+        </SectionBlock>
+      </PageShell>
+    </SitePage>
+  );
 }
