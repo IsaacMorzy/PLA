@@ -125,22 +125,22 @@ export function CampaignsClient({ initialCampaigns }: CampaignsClientProps) {
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-[11px] uppercase tracking-[0.28em] text-white/74"
             >
               <Sparkles className="h-3.5 w-3.5 text-[#d4a853]" />
-              Live campaign directory
+              Campaigns sorted for decisive action
             </motion.div>
 
             <motion.h1
               variants={animations.fadeInUp}
-              className="mt-6 max-w-4xl font-display text-[3.2rem] leading-[0.94] text-white sm:text-[4.6rem]"
+              className="mt-6 max-w-4xl text-balance font-display text-[3.2rem] leading-[0.92] tracking-[-0.018em] text-white sm:text-[4.6rem]"
             >
-              Discover verified campaigns,
-              <span className="block text-[#f1ddab]">then donate with confidence.</span>
+              Find causes with clear proof,
+              <span className="block text-[#f1ddab]">then act while momentum is real.</span>
             </motion.h1>
 
             <motion.p
               variants={animations.fadeInUp}
-              className="mt-6 max-w-2xl text-base leading-8 text-white/72 sm:text-lg"
+              className="mt-6 max-w-[62ch] text-pretty text-base leading-[1.9] text-white/72 sm:text-lg"
             >
-              Compare campaign urgency, progress, and legitimacy quickly so your donation decision is informed and immediate.
+              Compare urgency, funding trajectory, and community backing at a glance. The goal is simple: reduce hesitation between intent and contribution.
             </motion.p>
 
             <motion.div variants={animations.fadeInUp} className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -233,7 +233,7 @@ export function CampaignsClient({ initialCampaigns }: CampaignsClientProps) {
             <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
               <div>
                 <p className="text-sm uppercase tracking-[0.3em] text-[#d4a853]">Find your cause</p>
-                <h2 className="mt-3 font-display text-4xl text-white">Filter by need, sort by momentum.</h2>
+                <h2 className="mt-3 text-balance font-display text-4xl leading-[1.02] tracking-[-0.012em] text-white">Filter by cause, prioritize by momentum.</h2>
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">

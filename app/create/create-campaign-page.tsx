@@ -274,11 +274,11 @@ export default function CreateCampaignPage() {
           eyebrow="Create campaign"
           title={
             <>
-              Launch a cause with
-              <span className="block text-[#f1ddab]">clear structure and instant credibility.</span>
+              Start with evidence,
+              <span className="block text-[#f1ddab]">so donors can trust your story immediately.</span>
             </>
           }
-          description="Launch a campaign with the minimum required details, then publish with a structure donors can trust from first view."
+          description="This flow is intentionally short: clarify the need, set a realistic goal, and publish with structure that supports donor confidence from first glance."
           align="left"
         />
 
@@ -289,9 +289,9 @@ export default function CreateCampaignPage() {
             variants={animations.fadeInUp}
             className="mt-8 rounded-[2rem] border border-white/[0.08] bg-white/[0.03] p-8 text-center backdrop-blur-xl"
           >
-            <h3 className="mb-4 text-xl font-semibold text-white">Connect wallet to continue</h3>
+            <h3 className="mb-4 text-xl font-semibold text-white">Connect wallet to publish</h3>
             <p className="mb-6 text-white/72">
-              Connect your Solana wallet to create a campaign on-chain.
+              Your wallet signs ownership and creates the campaign record on-chain.
             </p>
             <WalletMultiButton className="!bg-[#d4a853] !text-black hover:!bg-[#c46d46] !border-none !mx-auto" />
           </motion.div>
@@ -333,7 +333,7 @@ export default function CreateCampaignPage() {
                   <Label htmlFor="description">Description *</Label>
                   <textarea
                     id="description"
-                    placeholder="Describe your cause and how the funds will be used..."
+                    placeholder="Describe the need, who benefits, and exactly how funds will be used..."
                     {...form.register("description")}
                     rows={4}
                     className={cn(

@@ -21,19 +21,19 @@ export default async function BlogPage() {
           eyebrow="Journal"
           title={
             <>
-              Stories, field notes, and updates
-              <span className="block text-[#f1ddab]">from the PeaceLeague Africa platform.</span>
+              Dispatches from the field,
+              <span className="block text-[#f1ddab]">the product, and the people behind campaigns.</span>
             </>
           }
-          description="Read campaign insights, product updates, and field stories that help donors and creators make better decisions."
+          description="A practical reading stream for donors and organizers: what worked, what changed, and what made campaigns more trustworthy."
           align="left"
         />
 
         <SectionBlock>
           <SectionIntro
             eyebrow="Latest posts"
-            title="Latest stories, updates, and practical fundraising insight."
-            description="Explore content organized for quick scanning: category, read time, author, and clear next action."
+            title="Read for signal, not noise."
+            description="Each post is structured for quick judgment: category, read time, ownership, and clear next action."
           />
 
           {posts.length > 0 ? (
@@ -71,7 +71,7 @@ export default async function BlogPage() {
                         ) : null}
                       </div>
 
-                      <h2 className={`mt-5 font-display text-white transition-colors duration-300 group-hover:text-[#f1ddab] ${index === 0 ? "text-4xl leading-tight" : "text-3xl leading-snug"}`}>
+                      <h2 className={`mt-5 text-balance font-display text-white transition-colors duration-300 group-hover:text-[#f1ddab] ${index === 0 ? "text-4xl leading-[1.02] tracking-[-0.01em]" : "text-3xl leading-[1.05] tracking-[-0.01em]"}`}>
                         {post.title}
                       </h2>
 

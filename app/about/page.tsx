@@ -44,11 +44,11 @@ export default function AboutPage() {
           eyebrow="About PeaceLeague Africa"
           title={
             <>
-              A trust-first platform for
-              <span className="block text-[#f1ddab]">community fundraising across Africa.</span>
+              We design trust as infrastructure,
+              <span className="block text-[#f1ddab]">not as marketing language.</span>
             </>
           }
-          description="PeaceLeague Africa helps community fundraisers present verified needs clearly, so donors can evaluate quickly and contribute with confidence."
+          description="PeaceLeague Africa exists to reduce donor uncertainty. We help campaign organizers present evidence clearly, so support decisions can happen quickly and responsibly."
           ctaHref="/campaigns"
           ctaLabel={CTA_COPY.browseCampaigns}
         />
@@ -69,14 +69,14 @@ export default function AboutPage() {
           <div className="grid gap-6 lg:grid-cols-2">
             <Card className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(212,168,83,0.12),rgba(255,255,255,0.03))] p-8">
               <p className="text-sm uppercase tracking-[0.3em] text-[#d4a853]">Our mission</p>
-              <h2 className="mt-4 font-display text-4xl leading-tight text-white">Make transparent giving feel immediate, dignified, and credible.</h2>
+              <h2 className="mt-4 text-balance font-display text-4xl leading-[1] tracking-[-0.015em] text-white">Make transparent giving feel immediate, dignified, and credible.</h2>
               <p className="mt-5 text-base leading-8 text-white/72">
                 We help campaign owners tell urgent stories with more structure and help donors understand impact without friction. The platform exists to reduce doubt and strengthen action.
               </p>
             </Card>
             <Card className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(196,109,70,0.12),rgba(255,255,255,0.03))] p-8">
               <p className="text-sm uppercase tracking-[0.3em] text-[#d4a853]">Our vision</p>
-              <h2 className="mt-4 font-display text-4xl leading-tight text-white">A continent-scale network of campaigns donors can trust at first glance.</h2>
+              <h2 className="mt-4 text-balance font-display text-4xl leading-[1] tracking-[-0.015em] text-white">A continent-scale network of campaigns donors can trust at first glance.</h2>
               <p className="mt-5 text-base leading-8 text-white/72">
                 We want fundraising pages for African communities to feel as polished and convincing as the best product platforms on the internet — while staying human and mission-led.
               </p>

@@ -112,10 +112,10 @@ const faqItems = [
 
 export default function HomeClient({ campaigns, stories }: HomeClientProps) {
   return (
-    <main className="relative overflow-hidden bg-[#120f0c] text-white">
+    <main className="home-theme relative overflow-hidden text-foreground dark:text-white">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,168,83,0.18),transparent_28%),radial-gradient(circle_at_80%_20%,rgba(196,109,70,0.16),transparent_24%),radial-gradient(circle_at_50%_85%,rgba(16,185,129,0.08),transparent_24%)]" />
-        <div className="absolute inset-0 hidden opacity-[0.05] md:block [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:72px_72px]" />
+        <div className="absolute inset-0 hidden opacity-[0.05] md:block [background-image:linear-gradient(rgba(35,23,12,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(35,23,12,0.08)_1px,transparent_1px)] [background-size:72px_72px] dark:[background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)]" />
       </div>
 
       <HeroSection />
@@ -146,26 +146,26 @@ function HeroSection() {
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/6 px-4 py-2 text-xs uppercase tracking-[0.28em] text-white/72"
           >
             <Sparkles className="h-3.5 w-3.5 text-[#d4a853]" />
-            Transparent giving infrastructure, built on Solana
+            Built for donor clarity, not donor guesswork
           </motion.div>
 
           <motion.div variants={animations.fadeInUp} className="max-w-4xl">
             <p className="mb-4 text-sm uppercase tracking-[0.4em] text-[#d4a853] sm:text-[0.9rem]">
               PeaceLeague Africa
             </p>
-            <h1 className="max-w-5xl font-display text-[2.75rem] leading-[0.92] text-white sm:text-[4.2rem] lg:text-[6.3rem]">
-              Donate with confidence.
-              <span className="block text-[#f1ddab]">Verify every transfer.</span>
-              <span className="block text-white/45">Help communities faster.</span>
+            <h1 className="max-w-5xl text-balance font-display text-[2.75rem] leading-[0.9] tracking-[-0.02em] text-white sm:text-[4.2rem] lg:text-[6.2rem]">
+              Give where proof is visible.
+              <span className="block text-[#f1ddab]">Trace every contribution.</span>
+              <span className="block text-white/45">Back real communities, faster.</span>
             </h1>
           </motion.div>
 
           <motion.p
             variants={animations.fadeInUp}
-            className="mt-8 max-w-2xl text-base leading-8 text-white/68 sm:text-lg"
+            className="mt-8 max-w-[62ch] text-pretty text-base leading-[1.9] text-white/68 sm:text-lg"
           >
-            PeaceLeague Africa helps donors back verified community campaigns with clear evidence.
-            Campaign owners launch quickly, and every contribution leaves a public proof trail.
+            PeaceLeague Africa makes trust observable. Donors can inspect campaign momentum in real time,
+            organizers can launch without friction, and every transfer stays publicly auditable from first pledge to final payout.
           </motion.p>
 
           <motion.div variants={animations.fadeInUp} className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -198,7 +198,7 @@ function HeroSection() {
             ].map((item) => (
               <div
                 key={item.label}
-                className="rounded-[1.5rem] border border-white/10 bg-white/[0.045] px-5 py-4 backdrop-blur-xl"
+                className="rounded-[1.5rem] border border-white/10 bg-white/[0.045] px-5 py-4 backdrop-blur-xl sm:[&:nth-child(2)]:translate-y-3"
               >
                 <p className="text-xs uppercase tracking-[0.26em] text-white/42">{item.label}</p>
                 <p className="mt-2 text-base font-medium text-white">{item.value}</p>
@@ -228,7 +228,7 @@ function HeroSection() {
               <div className="flex items-center justify-between border-b border-white/10 pb-4">
                 <div>
                   <p className="text-xs uppercase tracking-[0.3em] text-white/45">Live impact board</p>
-                  <p className="mt-2 text-2xl font-semibold text-white">Transparent by design</p>
+                  <p className="mt-2 text-2xl font-semibold text-white">Trust, rendered as data</p>
                 </div>
                 <div className="rounded-full border border-[#d4a853]/25 bg-[#d4a853]/10 px-3 py-1 text-xs font-medium text-[#f1ddab]">
                   ● Live now
