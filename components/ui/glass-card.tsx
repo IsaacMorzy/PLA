@@ -9,10 +9,10 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function Card({ children, className = "", variant = 'default', hover = false, ...props }: CardProps) {
   const variants = {
-    default: 'bg-white/[0.02] backdrop-blur-xl border border-white/[0.08]',
-    gradient: 'bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/[0.1]',
-    gold: 'bg-gradient-to-br from-[hsla(45,85%,55%,0.08)] to-transparent border border-[hsla(45,85%,55%,0.15)]',
-    terracotta: 'bg-gradient-to-br from-[hsla(25,60%,45%,0.08)] to-transparent border border-[hsla(25,60%,45%,0.15)]'
+    default: 'bg-white/80 backdrop-blur-xl border border-black/[0.08] dark:bg-white/[0.02] dark:border-white/[0.08]',
+    gradient: 'bg-gradient-to-br from-white/95 to-[#f3eadb] border border-black/[0.08] dark:from-white/[0.08] dark:to-white/[0.02] dark:border-white/[0.1]',
+    gold: 'bg-gradient-to-br from-[hsla(45,85%,55%,0.16)] to-transparent border border-[hsla(45,85%,55%,0.24)] dark:from-[hsla(45,85%,55%,0.08)] dark:border-[hsla(45,85%,55%,0.15)]',
+    terracotta: 'bg-gradient-to-br from-[hsla(25,60%,45%,0.16)] to-transparent border border-[hsla(25,60%,45%,0.24)] dark:from-[hsla(25,60%,45%,0.08)] dark:border-[hsla(25,60%,45%,0.15)]'
   }
   
   const hoverClass = hover 
@@ -39,7 +39,7 @@ export function CardHeader({ children, className = "", ...props }: CardProps) {
 
 export function CardTitle({ children, className = "", ...props }: CardProps) {
   return (
-    <h3 className={`text-xl font-semibold text-white font-display ${className}`} {...props}>
+    <h3 className={`text-xl font-semibold text-[#22170d] dark:text-white font-display ${className}`} {...props}>
       {children}
     </h3>
   )
@@ -47,7 +47,7 @@ export function CardTitle({ children, className = "", ...props }: CardProps) {
 
 export function CardDescription({ children, className = "", ...props }: CardProps) {
   return (
-    <p className={`mt-1 text-sm text-white/70 ${className}`} {...props}>
+    <p className={`mt-1 text-sm text-[#5c4732] dark:text-white/70 ${className}`} {...props}>
       {children}
     </p>
   )
@@ -77,7 +77,6 @@ export function CardFooter({ children, className = "", ...props }: CardProps) {
   )
 }
 
-// Feature Action Card - Icon + Title + Description + CTA Button
 export function FeatureCard({ 
   icon, 
   title, 
@@ -93,17 +92,16 @@ export function FeatureCard({
 }) {
   return (
     <Card variant="gold" hover className={`p-6 ${className}`}>
-      <div className="w-12 h-12 rounded-[1rem] bg-[hsla(45,85%,55%,0.15)] flex items-center justify-center text-[#d4a853] mb-4">
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-[1rem] bg-[hsla(45,85%,55%,0.15)] text-[#d4a853]">
         {icon}
       </div>
-      <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
-      <p className="mb-4 text-sm text-white/70">{description}</p>
+      <h3 className="mb-2 text-lg font-semibold text-[#22170d] dark:text-white">{title}</h3>
+      <p className="mb-4 text-sm text-[#5c4732] dark:text-white/70">{description}</p>
       {action && <div>{action}</div>}
     </Card>
   )
 }
 
-// Stats Card - For dashboard metrics
 export function StatsCard({ 
   label, 
   value, 
@@ -121,16 +119,16 @@ export function StatsCard({
     <Card variant="default" className={`p-5 ${className}`}>
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm text-white/62">{label}</p>
-          <p className="text-2xl font-bold text-white mt-1">{value}</p>
+          <p className="text-sm text-[#6c5640] dark:text-white/62">{label}</p>
+          <p className="mt-1 text-2xl font-bold text-[#1f140b] dark:text-white">{value}</p>
           {change && (
-            <p className={`text-sm mt-2 ${change.positive ? 'text-[#f1ddab]' : 'text-red-400'}`}>
+            <p className={`mt-2 text-sm ${change.positive ? 'text-[#8f641f] dark:text-[#f1ddab]' : 'text-red-500 dark:text-red-400'}`}>
               {change.positive ? '↑' : '↓'} {change.value}
             </p>
           )}
         </div>
         {icon && (
-          <div className="w-10 h-10 rounded-lg bg-[hsla(45,85%,55%,0.1)] flex items-center justify-center text-[#d4a853]">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[hsla(45,85%,55%,0.1)] text-[#d4a853]">
             {icon}
           </div>
         )}
@@ -139,7 +137,6 @@ export function StatsCard({
   )
 }
 
-// Profile Card - For team/testimonials
 export function ProfileCard({
   image,
   name,
@@ -160,20 +157,19 @@ export function ProfileCard({
           <img 
             src={image} 
             alt={name} 
-            className="w-12 h-12 rounded-full object-cover border-2 border-[hsla(45,85%,55%,0.3)]"
+            className="h-12 w-12 rounded-full border-2 border-[hsla(45,85%,55%,0.3)] object-cover"
           />
         )}
         <div className="flex-1">
-          <h4 className="font-semibold text-white">{name}</h4>
+          <h4 className="font-semibold text-[#22170d] dark:text-white">{name}</h4>
           {role && <p className="text-[#d4a853] text-sm">{role}</p>}
-          <p className="text-white/70 text-sm mt-3 italic">"{content}"</p>
+          <p className="mt-3 text-sm italic text-[#5c4732] dark:text-white/70">"{content}"</p>
         </div>
       </div>
     </Card>
   )
 }
 
-// Glass Card - With variant support
 interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   variant?: 'default' | 'gradient' | 'gold' | 'terracotta'
@@ -181,10 +177,10 @@ interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function GlassCard({ children, className = "", variant = 'default', ...props }: GlassCardProps) {
   const variants = {
-    default: 'bg-white/[0.02] backdrop-blur-xl border border-white/[0.08]',
-    gradient: 'bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/[0.1]',
-    gold: 'bg-gradient-to-br from-[hsla(45,85%,55%,0.08)] to-transparent border border-[hsla(45,85%,55%,0.15)]',
-    terracotta: 'bg-gradient-to-br from-[hsla(25,60%,45%,0.08)] to-transparent border border-[hsla(25,60%,45%,0.15)]'
+    default: 'bg-white/80 backdrop-blur-xl border border-black/[0.08] dark:bg-white/[0.02] dark:border-white/[0.08]',
+    gradient: 'bg-gradient-to-br from-white/95 to-[#f3eadb] border border-black/[0.08] dark:from-white/[0.08] dark:to-white/[0.02] dark:border-white/[0.1]',
+    gold: 'bg-gradient-to-br from-[hsla(45,85%,55%,0.16)] to-transparent border border-[hsla(45,85%,55%,0.24)] dark:from-[hsla(45,85%,55%,0.08)] dark:border-[hsla(45,85%,55%,0.15)]',
+    terracotta: 'bg-gradient-to-br from-[hsla(25,60%,45%,0.16)] to-transparent border border-[hsla(25,60%,45%,0.24)] dark:from-[hsla(25,60%,45%,0.08)] dark:border-[hsla(25,60%,45%,0.15)]'
   }
 
   return (

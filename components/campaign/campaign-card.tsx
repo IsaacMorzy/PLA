@@ -78,7 +78,7 @@ export function CampaignCard({ campaign, index = 0, featured = false }: Campaign
       >
         <div
           className={cn(
-            "relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] shadow-[0_24px_80px_rgba(0,0,0,0.28)] transition-all duration-500 hover:-translate-y-1 hover:border-[#d4a853]/20",
+            "relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.72))] shadow-[0_20px_55px_rgba(55,31,12,0.12)] transition-all duration-500 hover:-translate-y-1 hover:border-[#d4a853]/28 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] dark:shadow-[0_24px_80px_rgba(0,0,0,0.28)]",
             featured ? "min-h-[31rem]" : "min-h-[27rem]"
           )}
         >
@@ -101,7 +101,7 @@ export function CampaignCard({ campaign, index = 0, featured = false }: Campaign
             <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_top_right,rgba(212,168,83,0.18),transparent_28%)]" />
 
             <div className="absolute left-5 right-5 top-5 flex items-start justify-between gap-3">
-              <span className="rounded-full border border-white/12 bg-black/35 px-3 py-1.5 text-[11px] uppercase tracking-[0.22em] text-white/88 backdrop-blur-md">
+              <span className="rounded-full border border-black/12 bg-black/[0.06] px-3 py-1.5 text-[11px] uppercase tracking-[0.22em] text-[#5a4633] backdrop-blur-md dark:border-white/12 dark:bg-black/35 dark:text-white/88">
                 {category}
               </span>
               <span
@@ -109,7 +109,7 @@ export function CampaignCard({ campaign, index = 0, featured = false }: Campaign
                   "rounded-full px-3 py-1.5 text-[11px] uppercase tracking-[0.22em] backdrop-blur-md",
                   status === "active"
                     ? "border border-[#d4a853]/25 bg-[#d4a853]/10 text-[#f1ddab]"
-                    : "border border-white/12 bg-black/35 text-white/70"
+                    : "border border-black/12 bg-black/[0.06] text-[#5a4633] dark:border-white/12 dark:bg-black/35 dark:text-white/70"
                 )}
               >
                 {status}
@@ -117,18 +117,18 @@ export function CampaignCard({ campaign, index = 0, featured = false }: Campaign
             </div>
 
             <div className="absolute bottom-5 left-5 right-5">
-              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-white/68">
+              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#5d4936] dark:text-white/68">
                 <MapPin className="h-3.5 w-3.5 text-[#d4a853]" />
                 {location}
               </div>
-              <h3 className={cn("mt-3 font-display text-white transition-colors duration-300 group-hover:text-[#f4dfab]", featured ? "max-w-2xl text-4xl leading-tight" : "text-3xl leading-snug")}>
+              <h3 className={cn("mt-3 font-display text-[#1f140b] transition-colors duration-300 group-hover:text-[#8f641f] dark:text-white dark:group-hover:text-[#f4dfab]", featured ? "max-w-2xl text-4xl leading-tight" : "text-3xl leading-snug")}>
                 {campaign.title}
               </h3>
             </div>
           </div>
 
           <div className="flex flex-1 flex-col p-6">
-            <p className="line-clamp-3 text-sm leading-7 text-white/72">{summary}</p>
+            <p className="line-clamp-3 text-sm leading-7 text-[#5d4936] dark:text-white/72">{summary}</p>
 
             <div className="mt-6 grid grid-cols-3 gap-3">
               <MetaStat label="Raised" value={`${raised.toFixed(1)} SOL`} highlight />
@@ -138,10 +138,10 @@ export function CampaignCard({ campaign, index = 0, featured = false }: Campaign
 
             <div className="mt-6">
               <div className="mb-2 flex items-center justify-between text-sm">
-                <span className="text-white/66">Funding progress</span>
+                <span className="text-[#6a5441] dark:text-white/66">Funding progress</span>
                 <span className="font-medium text-[#f4dfab]">{percentage}%</span>
               </div>
-              <div className="h-2.5 rounded-full bg-white/8">
+              <div className="h-2.5 rounded-full bg-black/10 dark:bg-white/8">
                 <div
                   className="h-2.5 rounded-full bg-[linear-gradient(90deg,#d4a853,#e2c278,#c46d46)] transition-all duration-700"
                   style={{ width: `${percentage}%` }}
@@ -151,22 +151,22 @@ export function CampaignCard({ campaign, index = 0, featured = false }: Campaign
                 <span className="rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-3 py-1 text-[#f1ddab]">
                   {urgency}
                 </span>
-                <span className="text-white/64">{remaining.toFixed(1)} SOL left to goal</span>
+                <span className="text-[#6a5441] dark:text-white/64">{remaining.toFixed(1)} SOL left to goal</span>
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-between border-t border-white/8 pt-5">
+            <div className="mt-6 flex items-center justify-between border-t border-black/10 pt-5 dark:border-white/8">
               <div className="space-y-1">
-                <div className="inline-flex items-center gap-2 text-sm text-white/66">
+                <div className="inline-flex items-center gap-2 text-sm text-[#6a5441] dark:text-white/66">
                   <Users className="h-4 w-4 text-[#d4a853]" />
                   Backed by {campaign.metadata?.donors || 0} supporters
                 </div>
-                <div className="inline-flex items-center gap-1.5 text-xs text-white/64">
+                <div className="inline-flex items-center gap-1.5 text-xs text-[#6a5441] dark:text-white/64">
                   <ShieldCheck className="h-3.5 w-3.5 text-[#d4a853]" />
                   On-chain progress visible
                 </div>
               </div>
-              <div className="inline-flex items-center gap-2 text-sm font-medium text-white transition-colors duration-300 group-hover:text-[#f4dfab]">
+              <div className="inline-flex items-center gap-2 text-sm font-medium text-[#2a1d12] transition-colors duration-300 group-hover:text-[#8f641f] dark:text-white dark:group-hover:text-[#f4dfab]">
                 Review & donate
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </div>
@@ -192,9 +192,9 @@ function MetaStat({
   highlight?: boolean;
 }) {
   return (
-    <div className="rounded-[1.15rem] border border-white/8 bg-black/20 px-4 py-3">
-      <p className="text-[11px] uppercase tracking-[0.2em] text-white/35">{label}</p>
-      <p className={cn("mt-2 text-sm font-medium", highlight ? "text-[#f1ddab]" : "text-white")}>{value}</p>
+    <div className="rounded-[1.15rem] border border-black/10 bg-black/[0.04] px-4 py-3 dark:border-white/8 dark:bg-black/20">
+      <p className="text-[11px] uppercase tracking-[0.2em] text-[#7b6652] dark:text-white/35">{label}</p>
+      <p className={cn("mt-2 text-sm font-medium", highlight ? "text-[#8f641f] dark:text-[#f1ddab]" : "text-[#2a1d12] dark:text-white")}>{value}</p>
     </div>
   );
 }

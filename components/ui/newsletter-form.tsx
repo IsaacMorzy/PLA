@@ -66,7 +66,7 @@ export function NewsletterForm({ className = "" }: NewsletterFormProps) {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="rounded-full bg-[#d4a853] px-5 py-3 text-sm font-medium text-black transition-all hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0a08] disabled:cursor-not-allowed disabled:opacity-70"
+          className="rounded-full bg-[#d4a853] px-5 py-3 text-sm font-medium text-black transition-all hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#efe8dc] dark:focus-visible:ring-offset-[#0c0a08] disabled:cursor-not-allowed disabled:opacity-70"
         >
           {status === "loading" ? (
             <Loader2 className="w-4 h-4 animate-spin" />

@@ -92,9 +92,9 @@ export function WalletButton() {
         className={cn(
           "inline-flex items-center justify-between gap-2",
           "h-10 px-4 py-2 min-w-[140px]",
-          "bg-white/5 backdrop-blur-md border border-white/10",
-          "text-white rounded-full",
-          "hover:bg-white/10 hover:border-brand-gold/30",
+          "bg-white/75 backdrop-blur-md border border-black/10 dark:bg-white/5 dark:border-white/10",
+          "text-[#2a1d12] dark:text-white rounded-full",
+          "hover:bg-white/95 hover:border-brand-gold/30 dark:hover:bg-white/10",
           "hover:scale-[1.02] active:scale-[0.98]",
           "transition-all duration-200",
           "focus-visible:outline-none focus-visible:ring-2",
@@ -124,16 +124,16 @@ export function WalletButton() {
           role="menu"
           className={cn(
             "absolute right-0 top-full mt-2 w-56",
-            "bg-[#120f0c]/95 backdrop-blur-xl",
-            "border border-white/10 rounded-[1.4rem]",
+            "bg-[#f6f1e8]/95 dark:bg-[#120f0c]/95 backdrop-blur-xl",
+            "border border-black/10 dark:border-white/10 rounded-[1.4rem]",
             "shadow-2xl shadow-black/10 dark:shadow-black/30",
             "overflow-hidden animate-fade-in-up",
             "z-50"
           )}
         >
           {/* Wallet info */}
-          <div className="border-b border-white/8 bg-white/[0.04] px-4 py-3">
-            <p className="text-xs text-white/58">Connected Wallet</p>
+          <div className="border-b border-black/10 bg-black/[0.03] px-4 py-3 dark:border-white/8 dark:bg-white/[0.04]">
+            <p className="text-xs text-[#6a5441] dark:text-white/58">Connected Wallet</p>
             <p className="font-mono text-sm font-medium truncate">
               {publicKey.toBase58()}
             </p>
