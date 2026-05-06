@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -26,14 +26,14 @@ export default function RootLayout({
         />
       </head>
       <body
-        className="min-h-screen bg-brand-charcoal text-white antialiased dark-mode font-sans"
+        className="min-h-screen antialiased font-sans"
         suppressHydrationWarning
       >
         <Providers>
-          {/* Grain texture overlay - fixed z-index for depth */}
-          <div className="fixed inset-0 pointer-events-none z-[9998] opacity-[0.025] noise-overlay" />
-          {/* Vignette effect for depth */}
-          <div className="fixed inset-0 pointer-events-none z-[9997] bg-gradient-to-b from-black/20 via-transparent to-black/30" />
+          {/* Grain texture overlay (dark mode only) */}
+          <div className="pointer-events-none fixed inset-0 z-[9998] hidden opacity-[0.025] dark:block noise-overlay" />
+          {/* Vignette effect (dark mode only) */}
+          <div className="pointer-events-none fixed inset-0 z-[9997] hidden bg-gradient-to-b from-black/20 via-transparent to-black/30 dark:block" />
           <Header />
           <main id="main-content" className="min-h-screen pt-20">{children}</main>
           <Footer />

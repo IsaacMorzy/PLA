@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&display=swap");
 
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
 }
@@ -98,6 +99,46 @@
 
 /* shadcn variables */
 :root {
+  --background: 35 40% 97%;
+  --foreground: 28 22% 14%;
+  --card: 36 38% 99%;
+  --card-foreground: 28 22% 14%;
+  --popover: 36 38% 99%;
+  --popover-foreground: 28 22% 14%;
+  --primary: 42 70% 47%;
+  --primary-foreground: 35 32% 98%;
+  --secondary: 23 52% 42%;
+  --secondary-foreground: 35 32% 98%;
+  --muted: 35 28% 90%;
+  --muted-foreground: 28 12% 40%;
+  --accent: 35 35% 93%;
+  --accent-foreground: 28 22% 14%;
+  --destructive: 0 60% 44%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 34 26% 82%;
+  --input: 34 26% 82%;
+  --ring: 42 70% 47%;
+  --radius: 0.75rem;
+  --surface-1: rgba(255, 255, 255, 0.72);
+  --surface-2: rgba(255, 255, 255, 0.84);
+  --surface-3: rgba(255, 255, 255, 0.94);
+  --surface-border-subtle: rgba(36, 26, 17, 0.1);
+  --focus-ring: rgba(212, 168, 83, 0.55);
+  --focus-ring-offset: #f6f1e8;
+  --surface-blur: 14px;
+  --page-bg: #f6f1e8;
+  --page-grad-1: rgba(212, 168, 83, 0.16);
+  --page-grad-2: rgba(196, 109, 70, 0.12);
+  --page-grad-3: rgba(212, 168, 83, 0.08);
+  --scrollbar-track: #efe8dc;
+  --scrollbar-thumb-a: #d4a853;
+  --scrollbar-thumb-b: #c46d46;
+  color-scheme: light;
+}
+
+.dark,
+[data-theme="dark"],
+.dark-mode {
   --background: 35 15% 8%;
   --foreground: 35 10% 95%;
   --card: 35 15% 10%;
@@ -117,7 +158,6 @@
   --border: 35 12% 18%;
   --input: 35 12% 18%;
   --ring: 45 85% 55%;
-  --radius: 0.75rem;
   --surface-1: rgba(255, 255, 255, 0.03);
   --surface-2: rgba(255, 255, 255, 0.05);
   --surface-3: rgba(255, 255, 255, 0.08);
@@ -125,12 +165,13 @@
   --focus-ring: rgba(212, 168, 83, 0.7);
   --focus-ring-offset: #120f0c;
   --surface-blur: 18px;
-  color-scheme: dark;
-}
-
-.dark,
-[data-theme="dark"],
-.dark-mode {
+  --page-bg: #1a1815;
+  --page-grad-1: rgba(212, 168, 83, 0.08);
+  --page-grad-2: rgba(196, 109, 70, 0.08);
+  --page-grad-3: rgba(212, 168, 83, 0.03);
+  --scrollbar-track: #1a1815;
+  --scrollbar-thumb-a: #d4a853;
+  --scrollbar-thumb-b: #c46d46;
   color-scheme: dark;
 }
 
@@ -145,11 +186,11 @@ html {
 }
 
 body {
-  background-color: #1a1815;
+  background-color: var(--page-bg);
   background-image:
-    radial-gradient(ellipse at 20% 0%, rgba(212, 168, 83, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 100%, rgba(196, 109, 70, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(212, 168, 83, 0.03) 0%, transparent 70%);
+    radial-gradient(ellipse at 20% 0%, var(--page-grad-1) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, var(--page-grad-2) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, var(--page-grad-3) 0%, transparent 70%);
   background-attachment: fixed;
   color: hsl(var(--foreground));
   font-family: var(--font-sans);
@@ -321,11 +362,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1815;
+  background: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #d4a853, #c46d46);
+  background: linear-gradient(180deg, var(--scrollbar-thumb-a), var(--scrollbar-thumb-b));
   border-radius: 4px;
 }
 
@@ -531,4 +572,195 @@ body {
     width: 32px !important;
     height: 32px !important;
   }
+}
+
+/* Light-mode normalization for legacy dark-styled homepage classes */
+html:not(.dark) .home-theme .text-white {
+  color: #1f140b;
+}
+
+html:not(.dark) .home-theme .text-white\/88,
+html:not(.dark) .home-theme .text-white\/72,
+html:not(.dark) .home-theme .text-white\/70,
+html:not(.dark) .home-theme .text-white\/68,
+html:not(.dark) .home-theme .text-white\/66,
+html:not(.dark) .home-theme .text-white\/64,
+html:not(.dark) .home-theme .text-white\/62,
+html:not(.dark) .home-theme .text-white\/58,
+html:not(.dark) .home-theme .text-white\/55,
+html:not(.dark) .home-theme .text-white\/45,
+html:not(.dark) .home-theme .text-white\/42,
+html:not(.dark) .home-theme .text-white\/40,
+html:not(.dark) .home-theme .text-white\/35 {
+  color: #5f4a37;
+}
+
+html:not(.dark) .home-theme .border-white\/10,
+html:not(.dark) .home-theme .border-white\/12,
+html:not(.dark) .home-theme .border-white\/8 {
+  border-color: rgba(42, 29, 18, 0.14);
+}
+
+html:not(.dark) .home-theme .bg-white\/5,
+html:not(.dark) .home-theme .bg-white\/6,
+html:not(.dark) .home-theme .bg-white\/8,
+html:not(.dark) .home-theme .bg-white\/\[0\.045\],
+html:not(.dark) .home-theme .bg-white\/\[0\.04\],
+html:not(.dark) .home-theme .bg-white\/\[0\.03\] {
+  background-color: rgba(18, 12, 8, 0.05);
+}
+
+html:not(.dark) .home-theme [class*="focus-visible:ring-offset-\#120f0c"] {
+  --tw-ring-offset-color: #f6f1e8;
+}
+
+/* Global light-mode compatibility for legacy dark-first utility classes */
+html:not(.dark) .text-white {
+  color: #1f140b;
+}
+
+html:not(.dark) .text-white\/90,
+html:not(.dark) .text-white\/88,
+html:not(.dark) .text-white\/80,
+html:not(.dark) .text-white\/78,
+html:not(.dark) .text-white\/74,
+html:not(.dark) .text-white\/72,
+html:not(.dark) .text-white\/70,
+html:not(.dark) .text-white\/68,
+html:not(.dark) .text-white\/66,
+html:not(.dark) .text-white\/64,
+html:not(.dark) .text-white\/62,
+html:not(.dark) .text-white\/60,
+html:not(.dark) .text-white\/58,
+html:not(.dark) .text-white\/55,
+html:not(.dark) .text-white\/50,
+html:not(.dark) .text-white\/45,
+html:not(.dark) .text-white\/42,
+html:not(.dark) .text-white\/40,
+html:not(.dark) .text-white\/38,
+html:not(.dark) .text-white\/35,
+html:not(.dark) .text-white\/30 {
+  color: #5f4a37;
+}
+
+html:not(.dark) .border-white\/20,
+html:not(.dark) .border-white\/15,
+html:not(.dark) .border-white\/12,
+html:not(.dark) .border-white\/10,
+html:not(.dark) .border-white\/8,
+html:not(.dark) .border-white\/6,
+html:not(.dark) .border-white\/\[0\.1\],
+html:not(.dark) .border-white\/\[0\.08\] {
+  border-color: rgba(42, 29, 18, 0.14);
+}
+
+html:not(.dark) .bg-white\/10,
+html:not(.dark) .bg-white\/8,
+html:not(.dark) .bg-white\/6,
+html:not(.dark) .bg-white\/5,
+html:not(.dark) .bg-white\/\[0\.08\],
+html:not(.dark) .bg-white\/\[0\.07\],
+html:not(.dark) .bg-white\/\[0\.06\],
+html:not(.dark) .bg-white\/\[0\.05\],
+html:not(.dark) .bg-white\/\[0\.045\],
+html:not(.dark) .bg-white\/\[0\.04\],
+html:not(.dark) .bg-white\/\[0\.035\],
+html:not(.dark) .bg-white\/\[0\.03\],
+html:not(.dark) .bg-white\/\[0\.02\] {
+  background-color: rgba(22, 14, 8, 0.05);
+}
+
+html:not(.dark) .bg-black\/35,
+html:not(.dark) .bg-black\/20,
+html:not(.dark) .bg-black\/10 {
+  background-color: rgba(255, 255, 255, 0.65);
+}
+
+html:not(.dark) .shadow-\[0_24px_90px_rgba\(0\,0\,0\,0\.28\)\],
+html:not(.dark) .shadow-\[0_24px_80px_rgba\(0\,0\,0\,0\.28\)\],
+html:not(.dark) .shadow-\[0_28px_90px_rgba\(0\,0\,0\,0\.32\)\] {
+  box-shadow: 0 20px 55px rgba(55, 31, 12, 0.12);
+}
+
+html:not(.dark) .text-\[\#f1ddab\],
+html:not(.dark) .text-\[\#f4dfab\] {
+  color: #8f641f;
+}
+
+html:not(.dark) .bg-\[\#120f0c\],
+html:not(.dark) .bg-\[\#0c0a08\],
+html:not(.dark) .bg-\[\#100d0a\] {
+  background-color: #f3ebdf;
+}
+
+html:not(.dark) [class*="focus-visible:ring-offset-\#120f0c"],
+html:not(.dark) [class*="focus-visible:ring-offset-\#0c0a08"] {
+  --tw-ring-offset-color: #f6f1e8;
+}
+
+/* Stronger light-mode rescue for legacy dark-first text utilities */
+html:not(.dark) .text-white,
+html:not(.dark) .text-white\/95,
+html:not(.dark) .text-white\/90,
+html:not(.dark) .text-white\/88,
+html:not(.dark) .text-white\/85,
+html:not(.dark) .text-white\/82,
+html:not(.dark) .text-white\/80,
+html:not(.dark) .text-white\/78,
+html:not(.dark) .text-white\/75,
+html:not(.dark) .text-white\/74,
+html:not(.dark) .text-white\/73,
+html:not(.dark) .text-white\/72,
+html:not(.dark) .text-white\/70,
+html:not(.dark) .text-white\/68,
+html:not(.dark) .text-white\/66,
+html:not(.dark) .text-white\/64,
+html:not(.dark) .text-white\/62,
+html:not(.dark) .text-white\/60,
+html:not(.dark) .text-white\/58,
+html:not(.dark) .text-white\/55,
+html:not(.dark) .text-white\/52,
+html:not(.dark) .text-white\/50,
+html:not(.dark) .text-white\/48,
+html:not(.dark) .text-white\/45,
+html:not(.dark) .text-white\/42,
+html:not(.dark) .text-white\/40,
+html:not(.dark) .text-white\/38,
+html:not(.dark) .text-white\/35,
+html:not(.dark) .text-white\/32,
+html:not(.dark) .text-white\/30 {
+  color: #4f3c2a !important;
+}
+
+html:not(.dark) .text-\[\#f1ddab\],
+html:not(.dark) .text-\[\#f4dfab\] {
+  color: #825a1d !important;
+}
+
+/* Dark-mode rescue for hardcoded light-theme browns */
+html.dark .text-\[\#1f140b\],
+html.dark .text-\[\#22170d\],
+html.dark .text-\[\#2a1d12\],
+html.dark .text-\[\#2b1d10\],
+html.dark .text-\[\#2d1f12\],
+html.dark .text-\[\#2f2114\] {
+  color: #f4ece2 !important;
+}
+
+html.dark .text-\[\#3f3022\],
+html.dark .text-\[\#4a3828\],
+html.dark .text-\[\#4c3a2b\],
+html.dark .text-\[\#5a4633\],
+html.dark .text-\[\#5c4732\],
+html.dark .text-\[\#5d4936\],
+html.dark .text-\[\#5f4a37\],
+html.dark .text-\[\#6a5441\],
+html.dark .text-\[\#6b5440\],
+html.dark .text-\[\#73511f\],
+html.dark .text-\[\#7b6652\] {
+  color: #d4c1aa !important;
+}
+
+html.dark .text-\[\#8f641f\] {
+  color: #f1ddab !important;
 }

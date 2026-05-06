@@ -7,13 +7,12 @@ interface ProvidersProps {
   children: React.ReactNode;
 }
 
-// PeaceLeague Africa - Locked to dark mode for premium aesthetic
 export function Providers({ children }: ProvidersProps) {
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="dark"
-      enableSystem={false}
+      defaultTheme="system"
+      enableSystem
       disableTransitionOnChange
     >
       <WalletContextProvider>{children}</WalletContextProvider>
