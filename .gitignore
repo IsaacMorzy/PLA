@@ -71,3 +71,6 @@ skills/
 # generated graph artifacts
 PEACELEAGUE_GRAPH*
 PeaceLeagueAfrica.gv
+
+# local analytics event logs
+var/analytics/
