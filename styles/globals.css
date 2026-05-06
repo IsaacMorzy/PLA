@@ -683,7 +683,9 @@ html:not(.dark) .shadow-\[0_28px_90px_rgba\(0\,0\,0\,0\.32\)\] {
 }
 
 html:not(.dark) .text-\[\#f1ddab\],
-html:not(.dark) .text-\[\#f4dfab\] {
+html:not(.dark) .text-\[\#f4dfab\],
+html:not(.dark) .text-\[\#d4a853\],
+html:not(.dark) .text-\[\#c46d46\] {
   color: #8f641f;
 }
 
@@ -733,7 +735,9 @@ html:not(.dark) .text-white\/30 {
 }
 
 html:not(.dark) .text-\[\#f1ddab\],
-html:not(.dark) .text-\[\#f4dfab\] {
+html:not(.dark) .text-\[\#f4dfab\],
+html:not(.dark) .text-\[\#d4a853\],
+html:not(.dark) .text-\[\#c46d46\] {
   color: #825a1d !important;
 }
 
@@ -763,4 +767,53 @@ html.dark .text-\[\#7b6652\] {
 
 html.dark .text-\[\#8f641f\] {
   color: #f1ddab !important;
+}
+
+/* Light mode readability normalization for brand accent text tokens */
+html:not(.dark) [class*="text-[#d4a853]"],
+html:not(.dark) [class*="text-[#c46d46]"],
+html:not(.dark) [class*="text-[#9a6f2a]"],
+html:not(.dark) [class*="text-[#f1ddab]"],
+html:not(.dark) [class*="text-[#f4dfab]"] {
+  color: #7b5418 !important;
+}
+
+/* Dark mode readability normalization for legacy low-opacity white utilities */
+html.dark .text-white\/30,
+html.dark .text-white\/32,
+html.dark .text-white\/35,
+html.dark .text-white\/38,
+html.dark .text-white\/40,
+html.dark .text-white\/42,
+html.dark .text-white\/45,
+html.dark .text-white\/48,
+html.dark .text-white\/50,
+html.dark .text-white\/52,
+html.dark .text-white\/55 {
+  color: rgba(240, 227, 210, 0.82) !important;
+}
+
+html.dark .text-white\/58,
+html.dark .text-white\/60,
+html.dark .text-white\/62,
+html.dark .text-white\/64,
+html.dark .text-white\/66,
+html.dark .text-white\/68,
+html.dark .text-white\/70,
+html.dark .text-white\/72,
+html.dark .text-white\/73,
+html.dark .text-white\/74,
+html.dark .text-white\/75 {
+  color: rgba(244, 236, 226, 0.9) !important;
+}
+
+html.dark .text-white\/78,
+html.dark .text-white\/80,
+html.dark .text-white\/82,
+html.dark .text-white\/85,
+html.dark .text-white\/88,
+html.dark .text-white\/90,
+html.dark .text-white\/95,
+html.dark .text-white {
+  color: #f4ece2 !important;
 }
