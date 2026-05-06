@@ -52,7 +52,7 @@ export default function EventsPage() {
               <span className="block text-[#f1ddab]">into stronger community momentum.</span>
             </>
           }
-          description="Events should feel like extensions of the platform: organized, credible, and energizing for donors, partners, and campaign creators."
+          description="Join donor briefings, creator workshops, and live community events that turn campaign visibility into measurable support."
           ctaHref="/contact"
           ctaLabel="Host with us"
         />
@@ -60,8 +60,8 @@ export default function EventsPage() {
         <SectionBlock>
           <SectionIntro
             eyebrow="Upcoming"
-            title="A clearer event list with better hierarchy and stronger atmosphere."
-            description="Each event card is structured to surface format, timing, and why it matters without feeling like a bland calendar item."
+            title="Upcoming sessions for donors, creators, and partners."
+            description="Each listing highlights event format, date, and expected outcome so you can decide quickly where to participate."
           />
 
           <div className="grid gap-6 lg:grid-cols-2">
@@ -71,7 +71,7 @@ export default function EventsPage() {
                   <span className="rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-[#f1ddab]">
                     {event.type}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.22em] text-white/40">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.22em] text-white/55">
                     <MapPin className="h-3.5 w-3.5 text-[#d4a853]" />
                     {event.location}
                   </span>
@@ -82,14 +82,14 @@ export default function EventsPage() {
                   <CalendarDays className="h-4 w-4" />
                   {event.date}
                 </p>
-                <p className="mt-5 text-sm leading-7 text-white/64">{event.description}</p>
+                <p className="mt-5 text-sm leading-7 text-white/72">{event.description}</p>
 
                 <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-5">
-                  <span className="inline-flex items-center gap-2 text-sm text-white/55">
+                  <span className="inline-flex items-center gap-2 text-sm text-white/68">
                     <Sparkles className="h-4 w-4 text-[#d4a853]" />
-                    Community and platform activation
+                    Donor and creator community event
                   </span>
-                  <Link href="/contact" className="rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-sm font-medium text-white transition duration-300 hover:bg-white/[0.08]">
+                  <Link href="/contact" className="rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-sm font-medium text-white transition duration-300 hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]">
                     Register interest
                   </Link>
                 </div>

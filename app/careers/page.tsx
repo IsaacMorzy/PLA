@@ -59,7 +59,7 @@ export default function CareersPage() {
               <span className="block text-[#f1ddab]">transparent giving with us.</span>
             </>
           }
-          description="PeaceLeague Africa needs operators, builders, and storytellers who care about trust, access, and community impact."
+          description="Join a team building trusted giving infrastructure for African communities — across product, operations, partnerships, and storytelling."
           ctaHref="mailto:careers@peaceleague.africa"
           ctaLabel="Email careers"
         />
@@ -67,8 +67,8 @@ export default function CareersPage() {
         <SectionBlock>
           <SectionIntro
             eyebrow="Open roles"
-            title="A cleaner, more intentional hiring surface."
-            description="Open positions should feel as credible and well-structured as the rest of the site — clear, scannable, and mission-driven."
+            title="Open roles with clear ownership and mission impact."
+            description="Each role includes scope, team, and hiring channel so qualified candidates can apply quickly."
           />
           <div className="grid gap-6 lg:grid-cols-2">
             {jobs.map((job, index) => (
@@ -80,20 +80,20 @@ export default function CareersPage() {
                   <span className="rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-[#f1ddab]">
                     {job.department}
                   </span>
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/50">
+                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/62">
                     {job.type}
                   </span>
                 </div>
                 <h2 className="mt-5 font-display text-3xl text-white">{job.title}</h2>
-                <p className="mt-3 inline-flex items-center gap-2 text-sm text-white/55">
+                <p className="mt-3 inline-flex items-center gap-2 text-sm text-white/68">
                   <MapPin className="h-4 w-4 text-[#d4a853]" />
                   {job.location}
                 </p>
-                <p className="mt-5 text-sm leading-7 text-white/64">{job.description}</p>
+                <p className="mt-5 text-sm leading-7 text-white/72">{job.description}</p>
                 <div className="mt-6 border-t border-white/10 pt-5">
                   <Link
                     href="mailto:careers@peaceleague.africa"
-                    className="inline-flex items-center rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-4 py-2 text-sm font-medium text-[#f1ddab] transition duration-300 hover:bg-[#d4a853]/16 hover:text-white"
+                    className="inline-flex items-center rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-4 py-2 text-sm font-medium text-[#f1ddab] transition duration-300 hover:bg-[#d4a853]/16 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
                   >
                     Apply for this role
                   </Link>
@@ -106,7 +106,7 @@ export default function CareersPage() {
         <SectionBlock>
           <SectionIntro
             eyebrow="Why join"
-            title="The platform is ambitious. The team should feel the same way."
+            title="High standards, meaningful work, and continent-scale impact."
             description="We want the culture around PeaceLeague Africa to feel serious, collaborative, and rooted in meaningful work."
           />
           <FeatureGrid features={benefits} columns={3} className="[&>div]:rounded-[1.7rem] [&>div]:border-white/10 [&>div]:bg-white/[0.04] [&>div]:p-7" />

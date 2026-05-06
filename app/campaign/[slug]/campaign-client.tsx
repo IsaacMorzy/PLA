@@ -35,12 +35,14 @@ import { TokenBalance } from "@/components/ui/token-balance";
 import { TokenInput } from "@/components/ui/token-input";
 import { TransactionDialog } from "@/components/ui/transaction-dialog";
 import { PageShell, SectionBlock, SitePage } from "@/components/site/page-shell";
+import { trackEvent } from "@/lib/analytics";
 
 interface CampaignClientProps {
   campaign: UnifiedCampaign;
 }
 
 const cmsSolToLamports = (amount?: number) => BigInt(Math.floor((amount ?? 0) * 1_000_000_000));
+const QUICK_DONATION_AMOUNTS = ["0.25", "0.5", "1", "2"];
 
 export default function CampaignClient({ campaign }: CampaignClientProps) {
   const { connection } = useConnection();
@@ -70,6 +72,7 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
   const createdAt = onchainCampaign?.createdAt ?? campaign.createdAt;
   const isDeleted = onchainCampaign?.isDeleted ?? campaign.isDeleted ?? false;
   const progress = goalLamports > 0n ? Math.min(100, Number((raisedLamports * 10000n) / goalLamports) / 100) : 0;
+  const remainingLamports = goalLamports > raisedLamports ? goalLamports - raisedLamports : 0n;
 
   const refreshOnchainCampaign = async () => {
     if (activeCampaignId === undefined) return;
@@ -88,8 +91,15 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
     const error = validateAmount(donationAmount);
     if (error) {
       setAmountError(error);
+      trackEvent("donation_validation_error", { amount: donationAmount, error });
       return;
     }
+
+    trackEvent("donate_click", {
+      campaign_slug: campaign.slug,
+      campaign_id: activeCampaignId ?? null,
+      amount: donationAmount,
+    });
 
     if (activeCampaignId === undefined) {
       setAmountError("This campaign is not linked to an on-chain fundraiser yet.");
@@ -124,6 +134,12 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
 
   const handleTransactionSuccess = async (signature: string) => {
     setSuccessSignature(signature);
+    trackEvent("donation_success", {
+      campaign_slug: campaign.slug,
+      campaign_id: activeCampaignId ?? null,
+      amount: donationAmount,
+      tx: signature,
+    });
     await refreshOnchainCampaign();
   };
 
@@ -131,7 +147,7 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
     <SitePage>
       <PageShell>
         <div className="mb-6">
-          <Link href="/campaigns" className="inline-flex items-center gap-2 text-sm text-white/62 transition-colors hover:text-white">
+          <Link href="/campaigns" className="inline-flex items-center gap-2 text-sm text-white/72 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]">
             <ArrowLeft className="h-4 w-4" />
             Back to campaigns
           </Link>
@@ -168,7 +184,7 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
                       </span>
                     ) : null}
                     {campaign.location ? (
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.22em] text-white/55">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.22em] text-white/66">
                         <MapPin className="h-3.5 w-3.5 text-[#d4a853]" />
                         {campaign.location}
                       </span>
@@ -179,7 +195,7 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
                     {campaign.title}
                   </h1>
 
-                  <p className="mt-6 max-w-3xl text-base leading-8 text-white/66 sm:text-lg">
+                  <p className="mt-6 max-w-3xl text-base leading-8 text-white/74 sm:text-lg">
                     {campaign.description || campaign.beneficiaryStory || "A verified campaign working toward meaningful community impact across Africa."}
                   </p>
 
@@ -212,27 +228,27 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
                   <div className="mt-6 space-y-5 text-sm text-white/68">
                     {campaign.beneficiaryName ? (
                       <div>
-                        <p className="text-[11px] uppercase tracking-[0.22em] text-white/36">Beneficiary</p>
+                        <p className="text-[11px] uppercase tracking-[0.22em] text-white/55">Beneficiary</p>
                         <p className="mt-2 text-base text-white">{campaign.beneficiaryName}</p>
                       </div>
                     ) : null}
                     {activeCampaignId !== undefined ? (
                       <div>
-                        <p className="text-[11px] uppercase tracking-[0.22em] text-white/36">Campaign ID</p>
-                        <p className="mt-2 font-mono text-white">#{activeCampaignId}</p>
+                        <p className="text-[11px] uppercase tracking-[0.22em] text-white/55">Campaign ID</p>
+                        <p className="mt-2 text-base font-semibold tracking-wide text-white">#{activeCampaignId}</p>
                       </div>
                     ) : null}
                     {campaign.authorWallet ? (
                       <div>
-                        <p className="text-[11px] uppercase tracking-[0.22em] text-white/36">Organizer wallet</p>
+                        <p className="text-[11px] uppercase tracking-[0.22em] text-white/55">Organizer wallet</p>
                         <div className="mt-2 text-white">
                           <AddressDisplay address={campaign.authorWallet} truncate className="text-white/82" />
                         </div>
                       </div>
                     ) : null}
                     <div className="rounded-[1.4rem] border border-white/10 bg-black/20 p-4">
-                      <p className="text-sm leading-7 text-white/64">
-                        This page is designed to give donors a clearer read on urgency, legitimacy, and progress before they decide to contribute.
+                      <p className="text-sm leading-7 text-white/72">
+                        Review campaign urgency, legitimacy, and progress in one place before contributing.
                       </p>
                     </div>
                   </div>
@@ -261,7 +277,11 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
                   />
                   <MetricBox label="Goal" value={<TokenBalance amount={goalLamports} decimals={9} symbol="SOL" />} />
                 </div>
-                <p className="text-xs uppercase tracking-[0.22em] text-white/36">{progress.toFixed(2)}% funded</p>
+                <p className="text-xs uppercase tracking-[0.22em] text-white/55">{progress.toFixed(2)}% funded</p>
+                <p className="text-sm text-white/72">
+                  <span className="text-white/68">Remaining to goal:</span>{" "}
+                  <span className="font-medium text-[#f1ddab]"><TokenBalance amount={remainingLamports} decimals={9} symbol="SOL" /></span>
+                </p>
               </div>
 
               {isDeleted ? (
@@ -271,14 +291,14 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
               ) : null}
 
               {activeCampaignId === undefined ? (
-                <div className="mt-5 rounded-[1.25rem] border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white/66">
+                <div className="mt-5 rounded-[1.25rem] border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white/74">
                   This page exists in Cosmic, but it is not linked to an on-chain fundraiser yet.
                 </div>
               ) : null}
 
               {!connected ? (
                 <div className="mt-7 space-y-4 text-center">
-                  <p className="text-sm text-white/60">Connect your wallet to donate</p>
+                  <p className="text-sm text-white/70">Connect your wallet to donate</p>
                   <WalletMultiButton className="!h-12 !w-full !rounded-full !border-none !bg-gradient-to-r !from-[#d4a853] !to-[#c46d46] !text-black !font-medium" />
                 </div>
               ) : (
@@ -294,6 +314,27 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
                     label="Donation amount"
                     error={amountError || undefined}
                   />
+
+                  <div className="flex flex-wrap gap-2" role="group" aria-label="Quick donation amounts">
+                    {QUICK_DONATION_AMOUNTS.map((amount) => (
+                      <button
+                        key={amount}
+                        type="button"
+                        onClick={() => {
+                          setDonationAmount(amount);
+                          setAmountError(null);
+                          trackEvent("quick_amount_selected", {
+                            campaign_slug: campaign.slug,
+                            campaign_id: activeCampaignId ?? null,
+                            amount,
+                          });
+                        }}
+                        className={`rounded-full border px-3 py-1.5 text-sm transition ${donationAmount === amount ? "border-[#d4a853]/35 bg-[#d4a853]/12 text-[#f1ddab]" : "border-white/12 bg-white/[0.04] text-white/72 hover:bg-white/[0.08]"}`}
+                      >
+                        {amount} SOL
+                      </button>
+                    ))}
+                  </div>
 
                   {successSignature ? (
                     <div className="rounded-[1.25rem] border border-green-500/20 bg-green-500/10 px-4 py-3">
@@ -313,6 +354,10 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
                     <Heart className="h-5 w-5" />
                     Donate SOL
                   </Button>
+
+                  <p className="text-xs leading-6 text-white/72">
+                    You confirm in your wallet before anything is sent. Donations are recorded on-chain and visible publicly.
+                  </p>
                 </div>
               )}
 
@@ -322,13 +367,25 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
                   variant="outline"
                   className="h-11 flex-1 border-white/15 text-white hover:bg-white/10"
                   onClick={async () => {
-                    await navigator.clipboard.writeText(window.location.href);
+                    try {
+                      await navigator.clipboard.writeText(window.location.href);
+                      trackEvent("campaign_share_click", {
+                        campaign_slug: campaign.slug,
+                        campaign_id: activeCampaignId ?? null,
+                        method: "copy_link",
+                      });
+                    } catch {
+                      setAmountError("Could not copy link. Please copy the URL from your browser.");
+                    }
                   }}
                 >
                   <Share2 className="h-4 w-4" />
                   Share
                 </Button>
               </div>
+              <p className="mt-3 text-xs leading-6 text-white/72">
+                Not ready to donate yet? Share this campaign with someone who can help today.
+              </p>
 
               {amountError && activeCampaignId === undefined ? (
                 <div className="mt-4 flex items-start gap-2 rounded-[1.25rem] border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-300">
@@ -356,7 +413,7 @@ export default function CampaignClient({ campaign }: CampaignClientProps) {
 function MetaPill({ label, value, icon }: { label: string; value: string; icon: React.ReactNode }) {
   return (
     <div className="rounded-[1.35rem] border border-white/10 bg-black/20 px-4 py-3">
-      <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-white/38">
+      <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-white/55">
         {icon}
         {label}
       </div>
@@ -376,7 +433,7 @@ function MetricBox({
 }) {
   return (
     <div className="rounded-[1.3rem] border border-white/10 bg-black/20 px-4 py-4">
-      <p className="text-[11px] uppercase tracking-[0.22em] text-white/36">{label}</p>
+      <p className="text-[11px] uppercase tracking-[0.22em] text-white/55">{label}</p>
       <div className={`mt-3 text-sm font-medium ${highlight ? "text-[#f1ddab]" : "text-white"}`}>{value}</div>
     </div>
   );

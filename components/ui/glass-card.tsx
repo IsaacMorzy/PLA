@@ -47,7 +47,7 @@ export function CardTitle({ children, className = "", ...props }: CardProps) {
 
 export function CardDescription({ children, className = "", ...props }: CardProps) {
   return (
-    <p className={`text-sm text-white/60 mt-1 ${className}`} {...props}>
+    <p className={`mt-1 text-sm text-white/70 ${className}`} {...props}>
       {children}
     </p>
   )
@@ -97,7 +97,7 @@ export function FeatureCard({
         {icon}
       </div>
       <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
-      <p className="text-white/60 text-sm mb-4">{description}</p>
+      <p className="mb-4 text-sm text-white/70">{description}</p>
       {action && <div>{action}</div>}
     </Card>
   )
@@ -121,7 +121,7 @@ export function StatsCard({
     <Card variant="default" className={`p-5 ${className}`}>
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-white/50 text-sm">{label}</p>
+          <p className="text-sm text-white/62">{label}</p>
           <p className="text-2xl font-bold text-white mt-1">{value}</p>
           {change && (
             <p className={`text-sm mt-2 ${change.positive ? 'text-[#f1ddab]' : 'text-red-400'}`}>

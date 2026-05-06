@@ -34,7 +34,7 @@ export default function DonationPage() {
               <span className="block text-[#f1ddab]">clarity, and momentum.</span>
             </>
           }
-          description="This standalone donation surface now feels closer to the rest of the platform: focused, premium, and structured around one clear action."
+          description="Choose an amount, confirm in wallet, and send support directly. Every donation is built for transparent execution and donor confidence."
           align="center"
         />
 
@@ -66,7 +66,7 @@ export default function DonationPage() {
               <div className="mt-6">
                 <label className="mb-3 block text-sm font-medium text-white/70">Custom amount</label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/38">SOL</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/58">SOL</span>
                   <input
                     type="number"
                     step="0.01"
@@ -81,14 +81,14 @@ export default function DonationPage() {
 
               <div className="mt-6 flex items-center gap-3 rounded-[1rem] border border-white/10 bg-black/20 px-4 py-3">
                 <input type="checkbox" id="anonymous" className="h-5 w-5 rounded border-white/20 bg-transparent text-[#d4a853] focus:ring-[#d4a853]" />
-                <label htmlFor="anonymous" className="text-sm text-white/62">
+                <label htmlFor="anonymous" className="text-sm text-white/72">
                   Make this donation anonymous
                 </label>
               </div>
 
               <button
                 disabled={!donateAmount}
-                className="mt-8 w-full rounded-full bg-[#d4a853] px-6 py-4 text-lg font-semibold text-[#17120d] transition duration-300 hover:bg-[#e5bc68] disabled:cursor-not-allowed disabled:opacity-50"
+                className="mt-8 w-full rounded-full bg-[#d4a853] px-6 py-4 text-lg font-semibold text-[#17120d] transition duration-300 hover:bg-[#e5bc68] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Donate {donateAmount ? `${donateAmount} SOL` : "now"}
               </button>
@@ -101,8 +101,8 @@ export default function DonationPage() {
                     <Lock className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-[11px] uppercase tracking-[0.24em] text-white/38">Security</p>
-                    <p className="mt-3 text-sm leading-7 text-white/64">Donations are designed to feel direct and secure, with the platform centered on transparent giving flows.</p>
+                    <p className="text-[11px] uppercase tracking-[0.24em] text-white/55">Security</p>
+                    <p className="mt-3 text-sm leading-7 text-white/72">Transactions are wallet-confirmed and publicly traceable, so donors can verify movement and campaign progress.</p>
                   </div>
                 </div>
               </Card>
@@ -112,8 +112,8 @@ export default function DonationPage() {
                     <Sparkles className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-[11px] uppercase tracking-[0.24em] text-white/38">Reminder</p>
-                    <p className="mt-3 text-sm leading-7 text-white/64">Blockchain donations are final, so users should review the amount and destination carefully before confirming.</p>
+                    <p className="text-[11px] uppercase tracking-[0.24em] text-white/55">Reminder</p>
+                    <p className="mt-3 text-sm leading-7 text-white/72">On-chain donations are final. Confirm amount and destination carefully before signing in your wallet.</p>
                   </div>
                 </div>
               </Card>

@@ -133,7 +133,7 @@ export function WalletButton() {
         >
           {/* Wallet info */}
           <div className="border-b border-white/8 bg-white/[0.04] px-4 py-3">
-            <p className="text-xs text-white/40">Connected Wallet</p>
+            <p className="text-xs text-white/58">Connected Wallet</p>
             <p className="font-mono text-sm font-medium truncate">
               {publicKey.toBase58()}
             </p>

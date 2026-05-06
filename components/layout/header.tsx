@@ -5,17 +5,17 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Logo } from "@/components/logo";
-import { ThemeToggle } from "./theme-toggle";
 import { MobileNav } from "./mobile-nav";
 import { WalletButton } from "@/components/wallet/wallet-button";
 import { cn } from "@/lib/utils";
+import { CTA_COPY, TRUST_COPY } from "@/lib/copy";
 
 const NAV_LINKS = [
-  { href: "/campaigns", label: "Campaigns" },
-  { href: "/about", label: "About" },
+  { href: "/campaigns", label: "Donate" },
   { href: "/how-it-works", label: "How It Works" },
+  { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
-  { href: "/blog", label: "Blog" },
+  { href: "/blog", label: "Stories" },
 ];
 
 export function Header() {
@@ -43,8 +43,8 @@ export function Header() {
             className={cn(
               "pointer-events-auto rounded-full border transition-all duration-300",
               scrolled
-                ? "border-white/10 bg-[#120f0c]/82 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-2xl"
-                : "border-white/8 bg-[#120f0c]/55 backdrop-blur-xl"
+                ? "surface-glass-2 border-white/10 bg-[#120f0c]/82 shadow-[0_24px_80px_rgba(0,0,0,0.45)]"
+                : "surface-glass-1 border-white/8 bg-[#120f0c]/55"
             )}
           >
             <nav aria-label="Global" className="flex items-center justify-between gap-3 px-3 py-3 sm:px-4 lg:px-5">
@@ -64,8 +64,9 @@ export function Header() {
                         "rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]",
                         isActive
                           ? "bg-white/[0.08] text-white"
-                          : "text-white/60 hover:text-white"
+                          : "text-white/75 hover:text-white"
                       )}
+                      aria-current={isActive ? "page" : undefined}
                     >
                       {link.label}
                     </Link>
@@ -75,19 +76,24 @@ export function Header() {
 
               <div className="hidden items-center gap-2 xl:flex rounded-full border border-[#d4a853]/12 bg-[#d4a853]/[0.06] px-3 py-2 text-[11px] uppercase tracking-[0.24em] text-[#f1ddab]/80">
                 <Sparkles className="h-3.5 w-3.5 text-[#d4a853]" />
-                Transparent giving infrastructure
+                {TRUST_COPY.navTagline}
               </div>
 
               <div className="flex items-center gap-2 sm:gap-3">
-                <div className="hidden md:block">
-                  <ThemeToggle />
+                <div className="hidden lg:block">
+                  <Link
+                    href="/campaigns"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
+                  >
+                    {CTA_COPY.donateNow}
+                  </Link>
                 </div>
                 <div className="hidden lg:block">
                   <Link
-                    href="/campaigns/create"
-                    className="inline-flex items-center gap-2 rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-4 py-2.5 text-sm font-medium text-[#f1ddab] transition-all duration-300 hover:bg-[#d4a853]/16 hover:text-white"
+                    href="/create"
+                    className="inline-flex items-center gap-2 rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-4 py-2.5 text-sm font-medium text-[#f1ddab] transition-all duration-300 hover:bg-[#d4a853]/16 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
                   >
-                    Start
+                    {CTA_COPY.launchCampaign}
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>

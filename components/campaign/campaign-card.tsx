@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowUpRight, Heart, MapPin, Users } from "lucide-react";
+import { ArrowUpRight, Heart, MapPin, ShieldCheck, Users } from "lucide-react";
 import * as animations from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import { lamportsToSol } from "@/lib/solana-rpc";
+import { trackEvent } from "@/lib/analytics";
 
 interface Campaign {
   id: string;
@@ -46,6 +47,8 @@ export function CampaignCard({ campaign, index = 0, featured = false }: Campaign
   const category = campaign.metadata?.category || "community";
   const location = campaign.metadata?.location || "Across Africa";
   const status = campaign.metadata?.status || "active";
+  const remaining = Math.max(goal - raised, 0);
+  const urgency = percentage >= 85 ? "Closing soon" : percentage >= 60 ? "Building momentum" : "Needs support";
   const summary =
     campaign.metadata?.beneficiary_story ||
     campaign.metadata?.description ||
@@ -61,7 +64,18 @@ export function CampaignCard({ campaign, index = 0, featured = false }: Campaign
       transition={{ delay: index * 0.06 }}
       className="h-full"
     >
-      <Link href={`/campaign/${campaign.slug}`} className="group block h-full">
+      <Link
+        href={`/campaign/${campaign.slug}`}
+        className="group block h-full"
+        onClick={() =>
+          trackEvent("campaign_card_click", {
+            campaign_slug: campaign.slug,
+            campaign_id: campaign.id,
+            featured,
+            progress: percentage,
+          })
+        }
+      >
         <div
           className={cn(
             "relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] shadow-[0_24px_80px_rgba(0,0,0,0.28)] transition-all duration-500 hover:-translate-y-1 hover:border-[#d4a853]/20",
@@ -103,7 +117,7 @@ export function CampaignCard({ campaign, index = 0, featured = false }: Campaign
             </div>
 
             <div className="absolute bottom-5 left-5 right-5">
-              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-white/55">
+              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-white/68">
                 <MapPin className="h-3.5 w-3.5 text-[#d4a853]" />
                 {location}
               </div>
@@ -114,7 +128,7 @@ export function CampaignCard({ campaign, index = 0, featured = false }: Campaign
           </div>
 
           <div className="flex flex-1 flex-col p-6">
-            <p className="line-clamp-3 text-sm leading-7 text-white/62">{summary}</p>
+            <p className="line-clamp-3 text-sm leading-7 text-white/72">{summary}</p>
 
             <div className="mt-6 grid grid-cols-3 gap-3">
               <MetaStat label="Raised" value={`${raised.toFixed(1)} SOL`} highlight />
@@ -124,7 +138,7 @@ export function CampaignCard({ campaign, index = 0, featured = false }: Campaign
 
             <div className="mt-6">
               <div className="mb-2 flex items-center justify-between text-sm">
-                <span className="text-white/52">Funding progress</span>
+                <span className="text-white/66">Funding progress</span>
                 <span className="font-medium text-[#f4dfab]">{percentage}%</span>
               </div>
               <div className="h-2.5 rounded-full bg-white/8">
@@ -133,15 +147,27 @@ export function CampaignCard({ campaign, index = 0, featured = false }: Campaign
                   style={{ width: `${percentage}%` }}
                 />
               </div>
+              <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                <span className="rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-3 py-1 text-[#f1ddab]">
+                  {urgency}
+                </span>
+                <span className="text-white/64">{remaining.toFixed(1)} SOL left to goal</span>
+              </div>
             </div>
 
             <div className="mt-6 flex items-center justify-between border-t border-white/8 pt-5">
-              <div className="inline-flex items-center gap-2 text-sm text-white/52">
-                <Users className="h-4 w-4 text-[#d4a853]" />
-                Backed by {campaign.metadata?.donors || 0} supporters
+              <div className="space-y-1">
+                <div className="inline-flex items-center gap-2 text-sm text-white/66">
+                  <Users className="h-4 w-4 text-[#d4a853]" />
+                  Backed by {campaign.metadata?.donors || 0} supporters
+                </div>
+                <div className="inline-flex items-center gap-1.5 text-xs text-white/64">
+                  <ShieldCheck className="h-3.5 w-3.5 text-[#d4a853]" />
+                  On-chain progress visible
+                </div>
               </div>
               <div className="inline-flex items-center gap-2 text-sm font-medium text-white transition-colors duration-300 group-hover:text-[#f4dfab]">
-                View story
+                Review & donate
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </div>
             </div>

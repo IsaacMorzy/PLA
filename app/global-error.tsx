@@ -34,13 +34,13 @@ export default function GlobalError({
               </svg>
             </div>
             <h2 className="font-display text-4xl text-white">Something went wrong</h2>
-            <p className="mx-auto mt-4 max-w-md text-base leading-8 text-white/62">
+            <p className="mx-auto mt-4 max-w-md text-base leading-8 text-white/72">
               We hit an unexpected issue while rendering the page. Try again and, if it persists, contact support.
             </p>
-            {error?.digest ? <p className="mt-5 font-mono text-xs text-white/30">{error.digest}</p> : null}
+            {error?.digest ? <p className="mt-5 font-mono text-xs text-white/55">{error.digest}</p> : null}
             <button
               onClick={reset}
-              className="mt-8 rounded-full bg-[#d4a853] px-6 py-3 font-medium text-[#17120d] transition duration-300 hover:bg-[#e5bc68]"
+              className="mt-8 rounded-full bg-[#d4a853] px-6 py-3 font-medium text-[#17120d] transition duration-300 hover:bg-[#e5bc68] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
             >
               Try again
             </button>

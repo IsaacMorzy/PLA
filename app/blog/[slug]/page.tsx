@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getBlogPostBySlug } from "@/lib/cosmic";
@@ -36,7 +37,7 @@ export default async function BlogPostPage({ params }: Props) {
     <SitePage>
       <PageShell className="max-w-5xl">
         <div className="mb-8">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-white/62 transition-colors hover:text-white">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-white/72 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]">
             <ArrowLeft className="h-4 w-4" />
             Back to blog
           </Link>
@@ -60,12 +61,19 @@ export default async function BlogPostPage({ params }: Props) {
             </h1>
 
             {post.metadata.excerpt ? (
-              <p className="mt-6 max-w-3xl text-base leading-8 text-white/64 sm:text-lg">{post.metadata.excerpt}</p>
+              <p className="mt-6 max-w-3xl text-base leading-8 text-white/72 sm:text-lg">{post.metadata.excerpt}</p>
             ) : null}
 
             <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-white/10 pt-6">
               {post.metadata.author_image ? (
-                <img src={post.metadata.author_image} alt={post.metadata.author || "Author"} className="h-12 w-12 rounded-full object-cover" />
+                <Image
+                  src={post.metadata.author_image}
+                  alt={post.metadata.author || "Author"}
+                  width={48}
+                  height={48}
+                  unoptimized
+                  className="h-12 w-12 rounded-full object-cover"
+                />
               ) : (
                 <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 text-sm font-semibold text-[#f1ddab]">
                   {(post.metadata.author || "P").slice(0, 1).toUpperCase()}
@@ -74,7 +82,7 @@ export default async function BlogPostPage({ params }: Props) {
               <div>
                 <p className="font-medium text-white">{post.metadata.author || "PeaceLeague Africa"}</p>
                 {post.metadata.published_date ? (
-                  <p className="mt-1 text-sm text-white/45">
+                  <p className="mt-1 text-sm text-white/60">
                     {new Date(post.metadata.published_date).toLocaleDateString("en-US", {
                       month: "long",
                       day: "numeric",
@@ -88,7 +96,15 @@ export default async function BlogPostPage({ params }: Props) {
 
           {post.metadata.featured_image ? (
             <div className="mt-8 overflow-hidden rounded-[2rem] border border-white/10 shadow-[0_18px_60px_rgba(0,0,0,0.24)]">
-              <img src={post.metadata.featured_image} alt={post.title} className="h-auto w-full object-cover" />
+              <Image
+                src={post.metadata.featured_image}
+                alt={post.title}
+                width={1200}
+                height={675}
+                unoptimized
+                sizes="(max-width: 1024px) 100vw, 80vw"
+                className="h-auto w-full object-cover"
+              />
             </div>
           ) : null}
 

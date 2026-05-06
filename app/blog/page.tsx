@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { getBlogPosts } from "@/lib/cosmic";
 import { Card } from "@/components/ui/glass-card";
@@ -24,15 +25,15 @@ export default async function BlogPage() {
               <span className="block text-[#f1ddab]">from the PeaceLeague Africa platform.</span>
             </>
           }
-          description="The blog now feels more editorial: better pacing, stronger cards, and a clearer sense of what is worth reading first."
+          description="Read campaign insights, product updates, and field stories that help donors and creators make better decisions."
           align="left"
         />
 
         <SectionBlock>
           <SectionIntro
             eyebrow="Latest posts"
-            title="A cleaner archive for impact stories and platform thinking."
-            description="Every article should feel like part of the same premium system as the homepage and campaigns experience."
+            title="Latest stories, updates, and practical fundraising insight."
+            description="Explore content organized for quick scanning: category, read time, author, and clear next action."
           />
 
           {posts.length > 0 ? (
@@ -41,14 +42,17 @@ export default async function BlogPage() {
                 <Link
                   key={post.id}
                   href={`/blog/${post.slug}`}
-                  className={`group block ${index === 0 ? "lg:col-span-7" : index === 1 ? "lg:col-span-5" : "lg:col-span-4"}`}
+                  className={`group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c] ${index === 0 ? "lg:col-span-7" : index === 1 ? "lg:col-span-5" : "lg:col-span-4"}`}
                 >
                   <Card className={`overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-0 ${index === 0 ? "min-h-[32rem]" : "min-h-[28rem]"}`}>
                     {post.metadata.featured_image ? (
                       <div className={`relative overflow-hidden ${index === 0 ? "aspect-[16/9]" : "aspect-[16/10]"}`}>
-                        <img
+                        <Image
                           src={post.metadata.featured_image}
                           alt={post.title}
+                          fill
+                          unoptimized
+                          sizes={index === 0 ? "(max-width: 1024px) 100vw, 58vw" : "(max-width: 1024px) 100vw, 40vw"}
                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,8,6,0.08),rgba(10,8,6,0.78))]" />
@@ -72,7 +76,7 @@ export default async function BlogPage() {
                       </h2>
 
                       {post.metadata.excerpt ? (
-                        <p className="mt-4 line-clamp-3 text-sm leading-7 text-white/62">{post.metadata.excerpt}</p>
+                        <p className="mt-4 line-clamp-3 text-sm leading-7 text-white/70">{post.metadata.excerpt}</p>
                       ) : null}
 
                       <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-5">
@@ -100,8 +104,8 @@ export default async function BlogPage() {
             </div>
           ) : (
             <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] px-8 py-16 text-center">
-              <p className="text-lg text-white/60">No blog posts yet.</p>
-              <p className="mt-2 text-sm text-white/40">Check back soon for stories, updates, and reflections from the platform.</p>
+              <p className="text-lg text-white/72">No blog posts yet.</p>
+              <p className="mt-2 text-sm text-white/55">Check back soon for stories, updates, and reflections from the platform.</p>
             </Card>
           )}
         </SectionBlock>

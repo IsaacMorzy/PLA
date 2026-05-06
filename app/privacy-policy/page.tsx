@@ -19,13 +19,13 @@ export default function PrivacyPolicyPage() {
               <span className="block text-[#f1ddab]">privacy and personal data.</span>
             </>
           }
-          description="Legal pages should still feel intentional. This version improves readability and structure without overdesigning policy content."
+          description="Understand what data PeaceLeague Africa collects, how it is used, and what rights you have as a user."
           align="left"
         />
 
         <SectionBlock>
           <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-8 sm:p-10 lg:p-12">
-            <p className="text-sm text-white/42">Last updated: April 2026</p>
+            <p className="text-sm text-white/58">Last updated: April 2026</p>
             <div className="mt-8 space-y-10 text-white/70 [&_p]:leading-8">
               <section>
                 <h2 className="font-display text-3xl text-white">Information we collect</h2>

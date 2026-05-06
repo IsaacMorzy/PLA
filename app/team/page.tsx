@@ -55,15 +55,15 @@ export default async function TeamPage() {
               <span className="block text-[#f1ddab]">credible future for giving.</span>
             </>
           }
-          description="PeaceLeague Africa combines product, community, and operational expertise to make transparent fundraising feel both trustworthy and human."
+          description="Meet the operators, builders, and community leaders responsible for campaign quality, donor trust, and platform execution."
           align="left"
         />
 
         <SectionBlock>
           <SectionIntro
             eyebrow="Team"
-            title="A multidisciplinary group shaping trust, technology, and community outcomes."
-            description="This page should feel less like a directory and more like a portrait of the people building the platform."
+            title="The team running product, partnerships, and campaign operations."
+            description="Each profile highlights role ownership and the experience behind PeaceLeague’s mission delivery."
           />
 
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -74,7 +74,7 @@ export default async function TeamPage() {
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-[11px] uppercase tracking-[0.24em] text-white/36">Team member {String(index + 1).padStart(2, "0")}</p>
+                    <p className="text-[11px] uppercase tracking-[0.24em] text-white/55">Team member {String(index + 1).padStart(2, "0")}</p>
                     <h2 className="mt-4 font-display text-3xl text-white">{member.title}</h2>
                     <p className="mt-2 text-sm text-[#f1ddab]">{member.metadata.role}</p>
                   </div>
@@ -86,7 +86,7 @@ export default async function TeamPage() {
                     )}
                   </div>
                 </div>
-                <p className="mt-6 text-sm leading-7 text-white/64">{member.metadata.bio}</p>
+                <p className="mt-6 text-sm leading-7 text-white/72">{member.metadata.bio}</p>
               </Card>
             ))}
           </div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Accordion } from "@/components/ui/tailgrids";
 import { Card } from "@/components/ui/glass-card";
 import { PageHero, PageShell, SectionBlock, SectionIntro, SitePage } from "@/components/site/page-shell";
+import { CTA_COPY } from "@/lib/copy";
 
 const faqItems = [
   {
@@ -56,7 +57,7 @@ export default function FAQPage() {
               <span className="block text-[#f1ddab]">organizers, and partners.</span>
             </>
           }
-          description="This page is designed to reduce hesitation. The tone is direct, the information is structured, and the answers reinforce how PeaceLeague Africa works."
+          description="Get direct answers on donations, wallet requirements, campaign legitimacy, and how funds are tracked."
           align="center"
         />
 
@@ -65,8 +66,8 @@ export default function FAQPage() {
             <div>
               <SectionIntro
                 eyebrow="Need-to-know"
-                title="Everything essential, without clutter."
-                description="Instead of a generic FAQ list, this layout frames the most important trust and product questions in a cleaner way."
+                title="The essentials donors and organizers ask most."
+                description="Start here if you want fast clarity before donating or launching a campaign."
               />
             </div>
             <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 sm:p-8">
@@ -85,15 +86,15 @@ export default function FAQPage() {
             <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-[#d4a853] px-6 py-3.5 text-sm font-semibold text-[#17120d] transition duration-300 hover:-translate-y-0.5 hover:bg-[#e5bc68]"
+                className="inline-flex items-center justify-center rounded-full bg-[#d4a853] px-6 py-3.5 text-sm font-semibold text-[#17120d] transition duration-300 hover:-translate-y-0.5 hover:bg-[#e5bc68] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
               >
                 Contact us
               </Link>
               <Link
                 href="/campaigns"
-                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.05] px-6 py-3.5 text-sm font-semibold text-white transition duration-300 hover:bg-white/[0.08]"
+                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.05] px-6 py-3.5 text-sm font-semibold text-white transition duration-300 hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
               >
-                Browse campaigns
+                {CTA_COPY.browseCampaigns}
               </Link>
             </div>
           </Card>

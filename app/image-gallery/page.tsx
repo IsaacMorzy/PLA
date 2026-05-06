@@ -44,15 +44,15 @@ export default async function ImageGalleryPage() {
               <span className="block text-[#f1ddab]">captured with more presence.</span>
             </>
           }
-          description="The gallery should feel less like a loose image dump and more like a curated window into the outcomes, places, and people behind the mission."
+          description="Browse field photos from campaigns across Africa to see where support is going and who it is reaching."
           align="left"
         />
 
         <SectionBlock>
           <SectionIntro
             eyebrow="Field moments"
-            title="A more editorial image grid for impact storytelling."
-            description="Images now sit in a cleaner, more atmospheric frame so the page feels premium even when content is sparse."
+            title="Field moments from active communities and projects."
+            description="Each image highlights place, context, and the human side of campaign impact."
           />
 
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">

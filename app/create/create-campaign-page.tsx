@@ -23,6 +23,7 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { PageHero, PageShell, SectionBlock, SitePage } from "@/components/site/page-shell";
+import { CTA_COPY } from "@/lib/copy";
 
 const campaignSchema = z.object({
   title: z
@@ -220,8 +221,8 @@ export default function CreateCampaignPage() {
               <Send className="h-10 w-10 text-white" />
             </motion.div>
             <h2 className="text-2xl font-bold text-white mb-2">Campaign Created!</h2>
-            <p className="text-white/60 mb-6">
-              Your campaign "{createdTitle}" is now live on-chain and synced to the public campaign directory.
+            <p className="mb-6 text-white/72">
+              Your campaign "{createdTitle}" is now live on-chain and visible in the public campaign directory.
             </p>
             <a
               href={getExplorerUrl("tx", txSignature)}
@@ -234,15 +235,15 @@ export default function CreateCampaignPage() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href={createdSlug ? `/campaign/${createdSlug}` : "/campaigns"}
-                className="rounded-full bg-gradient-to-r from-[#d4a853] to-[#c46d46] px-6 py-3 text-white font-medium transition-opacity hover:opacity-90"
+                className="rounded-full bg-gradient-to-r from-[#d4a853] to-[#c46d46] px-6 py-3 text-white font-medium transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
               >
                 View live campaign
               </Link>
               <Link
                 href="/campaigns"
-                className="rounded-full border border-white/20 bg-white/10 px-6 py-3 text-white font-medium transition-colors hover:bg-white/20"
+                className="rounded-full border border-white/20 bg-white/10 px-6 py-3 text-white font-medium transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
               >
-                Browse all campaigns
+                {CTA_COPY.browseCampaigns}
               </Link>
             </div>
           </motion.div>
@@ -262,7 +263,7 @@ export default function CreateCampaignPage() {
         >
           <Link
             href="/campaigns"
-            className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-white/72 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Campaigns
@@ -277,7 +278,7 @@ export default function CreateCampaignPage() {
               <span className="block text-[#f1ddab]">clear structure and instant credibility.</span>
             </>
           }
-          description="This creation flow now sits inside the same premium system as the rest of the site — focused, calm, and built to help organizers move from idea to launch with less friction."
+          description="Launch a campaign with the minimum required details, then publish with a structure donors can trust from first view."
           align="left"
         />
 
@@ -289,7 +290,7 @@ export default function CreateCampaignPage() {
             className="mt-8 rounded-[2rem] border border-white/[0.08] bg-white/[0.03] p-8 text-center backdrop-blur-xl"
           >
             <h3 className="mb-4 text-xl font-semibold text-white">Connect wallet to continue</h3>
-            <p className="text-white/60 mb-6">
+            <p className="mb-6 text-white/72">
               Connect your Solana wallet to create a campaign on-chain.
             </p>
             <WalletMultiButton className="!bg-[#d4a853] !text-black hover:!bg-[#c46d46] !border-none !mx-auto" />
@@ -404,13 +405,13 @@ export default function CreateCampaignPage() {
                   ) : (
                     <>
                       <Send className="h-5 w-5" />
-                      <span>Launch campaign on-chain</span>
+                      <span>{CTA_COPY.launchCampaign} on-chain</span>
                     </>
                   )}
                 </Button>
               </motion.div>
 
-              <p className="text-white/40 text-xs text-center">
+              <p className="text-xs text-center text-white/58">
                 Program: {PROGRAM_ID.toString().slice(0, 16)}...
               </p>
             </form>

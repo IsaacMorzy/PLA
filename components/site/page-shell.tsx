@@ -8,7 +8,7 @@ export function SitePage({ children, className }: { children: ReactNode; classNa
     <div className={cn("relative min-h-screen overflow-hidden bg-[#120f0c] text-white", className)}>
       <div className="pointer-events-none fixed inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,168,83,0.14),transparent_28%),radial-gradient(circle_at_80%_15%,rgba(196,109,70,0.12),transparent_24%),radial-gradient(circle_at_50%_80%,rgba(212,168,83,0.06),transparent_24%)]" />
-        <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:72px_72px]" />
+        <div className="absolute inset-0 hidden opacity-[0.04] md:block [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:72px_72px]" />
       </div>
       <main className="relative z-10 px-4 pb-14 pt-24 sm:px-5 sm:pb-16 sm:pt-28 lg:px-8 lg:pb-24">{children}</main>
     </div>
@@ -47,13 +47,13 @@ export function PageHero({
       <div className={cn("max-w-4xl", align === "center" && "mx-auto")}>
         <p className="text-sm uppercase tracking-[0.35em] text-[#d4a853]">{eyebrow}</p>
         <h1 className="mt-5 font-display text-[2.45rem] leading-[0.98] text-white sm:text-[3.35rem] lg:text-[5rem]">{title}</h1>
-        <p className="mt-5 max-w-3xl text-sm leading-7 text-white/64 sm:mt-6 sm:text-base sm:leading-8 lg:text-lg">{description}</p>
+        <p className="mt-5 max-w-3xl text-sm leading-7 text-white/74 sm:mt-6 sm:text-base sm:leading-8 lg:text-lg">{description}</p>
         {(ctaHref && ctaLabel) || secondary ? (
           <div className={cn("mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:gap-4", align === "center" && "justify-center")}>
             {ctaHref && ctaLabel ? (
               <Link
                 href={ctaHref}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d4a853] px-6 py-3.5 text-sm font-semibold text-[#17120d] transition duration-300 hover:-translate-y-0.5 hover:bg-[#e5bc68] sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d4a853] px-6 py-3.5 text-sm font-semibold text-[#17120d] transition duration-300 hover:-translate-y-0.5 hover:bg-[#e5bc68] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c] sm:w-auto"
               >
                 {ctaLabel}
                 <ArrowRight className="h-4 w-4" />
@@ -82,7 +82,7 @@ export function SectionIntro({
     <div className={cn("mb-8 max-w-3xl", className)}>
       <p className="text-sm uppercase tracking-[0.32em] text-[#d4a853]">{eyebrow}</p>
       <h2 className="mt-4 font-display text-3xl leading-tight text-white sm:text-4xl lg:text-5xl">{title}</h2>
-      {description ? <p className="mt-4 text-sm leading-7 text-white/62 sm:text-base sm:leading-8">{description}</p> : null}
+      {description ? <p className="mt-4 text-sm leading-7 text-white/72 sm:text-base sm:leading-8">{description}</p> : null}
     </div>
   );
 }

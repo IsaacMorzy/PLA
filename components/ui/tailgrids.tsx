@@ -161,7 +161,7 @@ export function PricingTable({ tiers, className = '' }: PricingTableProps) {
           <div className="flex items-baseline gap-1 mb-3">
             <span className="text-3xl font-bold text-white">{tier.price}</span>
           </div>
-          <p className="text-white/60 text-sm mb-6">{tier.description}</p>
+          <p className="mb-6 text-sm text-white/70">{tier.description}</p>
           
           <ul className="space-y-3 mb-6">
             {tier.features.map((feature, i) => (
@@ -277,7 +277,7 @@ export function StatsGrid({ stats, className = '' }: StatsGridProps) {
           className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.08] text-center"
         >
           <div className="text-2xl md:text-3xl font-bold text-white mb-1">{stat.value}</div>
-          <div className="text-white/60 text-sm">{stat.label}</div>
+          <div className="text-sm text-white/70">{stat.label}</div>
           {stat.change && (
             <div className={cn(
               'text-xs mt-2',

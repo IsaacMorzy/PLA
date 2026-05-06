@@ -3,6 +3,7 @@ import { ArrowRightLeft, Globe, Shield, Wallet, Zap } from "lucide-react";
 import { HowItWorks, FeatureGrid } from "@/components/ui/feature";
 import { Card } from "@/components/ui/glass-card";
 import { PageHero, PageShell, SectionBlock, SectionIntro, SitePage } from "@/components/site/page-shell";
+import { CTA_COPY } from "@/lib/copy";
 
 export const metadata: Metadata = {
   title: "How It Works - PeaceLeague Africa",
@@ -67,19 +68,19 @@ export default function HowItWorksPage() {
               <span className="block text-[#f1ddab]">story to support to visible impact.</span>
             </>
           }
-          description="PeaceLeague Africa is built to remove uncertainty from digital giving. Campaign creators get a stronger launch surface, and donors get a clearer sense of legitimacy before they contribute."
+          description="PeaceLeague Africa helps organizers launch credible campaigns and helps donors verify progress before they give."
           ctaHref="/create"
-          ctaLabel="Start a campaign"
+          ctaLabel={CTA_COPY.launchCampaign}
         />
 
         <SectionBlock>
           <SectionIntro
             eyebrow="Flow"
             title="A simpler fundraising path, presented with more clarity."
-            description="The platform should make every phase easy to understand: launch, share, fund, and deliver."
+            description="Each step is designed to reduce hesitation: launch clearly, share confidently, fund transparently, and report outcomes."
           />
           <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-8">
-            <HowItWorks steps={steps} className="[&_h3]:text-xl [&_p]:leading-7 [&_p]:text-white/62" />
+            <HowItWorks steps={steps} className="[&_h3]:text-xl [&_p]:leading-7 [&_p]:text-white/72" />
           </Card>
         </SectionBlock>
 
@@ -88,8 +89,8 @@ export default function HowItWorksPage() {
             <Card className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(212,168,83,0.12),rgba(255,255,255,0.03))] p-8">
               <p className="text-sm uppercase tracking-[0.3em] text-[#d4a853]">Why this matters</p>
               <h2 className="mt-4 font-display text-4xl leading-tight text-white">Trust is a product experience, not just a promise.</h2>
-              <p className="mt-5 text-base leading-8 text-white/64">
-                Donors need confidence. Organizers need momentum. This system is designed to improve both by combining transparent infrastructure with stronger storytelling surfaces.
+              <p className="mt-5 text-base leading-8 text-white/72">
+                Donors need proof before they give. Organizers need momentum after launch. This flow supports both with clear campaign structure and visible funding signals.
               </p>
               <div className="mt-8 rounded-[1.5rem] border border-white/10 bg-black/20 p-5">
                 <div className="flex items-start gap-3">
@@ -98,8 +99,8 @@ export default function HowItWorksPage() {
                   </div>
                   <div>
                     <p className="font-medium text-white">From donor hesitation to donor conviction</p>
-                    <p className="mt-2 text-sm leading-7 text-white/60">
-                      Better structure, clearer proof, and more confident presentation all increase the likelihood of support.
+                    <p className="mt-2 text-sm leading-7 text-white/72">
+                      Clear campaign framing and visible transaction progress increase donor confidence and conversion.
                     </p>
                   </div>
                 </div>
@@ -109,7 +110,7 @@ export default function HowItWorksPage() {
             <div>
               <SectionIntro
                 eyebrow="Platform advantages"
-                title="The reasons this flow feels stronger than generic crowdfunding."
+                title="Why this flow outperforms generic crowdfunding pages."
                 description="These are not add-ons. They are the trust mechanisms that make the experience feel serious."
                 className="mb-6"
               />

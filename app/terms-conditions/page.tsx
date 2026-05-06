@@ -19,13 +19,13 @@ export default function TermsConditionsPage() {
               <span className="block text-[#f1ddab]">use of PeaceLeague Africa.</span>
             </>
           }
-          description="This page keeps the legal content readable and structured while remaining visually consistent with the rest of the redesigned site."
+          description="Review the terms that govern campaign creation, donations, wallet usage, and platform access."
           align="left"
         />
 
         <SectionBlock>
           <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-8 sm:p-10 lg:p-12">
-            <p className="text-sm text-white/42">Effective: April 2026</p>
+            <p className="text-sm text-white/58">Effective: April 2026</p>
             <div className="mt-8 space-y-10 text-white/70 [&_p]:leading-8">
               <section>
                 <h2 className="font-display text-3xl text-white">Acceptance of terms</h2>

@@ -19,7 +19,9 @@ import Image from "next/image";
 import Link from "next/link";
 import * as animations from "@/lib/animations";
 import { cn } from "@/lib/utils";
+import { trackEvent } from "@/lib/analytics";
 import type { Campaign, CampaignStory } from "@/lib/cosmic";
+import { CTA_COPY } from "@/lib/copy";
 import { Card } from "@/components/ui/glass-card";
 import { Accordion, StatsGrid, Tabs } from "@/components/ui/tailgrids";
 
@@ -92,19 +94,19 @@ const faqItems = [
     id: "track",
     title: "How do donors know where funds go?",
     content:
-      "Every campaign is tied to on-chain activity, so donors can verify movement instead of relying on vague platform promises.",
+      "Each campaign publishes wallet activity and progress on-chain, so donors can verify movement from contribution to payout.",
   },
   {
     id: "fees",
     title: "Does PeaceLeague Africa take a platform fee?",
     content:
-      "No. The platform highlights a zero-fee position so the mission feels direct, credible, and donor-first.",
+      "No platform fee is deducted. Contributions are directed to the campaign wallet and tracked publicly.",
   },
   {
-    id: "trust",
-    title: "Why does the new homepage feel more trustworthy?",
+    id: "safety",
+    title: "How can I assess campaign legitimacy before donating?",
     content:
-      "Because it now emphasizes proof, hierarchy, and focus. The design tells a clear story: campaign, evidence, momentum, impact.",
+      "Use the campaign story, wallet transparency, donor momentum, and funding history together before you contribute.",
   },
 ];
 
@@ -113,7 +115,7 @@ export default function HomeClient({ campaigns, stories }: HomeClientProps) {
     <main className="relative overflow-hidden bg-[#120f0c] text-white">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,168,83,0.18),transparent_28%),radial-gradient(circle_at_80%_20%,rgba(196,109,70,0.16),transparent_24%),radial-gradient(circle_at_50%_85%,rgba(16,185,129,0.08),transparent_24%)]" />
-        <div className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:72px_72px]" />
+        <div className="absolute inset-0 hidden opacity-[0.05] md:block [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:72px_72px]" />
       </div>
 
       <HeroSection />
@@ -131,7 +133,7 @@ export default function HomeClient({ campaigns, stories }: HomeClientProps) {
 
 function HeroSection() {
   return (
-    <section className="relative px-4 pb-20 pt-10 sm:pt-16 lg:px-8 lg:pb-28">
+    <section className="relative px-4 pb-16 pt-8 sm:pt-14 lg:px-8 lg:pb-24">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
         <motion.div
           initial="hidden"
@@ -144,17 +146,17 @@ function HeroSection() {
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/6 px-4 py-2 text-xs uppercase tracking-[0.28em] text-white/72"
           >
             <Sparkles className="h-3.5 w-3.5 text-[#d4a853]" />
-            Afrofuturist giving, built on Solana
+            Transparent giving infrastructure, built on Solana
           </motion.div>
 
           <motion.div variants={animations.fadeInUp} className="max-w-4xl">
             <p className="mb-4 text-sm uppercase tracking-[0.4em] text-[#d4a853] sm:text-[0.9rem]">
               PeaceLeague Africa
             </p>
-            <h1 className="max-w-5xl font-display text-[3.35rem] leading-[0.92] text-white sm:text-[4.6rem] lg:text-[6.6rem]">
-              Fund dignity.
-              <span className="block text-[#f1ddab]">Prove every step.</span>
-              <span className="block text-white/45">Move help faster.</span>
+            <h1 className="max-w-5xl font-display text-[2.75rem] leading-[0.92] text-white sm:text-[4.2rem] lg:text-[6.3rem]">
+              Donate with confidence.
+              <span className="block text-[#f1ddab]">Verify every transfer.</span>
+              <span className="block text-white/45">Help communities faster.</span>
             </h1>
           </motion.div>
 
@@ -162,24 +164,26 @@ function HeroSection() {
             variants={animations.fadeInUp}
             className="mt-8 max-w-2xl text-base leading-8 text-white/68 sm:text-lg"
           >
-            A cinematic, trust-first platform for African community campaigns. Donors see where funds go,
-            campaign owners move quickly, and every contribution leaves a public trail.
+            PeaceLeague Africa helps donors back verified community campaigns with clear evidence.
+            Campaign owners launch quickly, and every contribution leaves a public proof trail.
           </motion.p>
 
           <motion.div variants={animations.fadeInUp} className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Link
-              href="/create"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#d4a853] px-7 py-4 text-sm font-semibold text-[#17120d] shadow-[0_12px_40px_rgba(212,168,83,0.24)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#e5bc68]"
+              href="#campaigns"
+              onClick={() => trackEvent("home_cta_click", { cta: "donate_live_campaigns", section: "hero" })}
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#d4a853] px-7 py-4 text-sm font-semibold text-[#17120d] shadow-[0_12px_40px_rgba(212,168,83,0.24)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#e5bc68] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
             >
-              Launch a campaign
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              <Heart className="h-4 w-4" />
+              {CTA_COPY.donateToLiveCampaigns}
             </Link>
             <Link
-              href="#campaigns"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/12 bg-white/5 px-7 py-4 text-sm font-semibold text-white transition duration-300 hover:border-[#d4a853]/40 hover:bg-white/8"
+              href="/create"
+              onClick={() => trackEvent("home_cta_click", { cta: "launch_campaign", section: "hero" })}
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/12 bg-white/5 px-7 py-4 text-sm font-semibold text-white transition duration-300 hover:border-[#d4a853]/40 hover:bg-white/8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
             >
-              <Heart className="h-4 w-4 text-[#d4a853]" />
-              Explore live campaigns
+              {CTA_COPY.launchCampaign}
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </motion.div>
 
@@ -188,9 +192,9 @@ function HeroSection() {
             className="mt-12 grid max-w-3xl gap-4 sm:grid-cols-3"
           >
             {[
-              { label: "Fully transparent", value: "On-chain receipts" },
-              { label: "Global access", value: "Donate from anywhere" },
-              { label: "No platform fee", value: "100% to the cause" },
+              { label: "Verifiable donations", value: "On-chain activity" },
+              { label: "Global participation", value: "Support from anywhere" },
+              { label: "Direct giving", value: "No platform fee" },
             ].map((item) => (
               <div
                 key={item.label}
@@ -218,7 +222,7 @@ function HeroSection() {
             className="absolute bottom-10 right-0 hidden h-32 w-32 rounded-full bg-[#c46d46]/20 blur-3xl lg:block"
           />
 
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.09),rgba(255,255,255,0.03))] p-5 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-2xl sm:p-6">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.09),rgba(255,255,255,0.03))] p-5 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:backdrop-blur-2xl sm:p-6">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,168,83,0.16),transparent_32%),radial-gradient(circle_at_bottom_left,rgba(196,109,70,0.12),transparent_28%)]" />
             <div className="relative">
               <div className="flex items-center justify-between border-b border-white/10 pb-4">
@@ -291,11 +295,11 @@ function PresenceSection() {
           <div>
             <p className="text-sm uppercase tracking-[0.35em] text-[#d4a853]">Continental reach</p>
             <h2 className="mt-4 max-w-xl font-display text-4xl leading-tight text-white sm:text-5xl">
-              A warmer, sharper interface for serious trust.
+              Built for African campaigns with global donor reach.
             </h2>
-            <p className="mt-5 max-w-xl text-base leading-8 text-white/64">
-              The visual language now feels premium and mission-driven: editorial typography, atmospheric depth,
-              and a stronger sense of movement from donor intent to measurable impact.
+            <p className="mt-5 max-w-xl text-base leading-8 text-white/74">
+              Campaign pages are structured so donors can evaluate need, legitimacy, and progress in minutes,
+              while organizers communicate urgency without losing credibility.
             </p>
           </div>
 
@@ -320,10 +324,10 @@ function PresenceSection() {
 
             <div className="grid gap-4 sm:grid-cols-2">
               {[
-                "Designed to make transparency feel tangible, not technical.",
-                "Stronger hierarchy so campaigns look credible within seconds.",
-                "A richer dark palette with gold, terracotta, and emerald cues.",
-                "Editorial pacing instead of generic startup-card sameness.",
+                "Donation proof is visible without forcing users into blockchain jargon.",
+                "Campaigns signal urgency and legitimacy within seconds.",
+                "Visual hierarchy prioritizes contribution decisions, not decoration.",
+                "The experience remains warm and human while staying institutionally credible.",
               ].map((item) => (
                 <div
                   key={item}
@@ -399,10 +403,10 @@ function FeaturedCampaignsSection({ campaigns }: { campaigns: Campaign[] }) {
       <div className="mx-auto max-w-7xl">
         <SectionHeader
           eyebrow="Featured campaigns"
-          title="Campaign cards that feel alive, not templated."
-          description="A more cinematic presentation for urgency, legitimacy, and donor confidence."
+          title="Campaign cards built for fast, informed donor decisions."
+          description="Review urgency, progress, location, and campaign proof signals before you contribute."
           ctaHref="/campaigns"
-          ctaLabel="See all campaigns"
+          ctaLabel={CTA_COPY.seeAllCampaigns}
         />
 
         <div className="mt-10 grid gap-5 lg:grid-cols-12">
@@ -462,7 +466,7 @@ function FeaturedCampaignsSection({ campaigns }: { campaigns: Campaign[] }) {
                           {campaign.title}
                         </h3>
 
-                        <p className="mt-4 max-w-lg text-sm leading-7 text-white/62">
+                        <p className="mt-4 max-w-lg text-sm leading-7 text-white/70">
                           {(campaign.metadata?.description || campaign.metadata?.beneficiary_story || "Support a verified community need with clear funding visibility and real-time proof.").slice(0, 150)}
                           ...
                         </p>
@@ -477,7 +481,7 @@ function FeaturedCampaignsSection({ campaigns }: { campaigns: Campaign[] }) {
 
                         <div>
                           <div className="mb-2 flex items-center justify-between text-sm">
-                            <span className="text-white/55">Funding progress</span>
+                            <span className="text-white/64">Funding progress</span>
                             <span className="font-medium text-[#f1ddab]">{percent}%</span>
                           </div>
                           <div className="h-2.5 rounded-full bg-white/8">
@@ -512,10 +516,10 @@ function TrustSection() {
         <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(212,168,83,0.12),rgba(255,255,255,0.04))] p-6 backdrop-blur-xl sm:p-8">
           <p className="text-sm uppercase tracking-[0.35em] text-[#d4a853]">How it works</p>
           <h2 className="mt-4 font-display text-4xl leading-tight text-white sm:text-5xl">
-            Confidence built into every interaction.
+            Trust cues built into every step.
           </h2>
           <p className="mt-5 max-w-lg text-base leading-8 text-white/68">
-            The redesign leans into proof, pacing, and clarity: less clutter, more authority, stronger signals of legitimacy.
+            From launch to payout, campaign information is structured so donors and partners can verify what matters quickly.
           </p>
 
           <div className="mt-8 space-y-4">
@@ -526,7 +530,7 @@ function TrustSection() {
                   <span className="text-xs uppercase tracking-[0.25em] text-white/35">Step {index + 1}</span>
                 </div>
                 <h3 className="text-xl font-semibold text-white">{step.title}</h3>
-                <p className="mt-2 text-sm leading-7 text-white/62">{step.description}</p>
+                <p className="mt-2 text-sm leading-7 text-white/70">{step.description}</p>
               </div>
             ))}
           </div>
@@ -551,7 +555,7 @@ function TrustSection() {
                   <pillar.icon className="h-6 w-6" />
                 </div>
                 <h3 className="mt-6 text-2xl font-semibold text-white">{pillar.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-white/62">{pillar.description}</p>
+                <p className="mt-3 text-sm leading-7 text-white/70">{pillar.description}</p>
               </Card>
             </motion.div>
           ))}
@@ -564,17 +568,16 @@ function TrustSection() {
 function ImpactStatsSection() {
   return (
     <section className="relative px-4 py-16 lg:px-8 lg:py-24">
-      <div className="mx-auto max-w-7xl rounded-[2.2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] p-6 backdrop-blur-2xl sm:p-8 lg:p-10">
+      <div className="mx-auto max-w-7xl rounded-[2.2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] p-6 backdrop-blur-xl sm:backdrop-blur-2xl sm:p-8 lg:p-10">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm uppercase tracking-[0.35em] text-[#d4a853]">Proof at a glance</p>
             <h2 className="mt-4 font-display text-4xl leading-tight text-white sm:text-5xl">
-              Metrics staged like a premium impact report.
+              Impact metrics that are easy to verify.
             </h2>
           </div>
-          <p className="max-w-2xl text-sm leading-7 text-white/62 sm:text-base">
-            Cleaner hierarchy, stronger contrast, and more narrative framing help the platform feel established,
-            trustworthy, and worth supporting.
+          <p className="max-w-2xl text-sm leading-7 text-white/70 sm:text-base">
+            Donors, creators, and partners can scan campaign momentum quickly without losing traceability.
           </p>
         </div>
 
@@ -602,12 +605,12 @@ function AudienceTabsSection() {
       label: "For donors",
       content: (
         <TailgridPanel
-          title="Confidence before checkout"
-          description="The interface now surfaces progress, verification, and urgency in one view so donors understand both need and credibility instantly."
+          title="Confidence before donation"
+          description="Donors see need, evidence, and momentum in one place so they can decide quickly and responsibly."
           bullets={[
-            "Cleaner progress framing",
-            "More visible on-chain trust cues",
-            "Premium storytelling instead of generic fundraising UI",
+            "Clear progress toward goal",
+            "Visible trust and verification cues",
+            "Fast path from discovery to donation",
           ]}
         />
       ),
@@ -617,12 +620,12 @@ function AudienceTabsSection() {
       label: "For organizers",
       content: (
         <TailgridPanel
-          title="A stronger launchpad for campaigns"
-          description="Campaign owners get a more serious, editorial-looking platform that helps their cause feel legitimate and donation-ready."
+          title="Launch campaigns with stronger credibility"
+          description="Creators can publish campaigns that communicate urgency, legitimacy, and clarity from first view."
           bullets={[
-            "Bolder headers and category tags",
-            "Sharper card composition",
-            "Better hierarchy for goals, donors, and traction",
+            "Clear campaign narrative structure",
+            "Visibility for goals, progress, and donor activity",
+            "Faster path from publish to first contributions",
           ]}
         />
       ),
@@ -632,12 +635,12 @@ function AudienceTabsSection() {
       label: "For partners",
       content: (
         <TailgridPanel
-          title="Institutional trust, community warmth"
-          description="NGOs and partners can point supporters to a homepage that feels polished enough for alliances, press, and larger campaigns."
+          title="Institutional trust with community warmth"
+          description="Partners can confidently share campaigns with supporters, media, and stakeholders."
           bullets={[
-            "More polished visual credibility",
-            "Clear mission-to-impact storytelling",
-            "A design system that can scale beyond the homepage",
+            "Consistent trust-first visual system",
+            "Clear mission-to-impact communication",
+            "Reusable patterns that scale across pages",
           ]}
         />
       ),
@@ -648,12 +651,12 @@ function AudienceTabsSection() {
     <section className="relative px-4 py-16 lg:px-8 lg:py-24">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
-          <p className="text-sm uppercase tracking-[0.35em] text-[#d4a853]">Tailgrids layer</p>
+          <p className="text-sm uppercase tracking-[0.35em] text-[#d4a853]">By role</p>
           <h2 className="mt-4 font-display text-4xl leading-tight text-white sm:text-5xl">
-            Added Tailgrids interaction patterns, not just prettier surfaces.
+            Clear journeys for donors, creators, and partners.
           </h2>
-          <p className="mt-5 max-w-xl text-base leading-8 text-white/64">
-            I worked Tailgrids components into the experience so the redesign gains richer structure as well as style.
+          <p className="mt-5 max-w-xl text-base leading-8 text-white/74">
+            Each view focuses on practical outcomes: donate faster, launch confidently, and report impact credibly.
           </p>
         </div>
 
@@ -687,7 +690,7 @@ function StoriesSection({ stories }: { stories: CampaignStory[] }) {
             metadata: {
               author: "James T.",
               location: "United States",
-              content: "The redesign feels premium. I understood the mission instantly and trusted the flow enough to donate on the spot.",
+              content: "The platform feels credible immediately. I understood the mission quickly and felt confident donating on the spot.",
             },
           },
           {
@@ -697,7 +700,7 @@ function StoriesSection({ stories }: { stories: CampaignStory[] }) {
             metadata: {
               author: "Amina K.",
               location: "Ghana",
-              content: "It no longer looks like a generic fundraiser. It looks like a movement with structure, receipts, and momentum.",
+              content: "It feels like a serious movement with structure, public receipts, and clear momentum.",
             },
           },
         ];
@@ -707,8 +710,8 @@ function StoriesSection({ stories }: { stories: CampaignStory[] }) {
       <div className="mx-auto max-w-7xl">
         <SectionHeader
           eyebrow="Impact stories"
-          title="Human stories framed with more gravity and warmth."
-          description="Testimonials now read like trusted endorsements instead of filler cards."
+          title="Human stories that reinforce trust."
+          description="Real supporter experiences provide context beyond metrics and screenshots."
         />
 
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
@@ -737,7 +740,7 @@ function StoriesSection({ stories }: { stories: CampaignStory[] }) {
                 <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-5">
                   <div>
                     <p className="font-medium text-white">{story.metadata?.author || story.title}</p>
-                    <p className="mt-1 text-sm text-white/48">{story.metadata?.location || "PeaceLeague supporter"}</p>
+                    <p className="mt-1 text-sm text-white/60">{story.metadata?.location || "PeaceLeague supporter"}</p>
                   </div>
                   <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#d4a853]/25 bg-[#d4a853]/10 text-[#d4a853]">
                     <Users className="h-5 w-5" />
@@ -757,12 +760,12 @@ function FAQSection() {
     <section className="relative px-4 py-16 lg:px-8 lg:py-24">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
-          <p className="text-sm uppercase tracking-[0.35em] text-[#d4a853]">Tailgrids accordion</p>
+          <p className="text-sm uppercase tracking-[0.35em] text-[#d4a853]">FAQ</p>
           <h2 className="mt-4 font-display text-4xl leading-tight text-white sm:text-5xl">
-            Answers presented with less noise and more clarity.
+            Practical answers before donors commit.
           </h2>
-          <p className="mt-5 max-w-xl text-base leading-8 text-white/64">
-            This gives the page a better close: practical reassurance for hesitant donors and a cleaner information rhythm.
+          <p className="mt-5 max-w-xl text-base leading-8 text-white/74">
+            These answers cover the most common donor questions before a contribution decision.
           </p>
         </div>
 
@@ -777,31 +780,33 @@ function FAQSection() {
 function FinalCTASection() {
   return (
     <section className="relative px-4 pb-24 pt-12 lg:px-8 lg:pb-32 lg:pt-20">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-[2.4rem] border border-[#d4a853]/18 bg-[linear-gradient(135deg,rgba(212,168,83,0.16),rgba(255,255,255,0.05),rgba(196,109,70,0.12))] p-8 shadow-[0_30px_120px_rgba(0,0,0,0.35)] backdrop-blur-2xl sm:p-10 lg:p-14">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-[2.4rem] border border-[#d4a853]/18 bg-[linear-gradient(135deg,rgba(212,168,83,0.16),rgba(255,255,255,0.05),rgba(196,109,70,0.12))] p-8 shadow-[0_30px_120px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:backdrop-blur-2xl sm:p-10 lg:p-14">
         <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
             <p className="text-sm uppercase tracking-[0.35em] text-[#f1ddab]">Ready to launch</p>
             <h2 className="mt-4 max-w-3xl font-display text-4xl leading-tight text-white sm:text-5xl lg:text-6xl">
-              Turn the homepage from “meh” into a movement with presence.
+              Back verified campaigns with confidence.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-8 text-white/72">
-              The new direction is bold, editorial, and trust-first — designed to help PeaceLeague Africa look as serious and inspiring as its mission.
+              Donate, launch, or partner with confidence through clear campaign structure and public transaction visibility.
             </p>
           </div>
 
           <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
             <Link
-              href="/create"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#17120d] px-7 py-4 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-black"
+              href="/campaigns"
+              onClick={() => trackEvent("home_cta_click", { cta: "donate_now", section: "final_cta" })}
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#17120d] px-7 py-4 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
             >
-              Start your campaign
+              {CTA_COPY.donateNow}
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link
-              href="/campaigns"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/8 px-7 py-4 text-sm font-semibold text-white transition duration-300 hover:bg-white/12"
+              href="/create"
+              onClick={() => trackEvent("home_cta_click", { cta: "launch_campaign", section: "final_cta" })}
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/8 px-7 py-4 text-sm font-semibold text-white transition duration-300 hover:bg-white/12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
             >
-              Browse funded stories
+              {CTA_COPY.launchCampaign}
             </Link>
           </div>
         </div>
@@ -830,11 +835,11 @@ function SectionHeader({
         <h2 className="mt-4 max-w-3xl font-display text-4xl leading-tight text-white sm:text-5xl">{title}</h2>
       </div>
       <div className="max-w-xl">
-        <p className="text-sm leading-7 text-white/62 sm:text-base">{description}</p>
+        <p className="text-sm leading-7 text-white/70 sm:text-base">{description}</p>
         {ctaHref && ctaLabel ? (
           <Link
             href={ctaHref}
-            className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#f1ddab] transition duration-300 hover:text-white"
+            className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#f1ddab] transition duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
           >
             {ctaLabel}
             <ArrowRight className="h-4 w-4" />
@@ -867,7 +872,7 @@ function DashboardMetric({
         Live
       </div>
       <p className="mt-4 font-display text-3xl text-white">{value}</p>
-      <p className="mt-1 text-sm text-white/55">{label}</p>
+      <p className="mt-1 text-sm text-white/64">{label}</p>
     </div>
   );
 }
@@ -889,7 +894,7 @@ function FloatingNote({
         </div>
         <div>
           <p className="font-medium text-white">{title}</p>
-          <p className="mt-1 text-sm leading-6 text-white/55">{text}</p>
+          <p className="mt-1 text-sm leading-6 text-white/64">{text}</p>
         </div>
       </div>
     </div>
@@ -917,7 +922,7 @@ function TailgridPanel({
   return (
     <div className="rounded-[1.6rem] border border-white/10 bg-[#100d0a]/55 p-5">
       <h3 className="font-display text-3xl text-white">{title}</h3>
-      <p className="mt-3 text-sm leading-7 text-white/62">{description}</p>
+      <p className="mt-3 text-sm leading-7 text-white/70">{description}</p>
       <div className="mt-5 grid gap-3">
         {bullets.map((bullet) => (
           <div key={bullet} className="flex items-start gap-3 rounded-[1.1rem] border border-white/8 bg-white/[0.03] px-4 py-3">

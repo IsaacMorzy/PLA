@@ -14,6 +14,9 @@ import { Variants } from "framer-motion";
 
 // === ORCHESTRATED ENTRANCES ===
 
+const EASE_OUT_EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const EASE_OUT_QUINT: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 // Hero section - slow, confident reveal with depth
 export const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
@@ -21,7 +24,7 @@ export const fadeInUp: Variants = {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }, // custom bezier
+    transition: { duration: 0.8, ease: EASE_OUT_QUINT },
   },
 };
 
@@ -45,7 +48,7 @@ export const staggerCard: Variants = {
     y: 0,
     scale: 1,
     filter: "blur(0px)",
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: 0.5, ease: EASE_OUT_EXPO },
   },
 };
 
@@ -55,7 +58,7 @@ export const cascadeUp: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.6, ease: EASE_OUT_EXPO },
   },
 };
 
@@ -64,15 +67,15 @@ export const cascadeUp: Variants = {
 // Button tap with subtle bounce
 export const tapScale = {
   whileTap: { scale: 0.97 },
-  transition: { duration: 0.1, ease: "easeOut" },
+  transition: { duration: 0.1, ease: EASE_OUT_EXPO },
 };
 
 // Card hover - lift with glow
 export const cardHover = {
-  whileHover: { 
+  whileHover: {
     y: -8,
     boxShadow: "0 20px 40px -15px rgba(212, 168, 83, 0.2)",
-    transition: { duration: 0.3, ease: "easeOut" }
+    transition: { duration: 0.3, ease: EASE_OUT_EXPO },
   },
 };
 
@@ -91,7 +94,7 @@ export const fadeInDown: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
+    transition: { duration: 0.4, ease: EASE_OUT_EXPO },
   },
 };
 
@@ -110,7 +113,7 @@ export const scaleIn: Variants = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.4, ease: "easeOut" },
+    transition: { duration: 0.4, ease: EASE_OUT_EXPO },
   },
 };
 
@@ -122,7 +125,7 @@ export const slideInLeft: Variants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
+    transition: { duration: 0.4, ease: EASE_OUT_EXPO },
   },
 };
 
@@ -132,7 +135,7 @@ export const slideInRight: Variants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
+    transition: { duration: 0.4, ease: EASE_OUT_EXPO },
   },
 };
 
@@ -154,7 +157,7 @@ export const countUp = {
 // Progress bar fill
 export const progressFill = {
   hidden: { scaleX: 0 },
-  visible: { scaleX: 1, transition: { duration: 0.8, ease: "easeOut" } },
+  visible: { scaleX: 1, transition: { duration: 0.8, ease: EASE_OUT_EXPO } },
 };
 
 // === MODAL & OVERLAY ===
@@ -165,7 +168,7 @@ export const modalVariants: Variants = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.3, ease: "easeOut" },
+    transition: { duration: 0.3, ease: EASE_OUT_EXPO },
   },
   exit: { opacity: 0, scale: 0.9, transition: { duration: 0.2 } },
 };
@@ -173,7 +176,7 @@ export const modalVariants: Variants = {
 // Drawer variants
 export const drawerVariants: Variants = {
   hidden: { x: "-100%" },
-  visible: { x: 0, transition: { duration: 0.3, ease: "easeOut" } },
+  visible: { x: 0, transition: { duration: 0.3, ease: EASE_OUT_EXPO } },
   exit: { x: "-100%", transition: { duration: 0.2 } },
 };
 

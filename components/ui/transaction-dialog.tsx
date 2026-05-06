@@ -73,7 +73,7 @@ export function TransactionDialog({
       <DialogContent className="sm:max-w-md text-white">
         <DialogHeader>
           <DialogTitle className="text-white">{title}</DialogTitle>
-          <DialogDescription className="text-white/60">
+          <DialogDescription className="text-white/70">
             {description}
           </DialogDescription>
         </DialogHeader>
@@ -86,7 +86,7 @@ export function TransactionDialog({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="text-center text-white/60"
+                className="text-center text-white/70"
               >
                 Review the transaction details before confirming.
               </motion.div>
@@ -101,7 +101,7 @@ export function TransactionDialog({
                 className="flex flex-col items-center gap-4"
               >
                 <Loader2 className="h-8 w-8 animate-spin text-[#d4a853]" />
-                <p className="text-sm text-white/60">
+                <p className="text-sm text-white/70">
                   Waiting for wallet approval...
                 </p>
               </motion.div>
@@ -116,7 +116,7 @@ export function TransactionDialog({
                 className="flex flex-col items-center gap-4"
               >
                 <Loader2 className="h-8 w-8 animate-spin text-[#d4a853]" />
-                <p className="text-sm text-white/60">
+                <p className="text-sm text-white/70">
                   Confirming on Solana...
                 </p>
               </motion.div>
@@ -160,7 +160,7 @@ export function TransactionDialog({
               >
                 <XCircle className="h-12 w-12 text-red-500" />
                 <p className="font-medium text-white">Transaction Failed</p>
-                <p className="text-sm text-white/60 text-center">
+                <p className="text-center text-sm text-white/70">
                   {error}
                 </p>
               </motion.div>

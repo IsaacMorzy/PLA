@@ -49,7 +49,7 @@ export function AppWorkflow({ steps, className = '' }: AppWorkflowProps) {
             {/* Content */}
             <div className="flex-1 pt-2">
               <h3 className="text-lg font-semibold text-white mb-2">{step.title}</h3>
-              <p className="text-white/60 text-sm">{step.description}</p>
+              <p className="text-sm text-white/70">{step.description}</p>
             </div>
           </div>
         ))}
@@ -156,7 +156,7 @@ interface FeatureItem {
               {feature.icon}
             </div>
             <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-            <p className="text-white/60 text-sm">{feature.description}</p>
+            <p className="text-sm text-white/70">{feature.description}</p>
           </div>
         ))}
       </div>
@@ -185,7 +185,7 @@ interface HowItWorksStep {
               {step.number}
             </div>
             <h3 className="text-lg font-semibold text-white mb-2">{step.title}</h3>
-            <p className="text-white/60 text-sm">{step.description}</p>
+            <p className="text-sm text-white/70">{step.description}</p>
             
             {/* Arrow connector (except last) */}
             {index < steps.length - 1 && (

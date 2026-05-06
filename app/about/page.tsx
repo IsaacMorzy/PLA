@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/glass-card";
 import { FeatureGrid } from "@/components/ui/feature";
 import { StatsGrid } from "@/components/ui/tailgrids";
 import { PageHero, PageShell, SectionBlock, SectionIntro, SitePage } from "@/components/site/page-shell";
+import { CTA_COPY } from "@/lib/copy";
 
 export const metadata: Metadata = {
   title: "About Us - PeaceLeague Africa",
@@ -47,9 +48,9 @@ export default function AboutPage() {
               <span className="block text-[#f1ddab]">community fundraising across Africa.</span>
             </>
           }
-          description="PeaceLeague Africa combines the warmth of grassroots giving with the clarity of modern on-chain infrastructure. The goal is simple: help more causes look credible, feel urgent, and receive support faster."
+          description="PeaceLeague Africa helps community fundraisers present verified needs clearly, so donors can evaluate quickly and contribute with confidence."
           ctaHref="/campaigns"
-          ctaLabel="Explore campaigns"
+          ctaLabel={CTA_COPY.browseCampaigns}
         />
 
         <SectionBlock>
@@ -69,14 +70,14 @@ export default function AboutPage() {
             <Card className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(212,168,83,0.12),rgba(255,255,255,0.03))] p-8">
               <p className="text-sm uppercase tracking-[0.3em] text-[#d4a853]">Our mission</p>
               <h2 className="mt-4 font-display text-4xl leading-tight text-white">Make transparent giving feel immediate, dignified, and credible.</h2>
-              <p className="mt-5 text-base leading-8 text-white/64">
+              <p className="mt-5 text-base leading-8 text-white/72">
                 We help campaign owners tell urgent stories with more structure and help donors understand impact without friction. The platform exists to reduce doubt and strengthen action.
               </p>
             </Card>
             <Card className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(196,109,70,0.12),rgba(255,255,255,0.03))] p-8">
               <p className="text-sm uppercase tracking-[0.3em] text-[#d4a853]">Our vision</p>
               <h2 className="mt-4 font-display text-4xl leading-tight text-white">A continent-scale network of campaigns donors can trust at first glance.</h2>
-              <p className="mt-5 text-base leading-8 text-white/64">
+              <p className="mt-5 text-base leading-8 text-white/72">
                 We want fundraising pages for African communities to feel as polished and convincing as the best product platforms on the internet — while staying human and mission-led.
               </p>
             </Card>
@@ -87,7 +88,7 @@ export default function AboutPage() {
           <SectionIntro
             eyebrow="Values"
             title="The principles shaping every campaign, donation, and product decision."
-            description="The redesign is not just aesthetic. It reflects how the platform should behave: clear, accountable, and community-centered."
+            description="These principles guide campaign quality, donor trust, and how the product prioritizes clarity at every step."
           />
           <FeatureGrid features={values} columns={3} className="[&>div]:rounded-[1.7rem] [&>div]:border-white/10 [&>div]:bg-white/[0.04] [&>div]:p-7" />
         </SectionBlock>
@@ -123,12 +124,12 @@ export default function AboutPage() {
               <div>
                 <p className="text-sm uppercase tracking-[0.32em] text-[#f1ddab]">What we are building</p>
                 <h2 className="mt-4 max-w-3xl font-display text-4xl leading-tight text-white sm:text-5xl">
-                  A platform where generosity feels modern, transparent, and impossible to ignore.
+                  A fundraising network where every serious cause can earn trust and support faster.
                 </h2>
               </div>
               <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-black/20 px-4 py-2 text-sm text-white/70">
                 <Sparkles className="h-4 w-4 text-[#d4a853]" />
-                PeaceLeague Africa, reimagined with precision
+                Built for accountable giving at scale
               </div>
             </div>
           </Card>

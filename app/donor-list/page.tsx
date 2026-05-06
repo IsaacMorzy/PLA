@@ -43,20 +43,20 @@ export default async function DonorListPage() {
               <span className="block text-[#f1ddab]">momentum of every campaign.</span>
             </>
           }
-          description="This page works as visible social proof — a simple, cleaner acknowledgment of the people helping move support across Africa."
+          description="A transparent view of recent supporter activity to reinforce donor confidence and community momentum."
           align="center"
         />
 
         <SectionBlock>
           <SectionIntro
             eyebrow="Recent support"
-            title="A sharper donor ledger that feels respectful and easy to scan."
-            description="The presentation is intentionally minimal: donor identity, contribution signal, and optional note."
+            title="Recent contributions from the PeaceLeague community."
+            description="Scan supporter identity, donation amount, and optional message in one view."
             className="mx-auto text-center"
           />
 
           <Card className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045]">
-            <div className="grid grid-cols-[1.5fr_0.8fr_1.7fr] gap-4 border-b border-white/8 px-6 py-4 text-[11px] uppercase tracking-[0.25em] text-white/38">
+            <div className="grid grid-cols-[1.5fr_0.8fr_1.7fr] gap-4 border-b border-white/8 px-6 py-4 text-[11px] uppercase tracking-[0.25em] text-white/55">
               <div>Supporter</div>
               <div>Amount</div>
               <div className="hidden md:block">Message</div>
@@ -76,7 +76,7 @@ export default async function DonorListPage() {
                     </div>
                     <div>
                       <p className="font-medium text-white">{donor.title}</p>
-                      <p className="text-sm text-white/38">Entry {String(index + 1).padStart(2, "0")}</p>
+                      <p className="text-sm text-white/55">Entry {String(index + 1).padStart(2, "0")}</p>
                     </div>
                   </div>
 
@@ -87,14 +87,14 @@ export default async function DonorListPage() {
                   </div>
 
                   <div>
-                    <p className="text-sm leading-7 text-white/60">{donor.metadata.message || "No public message shared."}</p>
+                    <p className="text-sm leading-7 text-white/72">{donor.metadata.message || "No public message shared."}</p>
                   </div>
                 </div>
               ))}
             </div>
           </Card>
 
-          <p className="mt-6 text-center text-sm text-white/35">Many supporters choose to give anonymously. This list highlights recent visible contributions only.</p>
+          <p className="mt-6 text-center text-sm text-white/58">Many supporters choose to give anonymously. This list highlights recent visible contributions only.</p>
         </SectionBlock>
       </PageShell>
     </SitePage>

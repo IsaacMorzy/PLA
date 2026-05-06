@@ -29,6 +29,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { WalletButton } from "@/components/wallet/wallet-button";
 import { cn } from "@/lib/utils";
+import { CTA_COPY } from "@/lib/copy";
 
 const SECTIONS = [
   {
@@ -63,7 +64,7 @@ export function MobileNav() {
         <Button
           variant="ghost"
           size="icon"
-          className="lg:hidden h-10 w-10 rounded-full border border-white/10 bg-white/[0.04] text-white hover:bg-white/[0.08]"
+          className="h-10 w-10 rounded-full border border-white/10 bg-white/[0.04] text-white hover:bg-white/[0.08] lg:hidden"
         >
           <Menu className="h-5 w-5" />
           <span className="sr-only">Open navigation</span>
@@ -72,7 +73,7 @@ export function MobileNav() {
 
       <SheetContent
         side="left"
-        className="w-[92vw] max-w-[420px] overflow-y-auto border-r border-white/10 bg-[#120f0c]/96 p-0 text-white backdrop-blur-2xl"
+        className="w-[92vw] max-w-[420px] overflow-y-auto border-r border-white/10 bg-[#120f0c]/96 p-0 text-white backdrop-blur-lg sm:backdrop-blur-xl"
       >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,168,83,0.16),transparent_28%),radial-gradient(circle_at_80%_20%,rgba(196,109,70,0.18),transparent_24%)]" />
 
@@ -85,7 +86,7 @@ export function MobileNav() {
             <SheetTitle className="mt-4 text-left text-3xl font-semibold tracking-tight text-white">
               Explore PeaceLeague Africa
             </SheetTitle>
-            <p className="text-sm leading-7 text-white/62">
+            <p className="text-sm leading-7 text-white/72">
               A cleaner, grouped menu inspired by modern infrastructure sites — fast to scan, easy to use.
             </p>
           </SheetHeader>
@@ -95,17 +96,17 @@ export function MobileNav() {
               <Link
                 href="/campaigns"
                 onClick={() => setOpen(false)}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d4a853] px-4 py-3 text-sm font-semibold text-[#1a1815]"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d4a853] px-4 py-3 text-sm font-semibold text-[#1a1815] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
               >
-                Browse campaigns
+                {CTA_COPY.browseCampaigns}
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/campaigns/create"
+                href="/create"
                 onClick={() => setOpen(false)}
-                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.05] px-4 py-3 text-sm font-semibold text-white"
+                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.05] px-4 py-3 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
               >
-                Start a campaign
+                {CTA_COPY.launchCampaign}
               </Link>
             </div>
           </div>
@@ -113,7 +114,7 @@ export function MobileNav() {
           <div className="flex-1 space-y-8 px-6 pb-6">
             {SECTIONS.map((section) => (
               <div key={section.title}>
-                <p className="mb-3 text-[11px] uppercase tracking-[0.28em] text-white/40">{section.title}</p>
+                <p className="mb-3 text-[11px] uppercase tracking-[0.28em] text-white/55">{section.title}</p>
                 <div className="grid gap-3">
                   {section.items.map((item) => {
                     const isActive = pathname === item.href;
@@ -124,11 +125,12 @@ export function MobileNav() {
                         href={item.href}
                         onClick={() => setOpen(false)}
                         className={cn(
-                          "group rounded-[1.4rem] border p-4 transition-all duration-300",
+                          "group rounded-[1.4rem] border p-4 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]",
                           isActive
                             ? "border-[#d4a853]/25 bg-[#d4a853]/10"
                             : "border-white/8 bg-white/[0.035] hover:border-white/14 hover:bg-white/[0.06]"
                         )}
+                        aria-current={isActive ? "page" : undefined}
                       >
                         <div className="flex items-start gap-3">
                           <div
@@ -144,9 +146,9 @@ export function MobileNav() {
                           <div className="min-w-0 flex-1">
                             <div className="flex items-center justify-between gap-3">
                               <span className="text-sm font-semibold text-white">{item.label}</span>
-                              <ArrowRight className="h-4 w-4 text-white/30 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-[#f1ddab]" />
+                              <ArrowRight className="h-4 w-4 text-white/55 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-[#f1ddab]" />
                             </div>
-                            <p className="mt-1 text-sm leading-6 text-white/54">{item.description}</p>
+                            <p className="mt-1 text-sm leading-6 text-white/70">{item.description}</p>
                           </div>
                         </div>
                       </Link>
@@ -157,8 +159,8 @@ export function MobileNav() {
             ))}
 
             <div className="rounded-[1.6rem] border border-white/10 bg-white/[0.04] p-5">
-              <p className="text-[11px] uppercase tracking-[0.28em] text-white/40">Wallet</p>
-              <p className="mt-3 text-sm leading-7 text-white/62">
+              <p className="text-[11px] uppercase tracking-[0.28em] text-white/55">Wallet</p>
+              <p className="mt-3 text-sm leading-7 text-white/72">
                 Connect to donate, launch campaigns, and manage on-chain giving.
               </p>
               <div className="mt-4">
@@ -168,7 +170,7 @@ export function MobileNav() {
           </div>
 
           <div className="border-t border-white/8 px-6 py-5">
-            <p className="mb-3 text-[11px] uppercase tracking-[0.28em] text-white/40">Follow</p>
+            <p className="mb-3 text-[11px] uppercase tracking-[0.28em] text-white/55">Follow</p>
             <div className="grid grid-cols-3 gap-3">
               <SocialButton href="https://peaceleague.africa" icon={<Globe className="h-4 w-4" />} label="Site" />
               <SocialButton href="https://github.com/peaceleagueafrica" icon={<BookOpen className="h-4 w-4" />} label="GitHub" />
@@ -195,7 +197,7 @@ function SocialButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-2.5 text-sm text-white/68 transition-all duration-300 hover:border-[#d4a853]/20 hover:bg-[#d4a853]/10 hover:text-[#f1ddab]"
+      className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-2.5 text-sm text-white/68 transition-all duration-300 hover:border-[#d4a853]/20 hover:bg-[#d4a853]/10 hover:text-[#f1ddab] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
     >
       {icon}
       <span>{label}</span>

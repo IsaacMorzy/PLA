@@ -64,7 +64,7 @@ export function TokenInput({
         <div className="flex items-center justify-between">
           <Label htmlFor="token-input">{label}</Label>
           {balance !== undefined && (
-            <span className="text-sm text-white/40">
+            <span className="text-sm text-white/58">
               Balance: {balance.toFixed(4)} {symbol}
             </span>
           )}
@@ -102,7 +102,7 @@ export function TokenInput({
                 size="sm"
                 onClick={handleHalf}
                 disabled={disabled || balance === 0}
-                className="text-xs text-white/60 hover:text-white"
+                className="text-xs text-white/72 hover:text-white"
               >
                 Half
               </Button>
@@ -112,13 +112,13 @@ export function TokenInput({
                 size="sm"
                 onClick={handleMax}
                 disabled={disabled || balance === 0}
-                className="text-xs text-white/60 hover:text-white"
+                className="text-xs text-white/72 hover:text-white"
               >
                 Max
               </Button>
             </>
           )}
-          <span className="font-medium text-white/60">{symbol}</span>
+          <span className="font-medium text-white/72">{symbol}</span>
         </div>
       </div>
 

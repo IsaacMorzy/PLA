@@ -44,15 +44,15 @@ export default async function TestimonialsPage() {
               <span className="block text-[#f1ddab]">gravity, warmth, and credibility.</span>
             </>
           }
-          description="These stories should feel like endorsements of both impact and trust — not decorative filler."
+          description="Real feedback from donors and campaign organizers on trust, clarity, and why they chose to contribute through PeaceLeague Africa."
           align="left"
         />
 
         <SectionBlock>
           <SectionIntro
             eyebrow="Community voices"
-            title="How donors and organizers describe the platform when it works well."
-            description="The redesigned testimonial system uses stronger hierarchy and more breathing room so each quote feels worth reading."
+            title="What people say after donating, launching, and sharing campaigns."
+            description="These quotes capture the decision factors that matter most: credibility, transparency, and momentum."
           />
 
           <div className="grid gap-6 lg:grid-cols-3">
@@ -73,7 +73,7 @@ export default async function TestimonialsPage() {
                 </p>
                 <div className="mt-8 border-t border-white/10 pt-5">
                   <p className="font-medium text-white">{testimonial.title}</p>
-                  <p className="mt-1 text-sm text-white/48">{testimonial.metadata.role}</p>
+                  <p className="mt-1 text-sm text-white/62">{testimonial.metadata.role}</p>
                 </div>
               </Card>
             ))}

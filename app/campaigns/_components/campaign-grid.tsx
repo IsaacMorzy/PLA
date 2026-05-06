@@ -66,8 +66,8 @@ export function CampaignGrid({ campaigns: initialCampaigns }: CampaignGridProps)
   if (filteredCampaigns.length === 0) {
     return (
       <div className="rounded-[1.8rem] border border-white/10 bg-white/[0.04] py-12 text-center">
-        <p className="text-white/62">No campaigns found</p>
-        <p className="mt-1 text-sm text-white/42">
+        <p className="text-white/72">No campaigns found</p>
+        <p className="mt-1 text-sm text-white/58">
           Try adjusting your filters
         </p>
       </div>

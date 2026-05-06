@@ -20,7 +20,7 @@ export default function ContactPage() {
               <span className="block text-[#f1ddab]">PeaceLeague Africa.</span>
             </>
           }
-          description="This page should feel calm, direct, and trustworthy — a polished place to ask questions, start partnerships, or get support."
+          description="Use this channel for campaign questions, partnership requests, and support issues. We route every message to the right team quickly."
           align="left"
         />
 
@@ -29,8 +29,8 @@ export default function ContactPage() {
             <div>
               <SectionIntro
                 eyebrow="Send a message"
-                title="A clearer contact flow with less friction and more confidence."
-                description="The layout now separates the action from the reassurance so users can decide quickly and act without confusion."
+                title="Contact the right team without back-and-forth."
+                description="Share your context once and we’ll respond with the next step, owner, and timeline."
               />
               <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-8">
                 {submitted ? (
@@ -39,12 +39,12 @@ export default function ContactPage() {
                       <Mail className="h-7 w-7" />
                     </div>
                     <h2 className="mt-6 font-display text-3xl text-white">Message sent</h2>
-                    <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-white/62">
+                    <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-white/72">
                       Thanks for reaching out. We’ll follow up as soon as possible with the right next step.
                     </p>
                     <button
                       onClick={() => setSubmitted(false)}
-                      className="mt-6 rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-5 py-2.5 text-sm font-medium text-[#f1ddab] transition duration-300 hover:bg-[#d4a853]/16 hover:text-white"
+                      className="mt-6 rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-5 py-2.5 text-sm font-medium text-[#f1ddab] transition duration-300 hover:bg-[#d4a853]/16 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
                     >
                       Send another message
                     </button>
@@ -75,7 +75,7 @@ export default function ContactPage() {
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#d4a853]/10 text-[#d4a853]">{item.icon}</div>
                     <div>
-                      <p className="text-[11px] uppercase tracking-[0.24em] text-white/38">{item.title}</p>
+                      <p className="text-[11px] uppercase tracking-[0.24em] text-white/55">{item.title}</p>
                       <p className="mt-3 text-base text-white">{item.body}</p>
                     </div>
                   </div>
