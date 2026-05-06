@@ -19,6 +19,12 @@ export const testimonialsObjectType = "testimonials";
 export const teamMembersObjectType = "team-members";
 export const galleryObjectType = "gallery";
 
+function isCosmicNotFound(error: unknown) {
+  if (!error || typeof error !== "object") return false;
+  const status = (error as { status?: number }).status;
+  return status === 404;
+}
+
 // Campaign data types
 export interface Campaign {
   id: string;
@@ -270,7 +276,9 @@ export async function getRecentDonors(limit = 20): Promise<Donor[]> {
     });
     return response.objects as unknown as Donor[];
   } catch (error) {
-    console.error("Error fetching donors:", error);
+    if (!isCosmicNotFound(error)) {
+      console.error("Error fetching donors:", error);
+    }
     return [];
   }
 }
