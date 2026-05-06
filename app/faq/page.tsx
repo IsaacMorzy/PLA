@@ -70,8 +70,8 @@ export default function FAQPage() {
                 description="Start here if you want fast clarity before donating or launching a campaign."
               />
             </div>
-            <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 sm:p-8">
-              <Accordion items={faqItems} className="[&>div]:rounded-[1.4rem] [&>div]:border-white/10 [&>div]:bg-black/20 [&_button]:px-5 [&_button]:py-5" />
+            <Card className="rounded-[2rem] border border-black/10 bg-white/75 p-6 sm:p-8 dark:border-white/10 dark:bg-white/[0.045]">
+              <Accordion items={faqItems} className="[&>div]:rounded-[1.4rem] [&_button]:px-5 [&_button]:py-5" />
             </Card>
           </div>
         </SectionBlock>
@@ -79,20 +79,20 @@ export default function FAQPage() {
         <SectionBlock>
           <Card className="rounded-[2rem] border border-[#d4a853]/16 bg-[linear-gradient(135deg,rgba(212,168,83,0.16),rgba(255,255,255,0.04),rgba(196,109,70,0.12))] p-8 text-center sm:p-10">
             <p className="text-sm uppercase tracking-[0.32em] text-[#f1ddab]">Still need help?</p>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-white sm:text-5xl">Let’s make the next step obvious.</h2>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/68">
+            <h2 className="mt-4 font-display text-4xl leading-tight text-[#21160c] dark:text-white sm:text-5xl">Let’s make the next step obvious.</h2>
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-[#5c4732] dark:text-white/68">
               If your question is campaign-specific or technical, reach out directly and we can help you navigate the right path.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-[#d4a853] px-6 py-3.5 text-sm font-semibold text-[#17120d] transition duration-300 hover:-translate-y-0.5 hover:bg-[#e5bc68] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
+                className="inline-flex items-center justify-center rounded-full bg-[#d4a853] px-6 py-3.5 text-sm font-semibold text-[#17120d] transition duration-300 hover:-translate-y-0.5 hover:bg-[#e5bc68] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f6f1e8] dark:focus-visible:ring-offset-[#120f0c]"
               >
                 Contact us
               </Link>
               <Link
                 href="/campaigns"
-                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.05] px-6 py-3.5 text-sm font-semibold text-white transition duration-300 hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
+                className="inline-flex items-center justify-center rounded-full border border-black/10 bg-black/[0.04] px-6 py-3.5 text-sm font-semibold text-[#21160c] transition duration-300 hover:bg-black/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f6f1e8] dark:border-white/10 dark:bg-white/[0.05] dark:text-white dark:hover:bg-white/[0.08] dark:focus-visible:ring-offset-[#120f0c]"
               >
                 {CTA_COPY.browseCampaigns}
               </Link>

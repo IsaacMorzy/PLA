@@ -57,7 +57,7 @@ export default async function ImageGalleryPage() {
 
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {displayGallery.map((item, index) => (
-              <Card key={item.id} className={`group overflow-hidden rounded-[2rem] border border-white/10 p-0 ${index === 0 ? "md:col-span-2" : ""}`}>
+              <Card key={item.id} className={`group overflow-hidden rounded-[2rem] border border-black/10 p-0 dark:border-white/10 ${index === 0 ? "md:col-span-2" : ""}`}>
                 <div className={`relative overflow-hidden ${index === 0 ? "aspect-[16/9]" : "aspect-[4/5]"}`}>
                   <img
                     src={item.metadata.image}

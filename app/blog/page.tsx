@@ -42,9 +42,9 @@ export default async function BlogPage() {
                 <Link
                   key={post.id}
                   href={`/blog/${post.slug}`}
-                  className={`group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c] ${index === 0 ? "lg:col-span-7" : index === 1 ? "lg:col-span-5" : "lg:col-span-4"}`}
+                  className={`group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f6f1e8] dark:focus-visible:ring-offset-[#120f0c] ${index === 0 ? "lg:col-span-7" : index === 1 ? "lg:col-span-5" : "lg:col-span-4"}`}
                 >
-                  <Card className={`overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-0 ${index === 0 ? "min-h-[32rem]" : "min-h-[28rem]"}`}>
+                  <Card className={`overflow-hidden rounded-[2rem] border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,255,255,0.74))] p-0 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] ${index === 0 ? "min-h-[32rem]" : "min-h-[28rem]"}`}>
                     {post.metadata.featured_image ? (
                       <div className={`relative overflow-hidden ${index === 0 ? "aspect-[16/9]" : "aspect-[16/10]"}`}>
                         <Image
@@ -67,23 +67,23 @@ export default async function BlogPage() {
                           </span>
                         ) : null}
                         {post.metadata.read_time ? (
-                          <span className="text-[11px] uppercase tracking-[0.22em] text-white/42">{post.metadata.read_time}</span>
+                          <span className="text-[11px] uppercase tracking-[0.22em] text-[#6a5441] dark:text-white/42">{post.metadata.read_time}</span>
                         ) : null}
                       </div>
 
-                      <h2 className={`mt-5 text-balance font-display text-white transition-colors duration-300 group-hover:text-[#f1ddab] ${index === 0 ? "text-4xl leading-[1.02] tracking-[-0.01em]" : "text-3xl leading-[1.05] tracking-[-0.01em]"}`}>
+                      <h2 className={`mt-5 text-balance font-display text-[#21160c] transition-colors duration-300 group-hover:text-[#8f641f] dark:text-white dark:group-hover:text-[#f1ddab] ${index === 0 ? "text-4xl leading-[1.02] tracking-[-0.01em]" : "text-3xl leading-[1.05] tracking-[-0.01em]"}`}>
                         {post.title}
                       </h2>
 
                       {post.metadata.excerpt ? (
-                        <p className="mt-4 line-clamp-3 text-sm leading-7 text-white/70">{post.metadata.excerpt}</p>
+                        <p className="mt-4 line-clamp-3 text-sm leading-7 text-[#5c4732] dark:text-white/70">{post.metadata.excerpt}</p>
                       ) : null}
 
-                      <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-5">
+                      <div className="mt-6 flex items-center justify-between border-t border-black/10 pt-5 dark:border-white/10">
                         <div>
-                          <p className="text-sm font-medium text-white">{post.metadata.author || "PeaceLeague Africa"}</p>
+                          <p className="text-sm font-medium text-[#21160c] dark:text-white">{post.metadata.author || "PeaceLeague Africa"}</p>
                           {post.metadata.published_date ? (
-                            <p className="mt-1 text-xs uppercase tracking-[0.18em] text-white/38">
+                            <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[#6a5441] dark:text-white/38">
                               {new Date(post.metadata.published_date).toLocaleDateString("en-US", {
                                 month: "long",
                                 day: "numeric",
@@ -92,7 +92,7 @@ export default async function BlogPage() {
                             </p>
                           ) : null}
                         </div>
-                        <span className="inline-flex items-center gap-2 text-sm font-medium text-white/72 transition-colors duration-300 group-hover:text-[#f1ddab]">
+                        <span className="inline-flex items-center gap-2 text-sm font-medium text-[#5c4732] transition-colors duration-300 group-hover:text-[#8f641f] dark:text-white/72 dark:group-hover:text-[#f1ddab]">
                           Read article
                           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                         </span>
@@ -103,9 +103,9 @@ export default async function BlogPage() {
               ))}
             </div>
           ) : (
-            <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] px-8 py-16 text-center">
-              <p className="text-lg text-white/72">No blog posts yet.</p>
-              <p className="mt-2 text-sm text-white/55">Check back soon for stories, updates, and reflections from the platform.</p>
+            <Card className="rounded-[2rem] border border-black/10 bg-white/75 px-8 py-16 text-center dark:border-white/10 dark:bg-white/[0.045]">
+              <p className="text-lg text-[#5c4732] dark:text-white/72">No blog posts yet.</p>
+              <p className="mt-2 text-sm text-[#6a5441] dark:text-white/55">Check back soon for stories, updates, and reflections from the platform.</p>
             </Card>
           )}
         </SectionBlock>

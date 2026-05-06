@@ -55,14 +55,14 @@ export default async function DonorListPage() {
             className="mx-auto text-center"
           />
 
-          <Card className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045]">
-            <div className="grid grid-cols-[1.5fr_0.8fr_1.7fr] gap-4 border-b border-white/8 px-6 py-4 text-[11px] uppercase tracking-[0.25em] text-white/55">
+          <Card className="overflow-hidden rounded-[2rem] border border-black/10 bg-white/75 dark:border-white/10 dark:bg-white/[0.045]">
+            <div className="grid grid-cols-[1.5fr_0.8fr_1.7fr] gap-4 border-b border-black/10 px-6 py-4 text-[11px] uppercase tracking-[0.25em] text-[#6a5441] dark:border-white/8 dark:text-white/55">
               <div>Supporter</div>
               <div>Amount</div>
               <div className="hidden md:block">Message</div>
             </div>
 
-            <div className="divide-y divide-white/8">
+            <div className="divide-y divide-black/10 dark:divide-white/8">
               {displayDonors.map((donor, index) => (
                 <div key={donor.id} className="grid grid-cols-1 gap-4 px-6 py-5 md:grid-cols-[1.5fr_0.8fr_1.7fr] md:items-center">
                   <div className="flex items-center gap-4">
@@ -75,8 +75,8 @@ export default async function DonorListPage() {
                         .toUpperCase()}
                     </div>
                     <div>
-                      <p className="font-medium text-white">{donor.title}</p>
-                      <p className="text-sm text-white/55">Entry {String(index + 1).padStart(2, "0")}</p>
+                      <p className="font-medium text-[#21160c] dark:text-white">{donor.title}</p>
+                      <p className="text-sm text-[#6a5441] dark:text-white/55">Entry {String(index + 1).padStart(2, "0")}</p>
                     </div>
                   </div>
 
@@ -87,14 +87,14 @@ export default async function DonorListPage() {
                   </div>
 
                   <div>
-                    <p className="text-sm leading-7 text-white/72">{donor.metadata.message || "No public message shared."}</p>
+                    <p className="text-sm leading-7 text-[#5c4732] dark:text-white/72">{donor.metadata.message || "No public message shared."}</p>
                   </div>
                 </div>
               ))}
             </div>
           </Card>
 
-          <p className="mt-6 text-center text-sm text-white/58">Many supporters choose to give anonymously. This list highlights recent visible contributions only.</p>
+          <p className="mt-6 text-center text-sm text-[#6a5441] dark:text-white/58">Many supporters choose to give anonymously. This list highlights recent visible contributions only.</p>
         </SectionBlock>
       </PageShell>
     </SitePage>

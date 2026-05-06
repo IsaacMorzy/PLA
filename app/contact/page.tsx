@@ -32,26 +32,26 @@ export default function ContactPage() {
                 title="Contact the right team without back-and-forth."
                 description="Share your context once and we’ll respond with the next step, owner, and timeline."
               />
-              <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-8">
+              <Card className="rounded-[2rem] border border-black/10 bg-white/75 p-8 dark:border-white/10 dark:bg-white/[0.045]">
                 {submitted ? (
                   <div className="py-8 text-center">
                     <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 text-[#d4a853]">
                       <Mail className="h-7 w-7" />
                     </div>
-                    <h2 className="mt-6 font-display text-3xl text-white">Message sent</h2>
-                    <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-white/72">
+                    <h2 className="mt-6 font-display text-3xl text-[#21160c] dark:text-white">Message sent</h2>
+                    <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-[#5c4732] dark:text-white/72">
                       Thanks for reaching out. We’ll follow up as soon as possible with the right next step.
                     </p>
                     <button
                       onClick={() => setSubmitted(false)}
-                      className="mt-6 rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-5 py-2.5 text-sm font-medium text-[#f1ddab] transition duration-300 hover:bg-[#d4a853]/16 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120f0c]"
+                      className="mt-6 rounded-full border border-[#d4a853]/20 bg-[#d4a853]/10 px-5 py-2.5 text-sm font-medium text-[#8f641f] transition duration-300 hover:bg-[#d4a853]/16 hover:text-[#22160b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f6f1e8] dark:text-[#f1ddab] dark:hover:text-white dark:focus-visible:ring-offset-[#120f0c]"
                     >
                       Send another message
                     </button>
                   </div>
                 ) : (
                   <div onSubmitCapture={() => setSubmitted(true)}>
-                    <ContactForm className="[&_button]:rounded-full [&_button]:bg-[#d4a853] [&_button]:text-[#17120d] [&_input]:rounded-[1rem] [&_input]:border-white/10 [&_input]:bg-black/20 [&_label]:text-white/78 [&_select]:rounded-[1rem] [&_select]:border-white/10 [&_select]:bg-black/20 [&_textarea]:rounded-[1rem] [&_textarea]:border-white/10 [&_textarea]:bg-black/20" />
+                    <ContactForm className="[&_button]:rounded-full [&_button]:bg-[#d4a853] [&_button]:text-[#17120d]" />
                   </div>
                 )}
               </Card>
@@ -71,12 +71,12 @@ export default function ContactPage() {
                 title: "Response time",
                 body: "Usually within 24 hours",
               }].map((item) => (
-                <Card key={item.title} className="rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-6">
+                <Card key={item.title} className="rounded-[1.8rem] border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,255,255,0.72))] p-6 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))]">
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#d4a853]/10 text-[#d4a853]">{item.icon}</div>
                     <div>
-                      <p className="text-[11px] uppercase tracking-[0.24em] text-white/55">{item.title}</p>
-                      <p className="mt-3 text-base text-white">{item.body}</p>
+                      <p className="text-[11px] uppercase tracking-[0.24em] text-[#6a5441] dark:text-white/55">{item.title}</p>
+                      <p className="mt-3 text-base text-[#21160c] dark:text-white">{item.body}</p>
                     </div>
                   </div>
                 </Card>

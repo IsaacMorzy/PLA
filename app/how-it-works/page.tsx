@@ -79,27 +79,27 @@ export default function HowItWorksPage() {
             title="A simpler fundraising path, presented with more clarity."
             description="Each step is designed to reduce hesitation: launch clearly, share confidently, fund transparently, and report outcomes."
           />
-          <Card className="rounded-[2rem] border border-white/10 bg-white/[0.045] p-8">
+          <Card className="rounded-[2rem] border border-black/10 bg-white/75 p-8 dark:border-white/10 dark:bg-white/[0.045]">
             <HowItWorks steps={steps} className="[&_h3]:text-xl [&_p]:leading-7 [&_p]:text-white/72" />
           </Card>
         </SectionBlock>
 
         <SectionBlock>
           <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-            <Card className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(212,168,83,0.12),rgba(255,255,255,0.03))] p-8">
+            <Card className="rounded-[2rem] border border-black/10 bg-[linear-gradient(180deg,rgba(212,168,83,0.16),rgba(255,255,255,0.74))] p-8 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(212,168,83,0.12),rgba(255,255,255,0.03))]">
               <p className="text-sm uppercase tracking-[0.3em] text-[#d4a853]">Why this matters</p>
-              <h2 className="mt-4 font-display text-4xl leading-tight text-white">Trust is a product experience, not just a promise.</h2>
-              <p className="mt-5 text-base leading-8 text-white/72">
+              <h2 className="mt-4 font-display text-4xl leading-tight text-[#21160c] dark:text-white">Trust is a product experience, not just a promise.</h2>
+              <p className="mt-5 text-base leading-8 text-[#5c4732] dark:text-white/72">
                 Donors need proof before they give. Organizers need momentum after launch. This flow supports both with clear campaign structure and visible funding signals.
               </p>
-              <div className="mt-8 rounded-[1.5rem] border border-white/10 bg-black/20 p-5">
+              <div className="mt-8 rounded-[1.5rem] border border-black/10 bg-black/[0.04] p-5 dark:border-white/10 dark:bg-black/20">
                 <div className="flex items-start gap-3">
                   <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#d4a853]/10 text-[#d4a853]">
                     <ArrowRightLeft className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="font-medium text-white">From donor hesitation to donor conviction</p>
-                    <p className="mt-2 text-sm leading-7 text-white/72">
+                    <p className="font-medium text-[#21160c] dark:text-white">From donor hesitation to donor conviction</p>
+                    <p className="mt-2 text-sm leading-7 text-[#5c4732] dark:text-white/72">
                       Clear campaign framing and visible transaction progress increase donor confidence and conversion.
                     </p>
                   </div>
@@ -114,7 +114,7 @@ export default function HowItWorksPage() {
                 description="These are not add-ons. They are the trust mechanisms that make the experience feel serious."
                 className="mb-6"
               />
-              <FeatureGrid features={benefits} columns={2} className="[&>div]:rounded-[1.7rem] [&>div]:border-white/10 [&>div]:bg-white/[0.04] [&>div]:p-7" />
+              <FeatureGrid features={benefits} columns={2} className="[&>div]:rounded-[1.7rem] [&>div]:p-7" />
             </div>
           </div>
         </SectionBlock>

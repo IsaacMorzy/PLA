@@ -59,7 +59,7 @@ export default async function TestimonialsPage() {
             {displayTestimonials.map((testimonial, index) => (
               <Card
                 key={testimonial.id}
-                className={`rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-7 ${
+                className={`rounded-[2rem] border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,255,255,0.72))] p-7 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] ${
                   index === 1 ? "lg:translate-y-8" : ""
                 }`}
               >
@@ -68,12 +68,12 @@ export default async function TestimonialsPage() {
                     <Star key={starIndex} className="h-4 w-4 fill-current" />
                   ))}
                 </div>
-                <p className="mt-6 font-display text-2xl leading-relaxed text-white">
+                <p className="mt-6 font-display text-2xl leading-relaxed text-[#21160c] dark:text-white">
                   “{testimonial.metadata.quote}”
                 </p>
-                <div className="mt-8 border-t border-white/10 pt-5">
-                  <p className="font-medium text-white">{testimonial.title}</p>
-                  <p className="mt-1 text-sm text-white/62">{testimonial.metadata.role}</p>
+                <div className="mt-8 border-t border-black/10 pt-5 dark:border-white/10">
+                  <p className="font-medium text-[#21160c] dark:text-white">{testimonial.title}</p>
+                  <p className="mt-1 text-sm text-[#6a5441] dark:text-white/62">{testimonial.metadata.role}</p>
                 </div>
               </Card>
             ))}
